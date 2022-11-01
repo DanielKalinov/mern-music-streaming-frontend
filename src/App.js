@@ -1,5 +1,5 @@
 const App = () => {
-	return <div>Hello World from React</div>;
+	return <audio src='http://localhost:3000/test_audio' controls />;
 };
 
 export default App;
