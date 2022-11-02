@@ -15,7 +15,20 @@ const App = () => {
 	return (
 		<>
 			<audio src={url} controls />
-			<Slider min={1} max={80} />
+			<Slider
+				min={1}
+				max={80}
+				railStyle={{ cursor: 'pointer' }}
+				trackStyle={[{ backgroundColor: 'red', cursor: 'pointer' }]}
+				handleStyle={[
+					{
+						backgroundColor: 'red',
+						borderColor: 'red',
+						opacity: 1,
+						cursor: 'pointer',
+					},
+				]}
+			/>
 		</>
 	);
 };
