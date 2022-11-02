@@ -5,7 +5,7 @@ const App = () => {
 	const [url, setUrl] = useState();
 
 	useEffect(() => {
-		axios.get('http://localhost:3000/test_audio').then((res) => {
+		axios.get('http://localhost:5000/test_audio').then((res) => {
 			setUrl(res.data);
 		});
 	}, []);
