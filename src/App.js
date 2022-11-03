@@ -31,6 +31,7 @@ const App = () => {
 				onTimeUpdate={handleProgress}
 				muted
 			/>
+			<h2>HELLO WORLD</h2>
 			<div style={{ width: '300px' }}>
 				<Slider
 					value={percent}

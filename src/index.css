@@ -2,14 +2,14 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-    --color-primary: #18181B;
-}
-
-body {
-    background-color: var(--color-primary);
+@layer base {
+	body {
+		@apply bg-zinc-900;
+		color: white;
+		font-family: 'Poppins', sans-serif;
+	}
 }
 
 .rc-slider-handle:active {
-    box-shadow: 0 0 5px red !important;
+	box-shadow: 0 0 5px red !important;
 }
