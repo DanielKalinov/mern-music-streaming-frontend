@@ -2,6 +2,7 @@ import axios from 'axios';
 import { useEffect, useRef, useState } from 'react';
 import Slider from 'rc-slider';
 import 'rc-slider/assets/index.css';
+import AudioControlsPanel from './components/AudioControlsPanel';
 
 const App = () => {
 	const [url, setUrl] = useState();
@@ -52,6 +53,7 @@ const App = () => {
 					draggableTrack
 				/>
 			</div>
+			<AudioControlsPanel />
 		</>
 	);
 };
