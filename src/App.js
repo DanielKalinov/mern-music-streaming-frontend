@@ -34,13 +34,14 @@ const App = () => {
 			<div style={{ width: '300px' }}>
 				<Slider
 					value={percent}
-					railStyle={{ cursor: 'pointer' }}
-					trackStyle={[{ backgroundColor: 'red', cursor: 'pointer' }]}
+					railStyle={{ backgroundColor: '#71717a', cursor: 'pointer' }}
+					trackStyle={[{ backgroundColor: '#db2777', cursor: 'pointer' }]}
 					handleStyle={[
 						{
-							backgroundColor: 'red',
-							borderColor: 'red',
+							backgroundColor: '#db2777',
+							borderColor: '#db2777',
 							cursor: 'pointer',
+							boxShadow: 'none',
 							opacity: 1,
 						},
 					]}

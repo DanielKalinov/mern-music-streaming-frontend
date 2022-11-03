@@ -9,7 +9,3 @@
 		font-family: 'Poppins', sans-serif;
 	}
 }
-
-.rc-slider-handle:active {
-	box-shadow: 0 0 5px red !important;
-}
