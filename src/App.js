@@ -47,6 +47,7 @@ const App = () => {
 						audioRef.current.currentTime =
 							(value / 100) * audioRef.current.duration;
 					}}
+					draggableTrack
 				/>
 			</div>
 		</>
