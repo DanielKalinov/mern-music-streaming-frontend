@@ -47,6 +47,8 @@ const App = () => {
 						audioRef.current.currentTime =
 							(value / 100) * audioRef.current.duration;
 					}}
+					onBeforeChange={() => audioRef.current.pause()}
+					onAfterChange={() => audioRef.current.play()}
 					draggableTrack
 				/>
 			</div>
