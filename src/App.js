@@ -1,39 +1,27 @@
 import axios from 'axios';
-import { useEffect, useRef, useState } from 'react';
+import { useEffect } from 'react';
 import Slider from 'rc-slider';
 import 'rc-slider/assets/index.css';
 import AudioControlsPanel from './components/AudioControlsPanel';
 
 const App = () => {
-	const [url, setUrl] = useState();
-	const [percent, setPercent] = useState(0);
-	const audioRef = useRef();
+	const audio = new Audio();
 
 	useEffect(() => {
 		axios.get('http://localhost:5000/test_audio').then((res) => {
-			setUrl(res.data);
+			audio.src = res.data;
 		});
 	}, []);
 
-	const handleProgress = () => {
-		const percent =
-			(audioRef.current.currentTime / audioRef.current.duration) * 100;
-
-		setPercent(percent);
-	};
-
 	return (
 		<>
-			<audio
-				ref={audioRef}
-				src={url}
-				controls
-				onTimeUpdate={handleProgress}
-				muted
-			/>
+			<div
+				style={{ marginBottom: '40px' }}
+				onClick={() => (audio.paused ? audio.play() : audio.pause())}>
+				Play
+			</div>
 			<div style={{ width: '300px' }}>
 				<Slider
-					value={percent}
 					railStyle={{ backgroundColor: '#71717a', cursor: 'pointer' }}
 					trackStyle={[{ backgroundColor: '#db2777', cursor: 'pointer' }]}
 					handleStyle={[
@@ -46,13 +34,10 @@ const App = () => {
 						},
 					]}
 					onChange={(value) => {
-						setPercent(value);
-						audioRef.current.currentTime =
-							(value / 100) * audioRef.current.duration;
+						audio.currentTime = (value / 100) * audio.duration;
 					}}
-					onBeforeChange={() => audioRef.current.pause()}
-					onAfterChange={() => audioRef.current.play()}
-					draggableTrack
+					onBeforeChange={() => audio.pause()}
+					onAfterChange={() => audio.play()}
 				/>
 			</div>
 			<AudioControlsPanel />
