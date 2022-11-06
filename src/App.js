@@ -33,11 +33,9 @@ const App = () => {
 							opacity: 1,
 						},
 					]}
-					onChange={(value) => {
+					onAfterChange={(value) => {
 						audio.currentTime = (value / 100) * audio.duration;
 					}}
-					onBeforeChange={() => audio.pause()}
-					onAfterChange={() => audio.play()}
 				/>
 			</div>
 			<AudioControlsPanel />
