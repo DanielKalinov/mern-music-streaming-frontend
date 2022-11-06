@@ -12,10 +12,8 @@ const AudioControlsPanel = ({ audio, isPlaying, setIsPlaying }) => {
 				onClick={() => {
 					if (audio.current.paused) {
 						setIsPlaying(true);
-						audio.current.play();
 					} else {
 						setIsPlaying(false);
-						audio.current.pause();
 					}
 				}}>
 				{isPlaying ? <PauseIcon /> : <PlayArrowIcon />}

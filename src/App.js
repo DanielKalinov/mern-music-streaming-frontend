@@ -14,6 +14,10 @@ const App = () => {
 		});
 	}, []);
 
+	useEffect(() => {
+		isPlaying ? audio.current.play() : audio.current.pause();
+	}, [isPlaying]);
+
 	return (
 		<>
 			<AudioControlsPanel
