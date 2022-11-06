@@ -1,11 +1,16 @@
 import React from 'react';
-import Slider from 'rc-slider';
 import PlayArrowIcon from '@mui/icons-material/PlayArrow';
 import IconButton from '@mui/material/IconButton';
 import PauseIcon from '@mui/icons-material/Pause';
-import SliderMUI from '@mui/material/Slider';
+import Slider from '@mui/material/Slider';
 
-const AudioControlsPanel = ({ audio, isPlaying, setIsPlaying }) => {
+const AudioControlsPanel = ({
+	audio,
+	isPlaying,
+	setIsPlaying,
+	percent,
+	setPercent,
+}) => {
 	return (
 		<div style={{ width: '300px' }}>
 			<IconButton
@@ -20,28 +25,13 @@ const AudioControlsPanel = ({ audio, isPlaying, setIsPlaying }) => {
 				{isPlaying ? <PauseIcon /> : <PlayArrowIcon />}
 			</IconButton>
 
-			{/* <Slider
-				railStyle={{ backgroundColor: '#71717a', cursor: 'pointer' }}
-				trackStyle={[{ backgroundColor: '#db2777', cursor: 'pointer' }]}
-				handleStyle={[
-					{
-						backgroundColor: '#db2777',
-						borderColor: '#db2777',
-						cursor: 'pointer',
-						boxShadow: 'none',
-						opacity: 1,
-					},
-				]}
-				onAfterChange={(value) => {
-					audio.current.currentTime = (value / 100) * audio.current.duration;
-				}}
-			/> */}
-
-			<SliderMUI
+			<Slider
+				value={percent}
 				size='small'
 				aria-label='Small'
-				onChangeCommitted={(e, value) => {
-					audio.current.currentTime = (value / 100) * audio.current.duration;
+				onChange={(e) => {
+					setPercent(e.target.value);
+					audio.current.currentTime = (percent / 100) * audio.current.duration;
 				}}
 			/>
 		</div>
