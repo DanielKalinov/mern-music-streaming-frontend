@@ -28,9 +28,8 @@ const AudioControlsPanel = ({
 			<Slider
 				size='small'
 				aria-label='Small'
-				onChange={(e) => {
-					audio.current.currentTime =
-						(e.target.value / 100) * audio.current.duration;
+				onChangeCommitted={(e, value) => {
+					audio.current.currentTime = (value / 100) * audio.current.duration;
 				}}
 			/>
 		</div>
