@@ -26,12 +26,11 @@ const AudioControlsPanel = ({
 			</IconButton>
 
 			<Slider
-				value={percent}
 				size='small'
 				aria-label='Small'
 				onChange={(e) => {
-					setPercent(e.target.value);
-					audio.current.currentTime = (percent / 100) * audio.current.duration;
+					audio.current.currentTime =
+						(e.target.value / 100) * audio.current.duration;
 				}}
 			/>
 		</div>
