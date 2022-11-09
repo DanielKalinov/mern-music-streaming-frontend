@@ -7,7 +7,7 @@ import AudioControlsPanel from './components/AudioControlsPanel';
 const App = () => {
 	const audio = useRef(new Audio());
 	const [isPlaying, setIsPlaying] = useState(false);
-	const [percent, setPercent] = useState(0);
+	const [percentProgress, setPercentProgress] = useState(0);
 
 	useEffect(() => {
 		axios.get('http://localhost:5000/test_audio').then((res) => {
@@ -15,8 +15,10 @@ const App = () => {
 		});
 
 		audio.current.ontimeupdate = () => {
-			const val = (audio.current.currentTime / audio.current.duration) * 100;
-			setPercent(!Number.isNaN(val) ? val : 0);
+			// convert audio current progress to percent
+			const percent =
+				(audio.current.currentTime / audio.current.duration) * 100;
+			setPercentProgress(!Number.isNaN(percent) ? percent : 0);
 		};
 	}, []);
 
@@ -30,8 +32,8 @@ const App = () => {
 				audio={audio}
 				isPlaying={isPlaying}
 				setIsPlaying={setIsPlaying}
-				percent={percent}
-				setPercent={setPercent}
+				percentProgress={percentProgress}
+				setPercentProgress={setPercentProgress}
 			/>
 		</>
 	);
