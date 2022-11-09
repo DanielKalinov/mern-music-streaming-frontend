@@ -37,13 +37,6 @@ const AudioControlsPanel = ({
 				style={{ width: '100%' }}
 				onMouseDown={() => {
 					setSeeking(true);
-				}}
-				onMouseUp={() => {
-					// on mouse up, set the audio currentTime to percent converted to milliseconds
-					audio.current.currentTime =
-						(rangeInputValue / 100) * audio.current.duration;
-
-					setSeeking(false);
 				}}>
 				<Slider
 					value={rangeInputValue}
@@ -51,6 +44,13 @@ const AudioControlsPanel = ({
 					aria-label='Small'
 					onChange={(e, value) => {
 						setRangeInputValue(value);
+					}}
+					onChangeCommitted={() => {
+						// on mouse up, set the audio currentTime to percent converted to milliseconds
+						audio.current.currentTime =
+							(rangeInputValue / 100) * audio.current.duration;
+
+						setSeeking(false);
 					}}
 				/>
 			</button>
