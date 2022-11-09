@@ -8,16 +8,16 @@ const AudioControlsPanel = ({
 	audio,
 	isPlaying,
 	setIsPlaying,
-	percentProgress,
+	audioProgressValue,
 }) => {
 	const [rangeInputValue, setRangeInputValue] = useState(0);
 	const [seeking, setSeeking] = useState(false);
 
 	useEffect(() => {
-		// if not seeking, change range input value to one from ontimeupdate,
+		// if not seeking, change range input value to the current audio progress,
 		// otherwise do nothing in order to avoid setting state from both places, which causes the handle to 'glitch' back and forth
-		!seeking && setRangeInputValue(percentProgress);
-	}, [percentProgress]);
+		!seeking && setRangeInputValue(audioProgressValue);
+	}, [audioProgressValue]);
 
 	return (
 		<div style={{ width: '300px' }}>
@@ -39,7 +39,7 @@ const AudioControlsPanel = ({
 					setSeeking(true);
 				}}
 				onMouseUp={() => {
-					// on mouse up, set the audio currentTime to percentProgress converted to milliseconds
+					// on mouse up, set the audio currentTime to percent converted to milliseconds
 					audio.current.currentTime =
 						(rangeInputValue / 100) * audio.current.duration;
 
