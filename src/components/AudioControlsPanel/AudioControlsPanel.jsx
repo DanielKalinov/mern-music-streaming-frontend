@@ -26,6 +26,7 @@ const AudioControlsPanel = ({
 			</IconButton>
 
 			<Slider
+				value={percent}
 				size='small'
 				aria-label='Small'
 				onChangeCommitted={(e, value) => {
