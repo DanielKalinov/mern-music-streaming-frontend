@@ -21,25 +21,24 @@ const AudioControlsPanel = ({
 
 	return (
 		<div>
-			<div className='absolute bottom-0 w-full p-3'>
-				<div className='flex justify-between items-center p-3 bg-primary rounded-lg'>
-					<div className='flex items-center'>
-						<div className='h-8 w-8 mr-3 rounded-md bg-blue-200' />
-						<span>Song Title</span>
-					</div>
-					<IconButton
-						className='!text-white'
-						size='small'
-						onClick={() => {
-							if (audio.current.paused) {
-								setIsPlaying(true);
-							} else {
-								setIsPlaying(false);
-							}
-						}}>
-						{isPlaying ? <PauseIcon /> : <PlayArrowIcon />}
-					</IconButton>
-					{/* <button
+			<div className='flex justify-between items-center p-3 bg-primary rounded-2xl rounded-b-none'>
+				<div className='flex items-center'>
+					<div className='h-8 w-8 mr-3 rounded-md bg-blue-200' />
+					<span>Song Title</span>
+				</div>
+				<IconButton
+					className='!text-white'
+					size='small'
+					onClick={() => {
+						if (audio.current.paused) {
+							setIsPlaying(true);
+						} else {
+							setIsPlaying(false);
+						}
+					}}>
+					{isPlaying ? <PauseIcon /> : <PlayArrowIcon />}
+				</IconButton>
+				{/* <button
 						className='flex w-full'
 						onMouseDown={() => setSeeking(true)}
 						onPointerDown={() => setSeeking(true)}>
@@ -59,7 +58,6 @@ const AudioControlsPanel = ({
 							}}
 						/>
 					</button> */}
-				</div>
 			</div>
 		</div>
 	);
