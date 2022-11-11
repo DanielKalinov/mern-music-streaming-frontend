@@ -52,10 +52,10 @@ const AudioControlsPanel = ({
 				<IconButton className='!text-accent'>
 					<HomeIcon />
 				</IconButton>
-				<IconButton className='!text-white'>
+				<IconButton className='!text-inactive'>
 					<SearchIcon />
 				</IconButton>
-				<IconButton className='!text-white'>
+				<IconButton className='!text-inactive'>
 					<LibraryMusicIcon />
 				</IconButton>
 			</div>
