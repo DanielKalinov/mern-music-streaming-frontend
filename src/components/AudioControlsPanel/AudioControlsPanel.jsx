@@ -35,9 +35,8 @@ const AudioControlsPanel = ({
 
 			<button
 				style={{ width: '100%' }}
-				onMouseDown={() => {
-					setSeeking(true);
-				}}>
+				onMouseDown={() => setSeeking(true)}
+				onPointerDown={() => setSeeking(true)}>
 				<Slider
 					value={rangeInputValue}
 					size='small'
