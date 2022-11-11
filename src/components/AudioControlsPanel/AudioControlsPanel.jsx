@@ -2,6 +2,9 @@ import React, { useEffect, useState } from 'react';
 import PlayArrowIcon from '@mui/icons-material/PlayArrow';
 import IconButton from '@mui/material/IconButton';
 import PauseIcon from '@mui/icons-material/Pause';
+import HomeIcon from '@mui/icons-material/Home';
+import SearchIcon from '@mui/icons-material/Search';
+import LibraryMusicIcon from '@mui/icons-material/LibraryMusic';
 import Slider from '@mui/material/Slider';
 import { useRef } from 'react';
 
@@ -44,6 +47,17 @@ const AudioControlsPanel = ({
 			</div>
 			<div className='h-0.5 w-full bg-secondary'>
 				<div ref={staticProgressBarRef} className={`h-0.5 bg-accent`} />
+			</div>
+			<div className='flex justify-evenly w-full p-3'>
+				<IconButton className='!text-accent'>
+					<HomeIcon />
+				</IconButton>
+				<IconButton className='!text-white'>
+					<SearchIcon />
+				</IconButton>
+				<IconButton className='!text-white'>
+					<LibraryMusicIcon />
+				</IconButton>
 			</div>
 			{/* <button
 					className='flex w-full'

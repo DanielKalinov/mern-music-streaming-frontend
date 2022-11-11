@@ -29,7 +29,7 @@ const App = () => {
 	return (
 		<>
 			{/* pb-[--height of panel--] */}
-			<div className='pb-[60px]'>
+			<div className='pb-[124px]'>
 				<div className='p-3'>
 					<p>
 						Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce
