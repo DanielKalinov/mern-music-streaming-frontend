@@ -20,39 +20,47 @@ const AudioControlsPanel = ({
 	}, [audioProgressValue]);
 
 	return (
-		<div style={{ width: '300px' }}>
-			<IconButton
-				style={{ color: 'white' }}
-				onClick={() => {
-					if (audio.current.paused) {
-						setIsPlaying(true);
-					} else {
-						setIsPlaying(false);
-					}
-				}}>
-				{isPlaying ? <PauseIcon /> : <PlayArrowIcon />}
-			</IconButton>
+		<div>
+			<div className='absolute bottom-0 w-full p-3'>
+				<div className='flex justify-between items-center p-3 bg-primary rounded-lg'>
+					<div className='flex items-center'>
+						<div className='h-8 w-8 mr-3 rounded-md bg-blue-200' />
+						<span>Song Title</span>
+					</div>
+					<IconButton
+						className='!text-white'
+						size='small'
+						onClick={() => {
+							if (audio.current.paused) {
+								setIsPlaying(true);
+							} else {
+								setIsPlaying(false);
+							}
+						}}>
+						{isPlaying ? <PauseIcon /> : <PlayArrowIcon />}
+					</IconButton>
+					{/* <button
+						className='flex w-full'
+						onMouseDown={() => setSeeking(true)}
+						onPointerDown={() => setSeeking(true)}>
+						<Slider
+							value={rangeInputValue}
+							size='small'
+							aria-label='Small'
+							onChange={(e, value) => {
+								setRangeInputValue(value);
+							}}
+							onChangeCommitted={() => {
+								// on mouse up, set the audio currentTime to percent converted to milliseconds
+								audio.current.currentTime =
+									(rangeInputValue / 100) * audio.current.duration;
 
-			<button
-				style={{ width: '100%' }}
-				onMouseDown={() => setSeeking(true)}
-				onPointerDown={() => setSeeking(true)}>
-				<Slider
-					value={rangeInputValue}
-					size='small'
-					aria-label='Small'
-					onChange={(e, value) => {
-						setRangeInputValue(value);
-					}}
-					onChangeCommitted={() => {
-						// on mouse up, set the audio currentTime to percent converted to milliseconds
-						audio.current.currentTime =
-							(rangeInputValue / 100) * audio.current.duration;
-
-						setSeeking(false);
-					}}
-				/>
-			</button>
+								setSeeking(false);
+							}}
+						/>
+					</button> */}
+				</div>
+			</div>
 		</div>
 	);
 };
