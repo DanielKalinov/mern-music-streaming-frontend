@@ -91,6 +91,7 @@ const App = () => {
 				audioProgressValue={audioProgressValue}
 				setAudioProgressValue={setAudioProgressValue}
 				totalSeconds={totalSeconds}
+				setTotalSeconds={setTotalSeconds}
 			/>
 		</>
 	);

@@ -22,6 +22,7 @@ const AudioControlsPanel = ({
 	setIsPlaying,
 	audioProgressValue,
 	totalSeconds,
+	setTotalSeconds,
 }) => {
 	const [fullscreenMode, setFullscreenMode] = useState(false);
 	const [rangeInputValue, setRangeInputValue] = useState(0);
@@ -159,6 +160,11 @@ const AudioControlsPanel = ({
 								aria-label='Small'
 								onChange={(e, value) => {
 									setRangeInputValue(value);
+
+									// update in real-time timestamp on slider move
+									setTotalSeconds(
+										(rangeInputValue / 100) * audio.current.duration
+									);
 								}}
 								onChangeCommitted={() => {
 									// on mouse up, set the audio currentTime to percent converted to milliseconds
