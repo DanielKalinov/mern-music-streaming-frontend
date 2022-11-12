@@ -59,33 +59,35 @@ const AudioControlsPanel = ({
 		<>
 			<div className='fixed bottom-0 w-full p-2'>
 				<div className='flex flex-col items-center bg-primary/60 rounded-xl rounded-b-3xl backdrop-blur-md border solid border-primary'>
-					<div
-						className='flex items-center justify-between w-full p-3'
-						onClick={() => setFullscreenMode(true)}>
-						<div className='flex items-center'>
-							<div className='h-8 w-8 mr-3 rounded-md bg-secondary' />
-							<span>Song Title</span>
-						</div>
-						<IconButton
-							className='!text-white'
-							size='small'
-							onClick={(e) => {
-								e.stopPropagation();
+					<div className='flex flex-col w-full p-3 pb-0'>
+						<div
+							className='flex items-center justify-between w-full pb-3'
+							onClick={() => setFullscreenMode(true)}>
+							<div className='flex items-center'>
+								<div className='h-8 w-8 mr-3 rounded-md bg-secondary' />
+								<span>Song Title</span>
+							</div>
+							<IconButton
+								className='!text-white'
+								size='small'
+								onClick={(e) => {
+									e.stopPropagation();
 
-								if (audio.current.paused) {
-									setIsPlaying(true);
-								} else {
-									setIsPlaying(false);
-								}
-							}}>
-							{isPlaying ? <PauseIcon /> : <PlayArrowIcon />}
-						</IconButton>
-					</div>
-					<div className='h-0.5 w-full bg-secondary'>
-						<div ref={staticProgressBarRef} className={`h-0.5 bg-accent`} />
+									if (audio.current.paused) {
+										setIsPlaying(true);
+									} else {
+										setIsPlaying(false);
+									}
+								}}>
+								{isPlaying ? <PauseIcon /> : <PlayArrowIcon />}
+							</IconButton>
+						</div>
+						<div className='h-0.5 w-full bg-secondary'>
+							<div ref={staticProgressBarRef} className={`h-0.5 bg-accent`} />
+						</div>
 					</div>
 					<div className='flex justify-evenly w-full p-1'>
-						<IconButton className='!text-accent'>
+						<IconButton className='!text-white'>
 							<HomeIcon fontSize='medium' />
 						</IconButton>
 						<IconButton className='!text-inactive'>
