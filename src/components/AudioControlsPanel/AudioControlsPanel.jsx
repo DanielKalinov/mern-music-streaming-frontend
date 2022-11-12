@@ -108,10 +108,10 @@ const AudioControlsPanel = ({
 							setFullscreenMode(false);
 							setColor(false);
 						}}>
-						<ExpandMoreRoundedIcon fontSize='large' />
+						<ExpandMoreRoundedIcon fontSize='large' className='!text-white' />
 					</IconButton>
 					<IconButton>
-						<MoreVertRoundedIcon />
+						<MoreVertRoundedIcon className='!text-white' />
 					</IconButton>
 				</div>
 				<div className='px-6'>
