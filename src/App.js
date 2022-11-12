@@ -30,7 +30,7 @@ const App = () => {
 		<>
 			{/* pb-[--height of panel--] */}
 			<div className='pb-[124px]'>
-				<div className='p-3'>
+				<div className='p-4'>
 					<p>
 						Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce
 						maximus ex eu porttitor suscipit. Sed vitae lectus pharetra, finibus

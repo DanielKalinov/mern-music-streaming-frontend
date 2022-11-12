@@ -57,42 +57,44 @@ const AudioControlsPanel = ({
 
 	return (
 		<>
-			<div className='fixed bottom-0 w-full flex flex-col items-center bg-primary rounded-2xl rounded-b-none'>
-				<div
-					className='flex items-center justify-between w-full p-3'
-					onClick={() => setFullscreenMode(true)}>
-					<div className='flex items-center'>
-						<div className='h-8 w-8 mr-3 rounded-md bg-secondary' />
-						<span>Song Title</span>
-					</div>
-					<IconButton
-						className='!text-white'
-						size='small'
-						onClick={(e) => {
-							e.stopPropagation();
+			<div className='fixed bottom-0 w-full p-2'>
+				<div className='flex flex-col items-center bg-primary/60 rounded-2xl backdrop-blur-md'>
+					<div
+						className='flex items-center justify-between w-full p-3'
+						onClick={() => setFullscreenMode(true)}>
+						<div className='flex items-center'>
+							<div className='h-8 w-8 mr-3 rounded-md bg-secondary' />
+							<span>Song Title</span>
+						</div>
+						<IconButton
+							className='!text-white'
+							size='small'
+							onClick={(e) => {
+								e.stopPropagation();
 
-							if (audio.current.paused) {
-								setIsPlaying(true);
-							} else {
-								setIsPlaying(false);
-							}
-						}}>
-						{isPlaying ? <PauseIcon /> : <PlayArrowIcon />}
-					</IconButton>
-				</div>
-				<div className='h-0.5 w-full bg-secondary'>
-					<div ref={staticProgressBarRef} className={`h-0.5 bg-accent`} />
-				</div>
-				<div className='flex justify-evenly w-full p-1'>
-					<IconButton className='!text-accent'>
-						<HomeIcon fontSize='medium' />
-					</IconButton>
-					<IconButton className='!text-inactive'>
-						<SearchIcon fontSize='medium' />
-					</IconButton>
-					<IconButton className='!text-inactive'>
-						<LibraryMusicIcon fontSize='medium' />
-					</IconButton>
+								if (audio.current.paused) {
+									setIsPlaying(true);
+								} else {
+									setIsPlaying(false);
+								}
+							}}>
+							{isPlaying ? <PauseIcon /> : <PlayArrowIcon />}
+						</IconButton>
+					</div>
+					<div className='h-0.5 w-full bg-secondary'>
+						<div ref={staticProgressBarRef} className={`h-0.5 bg-accent`} />
+					</div>
+					<div className='flex justify-evenly w-full p-1'>
+						<IconButton className='!text-accent'>
+							<HomeIcon fontSize='medium' />
+						</IconButton>
+						<IconButton className='!text-inactive'>
+							<SearchIcon fontSize='medium' />
+						</IconButton>
+						<IconButton className='!text-inactive'>
+							<LibraryMusicIcon fontSize='medium' />
+						</IconButton>
+					</div>
 				</div>
 			</div>
 
