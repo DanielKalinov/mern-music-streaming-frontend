@@ -27,7 +27,10 @@ const AudioControlsPanel = ({
 		// if not seeking, change range input value to the current audio progress,
 		// otherwise do nothing in order to avoid setting state from both places, which causes the handle to 'glitch' back and forth
 		!seeking && setRangeInputValue(audioProgressValue);
-		staticProgressBarRef.current.style.width = `${audioProgressValue}%`;
+
+		if (staticProgressBarRef.current) {
+			staticProgressBarRef.current.style.width = `${audioProgressValue}%`;
+		}
 	}, [audioProgressValue]);
 
 	useEffect(() => {
@@ -52,7 +55,7 @@ const AudioControlsPanel = ({
 		<div className='fixed bottom-0 w-full flex flex-col items-center bg-primary rounded-2xl rounded-b-none'>
 			<div
 				className='flex items-center justify-between w-full p-3'
-				onClick={() => setFullscreenMode(true)}>
+				onClick={(e) => setFullscreenMode(true)}>
 				<div className='flex items-center'>
 					<div className='h-8 w-8 mr-3 rounded-md bg-secondary' />
 					<span>Song Title</span>
@@ -60,7 +63,9 @@ const AudioControlsPanel = ({
 				<IconButton
 					className='!text-white'
 					size='small'
-					onClick={() => {
+					onClick={(e) => {
+						e.stopPropagation();
+
 						if (audio.current.paused) {
 							setIsPlaying(true);
 						} else {
