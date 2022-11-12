@@ -14,6 +14,7 @@ const AudioControlsPanel = ({
 	setIsPlaying,
 	audioProgressValue,
 }) => {
+	const [fullscreenMode, setFullscreenMode] = useState(false);
 	const [rangeInputValue, setRangeInputValue] = useState(0);
 	const [seeking, setSeeking] = useState(false);
 	const staticProgressBarRef = useRef();
@@ -25,9 +26,17 @@ const AudioControlsPanel = ({
 		staticProgressBarRef.current.style.width = `${audioProgressValue}%`;
 	}, [audioProgressValue]);
 
-	return (
+	useEffect(() => {
+		fullscreenMode
+			? (document.body.style.overflow = 'hidden')
+			: (document.body.style.overflow = 'auto');
+	}, [fullscreenMode]);
+
+	return !fullscreenMode ? (
 		<div className='fixed bottom-0 w-full flex flex-col items-center bg-primary rounded-2xl rounded-b-none'>
-			<div className='flex items-center justify-between w-full p-3'>
+			<div
+				className='flex items-center justify-between w-full p-3'
+				onClick={() => setFullscreenMode(true)}>
 				<div className='flex items-center'>
 					<div className='h-8 w-8 mr-3 rounded-md bg-secondary' />
 					<span>Song Title</span>
@@ -80,6 +89,8 @@ const AudioControlsPanel = ({
 					/>
 				</button> */}
 		</div>
+	) : (
+		<div className='absolute top-0 w-full h-full bg-primary'></div>
 	);
 };
 
