@@ -1,12 +1,12 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import PlayArrowIcon from '@mui/icons-material/PlayArrow';
 import IconButton from '@mui/material/IconButton';
 import PauseIcon from '@mui/icons-material/Pause';
 import HomeIcon from '@mui/icons-material/Home';
 import SearchIcon from '@mui/icons-material/Search';
 import LibraryMusicIcon from '@mui/icons-material/LibraryMusic';
+import ExpandMoreRoundedIcon from '@mui/icons-material/ExpandMoreRounded';
 import Slider from '@mui/material/Slider';
-import { useRef } from 'react';
 import { FastAverageColor } from 'fast-average-color';
 import image from '../../test.png';
 
@@ -107,8 +107,23 @@ const AudioControlsPanel = ({
 		</div>
 	) : (
 		<div
-			className={`absolute top-0 w-full h-full bg-gradient-to-b from-[${color}] to-primary`}>
-			<img ref={imgRef} src={image} width={'100%'} height={'100%'} />
+			className={`absolute top-0 w-full h-full p-3 bg-gradient-to-b from-[${color}] to-primary`}>
+			<div>
+				<IconButton
+					onClick={() => {
+						setFullscreenMode(false);
+						setColor(false);
+					}}>
+					<ExpandMoreRoundedIcon fontSize='large' />
+				</IconButton>
+			</div>
+			<img
+				ref={imgRef}
+				src={image}
+				width={'100%'}
+				height={'100%'}
+				className='shadow-lg'
+			/>
 		</div>
 	);
 };
