@@ -14,6 +14,7 @@ import MoreVertRoundedIcon from '@mui/icons-material/MoreVertRounded';
 import Slider from '@mui/material/Slider';
 import { FastAverageColor } from 'fast-average-color';
 import image from '../../test.png';
+import styled from '@emotion/styled';
 
 const AudioControlsPanel = ({
 	audio,
@@ -146,6 +147,14 @@ const AudioControlsPanel = ({
 										(rangeInputValue / 100) * audio.current.duration;
 
 									setSeeking(false);
+								}}
+								sx={{
+									'& .MuiSlider-thumb': {
+										backgroundColor: '#fff',
+									},
+									'& .MuiSlider-track': {
+										backgroundColor: '#f472b6',
+									},
 								}}
 							/>
 						</button>
