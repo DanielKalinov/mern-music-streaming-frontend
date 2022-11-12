@@ -130,7 +130,7 @@ const AudioControlsPanel = ({
 							</span>
 							<span className='block text-center text-zinc-300'>Artist</span>
 						</div>
-						<button
+						<div
 							className='flex w-full my-1'
 							onMouseDown={() => setSeeking(true)}
 							onPointerDown={() => setSeeking(true)}>
@@ -162,7 +162,7 @@ const AudioControlsPanel = ({
 									},
 								}}
 							/>
-						</button>
+						</div>
 						<div className='flex justify-between'>
 							<span className='text-xs -mt-3'>0:00</span>
 							<span className='text-xs -mt-3'>3:21</span>
