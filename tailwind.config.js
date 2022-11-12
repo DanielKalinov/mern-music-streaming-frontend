@@ -6,10 +6,10 @@ module.exports = {
 	theme: {
 		extend: {
 			colors: {
-				primary: colors.zinc[800],
-				secondary: colors.zinc[600],
+				primary: colors.slate[800],
+				secondary: colors.slate[600],
 				accent: colors.pink[400],
-				inactive: colors.zinc[400],
+				inactive: colors.slate[400],
 			},
 		},
 	},
