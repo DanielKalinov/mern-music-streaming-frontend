@@ -112,7 +112,7 @@ const AudioControlsPanel = ({
 
 			<div
 				style={{
-					background: `linear-gradient(${color}, black)`,
+					background: `linear-gradient(${color}, #262626)`,
 				}}
 				className={`${fullscreenMode ? 'opacity-100' : 'opacity-0'} ${
 					fullscreenMode ? 'translate-y-0' : 'translate-y-full'
