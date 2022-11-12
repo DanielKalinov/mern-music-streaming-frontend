@@ -21,6 +21,7 @@ const AudioControlsPanel = ({
 	isPlaying,
 	setIsPlaying,
 	audioProgressValue,
+	totalSeconds,
 }) => {
 	const [fullscreenMode, setFullscreenMode] = useState(false);
 	const [rangeInputValue, setRangeInputValue] = useState(0);
@@ -54,6 +55,22 @@ const AudioControlsPanel = ({
 				console.log(e);
 			});
 	}, [fullscreenMode]);
+
+	const format = (val) => {
+		const valString = val + '';
+		if (valString.length < 2) {
+			return '0' + valString;
+		} else {
+			return valString;
+		}
+	};
+
+	const formattedTime = (val) => {
+		const seconds = format(parseInt(val % 60));
+		const minutes = parseInt(val / 60);
+
+		return `${minutes}:${seconds}`;
+	};
 
 	return (
 		<>
@@ -166,8 +183,12 @@ const AudioControlsPanel = ({
 							/>
 						</div>
 						<div className='flex justify-between'>
-							<span className='text-xs -mt-3'>0:00</span>
-							<span className='text-xs -mt-3'>3:21</span>
+							<span className='text-xs -mt-3'>
+								{formattedTime(totalSeconds)}
+							</span>
+							<span className='text-xs -mt-3'>
+								{formattedTime(audio.current.duration)}
+							</span>
 						</div>
 					</div>
 					<div className='flex justify-evenly'>

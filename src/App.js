@@ -8,6 +8,7 @@ const App = () => {
 	const audio = useRef(new Audio());
 	const [isPlaying, setIsPlaying] = useState(false);
 	const [audioProgressValue, setAudioProgressValue] = useState(0);
+	const [totalSeconds, setTotalSeconds] = useState(0);
 
 	useEffect(() => {
 		axios.get('http://localhost:5000/test_audio').then((res) => {
@@ -19,6 +20,8 @@ const App = () => {
 			const percent =
 				(audio.current.currentTime / audio.current.duration) * 100;
 			setAudioProgressValue(!Number.isNaN(percent) ? percent : 0);
+
+			setTotalSeconds(audio.current.currentTime);
 		};
 	}, []);
 
@@ -87,6 +90,7 @@ const App = () => {
 				setIsPlaying={setIsPlaying}
 				audioProgressValue={audioProgressValue}
 				setAudioProgressValue={setAudioProgressValue}
+				totalSeconds={totalSeconds}
 			/>
 		</>
 	);
