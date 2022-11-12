@@ -161,7 +161,7 @@ const AudioControlsPanel = ({
 								onChange={(e, value) => {
 									setRangeInputValue(value);
 
-									// update in real-time timestamp on slider move
+									// update timestamp on slider move
 									setTotalSeconds(
 										(rangeInputValue / 100) * audio.current.duration
 									);
