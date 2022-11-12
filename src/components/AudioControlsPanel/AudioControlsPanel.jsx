@@ -58,7 +58,7 @@ const AudioControlsPanel = ({
 	return (
 		<>
 			<div className='fixed bottom-0 w-full p-2'>
-				<div className='flex flex-col items-center bg-primary/60 rounded-2xl backdrop-blur-md border solid border-primary'>
+				<div className='flex flex-col items-center bg-primary/60 rounded-xl rounded-b-3xl backdrop-blur-md border solid border-primary'>
 					<div
 						className='flex items-center justify-between w-full p-3'
 						onClick={() => setFullscreenMode(true)}>
