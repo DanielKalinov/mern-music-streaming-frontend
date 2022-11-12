@@ -51,7 +51,7 @@ const AudioControlsPanel = ({
 
 	return (
 		<>
-			<div className='fixed bottom-0 w-full flex flex-col items-center bg-primary rounded-2xl rounded-b-none z-10'>
+			<div className='fixed bottom-0 w-full flex flex-col items-center bg-primary rounded-2xl rounded-b-none'>
 				<div
 					className='flex items-center justify-between w-full p-3'
 					onClick={() => setFullscreenMode(true)}>
@@ -77,15 +77,15 @@ const AudioControlsPanel = ({
 				<div className='h-0.5 w-full bg-secondary'>
 					<div ref={staticProgressBarRef} className={`h-0.5 bg-accent`} />
 				</div>
-				<div className='flex justify-evenly w-full p-3'>
+				<div className='flex justify-evenly w-full p-1'>
 					<IconButton className='!text-accent'>
-						<HomeIcon />
+						<HomeIcon fontSize='medium' />
 					</IconButton>
 					<IconButton className='!text-inactive'>
-						<SearchIcon />
+						<SearchIcon fontSize='medium' />
 					</IconButton>
 					<IconButton className='!text-inactive'>
-						<LibraryMusicIcon />
+						<LibraryMusicIcon fontSize='medium' />
 					</IconButton>
 				</div>
 				{/* <button
