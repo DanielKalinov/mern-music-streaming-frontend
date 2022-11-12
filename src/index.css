@@ -4,7 +4,7 @@
 
 @layer base {
 	body {
-		@apply bg-zinc-900;
+		@apply bg-slate-900;
 		color: white;
 		font-family: 'Poppins', sans-serif;
 	}
