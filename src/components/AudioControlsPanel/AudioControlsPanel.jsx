@@ -7,6 +7,8 @@ import SearchIcon from '@mui/icons-material/Search';
 import LibraryMusicIcon from '@mui/icons-material/LibraryMusic';
 import Slider from '@mui/material/Slider';
 import { useRef } from 'react';
+import { FastAverageColor } from 'fast-average-color';
+import image from '../../test.png';
 
 const AudioControlsPanel = ({
 	audio,
@@ -18,6 +20,8 @@ const AudioControlsPanel = ({
 	const [rangeInputValue, setRangeInputValue] = useState(0);
 	const [seeking, setSeeking] = useState(false);
 	const staticProgressBarRef = useRef();
+	const imgRef = useRef();
+	const [color, setColor] = useState('');
 
 	useEffect(() => {
 		// if not seeking, change range input value to the current audio progress,
@@ -30,6 +34,18 @@ const AudioControlsPanel = ({
 		fullscreenMode
 			? (document.body.style.overflow = 'hidden')
 			: (document.body.style.overflow = 'auto');
+
+		if (fullscreenMode) {
+			const fac = new FastAverageColor();
+			fac
+				.getColorAsync(document.body.querySelector('img'))
+				.then((color) => {
+					setColor(color.hex);
+				})
+				.catch((e) => {
+					console.log(e);
+				});
+		}
 	}, [fullscreenMode]);
 
 	return !fullscreenMode ? (
@@ -90,7 +106,10 @@ const AudioControlsPanel = ({
 				</button> */}
 		</div>
 	) : (
-		<div className='absolute top-0 w-full h-full bg-primary'></div>
+		<div
+			className={`absolute top-0 w-full h-full bg-gradient-to-b from-[${color}] to-primary`}>
+			<img ref={imgRef} src={image} width={'100%'} height={'100%'} />
+		</div>
 	);
 };
 
