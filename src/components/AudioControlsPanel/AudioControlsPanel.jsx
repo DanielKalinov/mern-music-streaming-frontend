@@ -2,6 +2,10 @@ import React, { useEffect, useState, useRef } from 'react';
 import PlayArrowIcon from '@mui/icons-material/PlayArrow';
 import IconButton from '@mui/material/IconButton';
 import PauseIcon from '@mui/icons-material/Pause';
+import SkipNextIcon from '@mui/icons-material/SkipNext';
+import SkipPreviousIcon from '@mui/icons-material/SkipPrevious';
+import ShuffleIcon from '@mui/icons-material/Shuffle';
+import RepeatIcon from '@mui/icons-material/Repeat';
 import HomeIcon from '@mui/icons-material/Home';
 import SearchIcon from '@mui/icons-material/Search';
 import LibraryMusicIcon from '@mui/icons-material/LibraryMusic';
@@ -118,26 +122,69 @@ const AudioControlsPanel = ({
 						height={'100%'}
 						className='shadow-lg'
 					/>
-					<button
-						className='flex w-full px-1'
-						onMouseDown={() => setSeeking(true)}
-						onPointerDown={() => setSeeking(true)}>
-						<Slider
-							value={rangeInputValue}
-							size='small'
-							aria-label='Small'
-							onChange={(e, value) => {
-								setRangeInputValue(value);
-							}}
-							onChangeCommitted={() => {
-								// on mouse up, set the audio currentTime to percent converted to milliseconds
-								audio.current.currentTime =
-									(rangeInputValue / 100) * audio.current.duration;
+					<div className='flex flex-col px-1'>
+						<div className='mt-4'>
+							<span className='block text-center font-bold text-xl mb-1'>
+								A Song Title
+							</span>
+							<span className='block text-center text-zinc-300'>Artist</span>
+						</div>
+						<button
+							className='flex w-full my-1'
+							onMouseDown={() => setSeeking(true)}
+							onPointerDown={() => setSeeking(true)}>
+							<Slider
+								value={rangeInputValue}
+								size='small'
+								aria-label='Small'
+								onChange={(e, value) => {
+									setRangeInputValue(value);
+								}}
+								onChangeCommitted={() => {
+									// on mouse up, set the audio currentTime to percent converted to milliseconds
+									audio.current.currentTime =
+										(rangeInputValue / 100) * audio.current.duration;
 
-								setSeeking(false);
-							}}
-						/>
-					</button>
+									setSeeking(false);
+								}}
+							/>
+						</button>
+						<div className='flex justify-between'>
+							<span className='text-xs -mt-3'>0:00</span>
+							<span className='text-xs -mt-3'>3:21</span>
+						</div>
+					</div>
+					<div className='flex justify-evenly'>
+						<IconButton className='!text-white'>
+							<ShuffleIcon />
+						</IconButton>
+						<IconButton className='!text-white'>
+							<SkipPreviousIcon />
+						</IconButton>
+						<IconButton
+							className='!text-white !bg-white/10 rounded-full'
+							onClick={(e) => {
+								e.stopPropagation();
+
+								if (audio.current.paused) {
+									setIsPlaying(true);
+								} else {
+									setIsPlaying(false);
+								}
+							}}>
+							{isPlaying ? (
+								<PauseIcon fontSize='large' />
+							) : (
+								<PlayArrowIcon fontSize='large' />
+							)}
+						</IconButton>
+						<IconButton className='!text-white'>
+							<SkipNextIcon />
+						</IconButton>
+						<IconButton className='!text-white'>
+							<RepeatIcon />
+						</IconButton>
+					</div>
 				</div>
 			</div>
 		</>
