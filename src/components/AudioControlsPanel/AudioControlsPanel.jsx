@@ -6,6 +6,7 @@ import HomeIcon from '@mui/icons-material/Home';
 import SearchIcon from '@mui/icons-material/Search';
 import LibraryMusicIcon from '@mui/icons-material/LibraryMusic';
 import ExpandMoreRoundedIcon from '@mui/icons-material/ExpandMoreRounded';
+import MoreVertRoundedIcon from '@mui/icons-material/MoreVertRounded';
 import Slider from '@mui/material/Slider';
 import { FastAverageColor } from 'fast-average-color';
 import image from '../../test.png';
@@ -88,26 +89,6 @@ const AudioControlsPanel = ({
 						<LibraryMusicIcon fontSize='medium' />
 					</IconButton>
 				</div>
-				{/* <button
-					className='flex w-full'
-					onMouseDown={() => setSeeking(true)}
-					onPointerDown={() => setSeeking(true)}>
-					<Slider
-						value={rangeInputValue}
-						size='small'
-						aria-label='Small'
-						onChange={(e, value) => {
-							setRangeInputValue(value);
-						}}
-						onChangeCommitted={() => {
-							// on mouse up, set the audio currentTime to percent converted to milliseconds
-							audio.current.currentTime =
-								(rangeInputValue / 100) * audio.current.duration;
-
-							setSeeking(false);
-						}}
-					/>
-				</button> */}
 			</div>
 
 			<div
@@ -116,8 +97,8 @@ const AudioControlsPanel = ({
 				}}
 				className={`${fullscreenMode ? 'opacity-100' : 'opacity-0'} ${
 					fullscreenMode ? 'translate-y-0' : 'translate-y-full'
-				} fixed top-0 w-full h-full p-3 [transition:transform_300ms_ease-in-out,opacity_200ms_ease-in-out] z-10`}>
-				<div>
+				} fixed top-0 w-full h-full [transition:transform_300ms_ease-in-out,opacity_200ms_ease-in-out] z-10`}>
+				<div className='flex justify-between items-center'>
 					<IconButton
 						onClick={() => {
 							setFullscreenMode(false);
@@ -125,14 +106,39 @@ const AudioControlsPanel = ({
 						}}>
 						<ExpandMoreRoundedIcon fontSize='large' />
 					</IconButton>
+					<IconButton>
+						<MoreVertRoundedIcon />
+					</IconButton>
 				</div>
-				<img
-					ref={imgRef}
-					src={image}
-					width={'100%'}
-					height={'100%'}
-					className='shadow-lg'
-				/>
+				<div className='px-6'>
+					<img
+						ref={imgRef}
+						src={image}
+						width={'100%'}
+						height={'100%'}
+						className='shadow-lg'
+					/>
+					<button
+						className='flex w-full px-1'
+						onMouseDown={() => setSeeking(true)}
+						onPointerDown={() => setSeeking(true)}>
+						<Slider
+							value={rangeInputValue}
+							size='small'
+							aria-label='Small'
+							onChange={(e, value) => {
+								setRangeInputValue(value);
+							}}
+							onChangeCommitted={() => {
+								// on mouse up, set the audio currentTime to percent converted to milliseconds
+								audio.current.currentTime =
+									(rangeInputValue / 100) * audio.current.duration;
+
+								setSeeking(false);
+							}}
+						/>
+					</button>
+				</div>
 			</div>
 		</>
 	);
