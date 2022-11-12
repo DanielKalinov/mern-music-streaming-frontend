@@ -111,9 +111,12 @@ const AudioControlsPanel = ({
 			</div>
 
 			<div
-				className={`opacity-${fullscreenMode ? '100' : '0'} translate-y-${
-					fullscreenMode ? '0' : 'full'
-				} absolute top-0 w-full h-full p-3 bg-gradient-to-b from-[${color}] to-primary transition-all ease-in-out duration-300 z-10`}>
+				style={{
+					background: `linear-gradient(${color}, black)`,
+				}}
+				className={`${fullscreenMode ? 'opacity-100' : 'opacity-0'} ${
+					fullscreenMode ? 'translate-y-0' : 'translate-y-full'
+				} fixed top-0 w-full h-full p-3 [transition:transform_300ms_ease-in-out,opacity_200ms_ease-in-out] z-10`}>
 				<div>
 					<IconButton
 						onClick={() => {
