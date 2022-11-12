@@ -38,58 +38,57 @@ const AudioControlsPanel = ({
 			? (document.body.style.overflow = 'hidden')
 			: (document.body.style.overflow = 'auto');
 
-		if (fullscreenMode) {
-			const fac = new FastAverageColor();
-			fac
-				.getColorAsync(document.body.querySelector('img'))
-				.then((color) => {
-					setColor(color.hex);
-				})
-				.catch((e) => {
-					console.log(e);
-				});
-		}
+		const fac = new FastAverageColor();
+		fac
+			.getColorAsync(document.body.querySelector('img'))
+			.then((color) => {
+				setColor(color.hex);
+			})
+			.catch((e) => {
+				console.log(e);
+			});
 	}, [fullscreenMode]);
 
-	return !fullscreenMode ? (
-		<div className='fixed bottom-0 w-full flex flex-col items-center bg-primary rounded-2xl rounded-b-none'>
-			<div
-				className='flex items-center justify-between w-full p-3'
-				onClick={(e) => setFullscreenMode(true)}>
-				<div className='flex items-center'>
-					<div className='h-8 w-8 mr-3 rounded-md bg-secondary' />
-					<span>Song Title</span>
-				</div>
-				<IconButton
-					className='!text-white'
-					size='small'
-					onClick={(e) => {
-						e.stopPropagation();
+	return (
+		<>
+			<div className='fixed bottom-0 w-full flex flex-col items-center bg-primary rounded-2xl rounded-b-none z-10'>
+				<div
+					className='flex items-center justify-between w-full p-3'
+					onClick={() => setFullscreenMode(true)}>
+					<div className='flex items-center'>
+						<div className='h-8 w-8 mr-3 rounded-md bg-secondary' />
+						<span>Song Title</span>
+					</div>
+					<IconButton
+						className='!text-white'
+						size='small'
+						onClick={(e) => {
+							e.stopPropagation();
 
-						if (audio.current.paused) {
-							setIsPlaying(true);
-						} else {
-							setIsPlaying(false);
-						}
-					}}>
-					{isPlaying ? <PauseIcon /> : <PlayArrowIcon />}
-				</IconButton>
-			</div>
-			<div className='h-0.5 w-full bg-secondary'>
-				<div ref={staticProgressBarRef} className={`h-0.5 bg-accent`} />
-			</div>
-			<div className='flex justify-evenly w-full p-3'>
-				<IconButton className='!text-accent'>
-					<HomeIcon />
-				</IconButton>
-				<IconButton className='!text-inactive'>
-					<SearchIcon />
-				</IconButton>
-				<IconButton className='!text-inactive'>
-					<LibraryMusicIcon />
-				</IconButton>
-			</div>
-			{/* <button
+							if (audio.current.paused) {
+								setIsPlaying(true);
+							} else {
+								setIsPlaying(false);
+							}
+						}}>
+						{isPlaying ? <PauseIcon /> : <PlayArrowIcon />}
+					</IconButton>
+				</div>
+				<div className='h-0.5 w-full bg-secondary'>
+					<div ref={staticProgressBarRef} className={`h-0.5 bg-accent`} />
+				</div>
+				<div className='flex justify-evenly w-full p-3'>
+					<IconButton className='!text-accent'>
+						<HomeIcon />
+					</IconButton>
+					<IconButton className='!text-inactive'>
+						<SearchIcon />
+					</IconButton>
+					<IconButton className='!text-inactive'>
+						<LibraryMusicIcon />
+					</IconButton>
+				</div>
+				{/* <button
 					className='flex w-full'
 					onMouseDown={() => setSeeking(true)}
 					onPointerDown={() => setSeeking(true)}>
@@ -109,27 +108,30 @@ const AudioControlsPanel = ({
 						}}
 					/>
 				</button> */}
-		</div>
-	) : (
-		<div
-			className={`absolute top-0 w-full h-full p-3 bg-gradient-to-b from-[${color}] to-primary`}>
-			<div>
-				<IconButton
-					onClick={() => {
-						setFullscreenMode(false);
-						setColor(false);
-					}}>
-					<ExpandMoreRoundedIcon fontSize='large' />
-				</IconButton>
 			</div>
-			<img
-				ref={imgRef}
-				src={image}
-				width={'100%'}
-				height={'100%'}
-				className='shadow-lg'
-			/>
-		</div>
+
+			<div
+				className={`opacity-${fullscreenMode ? '100' : '0'} translate-y-${
+					fullscreenMode ? '0' : 'full'
+				} absolute top-0 w-full h-full p-3 bg-gradient-to-b from-[${color}] to-primary transition-all ease-in-out duration-300 z-10`}>
+				<div>
+					<IconButton
+						onClick={() => {
+							setFullscreenMode(false);
+							setColor(false);
+						}}>
+						<ExpandMoreRoundedIcon fontSize='large' />
+					</IconButton>
+				</div>
+				<img
+					ref={imgRef}
+					src={image}
+					width={'100%'}
+					height={'100%'}
+					className='shadow-lg'
+				/>
+			</div>
+		</>
 	);
 };
 
