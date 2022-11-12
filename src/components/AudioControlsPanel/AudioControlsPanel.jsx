@@ -151,6 +151,11 @@ const AudioControlsPanel = ({
 								sx={{
 									'& .MuiSlider-thumb': {
 										backgroundColor: '#fff',
+										'&.Mui-active': {
+											boxShadow: '0 0 0 7px rgba(255, 255, 255, 16%)',
+											height: 14,
+											width: 14,
+										},
 									},
 									'& .MuiSlider-track': {
 										backgroundColor: '#f472b6',
