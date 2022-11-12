@@ -120,7 +120,7 @@ const AudioControlsPanel = ({
 						src={image}
 						width={'100%'}
 						height={'100%'}
-						className='shadow-lg'
+						className='shadow-lg rounded-lg'
 					/>
 					<div className='flex flex-col px-1'>
 						<div className='mt-4'>
