@@ -122,18 +122,20 @@ const AudioControlsPanel = ({
 				}}
 				className={`${fullscreenMode ? 'opacity-100' : 'opacity-0'} ${
 					fullscreenMode ? 'translate-y-0' : 'translate-y-full'
-				} fixed top-0 w-full h-full [transition:transform_300ms_ease-in-out,opacity_200ms_ease-in-out] z-10`}>
-				<div className='flex justify-between items-center'>
-					<IconButton
-						onClick={() => {
-							setFullscreenMode(false);
-							setColor(false);
-						}}>
-						<ExpandMoreRoundedIcon fontSize='large' className='!text-white' />
-					</IconButton>
-					<IconButton>
-						<MoreVertRoundedIcon className='!text-white' />
-					</IconButton>
+				} fixed top-0 flex flex-col w-full h-full [transition:transform_300ms_ease-in-out,opacity_200ms_ease-in-out] z-10 [&>*]:mb-auto`}>
+				<div>
+					<div className='flex justify-between items-center'>
+						<IconButton
+							onClick={() => {
+								setFullscreenMode(false);
+								setColor(false);
+							}}>
+							<ExpandMoreRoundedIcon fontSize='large' className='!text-white' />
+						</IconButton>
+						<IconButton>
+							<MoreVertRoundedIcon className='!text-white' />
+						</IconButton>
+					</div>
 				</div>
 				<div className='px-6'>
 					<img
@@ -143,6 +145,8 @@ const AudioControlsPanel = ({
 						height={'100%'}
 						className='shadow-lg rounded-lg'
 					/>
+				</div>
+				<div className='px-6'>
 					<div className='flex flex-col px-1'>
 						<div className='mt-4'>
 							<span className='block text-center font-bold text-xl mb-1'>
