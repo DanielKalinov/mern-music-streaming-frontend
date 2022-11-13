@@ -28,7 +28,6 @@ const AudioControlsPanel = ({
 	const [rangeInputValue, setRangeInputValue] = useState(0);
 	const [seeking, setSeeking] = useState(false);
 	const staticProgressBarRef = useRef();
-	const imgRef = useRef();
 	const [color, setColor] = useState('');
 
 	useEffect(() => {
@@ -147,7 +146,6 @@ const AudioControlsPanel = ({
 				</div>
 				<div className='px-6'>
 					<img
-						ref={imgRef}
 						src={image}
 						width={'100%'}
 						height={'100%'}
