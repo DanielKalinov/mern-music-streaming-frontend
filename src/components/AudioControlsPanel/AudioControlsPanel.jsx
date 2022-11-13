@@ -14,7 +14,6 @@ import MoreVertRoundedIcon from '@mui/icons-material/MoreVertRounded';
 import Slider from '@mui/material/Slider';
 import { FastAverageColor } from 'fast-average-color';
 import image from '../../test.png';
-import styled from '@emotion/styled';
 
 const AudioControlsPanel = ({
 	audio,
@@ -78,11 +77,14 @@ const AudioControlsPanel = ({
 			<div className='fixed bottom-0 w-full p-2'>
 				<div className='flex flex-col items-center bg-primary/60 rounded-xl rounded-b-3xl backdrop-blur-md border solid border-primary'>
 					<div
-						className='flex items-center justify-between w-full p-3'
+						className='flex items-center justify-between w-full p-2'
 						onClick={() => setFullscreenMode(true)}>
 						<div className='flex items-center'>
 							<div className='h-8 w-8 mr-3 rounded-md bg-secondary' />
-							<span>Song Title</span>
+							<div>
+								<span className='block text-sm font-bold'>A Song Title</span>
+								<span className='block text-sm text-zinc-300'>Artist</span>
+							</div>
 						</div>
 						<IconButton
 							className='!text-white'
@@ -179,7 +181,7 @@ const AudioControlsPanel = ({
 								}}
 								sx={{
 									'& .MuiSlider-thumb': {
-										backgroundColor: '#fff',
+										backgroundColor: '#ffffff',
 										'&.Mui-active': {
 											boxShadow: '0 0 0 7px rgba(255, 255, 255, 16%)',
 											height: 14,
