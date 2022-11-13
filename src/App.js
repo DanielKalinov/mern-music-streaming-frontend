@@ -9,10 +9,12 @@ import {
 
 const App = () => {
 	const audio = useRef(new Audio());
-	const [audioProgressValue, setAudioProgressValue] = useState(0);
-	const totalSeconds = useSelector((state) => state.audioPlayer.totalSeconds);
 
+	const totalSeconds = useSelector((state) => state.audioPlayer.totalSeconds);
 	const isPlaying = useSelector((state) => state.audioPlayer.isPlaying);
+	const audioProgressValue = useSelector(
+		(state) => state.audioPlayer.audioProgressValue
+	);
 
 	const dispatch = useDispatch();
 
@@ -25,8 +27,8 @@ const App = () => {
 			// convert audio current progress to percent
 			const percent =
 				(audio.current.currentTime / audio.current.duration) * 100;
-			setAudioProgressValue(!Number.isNaN(percent) ? percent : 0);
 
+			dispatch(setAudioProgressValue(!Number.isNaN(percent) ? percent : 0));
 			dispatch(setTotalSeconds(audio.current.currentTime));
 		};
 	}, []);
@@ -94,9 +96,9 @@ const App = () => {
 				isPlaying={isPlaying}
 				audio={audio}
 				audioProgressValue={audioProgressValue}
-				setAudioProgressValue={setAudioProgressValue}
 				totalSeconds={totalSeconds}
 				setTotalSeconds={setTotalSeconds}
+				dispatch={dispatch}
 			/>
 		</>
 	);

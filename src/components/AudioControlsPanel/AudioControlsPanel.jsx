@@ -16,7 +16,6 @@ import Slider from '@mui/material/Slider';
 import { FastAverageColor } from 'fast-average-color';
 import image from '../../test.png';
 import { togglePlaying } from '../../features/audioPlayerSlice';
-import { useDispatch } from 'react-redux';
 
 const AudioControlsPanel = ({
 	isPlaying,
@@ -24,14 +23,13 @@ const AudioControlsPanel = ({
 	audioProgressValue,
 	totalSeconds,
 	setTotalSeconds,
+	dispatch,
 }) => {
 	const [fullscreenMode, setFullscreenMode] = useState(false);
 	const [rangeInputValue, setRangeInputValue] = useState(0);
 	const [seeking, setSeeking] = useState(false);
 	const staticProgressBarRef = useRef();
 	const [color, setColor] = useState('');
-
-	const dispatch = useDispatch();
 
 	useEffect(() => {
 		// if not seeking, change range input value to the current audio progress,
