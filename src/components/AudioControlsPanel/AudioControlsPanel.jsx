@@ -11,6 +11,7 @@ import SearchIcon from '@mui/icons-material/Search';
 import LibraryMusicIcon from '@mui/icons-material/LibraryMusic';
 import ExpandMoreRoundedIcon from '@mui/icons-material/ExpandMoreRounded';
 import MoreVertRoundedIcon from '@mui/icons-material/MoreVertRounded';
+import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import Slider from '@mui/material/Slider';
 import { FastAverageColor } from 'fast-average-color';
 import image from '../../test.png';
@@ -86,20 +87,28 @@ const AudioControlsPanel = ({
 								<span className='block text-sm text-zinc-300'>Artist</span>
 							</div>
 						</div>
-						<IconButton
-							className='!text-white'
-							size='small'
-							onClick={(e) => {
-								e.stopPropagation();
+						<div>
+							<IconButton
+								className='!text-white'
+								size='small'
+								onClick={(e) => e.stopPropagation()}>
+								<FavoriteBorderIcon />
+							</IconButton>
+							<IconButton
+								className='!text-white'
+								size='small'
+								onClick={(e) => {
+									e.stopPropagation();
 
-								if (audio.current.paused) {
-									setIsPlaying(true);
-								} else {
-									setIsPlaying(false);
-								}
-							}}>
-							{isPlaying ? <PauseIcon /> : <PlayArrowIcon />}
-						</IconButton>
+									if (audio.current.paused) {
+										setIsPlaying(true);
+									} else {
+										setIsPlaying(false);
+									}
+								}}>
+								{isPlaying ? <PauseIcon /> : <PlayArrowIcon />}
+							</IconButton>
+						</div>
 					</div>
 					<div className='h-0.5 w-full bg-secondary'>
 						<div ref={staticProgressBarRef} className={`h-0.5 bg-accent`} />
@@ -150,11 +159,16 @@ const AudioControlsPanel = ({
 				</div>
 				<div className='px-6'>
 					<div className='flex flex-col px-1'>
-						<div className='mt-4'>
-							<span className='block text-center font-bold text-xl mb-1'>
-								A Song Title
-							</span>
-							<span className='block text-center text-zinc-300'>Artist</span>
+						<div className='flex justify-between items-center mt-4'>
+							<div>
+								<span className='block font-bold text-xl mb-1'>
+									A Song Title
+								</span>
+								<span className='block text-zinc-300'>Artist</span>
+							</div>
+							<IconButton edge='end'>
+								<FavoriteBorderIcon className='!text-white' />
+							</IconButton>
 						</div>
 						<div
 							className='flex w-full my-1'
