@@ -1,14 +1,14 @@
 import axios from 'axios';
 import { useEffect, useRef, useState } from 'react';
-import Slider from 'rc-slider';
-import 'rc-slider/assets/index.css';
 import AudioControlsPanel from './components/AudioControlsPanel';
+import { useSelector } from 'react-redux';
 
 const App = () => {
 	const audio = useRef(new Audio());
-	const [isPlaying, setIsPlaying] = useState(false);
 	const [audioProgressValue, setAudioProgressValue] = useState(0);
 	const [totalSeconds, setTotalSeconds] = useState(0);
+
+	const isPlaying = useSelector((state) => state.audioPlayer.isPlaying);
 
 	useEffect(() => {
 		axios.get('http://localhost:5000/test_audio').then((res) => {
@@ -85,9 +85,8 @@ const App = () => {
 				</div>
 			</div>
 			<AudioControlsPanel
-				audio={audio}
 				isPlaying={isPlaying}
-				setIsPlaying={setIsPlaying}
+				audio={audio}
 				audioProgressValue={audioProgressValue}
 				setAudioProgressValue={setAudioProgressValue}
 				totalSeconds={totalSeconds}

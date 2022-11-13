@@ -15,11 +15,12 @@ import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import Slider from '@mui/material/Slider';
 import { FastAverageColor } from 'fast-average-color';
 import image from '../../test.png';
+import { togglePlaying } from '../../features/audioPlayerSlice';
+import { useDispatch } from 'react-redux';
 
 const AudioControlsPanel = ({
-	audio,
 	isPlaying,
-	setIsPlaying,
+	audio,
 	audioProgressValue,
 	totalSeconds,
 	setTotalSeconds,
@@ -29,6 +30,8 @@ const AudioControlsPanel = ({
 	const [seeking, setSeeking] = useState(false);
 	const staticProgressBarRef = useRef();
 	const [color, setColor] = useState('');
+
+	const dispatch = useDispatch();
 
 	useEffect(() => {
 		// if not seeking, change range input value to the current audio progress,
@@ -95,11 +98,7 @@ const AudioControlsPanel = ({
 								onClick={(e) => {
 									e.stopPropagation();
 
-									if (audio.current.paused) {
-										setIsPlaying(true);
-									} else {
-										setIsPlaying(false);
-									}
+									dispatch(togglePlaying());
 								}}>
 								{isPlaying ? <PauseIcon /> : <PlayArrowIcon />}
 							</IconButton>
@@ -225,9 +224,9 @@ const AudioControlsPanel = ({
 								e.stopPropagation();
 
 								if (audio.current.paused) {
-									setIsPlaying(true);
+									dispatch(togglePlaying(true));
 								} else {
-									setIsPlaying(false);
+									dispatch(togglePlaying(false));
 								}
 							}}>
 							{isPlaying ? (
