@@ -1,14 +1,20 @@
 import axios from 'axios';
 import { useEffect, useRef, useState } from 'react';
 import AudioControlsPanel from './components/AudioControlsPanel';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
+import {
+	setAudioProgressValue,
+	setTotalSeconds,
+} from './features/audioPlayerSlice';
 
 const App = () => {
 	const audio = useRef(new Audio());
 	const [audioProgressValue, setAudioProgressValue] = useState(0);
-	const [totalSeconds, setTotalSeconds] = useState(0);
+	const totalSeconds = useSelector((state) => state.audioPlayer.totalSeconds);
 
 	const isPlaying = useSelector((state) => state.audioPlayer.isPlaying);
+
+	const dispatch = useDispatch();
 
 	useEffect(() => {
 		axios.get('http://localhost:5000/test_audio').then((res) => {
@@ -21,7 +27,7 @@ const App = () => {
 				(audio.current.currentTime / audio.current.duration) * 100;
 			setAudioProgressValue(!Number.isNaN(percent) ? percent : 0);
 
-			setTotalSeconds(audio.current.currentTime);
+			dispatch(setTotalSeconds(audio.current.currentTime));
 		};
 	}, []);
 
