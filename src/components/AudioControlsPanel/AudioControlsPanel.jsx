@@ -88,14 +88,10 @@ const AudioControlsPanel = ({
 							</div>
 						</div>
 						<div>
-							<IconButton
-								className='!text-white'
-								size='small'
-								onClick={(e) => e.stopPropagation()}>
+							<IconButton size='small' onClick={(e) => e.stopPropagation()}>
 								<FavoriteBorderIcon />
 							</IconButton>
 							<IconButton
-								className='!text-white'
 								size='small'
 								onClick={(e) => {
 									e.stopPropagation();
@@ -114,7 +110,7 @@ const AudioControlsPanel = ({
 						<div ref={staticProgressBarRef} className={`h-0.5 bg-accent`} />
 					</div>
 					<div className='flex justify-evenly w-full p-1 bg-primary rounded-b-3xl'>
-						<IconButton className='!text-white'>
+						<IconButton>
 							<HomeIcon fontSize='medium' />
 						</IconButton>
 						<IconButton className='!text-inactive'>
@@ -141,10 +137,10 @@ const AudioControlsPanel = ({
 								setFullscreenMode(false);
 								setColor(false);
 							}}>
-							<ExpandMoreRoundedIcon fontSize='large' className='!text-white' />
+							<ExpandMoreRoundedIcon fontSize='large' />
 						</IconButton>
 						<IconButton>
-							<MoreVertRoundedIcon className='!text-white' />
+							<MoreVertRoundedIcon />
 						</IconButton>
 					</div>
 				</div>
@@ -167,7 +163,7 @@ const AudioControlsPanel = ({
 								<span className='block text-zinc-300'>Artist</span>
 							</div>
 							<IconButton edge='end'>
-								<FavoriteBorderIcon className='!text-white' />
+								<FavoriteBorderIcon />
 							</IconButton>
 						</div>
 						<div
@@ -218,14 +214,14 @@ const AudioControlsPanel = ({
 						</div>
 					</div>
 					<div className='flex justify-evenly'>
-						<IconButton className='!text-white'>
+						<IconButton>
 							<ShuffleIcon />
 						</IconButton>
-						<IconButton className='!text-white'>
+						<IconButton>
 							<SkipPreviousIcon />
 						</IconButton>
 						<IconButton
-							className='!text-white !bg-white/10 rounded-full'
+							className='!bg-white/10 rounded-full'
 							onClick={(e) => {
 								e.stopPropagation();
 
@@ -241,10 +237,10 @@ const AudioControlsPanel = ({
 								<PlayArrowIcon fontSize='large' />
 							)}
 						</IconButton>
-						<IconButton className='!text-white'>
+						<IconButton>
 							<SkipNextIcon />
 						</IconButton>
-						<IconButton className='!text-white'>
+						<IconButton>
 							<RepeatIcon />
 						</IconButton>
 					</div>

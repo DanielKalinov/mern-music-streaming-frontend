@@ -10,6 +10,7 @@ const theme = createTheme({
 		primary: {
 			main: '#ffffff',
 		},
+		mode: 'dark',
 	},
 });
 
