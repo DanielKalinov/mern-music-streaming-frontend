@@ -123,6 +123,7 @@ const AudioControlsPanel = ({
 				</div>
 			</div>
 
+			{/* Fullscreen mode window */}
 			<div
 				style={{
 					background: `linear-gradient(${color}, #0f172a)`,
