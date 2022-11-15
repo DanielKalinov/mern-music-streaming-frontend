@@ -41,6 +41,7 @@ const App = () => {
 			audio.current.play();
 		} else if (isPlaying && audio.current.src !== src) {
 			// Play audio AND set the audio src to the requested one if it's different from audio src
+			// ---!NOTE!--- set audio src BEFORE invoking play function
 			audio.current.src = src;
 			audio.current.play();
 		} else {
