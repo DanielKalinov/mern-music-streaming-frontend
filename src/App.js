@@ -6,9 +6,11 @@ import {
 	setAudioProgressValue,
 	setTotalSeconds,
 } from './features/audioPlayerSlice';
+import { Route, Router, Routes } from 'react-router-dom';
+import Albums from './pages/Albums';
+import Home from './pages/Home';
 
 const App = () => {
-	const [albumList, setAlbumList] = useState([]);
 	const audio = useRef(new Audio());
 
 	const totalSeconds = useSelector((state) => state.audioPlayer.totalSeconds);
@@ -19,22 +21,20 @@ const App = () => {
 
 	const dispatch = useDispatch();
 
-	useEffect(() => {
-		axios.get('http://localhost:5000/albums').then((res) => {
-			setAlbumList(res.data);
-		});
+	// useEffect(() => {
+	// 	axios.get('http://localhost:5000/albums').then((res) => {
+	// 		audio.current.src = res.data;
 
-		// audio.current.src = res.data;
+	// 		audio.current.ontimeupdate = () => {
+	// 			// convert audio current progress to percent
+	// 			const percent =
+	// 				(audio.current.currentTime / audio.current.duration) * 100;
 
-		// audio.current.ontimeupdate = () => {
-		// 	// convert audio current progress to percent
-		// 	const percent =
-		// 		(audio.current.currentTime / audio.current.duration) * 100;
-
-		// 	dispatch(setAudioProgressValue(!Number.isNaN(percent) ? percent : 0));
-		// 	dispatch(setTotalSeconds(audio.current.currentTime));
-		// };
-	}, []);
+	// 			dispatch(setAudioProgressValue(!Number.isNaN(percent) ? percent : 0));
+	// 			dispatch(setTotalSeconds(audio.current.currentTime));
+	// 		};
+	// 	});
+	// }, []);
 
 	useEffect(() => {
 		isPlaying ? audio.current.play() : audio.current.pause();
@@ -45,14 +45,10 @@ const App = () => {
 			{/* pb-[--height of panel--] */}
 			<div className='pb-[124px]'>
 				<div className='p-4'>
-					{albumList.map((item) => (
-						<img
-							key={item._id}
-							src={item.albumImageUrl}
-							width={'100%'}
-							height={'100%'}
-						/>
-					))}
+					<Routes>
+						<Route path='/' element={<Home />} />
+						<Route path='/albums' element={<Albums />} />
+					</Routes>
 				</div>
 			</div>
 			{isPlaying && (
