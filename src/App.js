@@ -55,14 +55,16 @@ const App = () => {
 					))}
 				</div>
 			</div>
-			<AudioControlsPanel
-				isPlaying={isPlaying}
-				audio={audio}
-				audioProgressValue={audioProgressValue}
-				totalSeconds={totalSeconds}
-				setTotalSeconds={setTotalSeconds}
-				dispatch={dispatch}
-			/>
+			{isPlaying && (
+				<AudioControlsPanel
+					isPlaying={isPlaying}
+					audio={audio}
+					audioProgressValue={audioProgressValue}
+					totalSeconds={totalSeconds}
+					setTotalSeconds={setTotalSeconds}
+					dispatch={dispatch}
+				/>
+			)}
 		</>
 	);
 };
