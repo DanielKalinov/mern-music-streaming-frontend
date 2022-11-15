@@ -7,12 +7,13 @@ import MoreVertRoundedIcon from '@mui/icons-material/MoreVertRounded';
 import PlayArrowIcon from '@mui/icons-material/PlayArrow';
 import PauseIcon from '@mui/icons-material/Pause';
 import { useDispatch, useSelector } from 'react-redux';
-import { togglePlaying } from '../features/audioPlayerSlice';
-const AlbumDetails = ({ audio }) => {
-	const dispatch = useDispatch();
-	const isPlaying = useSelector((state) => state.audioPlayer.isPlaying);
+import { setSongInfo, togglePlaying } from '../features/audioPlayerSlice';
 
+const AlbumDetails = ({ audio }) => {
+	const isPlaying = useSelector((state) => state.audioPlayer.isPlaying);
 	const [albumDetails, setAlbumDetails] = useState();
+
+	const dispatch = useDispatch();
 
 	const params = useParams();
 
@@ -47,6 +48,14 @@ const AlbumDetails = ({ audio }) => {
 							className='flex justify-between py-2'
 							key={item._id}
 							onClick={() => {
+								dispatch(
+									setSongInfo({
+										title: item.title,
+										artist: albumDetails.artist,
+										album: albumDetails.name,
+									})
+								);
+
 								if (item.audioUrl == audio.current.src) {
 									if (!audio.current.paused) {
 										dispatch(togglePlaying(false));

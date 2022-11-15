@@ -16,6 +16,7 @@ import Slider from '@mui/material/Slider';
 import { FastAverageColor } from 'fast-average-color';
 import image from '../../test.png';
 import { togglePlaying } from '../../features/audioPlayerSlice';
+import { useSelector } from 'react-redux';
 
 const AudioControlsPanel = ({
 	isPlaying,
@@ -25,6 +26,7 @@ const AudioControlsPanel = ({
 	setTotalSeconds,
 	dispatch,
 }) => {
+	const songInfo = useSelector((state) => state.audioPlayer.songInfo);
 	const [fullscreenMode, setFullscreenMode] = useState(false);
 	const [rangeInputValue, setRangeInputValue] = useState(0);
 	const [seeking, setSeeking] = useState(false);
@@ -88,8 +90,12 @@ const AudioControlsPanel = ({
 						<div className='flex items-center'>
 							<div className='h-8 w-8 mr-3 rounded-md bg-secondary bg-[url("test.png")] bg-center bg-cover' />
 							<div>
-								<span className='block text-sm font-bold'>A Song Title</span>
-								<span className='block text-sm text-zinc-300'>Artist</span>
+								<span className='block text-sm font-bold'>
+									{songInfo.title}
+								</span>
+								<span className='block text-sm text-zinc-300'>
+									{songInfo.artist}
+								</span>
 							</div>
 						</div>
 						<div>
@@ -165,9 +171,9 @@ const AudioControlsPanel = ({
 						<div className='flex justify-between items-center mt-4'>
 							<div>
 								<span className='block font-bold text-xl mb-1'>
-									A Song Title
+									{songInfo.title}
 								</span>
-								<span className='block text-zinc-300'>Artist</span>
+								<span className='block text-zinc-300'>{songInfo.artist}</span>
 							</div>
 							<IconButton edge='end'>
 								<FavoriteBorderIcon />
