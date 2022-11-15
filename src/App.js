@@ -1,22 +1,22 @@
 import axios from 'axios';
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef } from 'react';
 import AudioControlsPanel from './components/AudioControlsPanel';
 import { useSelector, useDispatch } from 'react-redux';
 import {
 	setAudioProgressValue,
 	setTotalSeconds,
 } from './features/audioPlayerSlice';
-import { Route, Router, Routes } from 'react-router-dom';
+import { Route, Routes } from 'react-router-dom';
 import Albums from './pages/Albums';
 import Home from './pages/Home';
 import AlbumDetails from './pages/AlbumDetails';
 
 const App = () => {
-	const [src, setSrc] = useState('');
 	const audio = useRef(new Audio());
 
 	const totalSeconds = useSelector((state) => state.audioPlayer.totalSeconds);
 	const isPlaying = useSelector((state) => state.audioPlayer.isPlaying);
+	const src = useSelector((state) => state.audioPlayer.src);
 	const audioProgressValue = useSelector(
 		(state) => state.audioPlayer.audioProgressValue
 	);
@@ -58,7 +58,7 @@ const App = () => {
 						<Route path='/albums' element={<Albums />} />
 						<Route
 							path={`/albums/:id`}
-							element={<AlbumDetails audio={audio} src={src} setSrc={setSrc} />}
+							element={<AlbumDetails audio={audio} src={src} />}
 						/>
 					</Routes>
 				</div>

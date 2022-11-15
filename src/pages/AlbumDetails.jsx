@@ -6,8 +6,9 @@ import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import MoreVertRoundedIcon from '@mui/icons-material/MoreVertRounded';
 import { useDispatch, useSelector } from 'react-redux';
 import { togglePlaying } from '../features/audioPlayerSlice';
+import { setSrc } from '../features/audioPlayerSlice';
 
-const AlbumDetails = ({ audio, setSrc, src }) => {
+const AlbumDetails = ({ src }) => {
 	const dispatch = useDispatch();
 	const isPlaying = useSelector((state) => state.audioPlayer.isPlaying);
 
@@ -46,7 +47,7 @@ const AlbumDetails = ({ audio, setSrc, src }) => {
 							className='flex justify-between py-2'
 							key={item._id}
 							onClick={(e) => {
-								setSrc(item.audioUrl);
+								dispatch(setSrc(item.audioUrl));
 
 								if (isPlaying && item.audioUrl == src) {
 									// If audio is playing and we've loaded the same src, pause audio
