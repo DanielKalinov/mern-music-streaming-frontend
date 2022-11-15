@@ -34,6 +34,7 @@ const App = () => {
 		};
 	}, []);
 
+	// Performing audio side effects on state change
 	useEffect(() => {
 		if (isPlaying && audio.current.src == src) {
 			// Play audio if we've already loaded the same src as the requested one
