@@ -46,15 +46,15 @@ const AudioControlsPanel = ({
 			? (document.body.style.overflow = 'hidden')
 			: (document.body.style.overflow = 'auto');
 
-		const fac = new FastAverageColor();
-		fac
-			.getColorAsync(document.body.querySelector('img'))
-			.then((color) => {
-				setColor(color.hex);
-			})
-			.catch((e) => {
-				console.log(e);
-			});
+		// const fac = new FastAverageColor();
+		// fac
+		// 	.getColorAsync(document.body.querySelector('img'))
+		// 	.then((color) => {
+		// 		setColor(color.hex);
+		// 	})
+		// 	.catch((e) => {
+		// 		console.log(e);
+		// 	});
 	}, [fullscreenMode]);
 
 	const format = (val) => {
@@ -96,7 +96,9 @@ const AudioControlsPanel = ({
 								onClick={(e) => {
 									e.stopPropagation();
 
-									dispatch(togglePlaying());
+									isPlaying
+										? dispatch(togglePlaying(false))
+										: dispatch(togglePlaying(true));
 								}}>
 								{isPlaying ? <PauseIcon /> : <PlayArrowIcon />}
 							</IconButton>
@@ -121,12 +123,12 @@ const AudioControlsPanel = ({
 
 			{/* Fullscreen mode window */}
 			<div
-				style={{
-					background: `linear-gradient(${color}, #0f172a)`,
-				}}
+				// style={{
+				// 	background: `linear-gradient(${color}, #0f172a)`,
+				// }}
 				className={`${fullscreenMode ? 'opacity-100' : 'opacity-0'} ${
 					fullscreenMode ? 'translate-y-0' : 'translate-y-full'
-				} fixed top-0 flex flex-col w-full h-full [transition:transform_300ms_ease-in-out,opacity_200ms_ease-in-out] z-10 [&>*]:mb-auto`}>
+				} fixed bg-primary top-0 flex flex-col w-full h-full [transition:transform_300ms_ease-in-out,opacity_200ms_ease-in-out] z-10 [&>*]:mb-auto`}>
 				<div>
 					<div className='flex justify-between items-center'>
 						<IconButton
@@ -222,12 +224,9 @@ const AudioControlsPanel = ({
 							className='!bg-white/10 rounded-full'
 							onClick={(e) => {
 								e.stopPropagation();
-
-								if (audio.current.paused) {
-									dispatch(togglePlaying(true));
-								} else {
-									dispatch(togglePlaying(false));
-								}
+								isPlaying
+									? dispatch(togglePlaying(false))
+									: dispatch(togglePlaying(true));
 							}}>
 							{isPlaying ? (
 								<PauseIcon fontSize='large' />

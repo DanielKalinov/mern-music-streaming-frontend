@@ -9,8 +9,10 @@ import {
 import { Route, Router, Routes } from 'react-router-dom';
 import Albums from './pages/Albums';
 import Home from './pages/Home';
+import AlbumDetails from './pages/AlbumDetails';
 
 const App = () => {
+	const [src, setSrc] = useState('');
 	const audio = useRef(new Audio());
 
 	const totalSeconds = useSelector((state) => state.audioPlayer.totalSeconds);
@@ -21,24 +23,27 @@ const App = () => {
 
 	const dispatch = useDispatch();
 
-	// useEffect(() => {
-	// 	axios.get('http://localhost:5000/albums').then((res) => {
-	// 		audio.current.src = res.data;
+	useEffect(() => {
+		audio.current.ontimeupdate = () => {
+			// convert audio current progress to percent
+			const percent =
+				(audio.current.currentTime / audio.current.duration) * 100;
 
-	// 		audio.current.ontimeupdate = () => {
-	// 			// convert audio current progress to percent
-	// 			const percent =
-	// 				(audio.current.currentTime / audio.current.duration) * 100;
-
-	// 			dispatch(setAudioProgressValue(!Number.isNaN(percent) ? percent : 0));
-	// 			dispatch(setTotalSeconds(audio.current.currentTime));
-	// 		};
-	// 	});
-	// }, []);
+			dispatch(setAudioProgressValue(!Number.isNaN(percent) ? percent : 0));
+			dispatch(setTotalSeconds(audio.current.currentTime));
+		};
+	}, []);
 
 	useEffect(() => {
-		isPlaying ? audio.current.play() : audio.current.pause();
-	}, [isPlaying]);
+		if (isPlaying && audio.current.src == src) {
+			audio.current.play();
+		} else if (isPlaying && audio.current.src !== src) {
+			audio.current.src = src;
+			audio.current.play();
+		} else {
+			audio.current.pause();
+		}
+	}, [isPlaying, src]);
 
 	return (
 		<>
@@ -48,19 +53,21 @@ const App = () => {
 					<Routes>
 						<Route path='/' element={<Home />} />
 						<Route path='/albums' element={<Albums />} />
+						<Route
+							path={`/albums/:id`}
+							element={<AlbumDetails audio={audio} src={src} setSrc={setSrc} />}
+						/>
 					</Routes>
 				</div>
 			</div>
-			{isPlaying && (
-				<AudioControlsPanel
-					isPlaying={isPlaying}
-					audio={audio}
-					audioProgressValue={audioProgressValue}
-					totalSeconds={totalSeconds}
-					setTotalSeconds={setTotalSeconds}
-					dispatch={dispatch}
-				/>
-			)}
+			<AudioControlsPanel
+				isPlaying={isPlaying}
+				audio={audio}
+				audioProgressValue={audioProgressValue}
+				totalSeconds={totalSeconds}
+				setTotalSeconds={setTotalSeconds}
+				dispatch={dispatch}
+			/>
 		</>
 	);
 };

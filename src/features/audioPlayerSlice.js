@@ -10,8 +10,8 @@ export const audioPlayerSlice = createSlice({
 	name: 'audioPlayer',
 	initialState,
 	reducers: {
-		togglePlaying: (state) => {
-			state.isPlaying = !state.isPlaying;
+		togglePlaying: (state, action) => {
+			state.isPlaying = action.payload;
 		},
 		setTotalSeconds: (state, action) => {
 			state.totalSeconds = action.payload;
