@@ -75,7 +75,12 @@ const AudioControlsPanel = ({
 
 	return (
 		<>
-			<div className='fixed bottom-0 w-full p-2'>
+			<div
+				className={`${
+					audio.current.src
+						? 'opacity-1 translate-y-0'
+						: 'opacity-0 translate-y-full'
+				} fixed bottom-0 w-full p-2 transition-all duration-300 ease-in-out`}>
 				<div className='flex flex-col items-center bg-primary/60 rounded-xl rounded-b-3xl backdrop-blur-md border solid border-primary'>
 					<div
 						className='flex items-center justify-between w-full p-2'
