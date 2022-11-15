@@ -55,7 +55,7 @@ const AlbumDetails = ({ audio }) => {
 										dispatch(togglePlaying(true));
 										audio.current.play();
 									}
-								} else if (item.audioUrl !== audio.current.src) {
+								} else {
 									dispatch(togglePlaying(true));
 									audio.current.src = item.audioUrl;
 									audio.current.play();
