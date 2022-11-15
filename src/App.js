@@ -16,7 +16,6 @@ const App = () => {
 
 	const totalSeconds = useSelector((state) => state.audioPlayer.totalSeconds);
 	const isPlaying = useSelector((state) => state.audioPlayer.isPlaying);
-	const src = useSelector((state) => state.audioPlayer.src);
 	const audioProgressValue = useSelector(
 		(state) => state.audioPlayer.audioProgressValue
 	);
@@ -34,22 +33,6 @@ const App = () => {
 		};
 	}, []);
 
-	// Performing audio side effects on state change
-	useEffect(() => {
-		if (isPlaying && audio.current.src == src) {
-			// Play audio if we've already loaded the same src as the requested one
-			audio.current.play();
-		} else if (isPlaying && audio.current.src !== src) {
-			// Play audio AND set the audio src to the requested one if it's different from audio src
-			// ---!NOTE!--- set audio src BEFORE invoking play function
-			audio.current.src = src;
-			audio.current.play();
-		} else {
-			// Otherwise, pause audio
-			audio.current.pause();
-		}
-	}, [isPlaying, src]);
-
 	return (
 		<>
 			{/* pb-[--height of panel--] */}
@@ -58,7 +41,10 @@ const App = () => {
 					<Routes>
 						<Route path='/' element={<Home />} />
 						<Route path='/albums' element={<Albums />} />
-						<Route path={`/albums/:id`} element={<AlbumDetails src={src} />} />
+						<Route
+							path={`/albums/:id`}
+							element={<AlbumDetails audio={audio} />}
+						/>
 					</Routes>
 				</div>
 			</div>
