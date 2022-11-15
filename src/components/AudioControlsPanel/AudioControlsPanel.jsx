@@ -96,9 +96,13 @@ const AudioControlsPanel = ({
 								onClick={(e) => {
 									e.stopPropagation();
 
-									isPlaying
-										? dispatch(togglePlaying(false))
-										: dispatch(togglePlaying(true));
+									if (audio.current.paused) {
+										dispatch(togglePlaying(true));
+										audio.current.play();
+									} else {
+										dispatch(togglePlaying(false));
+										audio.current.pause();
+									}
 								}}>
 								{isPlaying ? <PauseIcon /> : <PlayArrowIcon />}
 							</IconButton>
@@ -224,9 +228,14 @@ const AudioControlsPanel = ({
 							className='!bg-white/10 rounded-full'
 							onClick={(e) => {
 								e.stopPropagation();
-								isPlaying
-									? dispatch(togglePlaying(false))
-									: dispatch(togglePlaying(true));
+
+								if (audio.current.paused) {
+									dispatch(togglePlaying(true));
+									audio.current.play();
+								} else {
+									dispatch(togglePlaying(false));
+									audio.current.pause();
+								}
 							}}>
 							{isPlaying ? (
 								<PauseIcon fontSize='large' />
