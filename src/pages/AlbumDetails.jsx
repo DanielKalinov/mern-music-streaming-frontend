@@ -31,7 +31,7 @@ const AlbumDetails = ({ audio }) => {
 				<div className='flex items-center justify-between mb-4'>
 					<div>
 						<span className='block font-bold text-2xl'>
-							{albumDetails.name}
+							{albumDetails.name} • {albumDetails.year}
 						</span>
 						<span className='block text-lg text-zinc-300'>
 							{albumDetails.artist}
