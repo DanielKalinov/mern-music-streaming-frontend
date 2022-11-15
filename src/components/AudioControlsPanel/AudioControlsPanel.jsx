@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useRef } from 'react';
 import PlayArrowIcon from '@mui/icons-material/PlayArrow';
-import IconButton from '@mui/material/IconButton';
 import PauseIcon from '@mui/icons-material/Pause';
+import IconButton from '@mui/material/IconButton';
 import SkipNextIcon from '@mui/icons-material/SkipNext';
 import SkipPreviousIcon from '@mui/icons-material/SkipPrevious';
 import ShuffleIcon from '@mui/icons-material/Shuffle';

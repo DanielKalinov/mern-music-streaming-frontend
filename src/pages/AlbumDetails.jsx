@@ -4,9 +4,10 @@ import { useParams } from 'react-router-dom';
 import { IconButton } from '@mui/material';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import MoreVertRoundedIcon from '@mui/icons-material/MoreVertRounded';
+import PlayArrowIcon from '@mui/icons-material/PlayArrow';
+import PauseIcon from '@mui/icons-material/Pause';
 import { useDispatch, useSelector } from 'react-redux';
 import { togglePlaying } from '../features/audioPlayerSlice';
-
 const AlbumDetails = ({ audio }) => {
 	const dispatch = useDispatch();
 	const isPlaying = useSelector((state) => state.audioPlayer.isPlaying);
@@ -67,9 +68,16 @@ const AlbumDetails = ({ audio }) => {
 								</span>
 							</div>
 
-							<IconButton edge='end'>
-								<MoreVertRoundedIcon />
-							</IconButton>
+							<div>
+								{item.audioUrl == audio.current.src && (
+									<IconButton edge='end'>
+										{isPlaying ? <PauseIcon /> : <PlayArrowIcon />}
+									</IconButton>
+								)}
+								<IconButton edge='end'>
+									<MoreVertRoundedIcon />
+								</IconButton>
+							</div>
 						</li>
 					))}
 				</ul>
