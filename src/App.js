@@ -36,11 +36,14 @@ const App = () => {
 
 	useEffect(() => {
 		if (isPlaying && audio.current.src == src) {
+			// Play audio if we've already loaded the same src as the requested one
 			audio.current.play();
 		} else if (isPlaying && audio.current.src !== src) {
+			// Play audio AND set the audio src to the requested one if it's different from audio src
 			audio.current.src = src;
 			audio.current.play();
 		} else {
+			// Otherwise, pause audio
 			audio.current.pause();
 		}
 	}, [isPlaying, src]);

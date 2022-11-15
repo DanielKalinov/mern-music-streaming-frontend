@@ -49,8 +49,10 @@ const AlbumDetails = ({ audio, setSrc, src }) => {
 								setSrc(item.audioUrl);
 
 								if (isPlaying && item.audioUrl == src) {
+									// If audio is playing and we've loaded the same src, pause audio
 									dispatch(togglePlaying(false));
 								} else {
+									// Otherwise, play audio
 									dispatch(togglePlaying(true));
 								}
 							}}>
