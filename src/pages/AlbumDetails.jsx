@@ -13,8 +13,9 @@ import { FastAverageColor } from 'fast-average-color';
 const AlbumDetails = ({ audio }) => {
 	const isPlaying = useSelector((state) => state.audioPlayer.isPlaying);
 	const [albumDetails, setAlbumDetails] = useState();
-	const albumImageRef = useRef();
 	const [color, setColor] = useState('');
+
+	const albumImageRef = useRef();
 
 	const dispatch = useDispatch();
 
@@ -76,7 +77,9 @@ const AlbumDetails = ({ audio }) => {
 				<ul className='px-4'>
 					{albumDetails.songs.map((item) => (
 						<li
-							className='flex justify-between py-2'
+							className={`flex justify-between py-2 ${
+								item.audioUrl == audio.current.src ? 'text-accent' : ''
+							}`}
 							key={item._id}
 							onClick={() => {
 								dispatch(
