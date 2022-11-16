@@ -78,8 +78,11 @@ const AudioControlsPanel = ({
 						className='flex items-center justify-between w-full p-2'
 						onClick={() => setFullscreenMode(true)}>
 						<div className='flex items-center'>
-							<div
-								className={`h-8 w-8 mr-3 rounded-md bg-secondary bg-center bg-cover`}
+							<img
+								src={songInfo.albumImageUrl}
+								width={40}
+								height={40}
+								className='rounded-lg mr-2'
 							/>
 							<div>
 								<span className='block text-sm font-bold'>
