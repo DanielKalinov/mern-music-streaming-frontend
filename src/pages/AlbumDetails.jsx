@@ -45,7 +45,7 @@ const AlbumDetails = ({ audio }) => {
 		albumDetails && (
 			<div className='p-4'>
 				<div
-					className='relative -mx-4 p-4'
+					className='relative -m-4 p-4'
 					style={{
 						background: `linear-gradient(${color}, #0f172a)`,
 					}}>
