@@ -1,5 +1,5 @@
 import axios from 'axios';
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { IconButton } from '@mui/material';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
@@ -8,10 +8,13 @@ import PlayArrowIcon from '@mui/icons-material/PlayArrow';
 import PauseIcon from '@mui/icons-material/Pause';
 import { useDispatch, useSelector } from 'react-redux';
 import { setSongInfo, togglePlaying } from '../features/audioPlayerSlice';
+import { FastAverageColor } from 'fast-average-color';
 
 const AlbumDetails = ({ audio }) => {
 	const isPlaying = useSelector((state) => state.audioPlayer.isPlaying);
 	const [albumDetails, setAlbumDetails] = useState();
+	const albumImageRef = useRef();
+	const [color, setColor] = useState('');
 
 	const dispatch = useDispatch();
 
@@ -23,25 +26,52 @@ const AlbumDetails = ({ audio }) => {
 		});
 	}, []);
 
+	useEffect(() => {
+		if (albumImageRef.current) {
+			const fac = new FastAverageColor();
+			albumImageRef.current.crossOrigin = 'Anonymous';
+			fac
+				.getColorAsync(albumImageRef.current)
+				.then((color) => {
+					setColor(color.hex);
+				})
+				.catch((e) => {
+					console.log(e);
+				});
+		}
+	}, [albumImageRef.current]);
+
 	return (
 		albumDetails && (
-			<div>
-				<div className='p-8'>
-					<img src={albumDetails.albumImageUrl} height='100%' width='100%' />
-				</div>
-				<div className='flex items-center justify-between mb-4'>
-					<div>
-						<span className='block font-bold text-2xl'>
-							{albumDetails.name} • {albumDetails.year}
-						</span>
-						<span className='block text-lg text-zinc-300'>
-							{albumDetails.artist}
-						</span>
+			<div className='p-4'>
+				<div
+					className='relative -mx-4 p-4'
+					style={{
+						background: `linear-gradient(${color}, #0f172a)`,
+					}}>
+					<div className='p-8'>
+						<img
+							ref={albumImageRef}
+							src={albumDetails.albumImageUrl}
+							height='100%'
+							width='100%'
+						/>
 					</div>
-					<IconButton>
-						<FavoriteBorderIcon fontSize='large' />
-					</IconButton>
+					<div className='flex items-center justify-between mb-4'>
+						<div>
+							<span className='block font-bold text-2xl'>
+								{albumDetails.name} • {albumDetails.year}
+							</span>
+							<span className='block text-lg text-zinc-300'>
+								{albumDetails.artist}
+							</span>
+						</div>
+						<IconButton>
+							<FavoriteBorderIcon fontSize='large' />
+						</IconButton>
+					</div>
 				</div>
+
 				<ul>
 					{albumDetails.songs.map((item) => (
 						<li

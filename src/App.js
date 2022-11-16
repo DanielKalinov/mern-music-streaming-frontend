@@ -37,7 +37,7 @@ const App = () => {
 		<>
 			{/* pb-[--height of panel--] */}
 			<div className='pb-[124px]'>
-				<div className='p-4'>
+				<div>
 					<Routes>
 						<Route path='/' element={<Home />} />
 						<Route path='/albums' element={<Albums />} />
