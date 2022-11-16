@@ -13,8 +13,6 @@ import ExpandMoreRoundedIcon from '@mui/icons-material/ExpandMoreRounded';
 import MoreVertRoundedIcon from '@mui/icons-material/MoreVertRounded';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import Slider from '@mui/material/Slider';
-import { FastAverageColor } from 'fast-average-color';
-import image from '../../test.png';
 import { togglePlaying } from '../../features/audioPlayerSlice';
 import { useSelector } from 'react-redux';
 
@@ -31,7 +29,8 @@ const AudioControlsPanel = ({
 	const [rangeInputValue, setRangeInputValue] = useState(0);
 	const [seeking, setSeeking] = useState(false);
 	const staticProgressBarRef = useRef();
-	const [color, setColor] = useState('');
+	const averageColor = useSelector((state) => state.audioPlayer.averageColor);
+
 	const albumImageRef = useRef();
 
 	useEffect(() => {
@@ -48,17 +47,6 @@ const AudioControlsPanel = ({
 		fullscreenMode
 			? (document.body.style.overflow = 'hidden')
 			: (document.body.style.overflow = 'auto');
-
-		const fac = new FastAverageColor();
-		albumImageRef.current.crossOrigin = 'Anonymous';
-		fac
-			.getColorAsync(albumImageRef.current)
-			.then((color) => {
-				setColor(color.hex);
-			})
-			.catch((e) => {
-				console.log(e);
-			});
 	}, [fullscreenMode]);
 
 	const format = (val) => {
@@ -90,7 +78,9 @@ const AudioControlsPanel = ({
 						className='flex items-center justify-between w-full p-2'
 						onClick={() => setFullscreenMode(true)}>
 						<div className='flex items-center'>
-							<div className='h-8 w-8 mr-3 rounded-md bg-secondary bg-[url("test.png")] bg-center bg-cover' />
+							<div
+								className={`h-8 w-8 mr-3 rounded-md bg-secondary bg-center bg-cover`}
+							/>
 							<div>
 								<span className='block text-sm font-bold'>
 									{songInfo.title}
@@ -141,7 +131,7 @@ const AudioControlsPanel = ({
 			{/* Fullscreen mode window */}
 			<div
 				style={{
-					background: `linear-gradient(${color}, #0f172a)`,
+					background: `linear-gradient(${averageColor}, #0f172a)`,
 				}}
 				className={`${fullscreenMode ? 'opacity-100' : 'opacity-0'} ${
 					fullscreenMode ? 'translate-y-0' : 'translate-y-full'
@@ -151,7 +141,6 @@ const AudioControlsPanel = ({
 						<IconButton
 							onClick={() => {
 								setFullscreenMode(false);
-								setColor(false);
 							}}>
 							<ExpandMoreRoundedIcon fontSize='large' />
 						</IconButton>

@@ -7,13 +7,17 @@ import MoreVertRoundedIcon from '@mui/icons-material/MoreVertRounded';
 import PlayArrowIcon from '@mui/icons-material/PlayArrow';
 import PauseIcon from '@mui/icons-material/Pause';
 import { useDispatch, useSelector } from 'react-redux';
-import { setSongInfo, togglePlaying } from '../features/audioPlayerSlice';
+import {
+	setAverageColor,
+	setSongInfo,
+	togglePlaying,
+} from '../features/audioPlayerSlice';
 import { FastAverageColor } from 'fast-average-color';
 
 const AlbumDetails = ({ audio }) => {
 	const isPlaying = useSelector((state) => state.audioPlayer.isPlaying);
 	const [albumDetails, setAlbumDetails] = useState();
-	const [color, setColor] = useState('');
+	const averageColor = useSelector((state) => state.audioPlayer.averageColor);
 
 	const albumImageRef = useRef();
 
@@ -34,7 +38,7 @@ const AlbumDetails = ({ audio }) => {
 			fac
 				.getColorAsync(albumImageRef.current)
 				.then((color) => {
-					setColor(color.hex);
+					dispatch(setAverageColor(color.hex));
 				})
 				.catch((e) => {
 					console.log(e);
@@ -48,7 +52,7 @@ const AlbumDetails = ({ audio }) => {
 				<div
 					className='p-4'
 					style={{
-						background: `linear-gradient(${color}, #0f172a)`,
+						background: `linear-gradient(${averageColor}, #0f172a)`,
 					}}>
 					<div className='p-8'>
 						<img
