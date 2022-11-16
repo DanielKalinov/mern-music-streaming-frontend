@@ -48,15 +48,16 @@ const AudioControlsPanel = ({
 			? (document.body.style.overflow = 'hidden')
 			: (document.body.style.overflow = 'auto');
 
-		// const fac = new FastAverageColor();
-		// fac
-		// 	.getColorAsync(document.body.querySelector('img'))
-		// 	.then((color) => {
-		// 		setColor(color.hex);
-		// 	})
-		// 	.catch((e) => {
-		// 		console.log(e);
-		// 	});
+		const fac = new FastAverageColor();
+		document.body.querySelector('img').crossOrigin = 'Anonymous';
+		fac
+			.getColorAsync(document.body.querySelector('img'))
+			.then((color) => {
+				setColor(color.hex);
+			})
+			.catch((e) => {
+				console.log(e);
+			});
 	}, [fullscreenMode]);
 
 	const format = (val) => {
@@ -138,9 +139,9 @@ const AudioControlsPanel = ({
 
 			{/* Fullscreen mode window */}
 			<div
-				// style={{
-				// 	background: `linear-gradient(${color}, #0f172a)`,
-				// }}
+				style={{
+					background: `linear-gradient(${color}, #0f172a)`,
+				}}
 				className={`${fullscreenMode ? 'opacity-100' : 'opacity-0'} ${
 					fullscreenMode ? 'translate-y-0' : 'translate-y-full'
 				} fixed bg-primary top-0 flex flex-col w-full h-full [transition:transform_300ms_ease-in-out,opacity_200ms_ease-in-out] z-10 [&>*]:mb-auto`}>
