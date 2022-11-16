@@ -43,21 +43,22 @@ const AlbumDetails = ({ audio }) => {
 
 	return (
 		albumDetails && (
-			<div className='p-4'>
+			<div>
 				<div
-					className='relative -m-4 p-4'
+					className='p-4'
 					style={{
 						background: `linear-gradient(${color}, #0f172a)`,
 					}}>
 					<div className='p-8'>
 						<img
+							className='shadow-lg rounded-lg'
 							ref={albumImageRef}
 							src={albumDetails.albumImageUrl}
 							height='100%'
 							width='100%'
 						/>
 					</div>
-					<div className='flex items-center justify-between mb-4'>
+					<div className='flex items-center justify-between'>
 						<div>
 							<span className='block font-bold text-2xl'>
 								{albumDetails.name} • {albumDetails.year}
@@ -72,7 +73,7 @@ const AlbumDetails = ({ audio }) => {
 					</div>
 				</div>
 
-				<ul>
+				<ul className='px-4'>
 					{albumDetails.songs.map((item) => (
 						<li
 							className='flex justify-between py-2'
