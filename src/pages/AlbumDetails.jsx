@@ -52,7 +52,8 @@ const AlbumDetails = ({ audio }) => {
 									setSongInfo({
 										title: item.title,
 										artist: albumDetails.artist,
-										album: albumDetails.name,
+										albumName: albumDetails.name,
+										albumImageUrl: albumDetails.albumImageUrl,
 									})
 								);
 

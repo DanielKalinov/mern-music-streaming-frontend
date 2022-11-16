@@ -32,6 +32,7 @@ const AudioControlsPanel = ({
 	const [seeking, setSeeking] = useState(false);
 	const staticProgressBarRef = useRef();
 	const [color, setColor] = useState('');
+	const albumImageRef = useRef();
 
 	useEffect(() => {
 		// if not seeking, change range input value to the current audio progress,
@@ -49,9 +50,9 @@ const AudioControlsPanel = ({
 			: (document.body.style.overflow = 'auto');
 
 		const fac = new FastAverageColor();
-		document.body.querySelector('img').crossOrigin = 'Anonymous';
+		albumImageRef.current.crossOrigin = 'Anonymous';
 		fac
-			.getColorAsync(document.body.querySelector('img'))
+			.getColorAsync(albumImageRef.current)
 			.then((color) => {
 				setColor(color.hex);
 			})
@@ -161,7 +162,8 @@ const AudioControlsPanel = ({
 				</div>
 				<div className='px-6'>
 					<img
-						src={image}
+						ref={albumImageRef}
+						src={songInfo.albumImageUrl}
 						width={'100%'}
 						height={'100%'}
 						className='shadow-lg rounded-lg'
