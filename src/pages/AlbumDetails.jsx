@@ -78,7 +78,7 @@ const AlbumDetails = ({ audio }) => {
 						<IconButton>
 							<FavoriteBorderIcon fontSize='large' />
 						</IconButton>
-						<IconButton className='!bg-accent rounded-full'>
+						<IconButton className='!bg-accent rounded-full coloredShadow'>
 							<PlayArrowIcon fontSize='large' />
 						</IconButton>
 					</div>
