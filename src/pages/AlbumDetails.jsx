@@ -78,7 +78,26 @@ const AlbumDetails = ({ audio }) => {
 						<IconButton edge='start'>
 							<FavoriteBorderIcon fontSize='large' />
 						</IconButton>
-						<IconButton className='!bg-accent rounded-full coloredShadow'>
+						<IconButton
+							className='!bg-accent rounded-full coloredShadow'
+							onClick={() => {
+								const firstTrack = albumDetails.songs[0];
+
+								audio.current.src = firstTrack.audioUrl;
+								audio.current.play();
+
+								dispatch(togglePlaying(true));
+								dispatch(
+									setSongInfo({
+										position: 0,
+										title: firstTrack.title,
+										artist: firstTrack.artist,
+										albumImageUrl: firstTrack.albumImageUrl,
+										duration: firstTrack.duration,
+									})
+								);
+								dispatch(setQueue(albumDetails.songs));
+							}}>
 							<PlayArrowIcon fontSize='large' />
 						</IconButton>
 					</div>
