@@ -226,7 +226,7 @@ const AudioControlsPanel = ({
 										},
 									},
 									'& .MuiSlider-track': {
-										backgroundColor: '#db2777',
+										backgroundColor: '#ec4899',
 									},
 								}}
 							/>
