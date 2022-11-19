@@ -9,6 +9,7 @@ import PauseIcon from '@mui/icons-material/Pause';
 import { useDispatch, useSelector } from 'react-redux';
 import {
 	setAverageColor,
+	setQueue,
 	setSongInfo,
 	togglePlaying,
 } from '../features/audioPlayerSlice';
@@ -88,12 +89,14 @@ const AlbumDetails = ({ audio }) => {
 							onClick={() => {
 								dispatch(
 									setSongInfo({
+										position: item.position,
 										title: item.title,
-										artist: albumDetails.artist,
-										albumName: albumDetails.name,
-										albumImageUrl: albumDetails.albumImageUrl,
+										artist: item.artist,
+										albumImageUrl: item.albumImageUrl,
 									})
 								);
+
+								dispatch(setQueue(albumDetails.songs));
 
 								if (item.audioUrl == audio.current.src) {
 									if (!audio.current.paused) {

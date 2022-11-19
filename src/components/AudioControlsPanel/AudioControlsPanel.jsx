@@ -13,7 +13,7 @@ import ExpandMoreRoundedIcon from '@mui/icons-material/ExpandMoreRounded';
 import MoreVertRoundedIcon from '@mui/icons-material/MoreVertRounded';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import Slider from '@mui/material/Slider';
-import { togglePlaying } from '../../features/audioPlayerSlice';
+import { setSongInfo, togglePlaying } from '../../features/audioPlayerSlice';
 import { useSelector } from 'react-redux';
 
 const AudioControlsPanel = ({
@@ -30,6 +30,7 @@ const AudioControlsPanel = ({
 	const [seeking, setSeeking] = useState(false);
 	const staticProgressBarRef = useRef();
 	const averageColor = useSelector((state) => state.audioPlayer.averageColor);
+	const queue = useSelector((state) => state.audioPlayer.queue);
 
 	const albumImageRef = useRef();
 
@@ -249,7 +250,25 @@ const AudioControlsPanel = ({
 								<PlayArrowIcon fontSize='large' />
 							)}
 						</IconButton>
-						<IconButton>
+						<IconButton
+							onClick={() => {
+								const item = queue[songInfo.position + 1];
+
+								if (item) {
+									dispatch(
+										setSongInfo({
+											position: item.position,
+											title: item.title,
+											artist: item.artist,
+											albumImageUrl: item.albumImageUrl,
+										})
+									);
+									dispatch(togglePlaying(true));
+
+									audio.current.src = item.audioUrl;
+									audio.current.play();
+								}
+							}}>
 							<SkipNextIcon />
 						</IconButton>
 						<IconButton>
