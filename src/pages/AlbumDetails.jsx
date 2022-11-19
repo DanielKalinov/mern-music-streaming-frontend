@@ -89,7 +89,7 @@ const AlbumDetails = ({ audio }) => {
 							onClick={() => {
 								dispatch(
 									setSongInfo({
-										position: item.position,
+										position: index,
 										title: item.title,
 										artist: item.artist,
 										albumImageUrl: item.albumImageUrl,
