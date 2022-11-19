@@ -81,22 +81,32 @@ const AlbumDetails = ({ audio }) => {
 						<IconButton
 							className='!bg-accent rounded-full coloredShadow'
 							onClick={() => {
-								const firstTrack = albumDetails.songs[0];
+								if (!audio.current.src) {
+									const firstTrack = albumDetails.songs[0];
 
-								audio.current.src = firstTrack.audioUrl;
-								audio.current.play();
+									audio.current.src = firstTrack.audioUrl;
+									audio.current.play();
 
-								dispatch(togglePlaying(true));
-								dispatch(
-									setSongInfo({
-										position: 0,
-										title: firstTrack.title,
-										artist: firstTrack.artist,
-										albumImageUrl: firstTrack.albumImageUrl,
-										duration: firstTrack.duration,
-									})
-								);
-								dispatch(setQueue(albumDetails.songs));
+									dispatch(togglePlaying(true));
+									dispatch(
+										setSongInfo({
+											position: 0,
+											title: firstTrack.title,
+											artist: firstTrack.artist,
+											albumImageUrl: firstTrack.albumImageUrl,
+											duration: firstTrack.duration,
+										})
+									);
+									dispatch(setQueue(albumDetails.songs));
+								} else if (audio.current.src && isPlaying) {
+									audio.current.pause();
+
+									dispatch(togglePlaying(false));
+								} else {
+									audio.current.play();
+
+									dispatch(togglePlaying(true));
+								}
 							}}>
 							{isPlaying ? (
 								<PauseIcon fontSize='large' />
