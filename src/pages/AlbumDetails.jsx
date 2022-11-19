@@ -93,6 +93,7 @@ const AlbumDetails = ({ audio }) => {
 										title: item.title,
 										artist: item.artist,
 										albumImageUrl: item.albumImageUrl,
+										duration: item.duration,
 									})
 								);
 

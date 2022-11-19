@@ -73,6 +73,7 @@ const AudioControlsPanel = ({
 				title: track.title,
 				artist: track.artist,
 				albumImageUrl: track.albumImageUrl,
+				duration: track.duration,
 			})
 		);
 		dispatch(togglePlaying(true));
@@ -234,9 +235,7 @@ const AudioControlsPanel = ({
 							<span className='text-xs -mt-3'>
 								{formattedTime(totalSeconds)}
 							</span>
-							<span className='text-xs -mt-3'>
-								{formattedTime(audio.current.duration)}
-							</span>
+							<span className='text-xs -mt-3'>{songInfo.duration}</span>
 						</div>
 					</div>
 					<div className='flex justify-evenly'>
