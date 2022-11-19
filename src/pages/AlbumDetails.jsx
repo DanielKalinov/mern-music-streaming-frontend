@@ -75,7 +75,7 @@ const AlbumDetails = ({ audio }) => {
 						</div>
 					</div>
 					<div className='flex justify-between'>
-						<IconButton>
+						<IconButton edge='start'>
 							<FavoriteBorderIcon fontSize='large' />
 						</IconButton>
 						<IconButton className='!bg-accent rounded-full coloredShadow'>
