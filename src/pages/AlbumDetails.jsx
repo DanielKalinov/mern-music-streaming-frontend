@@ -162,16 +162,9 @@ const AlbumDetails = ({ audio }) => {
 								</div>
 							</div>
 
-							<div>
-								{item.audioUrl == audio.current.src && (
-									<IconButton edge='end'>
-										{isPlaying ? <PauseIcon /> : <PlayArrowIcon />}
-									</IconButton>
-								)}
-								<IconButton edge='end'>
-									<MoreVertRoundedIcon />
-								</IconButton>
-							</div>
+							<IconButton edge='end'>
+								<MoreVertRoundedIcon />
+							</IconButton>
 						</li>
 					))}
 				</ul>
