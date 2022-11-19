@@ -153,7 +153,7 @@ const AlbumDetails = ({ audio }) => {
 								className={`flex items-center ${
 									item.audioUrl == audio.current.src && 'text-accent font-bold'
 								}`}>
-								<span className='mr-4'>{index + 1}</span>
+								<span className='w-6'>{index + 1}</span>
 								<div>
 									<span className='block text-sm'>{item.title}</span>
 									<span className='block text-sm text-zinc-300 font-normal'>
