@@ -87,9 +87,7 @@ const AlbumDetails = ({ audio }) => {
 				<ul className='px-4'>
 					{albumDetails.songs.map((item, index) => (
 						<li
-							className={`flex justify-between py-2 ${
-								item.audioUrl == audio.current.src ? 'text-accent' : ''
-							}`}
+							className='flex justify-between py-2'
 							key={item._id}
 							onClick={() => {
 								dispatch(
@@ -118,11 +116,14 @@ const AlbumDetails = ({ audio }) => {
 									audio.current.play();
 								}
 							}}>
-							<div className='flex items-center'>
+							<div
+								className={`flex items-center ${
+									item.audioUrl == audio.current.src && 'text-accent font-bold'
+								}`}>
 								<span className='mr-4'>{index + 1}</span>
 								<div>
 									<span className='block text-sm'>{item.title}</span>
-									<span className='block text-sm text-zinc-300'>
+									<span className='block text-sm text-zinc-300 font-normal'>
 										{albumDetails.artist}
 									</span>
 								</div>

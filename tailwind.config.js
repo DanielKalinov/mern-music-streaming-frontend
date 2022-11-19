@@ -8,7 +8,7 @@ module.exports = {
 			colors: {
 				primary: colors.slate[800],
 				secondary: colors.slate[600],
-				accent: colors.pink[400],
+				accent: colors.pink[500],
 				inactive: colors.slate[400],
 				disabled: colors.slate[500],
 			},
