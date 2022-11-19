@@ -10,6 +10,7 @@ module.exports = {
 				secondary: colors.slate[600],
 				accent: colors.pink[400],
 				inactive: colors.slate[400],
+				disabled: colors.slate[500],
 			},
 		},
 	},

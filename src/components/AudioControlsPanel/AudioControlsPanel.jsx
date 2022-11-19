@@ -24,14 +24,14 @@ const AudioControlsPanel = ({
 	setTotalSeconds,
 	dispatch,
 }) => {
-	const songInfo = useSelector((state) => state.audioPlayer.songInfo);
 	const [fullscreenMode, setFullscreenMode] = useState(false);
 	const [rangeInputValue, setRangeInputValue] = useState(0);
 	const [seeking, setSeeking] = useState(false);
-	const staticProgressBarRef = useRef();
-	const averageColor = useSelector((state) => state.audioPlayer.averageColor);
+	const songInfo = useSelector((state) => state.audioPlayer.songInfo);
 	const queue = useSelector((state) => state.audioPlayer.queue);
+	const averageColor = useSelector((state) => state.audioPlayer.averageColor);
 
+	const staticProgressBarRef = useRef();
 	const albumImageRef = useRef();
 
 	useEffect(() => {
@@ -251,6 +251,7 @@ const AudioControlsPanel = ({
 							)}
 						</IconButton>
 						<IconButton
+							disabled={!queue[songInfo.position + 1]}
 							onClick={() => {
 								const item = queue[songInfo.position + 1];
 
@@ -269,7 +270,11 @@ const AudioControlsPanel = ({
 									audio.current.play();
 								}
 							}}>
-							<SkipNextIcon />
+							<SkipNextIcon
+								className={`${
+									!queue[songInfo.position + 1] ? 'text-disabled' : ''
+								}`}
+							/>
 						</IconButton>
 						<IconButton>
 							<RepeatIcon />
