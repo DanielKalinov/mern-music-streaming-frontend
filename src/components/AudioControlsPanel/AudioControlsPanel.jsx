@@ -244,14 +244,17 @@ const AudioControlsPanel = ({
 						</IconButton>
 						<IconButton
 							disabled={!queue[songInfo.position - 1]}
-							onClick={() => skipTrack(queue[songInfo.position - 1])}>
+							onClick={() => skipTrack(queue[songInfo.position - 1])}
+							size='large'>
 							<SkipPreviousIcon
+								fontSize='large'
 								className={`${
 									!queue[songInfo.position - 1] && 'text-disabled'
 								}`}
 							/>
 						</IconButton>
 						<IconButton
+							size='large'
 							className='!bg-white/10 rounded-full !transition-transform active:scale-90'
 							onClick={(e) => {
 								e.stopPropagation();
@@ -272,8 +275,10 @@ const AudioControlsPanel = ({
 						</IconButton>
 						<IconButton
 							disabled={!queue[songInfo.position + 1]}
-							onClick={() => skipTrack(queue[songInfo.position + 1])}>
+							onClick={() => skipTrack(queue[songInfo.position + 1])}
+							size='large'>
 							<SkipNextIcon
+								fontSize='large'
 								className={`${
 									!queue[songInfo.position + 1] && 'text-disabled'
 								}`}
