@@ -64,7 +64,7 @@ const AlbumDetails = ({ audio }) => {
 							width='100%'
 						/>
 					</div>
-					<div className='flex items-center justify-between'>
+					<div className='flex items-center justify-between mb-2'>
 						<div>
 							<span className='block font-bold text-2xl'>
 								{albumDetails.name} • {albumDetails.year}
@@ -73,8 +73,13 @@ const AlbumDetails = ({ audio }) => {
 								{albumDetails.artist}
 							</span>
 						</div>
+					</div>
+					<div className='flex justify-between'>
 						<IconButton>
 							<FavoriteBorderIcon fontSize='large' />
+						</IconButton>
+						<IconButton className='!bg-accent rounded-full'>
+							<PlayArrowIcon fontSize='large' />
 						</IconButton>
 					</div>
 				</div>
