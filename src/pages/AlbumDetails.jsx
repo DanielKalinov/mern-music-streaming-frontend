@@ -79,7 +79,7 @@ const AlbumDetails = ({ audio }) => {
 							<FavoriteBorderIcon fontSize='large' />
 						</IconButton>
 						<IconButton
-							className='!bg-accent rounded-full coloredShadow'
+							className='!bg-accent rounded-full coloredShadow !transition-transform active:scale-90'
 							onClick={() => {
 								if (!audio.current.src) {
 									const firstTrack = albumDetails.songs[0];

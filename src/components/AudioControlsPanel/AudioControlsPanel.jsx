@@ -252,7 +252,7 @@ const AudioControlsPanel = ({
 							/>
 						</IconButton>
 						<IconButton
-							className='!bg-white/10 rounded-full'
+							className='!bg-white/10 rounded-full !transition-transform active:scale-90'
 							onClick={(e) => {
 								e.stopPropagation();
 
