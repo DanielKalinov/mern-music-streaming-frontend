@@ -66,6 +66,21 @@ const AudioControlsPanel = ({
 		return `${minutes}:${seconds}`;
 	};
 
+	const skipTrack = (track) => {
+		dispatch(
+			setSongInfo({
+				position: track.position,
+				title: track.title,
+				artist: track.artist,
+				albumImageUrl: track.albumImageUrl,
+			})
+		);
+		dispatch(togglePlaying(true));
+
+		audio.current.src = track.audioUrl;
+		audio.current.play();
+	};
+
 	return (
 		<>
 			<div
@@ -228,8 +243,14 @@ const AudioControlsPanel = ({
 						<IconButton>
 							<ShuffleIcon />
 						</IconButton>
-						<IconButton>
-							<SkipPreviousIcon />
+						<IconButton
+							disabled={!queue[songInfo.position - 1]}
+							onClick={() => skipTrack(queue[songInfo.position - 1])}>
+							<SkipPreviousIcon
+								className={`${
+									!queue[songInfo.position - 1] && 'text-disabled'
+								}`}
+							/>
 						</IconButton>
 						<IconButton
 							className='!bg-white/10 rounded-full'
@@ -252,27 +273,10 @@ const AudioControlsPanel = ({
 						</IconButton>
 						<IconButton
 							disabled={!queue[songInfo.position + 1]}
-							onClick={() => {
-								const item = queue[songInfo.position + 1];
-
-								if (item) {
-									dispatch(
-										setSongInfo({
-											position: item.position,
-											title: item.title,
-											artist: item.artist,
-											albumImageUrl: item.albumImageUrl,
-										})
-									);
-									dispatch(togglePlaying(true));
-
-									audio.current.src = item.audioUrl;
-									audio.current.play();
-								}
-							}}>
+							onClick={() => skipTrack(queue[songInfo.position + 1])}>
 							<SkipNextIcon
 								className={`${
-									!queue[songInfo.position + 1] ? 'text-disabled' : ''
+									!queue[songInfo.position + 1] && 'text-disabled'
 								}`}
 							/>
 						</IconButton>
