@@ -98,7 +98,11 @@ const AlbumDetails = ({ audio }) => {
 								);
 								dispatch(setQueue(albumDetails.songs));
 							}}>
-							<PlayArrowIcon fontSize='large' />
+							{isPlaying ? (
+								<PauseIcon fontSize='large' />
+							) : (
+								<PlayArrowIcon fontSize='large' />
+							)}
 						</IconButton>
 					</div>
 				</div>
