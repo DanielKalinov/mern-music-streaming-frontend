@@ -173,7 +173,7 @@ const AudioControlsPanel = ({
 					className='absolute top-0 h-full w-full'
 					style={{ backgroundColor: averageColor }}
 				/>
-				<div className='relative flex flex-col h-full w-full bg-gradient-to-t from-primary [&>*]:mb-auto'>
+				<div className='relative flex flex-col h-full w-full bg-gradient-to-t from-background-dark [&>*]:mb-auto'>
 					<div>
 						<div className='flex justify-between items-center'>
 							<IconButton

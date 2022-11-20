@@ -6,6 +6,7 @@ module.exports = {
 	theme: {
 		extend: {
 			colors: {
+				'background-dark': colors.slate[900],
 				primary: colors.slate[800],
 				secondary: colors.slate[600],
 				accent: colors.pink[500],
