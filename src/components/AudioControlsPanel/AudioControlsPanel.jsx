@@ -188,14 +188,24 @@ const AudioControlsPanel = ({
 						</div>
 					</div>
 					<div className='px-6'>
+						<div
+							className='aspect-square transition-all duration-700'
+							style={{
+								backgroundImage: `url(${songInfo.albumImageUrl})`,
+								backgroundSize: 'cover',
+								height: '100%',
+								width: '100%',
+							}}
+						/>
 						<img
 							ref={albumImageRef}
 							src={songInfo.albumImageUrl}
 							width={'100%'}
 							height={'100%'}
-							className='shadow-lg rounded-lg'
+							className='hidden'
 						/>
 					</div>
+
 					<div className='px-6'>
 						<div className='flex flex-col px-1'>
 							<div className='flex justify-between items-center mt-4'>
