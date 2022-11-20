@@ -15,6 +15,7 @@ import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import Slider from '@mui/material/Slider';
 import { setSongInfo, togglePlaying } from '../../features/audioPlayerSlice';
 import { useSelector } from 'react-redux';
+import { FastAverageColor } from 'fast-average-color';
 
 const AudioControlsPanel = ({
 	isPlaying,
@@ -29,7 +30,7 @@ const AudioControlsPanel = ({
 	const [seeking, setSeeking] = useState(false);
 	const songInfo = useSelector((state) => state.audioPlayer.songInfo);
 	const queue = useSelector((state) => state.audioPlayer.queue);
-	const averageColor = useSelector((state) => state.audioPlayer.averageColor);
+	const [averageColor, setAverageColor] = useState('');
 
 	const staticProgressBarRef = useRef();
 	const albumImageRef = useRef();
@@ -49,6 +50,21 @@ const AudioControlsPanel = ({
 			? (document.body.style.overflow = 'hidden')
 			: (document.body.style.overflow = 'auto');
 	}, [fullscreenMode]);
+
+	useEffect(() => {
+		if (albumImageRef.current) {
+			const fac = new FastAverageColor();
+			albumImageRef.current.crossOrigin = 'Anonymous';
+			fac
+				.getColorAsync(albumImageRef.current)
+				.then((color) => {
+					setAverageColor(color.hex);
+				})
+				.catch((e) => {
+					console.log(e);
+				});
+		}
+	}, [songInfo]);
 
 	const format = (val) => {
 		const valString = val + '';
