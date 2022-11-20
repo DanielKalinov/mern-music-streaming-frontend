@@ -166,143 +166,146 @@ const AudioControlsPanel = ({
 
 			{/* Fullscreen mode window */}
 			<div
-				style={{
-					background: `linear-gradient(${averageColor}, #0f172a)`,
-				}}
 				className={`${fullscreenMode ? 'opacity-100' : 'opacity-0'} ${
 					fullscreenMode ? 'translate-y-0' : 'translate-y-full'
-				} fixed bg-primary top-0 flex flex-col w-full h-full [transition:transform_300ms_ease-in-out,opacity_200ms_ease-in-out] z-10 [&>*]:mb-auto`}>
-				<div>
-					<div className='flex justify-between items-center'>
-						<IconButton
-							onClick={() => {
-								setFullscreenMode(false);
-							}}>
-							<ExpandMoreRoundedIcon fontSize='large' />
-						</IconButton>
-						<IconButton>
-							<MoreVertRoundedIcon />
-						</IconButton>
-					</div>
-				</div>
-				<div className='px-6'>
-					<img
-						ref={albumImageRef}
-						src={songInfo.albumImageUrl}
-						width={'100%'}
-						height={'100%'}
-						className='shadow-lg rounded-lg'
-					/>
-				</div>
-				<div className='px-6'>
-					<div className='flex flex-col px-1'>
-						<div className='flex justify-between items-center mt-4'>
-							<div>
-								<span className='block font-bold text-xl mb-1'>
-									{songInfo.title}
-								</span>
-								<span className='block text-zinc-300'>{songInfo.artist}</span>
-							</div>
-							<IconButton edge='end'>
-								<FavoriteBorderIcon />
+				} fixed top-0 h-full w-full [transition:transform_300ms_ease-in-out,opacity_200ms_ease-in-out]`}>
+				<div
+					className='absolute top-0 h-full w-full'
+					style={{ backgroundColor: averageColor }}
+				/>
+				<div className='relative flex flex-col h-full w-full bg-gradient-to-t from-primary [&>*]:mb-auto'>
+					<div>
+						<div className='flex justify-between items-center'>
+							<IconButton
+								onClick={() => {
+									setFullscreenMode(false);
+								}}>
+								<ExpandMoreRoundedIcon fontSize='large' />
+							</IconButton>
+							<IconButton>
+								<MoreVertRoundedIcon />
 							</IconButton>
 						</div>
-						<div
-							className='flex w-full my-1'
-							onMouseDown={() => setSeeking(true)}
-							onPointerDown={() => setSeeking(true)}>
-							<Slider
-								value={rangeInputValue}
-								size='small'
-								aria-label='Small'
-								onChange={(e, value) => {
-									setRangeInputValue(value);
-
-									// update timestamp on slider move
-									dispatch(
-										setTotalSeconds(
-											(rangeInputValue / 100) * audio.current.duration
-										)
-									);
-								}}
-								onChangeCommitted={() => {
-									// on mouse up, set the audio currentTime to percent converted to milliseconds
-									audio.current.currentTime =
-										(rangeInputValue / 100) * audio.current.duration;
-
-									setSeeking(false);
-								}}
-								sx={{
-									'& .MuiSlider-thumb': {
-										backgroundColor: '#ffffff',
-										'&.Mui-active': {
-											boxShadow: '0 0 0 7px rgba(255, 255, 255, 16%)',
-											height: 14,
-											width: 14,
-										},
-									},
-									'& .MuiSlider-track': {
-										backgroundColor: '#ec4899',
-									},
-								}}
-							/>
-						</div>
-						<div className='flex justify-between'>
-							<span className='text-xs -mt-3'>
-								{formattedTime(totalSeconds)}
-							</span>
-							<span className='text-xs -mt-3'>{songInfo.duration}</span>
-						</div>
 					</div>
-					<div className='flex justify-evenly'>
-						<IconButton>
-							<ShuffleIcon />
-						</IconButton>
-						<IconButton
-							disabled={!queue[songInfo.position - 1]}
-							onClick={() => skipTrack(queue[songInfo.position - 1])}
-							size='large'>
-							<SkipPreviousIcon
-								fontSize='large'
-								className={`${
-									!queue[songInfo.position - 1] && 'text-disabled'
-								}`}
-							/>
-						</IconButton>
-						<IconButton
-							size='large'
-							className='!bg-white/10 rounded-full !transition-transform active:scale-90'
-							onClick={(e) => {
-								e.stopPropagation();
+					<div className='px-6'>
+						<img
+							ref={albumImageRef}
+							src={songInfo.albumImageUrl}
+							width={'100%'}
+							height={'100%'}
+							className='shadow-lg rounded-lg'
+						/>
+					</div>
+					<div className='px-6'>
+						<div className='flex flex-col px-1'>
+							<div className='flex justify-between items-center mt-4'>
+								<div>
+									<span className='block font-bold text-xl mb-1'>
+										{songInfo.title}
+									</span>
+									<span className='block text-zinc-300'>{songInfo.artist}</span>
+								</div>
+								<IconButton edge='end'>
+									<FavoriteBorderIcon />
+								</IconButton>
+							</div>
+							<div
+								className='flex w-full my-1'
+								onMouseDown={() => setSeeking(true)}
+								onPointerDown={() => setSeeking(true)}>
+								<Slider
+									value={rangeInputValue}
+									size='small'
+									aria-label='Small'
+									onChange={(e, value) => {
+										setRangeInputValue(value);
 
-								if (audio.current.paused) {
-									dispatch(togglePlaying(true));
-									audio.current.play();
-								} else {
-									dispatch(togglePlaying(false));
-									audio.current.pause();
-								}
-							}}>
-							{isPlaying ? (
-								<PauseIcon fontSize='large' />
-							) : (
-								<PlayArrowIcon fontSize='large' />
-							)}
-						</IconButton>
-						<IconButton
-							disabled={!queue[songInfo.position + 1]}
-							onClick={() => skipTrack(queue[songInfo.position + 1])}
-							size='large'>
-							<SkipNextIcon
-								fontSize='large'
-								className={`${
-									!queue[songInfo.position + 1] && 'text-disabled'
-								}`}
-							/>
-						</IconButton>
-						<IconButton>
-							<RepeatIcon />
-						</IconButton>
+										// update timestamp on slider move
+										dispatch(
+											setTotalSeconds(
+												(rangeInputValue / 100) * audio.current.duration
+											)
+										);
+									}}
+									onChangeCommitted={() => {
+										// on mouse up, set the audio currentTime to percent converted to milliseconds
+										audio.current.currentTime =
+											(rangeInputValue / 100) * audio.current.duration;
+
+										setSeeking(false);
+									}}
+									sx={{
+										'& .MuiSlider-thumb': {
+											backgroundColor: '#ffffff',
+											'&.Mui-active': {
+												boxShadow: '0 0 0 7px rgba(255, 255, 255, 16%)',
+												height: 14,
+												width: 14,
+											},
+										},
+										'& .MuiSlider-track': {
+											backgroundColor: '#ec4899',
+										},
+									}}
+								/>
+							</div>
+							<div className='flex justify-between'>
+								<span className='text-xs -mt-3'>
+									{formattedTime(totalSeconds)}
+								</span>
+								<span className='text-xs -mt-3'>{songInfo.duration}</span>
+							</div>
+						</div>
+						<div className='flex justify-evenly'>
+							<IconButton>
+								<ShuffleIcon />
+							</IconButton>
+							<IconButton
+								disabled={!queue[songInfo.position - 1]}
+								onClick={() => skipTrack(queue[songInfo.position - 1])}
+								size='large'>
+								<SkipPreviousIcon
+									fontSize='large'
+									className={`${
+										!queue[songInfo.position - 1] && 'text-disabled'
+									}`}
+								/>
+							</IconButton>
+							<IconButton
+								size='large'
+								className='!bg-white/10 rounded-full !transition-transform active:scale-90'
+								onClick={(e) => {
+									e.stopPropagation();
+
+									if (audio.current.paused) {
+										dispatch(togglePlaying(true));
+										audio.current.play();
+									} else {
+										dispatch(togglePlaying(false));
+										audio.current.pause();
+									}
+								}}>
+								{isPlaying ? (
+									<PauseIcon fontSize='large' />
+								) : (
+									<PlayArrowIcon fontSize='large' />
+								)}
+							</IconButton>
+							<IconButton
+								disabled={!queue[songInfo.position + 1]}
+								onClick={() => skipTrack(queue[songInfo.position + 1])}
+								size='large'>
+								<SkipNextIcon
+									fontSize='large'
+									className={`${
+										!queue[songInfo.position + 1] && 'text-disabled'
+									}`}
+								/>
+							</IconButton>
+							<IconButton>
+								<RepeatIcon />
+							</IconButton>
+						</div>
 					</div>
 				</div>
 			</div>
