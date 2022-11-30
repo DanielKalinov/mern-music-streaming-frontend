@@ -29,6 +29,7 @@ const AlbumDetails = ({ audio }) => {
 	useEffect(() => {
 		axios.get(`http://localhost:5000/albums/${params.id}`).then((res) => {
 			setAlbumDetails(res.data);
+			res.data.songs.forEach((item) => (new Image().src = item.albumImageUrl));
 		});
 	}, []);
 
