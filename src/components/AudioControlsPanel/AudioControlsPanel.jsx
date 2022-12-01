@@ -197,6 +197,13 @@ const AudioControlsPanel = ({
 								width: '100%',
 							}}
 						/>
+						<img
+							ref={albumImageRef}
+							src={songInfo.albumImageUrl}
+							width={'100%'}
+							height={'100%'}
+							className='hidden'
+						/>
 					</div>
 
 					<div className='px-6'>
