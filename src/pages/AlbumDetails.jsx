@@ -32,20 +32,20 @@ const AlbumDetails = ({ audio }) => {
 		});
 	}, []);
 
-	useEffect(() => {
-		if (albumImageRef.current) {
-			const fac = new FastAverageColor();
-			albumImageRef.current.crossOrigin = 'Anonymous';
-			fac
-				.getColorAsync(albumImageRef.current)
-				.then((color) => {
-					dispatch(setAverageColor(color.hex));
-				})
-				.catch((e) => {
-					console.log(e);
-				});
-		}
-	}, [albumImageRef.current]);
+	// useEffect(() => {
+	// 	if (albumImageRef.current) {
+	// 		const fac = new FastAverageColor();
+	// 		albumImageRef.current.crossOrigin = 'Anonymous';
+	// 		fac
+	// 			.getColorAsync(albumImageRef.current)
+	// 			.then((color) => {
+	// 				dispatch(setAverageColor(color.hex));
+	// 			})
+	// 			.catch((e) => {
+	// 				console.log(e);
+	// 			});
+	// 	}
+	// }, [albumImageRef.current]);
 
 	return (
 		albumDetails && (
