@@ -34,6 +34,7 @@ const AudioControlsPanel = ({
 
 	const staticProgressBarRef = useRef();
 	const albumImageRef = useRef();
+	const nextImageRef = useRef();
 
 	useEffect(() => {
 		// if not seeking, change range input value to the current audio progress,
@@ -187,14 +188,31 @@ const AudioControlsPanel = ({
 							</IconButton>
 						</div>
 					</div>
-					<div className='px-6'>
-						<img
+					<div className='relative flex'>
+						<div
 							ref={albumImageRef}
-							src={songInfo.albumImageUrl}
-							width={'100%'}
-							height={'100%'}
-							className='shadow-lg rounded-lg'
-						/>
+							className='px-6 translate-x-0 transition-all duration-300 ease-in-out'>
+							<img
+								src={songInfo.albumImageUrl}
+								width={'100%'}
+								height={'100%'}
+								className='shadow-lg rounded-lg'
+							/>
+						</div>
+						<div
+							ref={nextImageRef}
+							className='absolute top-0 px-6 translate-x-full transition-all duration-300 ease-in-out'>
+							<img
+								src={
+									queue &&
+									queue[songInfo.position + 1] &&
+									queue[songInfo.position + 1].albumImageUrl
+								}
+								width={'100%'}
+								height={'100%'}
+								className='shadow-lg rounded-lg'
+							/>
+						</div>
 					</div>
 
 					<div className='px-6'>
@@ -263,7 +281,9 @@ const AudioControlsPanel = ({
 							</IconButton>
 							<IconButton
 								disabled={!queue[songInfo.position - 1]}
-								onClick={() => skipTrack(queue[songInfo.position - 1])}
+								onClick={() => {
+									skipTrack(queue[songInfo.position - 1]);
+								}}
 								size='large'>
 								<SkipPreviousIcon
 									fontSize='large'
@@ -294,7 +314,9 @@ const AudioControlsPanel = ({
 							</IconButton>
 							<IconButton
 								disabled={!queue[songInfo.position + 1]}
-								onClick={() => skipTrack(queue[songInfo.position + 1])}
+								onClick={() => {
+									skipTrack(queue[songInfo.position + 1]);
+								}}
 								size='large'>
 								<SkipNextIcon
 									fontSize='large'
