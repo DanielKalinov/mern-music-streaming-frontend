@@ -51,20 +51,20 @@ const AudioControlsPanel = ({
 			: (document.body.style.overflow = 'auto');
 	}, [fullscreenMode]);
 
-	// useEffect(() => {
-	// 	if (albumImageRef.current) {
-	// 		const fac = new FastAverageColor();
-	// 		albumImageRef.current.crossOrigin = 'Anonymous';
-	// 		fac
-	// 			.getColorAsync(albumImageRef.current)
-	// 			.then((color) => {
-	// 				setAverageColor(color.hex);
-	// 			})
-	// 			.catch((e) => {
-	// 				console.log(e);
-	// 			});
-	// 	}
-	// }, [songInfo]);
+	useEffect(() => {
+		if (albumImageRef.current) {
+			const fac = new FastAverageColor();
+			albumImageRef.current.crossOrigin = 'Anonymous';
+			fac
+				.getColorAsync(albumImageRef.current)
+				.then((color) => {
+					setAverageColor(color.hex);
+				})
+				.catch((e) => {
+					console.log(e);
+				});
+		}
+	}, [songInfo]);
 
 	const format = (val) => {
 		const valString = val + '';
@@ -189,6 +189,7 @@ const AudioControlsPanel = ({
 					</div>
 					<div className='px-6'>
 						<img
+							ref={albumImageRef}
 							src={songInfo.albumImageUrl}
 							width={'100%'}
 							height={'100%'}
