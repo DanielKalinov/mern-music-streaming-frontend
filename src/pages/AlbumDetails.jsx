@@ -9,6 +9,7 @@ import PauseIcon from '@mui/icons-material/Pause';
 import { useDispatch, useSelector } from 'react-redux';
 import {
 	setAverageColor,
+	setLoading,
 	setQueue,
 	setSongInfo,
 	togglePlaying,
@@ -19,6 +20,7 @@ const AlbumDetails = ({ audio }) => {
 	const isPlaying = useSelector((state) => state.audioPlayer.isPlaying);
 	const [albumDetails, setAlbumDetails] = useState();
 	const averageColor = useSelector((state) => state.audioPlayer.averageColor);
+	const loading = useSelector((state) => state.audioPlayer.loading);
 
 	const albumImageRef = useRef();
 
@@ -31,7 +33,10 @@ const AlbumDetails = ({ audio }) => {
 			setAlbumDetails(res.data);
 
 			res.data.songs.map((item) => {
+				dispatch(setLoading(true));
+
 				const img = new Image();
+				img.onload = () => dispatch(setLoading(false));
 				img.src = item.albumImageUrl;
 			});
 		});
@@ -53,7 +58,8 @@ const AlbumDetails = ({ audio }) => {
 	// }, [albumImageRef.current]);
 
 	return (
-		albumDetails && (
+		albumDetails &&
+		!loading && (
 			<div>
 				<div
 					className='p-4'

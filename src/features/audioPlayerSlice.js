@@ -7,6 +7,7 @@ const initialState = {
 	songInfo: {},
 	averageColor: '',
 	queue: [],
+	loading: false,
 };
 
 export const audioPlayerSlice = createSlice({
@@ -32,6 +33,9 @@ export const audioPlayerSlice = createSlice({
 		setQueue: (state, action) => {
 			state.queue = action.payload;
 		},
+		setLoading: (state, action) => {
+			state.loading = action.payload;
+		},
 	},
 });
 
@@ -42,6 +46,7 @@ export const {
 	setSongInfo,
 	setAverageColor,
 	setQueue,
+	setLoading,
 } = audioPlayerSlice.actions;
 
 export default audioPlayerSlice.reducer;
