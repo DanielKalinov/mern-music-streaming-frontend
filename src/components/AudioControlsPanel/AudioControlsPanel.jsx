@@ -205,7 +205,7 @@ const AudioControlsPanel = ({
 									style={{
 										width: window.innerWidth,
 										transform: `scale(${
-											songInfo.position == index ? '1' : '0.5'
+											songInfo.position == index ? '1' : '0.7'
 										})`,
 									}}>
 									<img
