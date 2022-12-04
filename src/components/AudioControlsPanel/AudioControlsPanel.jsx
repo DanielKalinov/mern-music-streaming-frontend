@@ -188,8 +188,11 @@ const AudioControlsPanel = ({
 							</IconButton>
 						</div>
 					</div>
-					<div className='relative flex'>
-						<div
+
+					<div
+						className='relative flex'
+						style={{ width: window.innerWidth * queue.length }}>
+						{/* <div
 							ref={albumImageRef}
 							className='px-6 translate-x-0 transition-all duration-300 ease-in-out'>
 							<img
@@ -198,21 +201,21 @@ const AudioControlsPanel = ({
 								height={'100%'}
 								className='shadow-lg rounded-lg'
 							/>
-						</div>
-						<div
-							ref={nextImageRef}
-							className='absolute top-0 px-6 translate-x-full transition-all duration-300 ease-in-out'>
-							<img
-								src={
-									queue &&
-									queue[songInfo.position + 1] &&
-									queue[songInfo.position + 1].albumImageUrl
-								}
-								width={'100%'}
-								height={'100%'}
-								className='shadow-lg rounded-lg'
-							/>
-						</div>
+						</div> */}
+						{queue.map((item) => {
+							return (
+								<div
+									className='px-6 transition-all duration-300 ease-in-out translate-x-0'
+									style={{ width: window.innerWidth }}>
+									<img
+										src={item.albumImageUrl}
+										width={'100%'}
+										height={'100%'}
+										className='shadow-lg rounded-lg'
+									/>
+								</div>
+							);
+						})}
 					</div>
 
 					<div className='px-6'>
