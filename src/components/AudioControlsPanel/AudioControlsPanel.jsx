@@ -190,22 +190,18 @@ const AudioControlsPanel = ({
 					</div>
 
 					<div
-						className='relative flex'
-						style={{ width: window.innerWidth * queue.length }}>
-						{/* <div
-							ref={albumImageRef}
-							className='px-6 translate-x-0 transition-all duration-300 ease-in-out'>
-							<img
-								src={songInfo.albumImageUrl}
-								width={'100%'}
-								height={'100%'}
-								className='shadow-lg rounded-lg'
-							/>
-						</div> */}
-						{queue.map((item) => {
+						className='relative flex transition-all duration-300 ease-in-out'
+						style={{
+							width: window.innerWidth * queue.length,
+							transform: `translateX(-${
+								window.innerWidth * songInfo.position
+							}px)`,
+						}}>
+						{queue.map((item, index) => {
 							return (
 								<div
-									className='px-6 transition-all duration-300 ease-in-out translate-x-0'
+									key={index}
+									className='px-6'
 									style={{ width: window.innerWidth }}>
 									<img
 										src={item.albumImageUrl}
