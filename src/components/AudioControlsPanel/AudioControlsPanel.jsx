@@ -201,8 +201,13 @@ const AudioControlsPanel = ({
 							return (
 								<div
 									key={index}
-									className='px-6'
-									style={{ width: window.innerWidth }}>
+									className='px-6 transition-all duration-300 ease-in-out'
+									style={{
+										width: window.innerWidth,
+										transform: `scale(${
+											songInfo.position == index ? '1' : '0.5'
+										})`,
+									}}>
 									<img
 										id={index}
 										src={item.albumImageUrl}
