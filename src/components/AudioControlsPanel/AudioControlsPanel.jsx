@@ -192,7 +192,7 @@ const AudioControlsPanel = ({
 					</div>
 
 					<div
-						className='relative flex transition-all duration-300 ease-in-out'
+						className='relative flex transition-all duration-200 ease-in-out'
 						style={{
 							width: window.innerWidth * queue.length,
 							transform: `translateX(-${
