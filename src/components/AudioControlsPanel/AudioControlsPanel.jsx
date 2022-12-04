@@ -171,7 +171,7 @@ const AudioControlsPanel = ({
 					fullscreenMode ? 'translate-y-0' : 'translate-y-full'
 				} fixed top-0 h-full w-full [transition:transform_300ms_ease-in-out,opacity_200ms_ease-in-out]`}>
 				<div
-					className='absolute top-0 h-full w-full transition-all duration-700 ease-in-out'
+					className='absolute top-0 h-full w-full transition-all duration-500 ease-in-out'
 					style={{ backgroundColor: averageColor }}
 				/>
 				<div className='relative flex flex-col h-full w-full bg-gradient-to-t from-background-dark [&>*]:mb-auto'>
