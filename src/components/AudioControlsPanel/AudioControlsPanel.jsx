@@ -33,8 +33,6 @@ const AudioControlsPanel = ({
 	const [averageColor, setAverageColor] = useState('');
 
 	const staticProgressBarRef = useRef();
-	const albumImageRef = useRef();
-	const nextImageRef = useRef();
 
 	useEffect(() => {
 		// if not seeking, change range input value to the current audio progress,
