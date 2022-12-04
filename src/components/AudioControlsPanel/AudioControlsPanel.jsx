@@ -53,11 +53,13 @@ const AudioControlsPanel = ({
 	}, [fullscreenMode]);
 
 	useEffect(() => {
-		if (albumImageRef.current) {
+		const albumImage = document.getElementById(`${songInfo.position}`);
+
+		if (albumImage) {
 			const fac = new FastAverageColor();
-			albumImageRef.current.crossOrigin = 'Anonymous';
+			albumImage.crossOrigin = 'Anonymous';
 			fac
-				.getColorAsync(albumImageRef.current)
+				.getColorAsync(albumImage)
 				.then((color) => {
 					setAverageColor(color.hex);
 				})
@@ -204,6 +206,7 @@ const AudioControlsPanel = ({
 									className='px-6'
 									style={{ width: window.innerWidth }}>
 									<img
+										id={index}
 										src={item.albumImageUrl}
 										width={'100%'}
 										height={'100%'}
