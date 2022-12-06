@@ -131,58 +131,59 @@ const AlbumDetails = ({ audio }) => {
 
 				<ul>
 					{albumDetails.songs.map((item, index) => (
-						<ButtonBase className='w-full text-left'>
-							<li
-								className='w-full flex justify-between py-2 px-4'
-								key={item._id}
-								onClick={() => {
-									dispatch(
-										setSongInfo({
-											position: index,
-											title: item.title,
-											artist: item.artist,
-											albumImageUrl: item.albumImageUrl,
-											duration: item.duration,
-										})
-									);
+						<div className='flex pr-4'>
+							<ButtonBase className='w-full text-left'>
+								<li
+									className='w-full flex justify-between py-2 pl-4'
+									key={item._id}
+									onClick={() => {
+										dispatch(
+											setSongInfo({
+												position: index,
+												title: item.title,
+												artist: item.artist,
+												albumImageUrl: item.albumImageUrl,
+												duration: item.duration,
+											})
+										);
 
-									dispatch(setQueue(albumDetails.songs));
+										dispatch(setQueue(albumDetails.songs));
 
-									if (item.audioUrl == audio.current.src) {
-										if (!audio.current.paused) {
-											dispatch(togglePlaying(false));
-											audio.current.pause();
+										if (item.audioUrl == audio.current.src) {
+											if (!audio.current.paused) {
+												dispatch(togglePlaying(false));
+												audio.current.pause();
+											} else {
+												dispatch(togglePlaying(true));
+												audio.current.play();
+											}
 										} else {
 											dispatch(togglePlaying(true));
-											audio.current.play();
+											audio.current.src = item.audioUrl;
+											audio.current.oncanplaythrough = () => {
+												audio.current.play();
+											};
 										}
-									} else {
-										dispatch(togglePlaying(true));
-										audio.current.src = item.audioUrl;
-										audio.current.oncanplaythrough = () => {
-											audio.current.play();
-										};
-									}
-								}}>
-								<div
-									className={`flex items-center ${
-										item.audioUrl == audio.current.src &&
-										'text-accent font-bold'
-									}`}>
-									<span className='w-6'>{index + 1}</span>
-									<div>
-										<span className='block text-sm'>{item.title}</span>
-										<span className='block text-sm text-zinc-300 font-normal'>
-											{albumDetails.artist}
-										</span>
+									}}>
+									<div
+										className={`flex items-center ${
+											item.audioUrl == audio.current.src &&
+											'text-accent font-bold'
+										}`}>
+										<span className='w-6'>{index + 1}</span>
+										<div>
+											<span className='block text-sm'>{item.title}</span>
+											<span className='block text-sm text-zinc-300 font-normal'>
+												{albumDetails.artist}
+											</span>
+										</div>
 									</div>
-								</div>
-
-								<IconButton edge='end'>
-									<MoreVertRoundedIcon />
-								</IconButton>
-							</li>
-						</ButtonBase>
+								</li>
+							</ButtonBase>
+							<IconButton edge='end'>
+								<MoreVertRoundedIcon />
+							</IconButton>
+						</div>
 					))}
 				</ul>
 			</div>
