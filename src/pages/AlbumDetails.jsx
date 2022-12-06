@@ -20,7 +20,7 @@ import { FastAverageColor } from 'fast-average-color';
 const AlbumDetails = ({ audio }) => {
 	const isPlaying = useSelector((state) => state.audioPlayer.isPlaying);
 	const [albumDetails, setAlbumDetails] = useState();
-	const averageColor = useSelector((state) => state.audioPlayer.averageColor);
+	const [averageColor, setAverageColor] = useState();
 	const loading = useSelector((state) => state.audioPlayer.loading);
 	const songInfo = useSelector((state) => state.audioPlayer.songInfo);
 
@@ -44,24 +44,23 @@ const AlbumDetails = ({ audio }) => {
 		});
 	}, []);
 
-	// useEffect(() => {
-	// 	if (albumImageRef.current) {
-	// 		const fac = new FastAverageColor();
-	// 		albumImageRef.current.crossOrigin = 'Anonymous';
-	// 		fac
-	// 			.getColorAsync(albumImageRef.current)
-	// 			.then((color) => {
-	// 				dispatch(setAverageColor(color.hex));
-	// 			})
-	// 			.catch((e) => {
-	// 				console.log(e);
-	// 			});
-	// 	}
-	// }, [albumImageRef.current]);
+	useEffect(() => {
+		if (albumImageRef.current) {
+			const fac = new FastAverageColor();
+			albumImageRef.current.crossOrigin = 'Anonymous';
+			fac
+				.getColorAsync(albumImageRef.current)
+				.then((color) => {
+					setAverageColor(color.hex);
+				})
+				.catch((e) => {
+					console.log(e);
+				});
+		}
+	}, [albumImageRef.current]);
 
 	return (
-		albumDetails &&
-		!loading && (
+		albumDetails && (
 			<div>
 				<div
 					className='p-4'
