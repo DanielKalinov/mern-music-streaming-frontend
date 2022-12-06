@@ -146,39 +146,39 @@ const AlbumDetails = ({ audio }) => {
 
 				<ul>
 					{albumDetails.songs.map((item, index) => (
-						<div key={item._id} className='flex pr-4'>
-							<ButtonBase className='w-full text-left'>
-								<li
-									className='w-full flex justify-between py-2 pl-4'
-									onClick={() => {
-										dispatch(
-											setSongInfo({
-												position: index,
-												title: item.title,
-												artist: item.artist,
-												albumImageUrl: item.albumImageUrl,
-												duration: item.duration,
-											})
-										);
+						<li key={item._id} className='flex pr-4'>
+							<ButtonBase
+								className='w-full text-left'
+								onClick={() => {
+									dispatch(
+										setSongInfo({
+											position: index,
+											title: item.title,
+											artist: item.artist,
+											albumImageUrl: item.albumImageUrl,
+											duration: item.duration,
+										})
+									);
 
-										dispatch(setQueue(albumDetails.songs));
+									dispatch(setQueue(albumDetails.songs));
 
-										if (item.audioUrl == audio.current.src) {
-											if (!audio.current.paused) {
-												dispatch(togglePlaying(false));
-												audio.current.pause();
-											} else {
-												dispatch(togglePlaying(true));
-												audio.current.play();
-											}
+									if (item.audioUrl == audio.current.src) {
+										if (!audio.current.paused) {
+											dispatch(togglePlaying(false));
+											audio.current.pause();
 										} else {
 											dispatch(togglePlaying(true));
-											audio.current.src = item.audioUrl;
-											audio.current.oncanplaythrough = () => {
-												audio.current.play();
-											};
+											audio.current.play();
 										}
-									}}>
+									} else {
+										dispatch(togglePlaying(true));
+										audio.current.src = item.audioUrl;
+										audio.current.oncanplaythrough = () => {
+											audio.current.play();
+										};
+									}
+								}}>
+								<div className='w-full flex justify-between py-2 pl-4'>
 									<div
 										className={`flex items-center ${
 											item.title == songInfo.title && 'text-accent font-bold'
@@ -191,12 +191,12 @@ const AlbumDetails = ({ audio }) => {
 											</span>
 										</div>
 									</div>
-								</li>
+								</div>
 							</ButtonBase>
 							<IconButton edge='end'>
 								<MoreVertRoundedIcon />
 							</IconButton>
-						</div>
+						</li>
 					))}
 				</ul>
 			</div>
