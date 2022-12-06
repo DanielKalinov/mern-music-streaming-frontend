@@ -129,11 +129,11 @@ const AlbumDetails = ({ audio }) => {
 					</div>
 				</div>
 
-				<ul className='px-4'>
+				<ul>
 					{albumDetails.songs.map((item, index) => (
 						<ButtonBase className='w-full text-left'>
 							<li
-								className='w-full flex justify-between py-2'
+								className='w-full flex justify-between py-2 px-4'
 								key={item._id}
 								onClick={() => {
 									dispatch(
