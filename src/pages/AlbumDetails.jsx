@@ -42,6 +42,19 @@ const AlbumDetails = ({ audio }) => {
 				img.src = item.albumImageUrl;
 			});
 		});
+
+		// reduce album image opacity on scroll
+		const reduceAlbumImageOpacity = () => {
+			let opacity =
+				(albumImageRef.current.height - window.scrollY) /
+				albumImageRef.current.height;
+
+			albumImageRef.current.style.opacity = opacity;
+		};
+
+		window.addEventListener('scroll', reduceAlbumImageOpacity);
+
+		return () => window.removeEventListener('scroll', reduceAlbumImageOpacity);
 	}, []);
 
 	useEffect(() => {
@@ -58,6 +71,8 @@ const AlbumDetails = ({ audio }) => {
 				});
 		}
 	}, [albumImageRef.current]);
+
+	window.onscroll = () => {};
 
 	return (
 		albumDetails && (
