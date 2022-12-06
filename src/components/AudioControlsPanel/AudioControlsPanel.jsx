@@ -96,7 +96,9 @@ const AudioControlsPanel = ({
 		dispatch(togglePlaying(true));
 
 		audio.current.src = track.audioUrl;
-		audio.current.play();
+		audio.current.oncanplaythrough = () => {
+			audio.current.play();
+		};
 	};
 
 	return (

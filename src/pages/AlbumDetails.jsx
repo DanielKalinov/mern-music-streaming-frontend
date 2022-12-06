@@ -157,7 +157,9 @@ const AlbumDetails = ({ audio }) => {
 								} else {
 									dispatch(togglePlaying(true));
 									audio.current.src = item.audioUrl;
-									audio.current.play();
+									audio.current.oncanplaythrough = () => {
+										audio.current.play();
+									};
 								}
 							}}>
 							<div
