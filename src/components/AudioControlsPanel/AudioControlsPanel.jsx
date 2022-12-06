@@ -105,7 +105,7 @@ const AudioControlsPanel = ({
 		<>
 			<div
 				className={`${
-					audio.current.src
+					Object.keys(songInfo).length > 0
 						? 'opacity-1 translate-y-0'
 						: 'opacity-0 translate-y-full'
 				} fixed bottom-0 w-full p-2 transition-all duration-300 ease-in-out`}>
