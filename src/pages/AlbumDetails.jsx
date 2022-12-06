@@ -22,6 +22,7 @@ const AlbumDetails = ({ audio }) => {
 	const [albumDetails, setAlbumDetails] = useState();
 	const averageColor = useSelector((state) => state.audioPlayer.averageColor);
 	const loading = useSelector((state) => state.audioPlayer.loading);
+	const songInfo = useSelector((state) => state.audioPlayer.songInfo);
 
 	const albumImageRef = useRef();
 
@@ -131,11 +132,10 @@ const AlbumDetails = ({ audio }) => {
 
 				<ul>
 					{albumDetails.songs.map((item, index) => (
-						<div className='flex pr-4'>
+						<div key={item._id} className='flex pr-4'>
 							<ButtonBase className='w-full text-left'>
 								<li
 									className='w-full flex justify-between py-2 pl-4'
-									key={item._id}
 									onClick={() => {
 										dispatch(
 											setSongInfo({
@@ -167,8 +167,7 @@ const AlbumDetails = ({ audio }) => {
 									}}>
 									<div
 										className={`flex items-center ${
-											item.audioUrl == audio.current.src &&
-											'text-accent font-bold'
+											item.title == songInfo.title && 'text-accent font-bold'
 										}`}>
 										<span className='w-6'>{index + 1}</span>
 										<div>
