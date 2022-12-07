@@ -139,7 +139,7 @@ const AudioControlsPanel = (props) => {
 										<div
 											ref={songInfoRef}
 											key={index}
-											className='transition-all duration-200 ease-in-out'
+											className='transition-all duration-1000 ease-in-out'
 											style={{
 												width: window.innerWidth,
 												opacity: songInfo.position == index ? 1 : 0,
