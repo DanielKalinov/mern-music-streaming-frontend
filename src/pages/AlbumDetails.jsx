@@ -28,7 +28,6 @@ const AlbumDetails = ({ audio }) => {
 	const albumTopSectionRef = useRef();
 	const albumImageRef = useRef();
 	const albumHeaderRef = useRef();
-	const albumHeaderTextRef = useRef();
 
 	const dispatch = useDispatch();
 
@@ -48,16 +47,14 @@ const AlbumDetails = ({ audio }) => {
 		});
 
 		const changeOpacityOnScroll = () => {
-			const albumTopSectionOpacity =
-				(albumTopSectionRef.current.clientHeight - window.scrollY) /
-				albumTopSectionRef.current.clientHeight;
+			const albumTopSectionOpacity = (400 - window.scrollY) / 400;
 
 			albumTopSectionRef.current.style.opacity = albumTopSectionOpacity;
 			albumHeaderRef.current.style.backgroundColor = `rgba(30, 41, 59, ${
-				window.scrollY >= 300 ? '1' : '0'
+				window.scrollY >= 350 ? '1' : '0'
 			})`;
-			albumHeaderTextRef.current.style.opacity = `${
-				window.scrollY >= 300 ? '1' : '0'
+			albumHeaderRef.current.children[1].style.opacity = `${
+				window.scrollY >= 350 ? '1' : '0'
 			}`;
 		};
 
@@ -90,9 +87,7 @@ const AlbumDetails = ({ audio }) => {
 					<IconButton className=''>
 						<ArrowBackIcon fontSize='large' />
 					</IconButton>
-					<span
-						className='opacity-0 transition-all duration-300'
-						ref={albumHeaderTextRef}>
+					<span className='opacity-0 transition-all duration-300'>
 						{albumDetails.name}
 					</span>
 				</div>
