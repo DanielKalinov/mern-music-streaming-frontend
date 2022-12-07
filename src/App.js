@@ -1,4 +1,3 @@
-import axios from 'axios';
 import { useEffect, useRef } from 'react';
 import AudioControlsPanel from './components/AudioControlsPanel';
 import { useSelector, useDispatch } from 'react-redux';
@@ -19,6 +18,7 @@ const App = () => {
 	const audioProgressValue = useSelector(
 		(state) => state.audioPlayer.audioProgressValue
 	);
+	const panelRef = useRef();
 
 	const dispatch = useDispatch();
 
@@ -36,7 +36,7 @@ const App = () => {
 	return (
 		<>
 			{/* pb-[--height of panel--] */}
-			<div className='pb-[124px]'>
+			<div className={`pb-[${panelRef?.current?.clientHeight}px]`}>
 				<div>
 					<Routes>
 						<Route path='/' element={<Home />} />
@@ -49,6 +49,7 @@ const App = () => {
 				</div>
 			</div>
 			<AudioControlsPanel
+				ref={panelRef}
 				isPlaying={isPlaying}
 				audio={audio}
 				audioProgressValue={audioProgressValue}
