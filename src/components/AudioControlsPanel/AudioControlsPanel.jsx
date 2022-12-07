@@ -173,7 +173,7 @@ const AudioControlsPanel = (props) => {
 			<div
 				className={`${fullscreenMode ? 'opacity-100' : 'opacity-0'} ${
 					fullscreenMode ? 'translate-y-0' : 'translate-y-full'
-				} fixed top-0 h-full w-full [transition:transform_300ms_ease-in-out,opacity_200ms_ease-in-out]`}>
+				} z-30 fixed top-0 h-full w-full [transition:transform_300ms_ease-in-out,opacity_200ms_ease-in-out]`}>
 				<div
 					className='absolute top-0 h-full w-full transition-all duration-500 ease-in-out'
 					style={{ backgroundColor: averageColor }}
