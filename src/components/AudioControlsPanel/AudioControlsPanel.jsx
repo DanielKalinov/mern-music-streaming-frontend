@@ -35,6 +35,7 @@ const AudioControlsPanel = (props) => {
 	const [averageColor, setAverageColor] = useState('');
 
 	const staticProgressBarRef = useRef();
+	const songInfoRef = useRef();
 
 	useEffect(() => {
 		// if not seeking, change range input value to the current audio progress,
@@ -111,27 +112,45 @@ const AudioControlsPanel = (props) => {
 						? 'translate-y-0'
 						: 'translate-y-full'
 				} fixed bottom-0 w-full p-2 transition-all duration-300 ease-in-out`}>
-				<div className='flex flex-col items-center bg-primary/60 rounded-xl rounded-b-3xl backdrop-blur-md border solid border-primary'>
+				<div className='overflow-hidden flex flex-col items-center bg-primary rounded-xl rounded-b-3xl backdrop-blur-md border solid border-primary'>
 					<div
-						className='flex items-center justify-between w-full p-2'
+						className='flex items-center justify-between w-full'
 						onClick={() => setFullscreenMode(true)}>
 						<div className='flex items-center'>
-							<img
-								src={songInfo.albumImageUrl}
-								width={40}
-								height={40}
-								className='rounded-lg mr-2'
-							/>
-							<div>
-								<span className='block text-sm font-bold'>
-									{songInfo.title}
-								</span>
-								<span className='block text-sm text-zinc-300'>
-									{songInfo.artist}
-								</span>
+							<div className='p-2 z-10 bg-primary'>
+								<img src={songInfo.albumImageUrl} width={40} height={40} />
+							</div>
+
+							<div
+								className='flex absolute left-14 transition-all duration-200'
+								style={{
+									width: songInfoRef?.current?.clientWidth * queue.length,
+									transform: `translateX(-${
+										songInfoRef?.current?.clientWidth * songInfo.position
+									}px)`,
+								}}>
+								{queue.map((item, index) => {
+									return (
+										<div
+											ref={songInfoRef}
+											key={index}
+											className='transition-all duration-200'
+											style={{
+												width: window.innerWidth,
+												opacity: songInfo.position == index ? 1 : 0,
+											}}>
+											<span className='block text-sm font-bold'>
+												{item.title}
+											</span>
+											<span className='block text-sm text-zinc-300'>
+												{item.artist}
+											</span>
+										</div>
+									);
+								})}
 							</div>
 						</div>
-						<div>
+						<div className='flex bg-primary z-10'>
 							<IconButton size='small' onClick={(e) => e.stopPropagation()}>
 								<FavoriteBorderIcon />
 							</IconButton>
