@@ -7,6 +7,7 @@ import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import MoreVertRoundedIcon from '@mui/icons-material/MoreVertRounded';
 import PlayArrowIcon from '@mui/icons-material/PlayArrow';
 import PauseIcon from '@mui/icons-material/Pause';
+import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import { useDispatch, useSelector } from 'react-redux';
 import {
 	setAverageColor,
@@ -82,6 +83,11 @@ const AlbumDetails = ({ audio }) => {
 					style={{
 						background: `linear-gradient(${averageColor}, #0f172a)`,
 					}}>
+					<div className='fixed'>
+						<IconButton className='' edge='start'>
+							<ArrowBackIcon fontSize='large' />
+						</IconButton>
+					</div>
 					<div className='p-8'>
 						<img
 							className='shadow-lg rounded-lg'
@@ -198,6 +204,240 @@ const AlbumDetails = ({ audio }) => {
 							</IconButton>
 						</li>
 					))}
+					<li className='flex pr-4'>
+						<ButtonBase className='w-full text-left'>
+							<div className='w-full flex justify-between py-2 pl-4'>
+								<div className='flex items-center'>
+									<span className='w-6'>12</span>
+									<div>
+										<span className='block text-sm'>Title</span>
+										<span className='block text-sm text-zinc-300 font-normal'>
+											Artist
+										</span>
+									</div>
+								</div>
+							</div>
+						</ButtonBase>
+						<IconButton edge='end'>
+							<MoreVertRoundedIcon />
+						</IconButton>
+					</li>
+					<li className='flex pr-4'>
+						<ButtonBase className='w-full text-left'>
+							<div className='w-full flex justify-between py-2 pl-4'>
+								<div className='flex items-center'>
+									<span className='w-6'>12</span>
+									<div>
+										<span className='block text-sm'>Title</span>
+										<span className='block text-sm text-zinc-300 font-normal'>
+											Artist
+										</span>
+									</div>
+								</div>
+							</div>
+						</ButtonBase>
+						<IconButton edge='end'>
+							<MoreVertRoundedIcon />
+						</IconButton>
+					</li>
+					<li className='flex pr-4'>
+						<ButtonBase className='w-full text-left'>
+							<div className='w-full flex justify-between py-2 pl-4'>
+								<div className='flex items-center'>
+									<span className='w-6'>12</span>
+									<div>
+										<span className='block text-sm'>Title</span>
+										<span className='block text-sm text-zinc-300 font-normal'>
+											Artist
+										</span>
+									</div>
+								</div>
+							</div>
+						</ButtonBase>
+						<IconButton edge='end'>
+							<MoreVertRoundedIcon />
+						</IconButton>
+					</li>
+					<li className='flex pr-4'>
+						<ButtonBase className='w-full text-left'>
+							<div className='w-full flex justify-between py-2 pl-4'>
+								<div className='flex items-center'>
+									<span className='w-6'>12</span>
+									<div>
+										<span className='block text-sm'>Title</span>
+										<span className='block text-sm text-zinc-300 font-normal'>
+											Artist
+										</span>
+									</div>
+								</div>
+							</div>
+						</ButtonBase>
+						<IconButton edge='end'>
+							<MoreVertRoundedIcon />
+						</IconButton>
+					</li>
+					<li className='flex pr-4'>
+						<ButtonBase className='w-full text-left'>
+							<div className='w-full flex justify-between py-2 pl-4'>
+								<div className='flex items-center'>
+									<span className='w-6'>12</span>
+									<div>
+										<span className='block text-sm'>Title</span>
+										<span className='block text-sm text-zinc-300 font-normal'>
+											Artist
+										</span>
+									</div>
+								</div>
+							</div>
+						</ButtonBase>
+						<IconButton edge='end'>
+							<MoreVertRoundedIcon />
+						</IconButton>
+					</li>
+					<li className='flex pr-4'>
+						<ButtonBase className='w-full text-left'>
+							<div className='w-full flex justify-between py-2 pl-4'>
+								<div className='flex items-center'>
+									<span className='w-6'>12</span>
+									<div>
+										<span className='block text-sm'>Title</span>
+										<span className='block text-sm text-zinc-300 font-normal'>
+											Artist
+										</span>
+									</div>
+								</div>
+							</div>
+						</ButtonBase>
+						<IconButton edge='end'>
+							<MoreVertRoundedIcon />
+						</IconButton>
+					</li>
+					<li className='flex pr-4'>
+						<ButtonBase className='w-full text-left'>
+							<div className='w-full flex justify-between py-2 pl-4'>
+								<div className='flex items-center'>
+									<span className='w-6'>12</span>
+									<div>
+										<span className='block text-sm'>Title</span>
+										<span className='block text-sm text-zinc-300 font-normal'>
+											Artist
+										</span>
+									</div>
+								</div>
+							</div>
+						</ButtonBase>
+						<IconButton edge='end'>
+							<MoreVertRoundedIcon />
+						</IconButton>
+					</li>
+					<li className='flex pr-4'>
+						<ButtonBase className='w-full text-left'>
+							<div className='w-full flex justify-between py-2 pl-4'>
+								<div className='flex items-center'>
+									<span className='w-6'>12</span>
+									<div>
+										<span className='block text-sm'>Title</span>
+										<span className='block text-sm text-zinc-300 font-normal'>
+											Artist
+										</span>
+									</div>
+								</div>
+							</div>
+						</ButtonBase>
+						<IconButton edge='end'>
+							<MoreVertRoundedIcon />
+						</IconButton>
+					</li>
+					<li className='flex pr-4'>
+						<ButtonBase className='w-full text-left'>
+							<div className='w-full flex justify-between py-2 pl-4'>
+								<div className='flex items-center'>
+									<span className='w-6'>12</span>
+									<div>
+										<span className='block text-sm'>Title</span>
+										<span className='block text-sm text-zinc-300 font-normal'>
+											Artist
+										</span>
+									</div>
+								</div>
+							</div>
+						</ButtonBase>
+						<IconButton edge='end'>
+							<MoreVertRoundedIcon />
+						</IconButton>
+					</li>
+					<li className='flex pr-4'>
+						<ButtonBase className='w-full text-left'>
+							<div className='w-full flex justify-between py-2 pl-4'>
+								<div className='flex items-center'>
+									<span className='w-6'>12</span>
+									<div>
+										<span className='block text-sm'>Title</span>
+										<span className='block text-sm text-zinc-300 font-normal'>
+											Artist
+										</span>
+									</div>
+								</div>
+							</div>
+						</ButtonBase>
+						<IconButton edge='end'>
+							<MoreVertRoundedIcon />
+						</IconButton>
+					</li>
+					<li className='flex pr-4'>
+						<ButtonBase className='w-full text-left'>
+							<div className='w-full flex justify-between py-2 pl-4'>
+								<div className='flex items-center'>
+									<span className='w-6'>12</span>
+									<div>
+										<span className='block text-sm'>Title</span>
+										<span className='block text-sm text-zinc-300 font-normal'>
+											Artist
+										</span>
+									</div>
+								</div>
+							</div>
+						</ButtonBase>
+						<IconButton edge='end'>
+							<MoreVertRoundedIcon />
+						</IconButton>
+					</li>
+					<li className='flex pr-4'>
+						<ButtonBase className='w-full text-left'>
+							<div className='w-full flex justify-between py-2 pl-4'>
+								<div className='flex items-center'>
+									<span className='w-6'>12</span>
+									<div>
+										<span className='block text-sm'>Title</span>
+										<span className='block text-sm text-zinc-300 font-normal'>
+											Artist
+										</span>
+									</div>
+								</div>
+							</div>
+						</ButtonBase>
+						<IconButton edge='end'>
+							<MoreVertRoundedIcon />
+						</IconButton>
+					</li>
+					<li className='flex pr-4'>
+						<ButtonBase className='w-full text-left'>
+							<div className='w-full flex justify-between py-2 pl-4'>
+								<div className='flex items-center'>
+									<span className='w-6'>12</span>
+									<div>
+										<span className='block text-sm'>Title</span>
+										<span className='block text-sm text-zinc-300 font-normal'>
+											Artist
+										</span>
+									</div>
+								</div>
+							</div>
+						</ButtonBase>
+						<IconButton edge='end'>
+							<MoreVertRoundedIcon />
+						</IconButton>
+					</li>
 				</ul>
 			</div>
 		)
