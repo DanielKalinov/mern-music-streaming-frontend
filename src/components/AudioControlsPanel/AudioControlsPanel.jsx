@@ -182,7 +182,10 @@ const AudioControlsPanel = (props) => {
 						</div>
 					</div>
 					<div className='h-0.5 w-full bg-secondary'>
-						<div ref={staticProgressBarRef} className='h-0.5 bg-accent' />
+						<div
+							ref={staticProgressBarRef}
+							className='h-0.5 bg-accent transition-all duration-300 ease-in-out'
+						/>
 					</div>
 					<div className='flex justify-evenly w-full p-1 bg-primary rounded-b-3xl'>
 						<IconButton>
