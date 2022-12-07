@@ -26,6 +26,7 @@ const AlbumDetails = ({ audio }) => {
 	const songInfo = useSelector((state) => state.audioPlayer.songInfo);
 
 	const albumImageRef = useRef();
+	const albumHeaderRef = useRef();
 
 	const dispatch = useDispatch();
 
@@ -44,18 +45,22 @@ const AlbumDetails = ({ audio }) => {
 			});
 		});
 
-		// reduce album image opacity on scroll
-		const reduceAlbumImageOpacity = () => {
-			let opacity =
+		const changeOpacityOnScroll = () => {
+			const albumImageOpacity =
 				(albumImageRef.current.height - window.scrollY) /
 				albumImageRef.current.height;
+			const albumHeaderOpacity =
+				1 -
+				(albumImageRef.current.height - window.scrollY) /
+					albumImageRef.current.height;
 
-			albumImageRef.current.style.opacity = opacity;
+			albumImageRef.current.style.opacity = albumImageOpacity;
+			albumHeaderRef.current.style.backgroundColor = `rgba(30, 41, 59, ${albumHeaderOpacity})`;
 		};
 
-		window.addEventListener('scroll', reduceAlbumImageOpacity);
+		window.addEventListener('scroll', changeOpacityOnScroll);
 
-		return () => window.removeEventListener('scroll', reduceAlbumImageOpacity);
+		return () => window.removeEventListener('scroll', changeOpacityOnScroll);
 	}, []);
 
 	useEffect(() => {
@@ -73,8 +78,6 @@ const AlbumDetails = ({ audio }) => {
 		}
 	}, [albumImageRef.current]);
 
-	window.onscroll = () => {};
-
 	return (
 		albumDetails && (
 			<div>
@@ -83,8 +86,8 @@ const AlbumDetails = ({ audio }) => {
 					style={{
 						background: `linear-gradient(${averageColor}, #0f172a)`,
 					}}>
-					<div className='fixed'>
-						<IconButton className='' edge='start'>
+					<div ref={albumHeaderRef} className='fixed w-full z-20 -m-4'>
+						<IconButton className=''>
 							<ArrowBackIcon fontSize='large' />
 						</IconButton>
 					</div>
