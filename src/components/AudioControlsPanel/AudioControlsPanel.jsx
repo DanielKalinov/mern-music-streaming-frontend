@@ -129,7 +129,9 @@ const AudioControlsPanel = (props) => {
 							<div
 								className='flex absolute left-14 transition-all duration-200 ease-in-out'
 								style={{
-									width: songInfoRef?.current?.clientWidth * queue.length,
+									width:
+										songInfoRef.current &&
+										songInfoRef.current.clientWidth * queue.length,
 									transform: `translateX(-${
 										songInfoRef?.current?.clientWidth * songInfo.position
 									}px)`,
