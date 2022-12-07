@@ -18,8 +18,6 @@ const App = () => {
 	const audioProgressValue = useSelector(
 		(state) => state.audioPlayer.audioProgressValue
 	);
-	const panelRef = useRef();
-
 	const dispatch = useDispatch();
 
 	useEffect(() => {
@@ -35,8 +33,8 @@ const App = () => {
 
 	return (
 		<>
-			{/* pb-[--height of panel--] */}
-			<div className={`pb-[${panelRef?.current?.clientHeight}px]`}>
+			{/* offset panel height */}
+			<div className='pb-[150px]'>
 				<div>
 					<Routes>
 						<Route path='/' element={<Home />} />
@@ -49,7 +47,6 @@ const App = () => {
 				</div>
 			</div>
 			<AudioControlsPanel
-				ref={panelRef}
 				isPlaying={isPlaying}
 				audio={audio}
 				audioProgressValue={audioProgressValue}

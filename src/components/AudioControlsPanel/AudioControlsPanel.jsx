@@ -17,7 +17,7 @@ import { setSongInfo, togglePlaying } from '../../features/audioPlayerSlice';
 import { useSelector } from 'react-redux';
 import { FastAverageColor } from 'fast-average-color';
 
-const AudioControlsPanel = React.forwardRef((props, ref) => {
+const AudioControlsPanel = (props) => {
 	const {
 		isPlaying,
 		audio,
@@ -106,7 +106,6 @@ const AudioControlsPanel = React.forwardRef((props, ref) => {
 	return (
 		<>
 			<div
-				ref={ref}
 				className={`${
 					Object.keys(songInfo).length > 0
 						? 'opacity-1 translate-y-0'
@@ -344,6 +343,6 @@ const AudioControlsPanel = React.forwardRef((props, ref) => {
 			</div>
 		</>
 	);
-});
+};
 
 export default AudioControlsPanel;
