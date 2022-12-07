@@ -118,7 +118,12 @@ const AudioControlsPanel = (props) => {
 						onClick={() => setFullscreenMode(true)}>
 						<div className='flex items-center'>
 							<div className='p-2 z-10 bg-primary'>
-								<img src={songInfo.albumImageUrl} width={40} height={40} />
+								<img
+									src={songInfo.albumImageUrl}
+									width={40}
+									height={40}
+									className='rounded-md'
+								/>
 							</div>
 
 							<div
