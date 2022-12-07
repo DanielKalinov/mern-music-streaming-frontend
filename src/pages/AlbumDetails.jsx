@@ -83,9 +83,9 @@ const AlbumDetails = ({ audio }) => {
 			<div>
 				<div
 					ref={albumHeaderRef}
-					className='fixed w-full z-20 transition-colors duration-300'>
-					<IconButton className=''>
-						<ArrowBackIcon fontSize='large' />
+					className='fixed w-full z-20 transition-colors duration-300 p-1'>
+					<IconButton className='!mr-4'>
+						<ArrowBackIcon />
 					</IconButton>
 					<span className='opacity-0 transition-all duration-300'>
 						{albumDetails.name}
