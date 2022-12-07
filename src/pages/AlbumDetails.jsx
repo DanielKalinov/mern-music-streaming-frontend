@@ -25,6 +25,7 @@ const AlbumDetails = ({ audio }) => {
 	const loading = useSelector((state) => state.audioPlayer.loading);
 	const songInfo = useSelector((state) => state.audioPlayer.songInfo);
 
+	const albumTopSectionRef = useRef();
 	const albumImageRef = useRef();
 	const albumHeaderRef = useRef();
 	const albumHeaderTextRef = useRef();
@@ -47,22 +48,17 @@ const AlbumDetails = ({ audio }) => {
 		});
 
 		const changeOpacityOnScroll = () => {
-			const albumImageOpacity =
-				(albumImageRef.current.height - window.scrollY) /
-				albumImageRef.current.height;
-			const albumHeaderOpacity =
-				1 -
-				(albumImageRef.current.height - window.scrollY) /
-					albumImageRef.current.height;
-			const albumHeaderTextOpacity =
-				(1 -
-					(albumImageRef.current.height - window.scrollY) /
-						albumImageRef.current.height) *
-				100;
+			const albumTopSectionOpacity =
+				(albumTopSectionRef.current.clientHeight - window.scrollY) /
+				albumTopSectionRef.current.clientHeight;
 
-			albumImageRef.current.style.opacity = albumImageOpacity;
-			albumHeaderRef.current.style.backgroundColor = `rgba(30, 41, 59, ${albumHeaderOpacity})`;
-			albumHeaderTextRef.current.style.opacity = `${albumHeaderTextOpacity}%`;
+			albumTopSectionRef.current.style.opacity = albumTopSectionOpacity;
+			albumHeaderRef.current.style.backgroundColor = `rgba(30, 41, 59, ${
+				window.scrollY >= 300 ? '1' : '0'
+			})`;
+			albumHeaderTextRef.current.style.opacity = `${
+				window.scrollY >= 300 ? '1' : '0'
+			}`;
 		};
 
 		window.addEventListener('scroll', changeOpacityOnScroll);
@@ -89,18 +85,18 @@ const AlbumDetails = ({ audio }) => {
 		albumDetails && (
 			<div>
 				<div
-					className='p-4'
-					style={{
-						background: `linear-gradient(${averageColor}, #0f172a)`,
-					}}>
-					<div ref={albumHeaderRef} className='fixed w-full z-20 -m-4'>
-						<IconButton className=''>
-							<ArrowBackIcon fontSize='large' />
-						</IconButton>
-						<span className='opacity-0' ref={albumHeaderTextRef}>
-							{albumDetails.name}
-						</span>
-					</div>
+					ref={albumHeaderRef}
+					className='fixed w-full z-20 transition-colors duration-300'>
+					<IconButton className=''>
+						<ArrowBackIcon fontSize='large' />
+					</IconButton>
+					<span
+						className='opacity-0 transition-all duration-300'
+						ref={albumHeaderTextRef}>
+						{albumDetails.name}
+					</span>
+				</div>
+				<div ref={albumTopSectionRef} className='p-4'>
 					<div className='p-8'>
 						<img
 							className='shadow-lg rounded-lg'
@@ -120,47 +116,47 @@ const AlbumDetails = ({ audio }) => {
 							</span>
 						</div>
 					</div>
-					<div className='flex justify-between'>
-						<IconButton edge='start'>
-							<FavoriteBorderIcon fontSize='large' />
-						</IconButton>
-						<IconButton
-							className='!bg-accent rounded-full coloredShadow !transition-transform active:scale-90'
-							onClick={() => {
-								if (!audio.current.src) {
-									const firstTrack = albumDetails.songs[0];
+				</div>
+				<div className='flex justify-between px-4'>
+					<IconButton edge='start'>
+						<FavoriteBorderIcon fontSize='large' />
+					</IconButton>
+					<IconButton
+						className='!bg-accent rounded-full coloredShadow !transition-transform active:scale-90'
+						onClick={() => {
+							if (!audio.current.src) {
+								const firstTrack = albumDetails.songs[0];
 
-									audio.current.src = firstTrack.audioUrl;
-									audio.current.play();
+								audio.current.src = firstTrack.audioUrl;
+								audio.current.play();
 
-									dispatch(togglePlaying(true));
-									dispatch(
-										setSongInfo({
-											position: 0,
-											title: firstTrack.title,
-											artist: firstTrack.artist,
-											albumImageUrl: firstTrack.albumImageUrl,
-											duration: firstTrack.duration,
-										})
-									);
-									dispatch(setQueue(albumDetails.songs));
-								} else if (audio.current.src && isPlaying) {
-									audio.current.pause();
+								dispatch(togglePlaying(true));
+								dispatch(
+									setSongInfo({
+										position: 0,
+										title: firstTrack.title,
+										artist: firstTrack.artist,
+										albumImageUrl: firstTrack.albumImageUrl,
+										duration: firstTrack.duration,
+									})
+								);
+								dispatch(setQueue(albumDetails.songs));
+							} else if (audio.current.src && isPlaying) {
+								audio.current.pause();
 
-									dispatch(togglePlaying(false));
-								} else {
-									audio.current.play();
+								dispatch(togglePlaying(false));
+							} else {
+								audio.current.play();
 
-									dispatch(togglePlaying(true));
-								}
-							}}>
-							{isPlaying ? (
-								<PauseIcon fontSize='large' />
-							) : (
-								<PlayArrowIcon fontSize='large' />
-							)}
-						</IconButton>
-					</div>
+								dispatch(togglePlaying(true));
+							}
+						}}>
+						{isPlaying ? (
+							<PauseIcon fontSize='large' />
+						) : (
+							<PlayArrowIcon fontSize='large' />
+						)}
+					</IconButton>
 				</div>
 
 				<ul>
