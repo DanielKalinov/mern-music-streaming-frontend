@@ -156,11 +156,14 @@ const AudioControlsPanel = (props) => {
 							</div>
 						</div>
 						<div className='flex bg-primary z-10'>
-							<IconButton size='small' onClick={(e) => e.stopPropagation()}>
+							<IconButton
+								size='large'
+								edge='end'
+								onClick={(e) => e.stopPropagation()}>
 								<FavoriteBorderIcon />
 							</IconButton>
 							<IconButton
-								size='small'
+								size='large'
 								onClick={(e) => {
 									e.stopPropagation();
 
