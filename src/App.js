@@ -39,7 +39,7 @@ const App = () => {
 		audio.current.onended = () => {
 			skipToNextTrack();
 		};
-	}, [queue]);
+	}, [songInfo]);
 
 	const skipToNextTrack = () => {
 		const nextTrack = queue[songInfo.position + 1];
