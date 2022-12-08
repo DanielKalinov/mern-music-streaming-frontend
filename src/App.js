@@ -3,7 +3,9 @@ import AudioControlsPanel from './components/AudioControlsPanel';
 import { useSelector, useDispatch } from 'react-redux';
 import {
 	setAudioProgressValue,
+	setSongInfo,
 	setTotalSeconds,
+	togglePlaying,
 } from './features/audioPlayerSlice';
 import { Route, Routes } from 'react-router-dom';
 import Albums from './pages/Albums';
@@ -18,6 +20,8 @@ const App = () => {
 	const audioProgressValue = useSelector(
 		(state) => state.audioPlayer.audioProgressValue
 	);
+	const songInfo = useSelector((state) => state.audioPlayer.songInfo);
+	const queue = useSelector((state) => state.audioPlayer.queue);
 	const dispatch = useDispatch();
 
 	useEffect(() => {
@@ -30,6 +34,36 @@ const App = () => {
 			dispatch(setTotalSeconds(audio.current.currentTime));
 		};
 	}, []);
+
+	useEffect(() => {
+		audio.current.onended = () => {
+			skipToNextTrack();
+		};
+	}, [queue]);
+
+	const skipToNextTrack = () => {
+		const nextTrack = queue[songInfo.position + 1];
+
+		if (nextTrack !== undefined) {
+			dispatch(
+				setSongInfo({
+					position: nextTrack.position,
+					title: nextTrack.title,
+					artist: nextTrack.artist,
+					albumImageUrl: nextTrack.albumImageUrl,
+					duration: nextTrack.duration,
+				})
+			);
+			dispatch(togglePlaying(true));
+
+			audio.current.src = nextTrack.audioUrl;
+			audio.current.oncanplaythrough = () => {
+				audio.current.play();
+			};
+		} else {
+			dispatch(togglePlaying(false));
+		}
+	};
 
 	return (
 		<>
