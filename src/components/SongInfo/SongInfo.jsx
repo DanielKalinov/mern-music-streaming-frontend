@@ -21,8 +21,8 @@ import IconButton from '@mui/material/IconButton';
 
 const SongInfo = (props) => {
 	const {
-		fullscreenMode,
-		setFullscreenMode,
+		showSongInfo,
+		setShowSongInfo,
 		rangeInputValue,
 		setRangeInputValue,
 		audio,
@@ -89,8 +89,8 @@ const SongInfo = (props) => {
 
 	return (
 		<div
-			className={`${fullscreenMode ? 'opacity-100' : 'opacity-0'} ${
-				fullscreenMode ? 'translate-y-0' : 'translate-y-full'
+			className={`${showSongInfo ? 'opacity-100' : 'opacity-0'} ${
+				showSongInfo ? 'translate-y-0' : 'translate-y-full'
 			} z-30 fixed top-0 h-full w-full [transition:transform_300ms_ease-in-out,opacity_200ms_ease-in-out]`}>
 			<div
 				className='absolute top-0 h-full w-full transition-all duration-500 ease-in-out'
@@ -101,7 +101,7 @@ const SongInfo = (props) => {
 					<div className='flex justify-between items-center'>
 						<IconButton
 							onClick={() => {
-								setFullscreenMode(false);
+								setShowSongInfo(false);
 							}}>
 							<ExpandMoreRoundedIcon fontSize='large' />
 						</IconButton>

@@ -13,7 +13,7 @@ import SongInfo from '../SongInfo/SongInfo';
 const AudioControlsPanel = (props) => {
 	const { isPlaying, audio, audioProgressValue, dispatch } = props;
 
-	const [fullscreenMode, setFullscreenMode] = useState(false);
+	const [showSongInfo, setShowSongInfo] = useState(false);
 	const [rangeInputValue, setRangeInputValue] = useState(0);
 	const queue = useSelector((state) => state.audioPlayer.queue);
 	const songInfo = useSelector((state) => state.audioPlayer.songInfo);
@@ -30,10 +30,10 @@ const AudioControlsPanel = (props) => {
 	}, [audioProgressValue]);
 
 	useEffect(() => {
-		fullscreenMode
+		showSongInfo
 			? (document.body.style.overflow = 'hidden')
 			: (document.body.style.overflow = 'auto');
-	}, [fullscreenMode]);
+	}, [showSongInfo]);
 
 	return (
 		<>
@@ -46,7 +46,7 @@ const AudioControlsPanel = (props) => {
 				<div className='overflow-hidden flex flex-col items-center bg-primary rounded-xl rounded-b-3xl backdrop-blur-md border solid border-primary'>
 					<div
 						className='flex items-center justify-between w-full'
-						onClick={() => setFullscreenMode(true)}>
+						onClick={() => setShowSongInfo(true)}>
 						<div className='flex items-center'>
 							<div className='p-2 z-10 bg-primary'>
 								<img
@@ -132,10 +132,9 @@ const AudioControlsPanel = (props) => {
 				</div>
 			</div>
 
-			{/* Fullscreen mode window */}
 			<SongInfo
-				fullscreenMode={fullscreenMode}
-				setFullscreenMode={setFullscreenMode}
+				showSongInfo={showSongInfo}
+				setShowSongInfo={setShowSongInfo}
 				audio={audio}
 				rangeInputValue={rangeInputValue}
 				setRangeInputValue={setRangeInputValue}
