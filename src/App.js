@@ -1,4 +1,4 @@
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import AudioControlsPanel from './components/AudioControlsPanel';
 import { useSelector, useDispatch } from 'react-redux';
 import {
@@ -22,6 +22,8 @@ const App = () => {
 	);
 	const songInfo = useSelector((state) => state.audioPlayer.songInfo);
 	const queue = useSelector((state) => state.audioPlayer.queue);
+	const isSeeking = useSelector((state) => state.audioPlayer.isSeeking);
+
 	const dispatch = useDispatch();
 
 	useEffect(() => {
@@ -30,10 +32,11 @@ const App = () => {
 			const percent =
 				(audio.current.currentTime / audio.current.duration) * 100;
 
-			dispatch(setAudioProgressValue(!Number.isNaN(percent) ? percent : 0));
-			dispatch(setTotalSeconds(audio.current.currentTime));
+			!isSeeking &&
+				dispatch(setAudioProgressValue(!Number.isNaN(percent) ? percent : 0));
+			!isSeeking && dispatch(setTotalSeconds(audio.current.currentTime));
 		};
-	}, []);
+	}, [isSeeking]);
 
 	useEffect(() => {
 		audio.current.onended = () => {

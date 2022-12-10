@@ -13,7 +13,11 @@ import ExpandMoreRoundedIcon from '@mui/icons-material/ExpandMoreRounded';
 import MoreVertRoundedIcon from '@mui/icons-material/MoreVertRounded';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import Slider from '@mui/material/Slider';
-import { setSongInfo, togglePlaying } from '../../features/audioPlayerSlice';
+import {
+	setSongInfo,
+	togglePlaying,
+	setIsSeeking,
+} from '../../features/audioPlayerSlice';
 import { useSelector } from 'react-redux';
 import { FastAverageColor } from 'fast-average-color';
 
@@ -29,7 +33,6 @@ const AudioControlsPanel = (props) => {
 
 	const [fullscreenMode, setFullscreenMode] = useState(false);
 	const [rangeInputValue, setRangeInputValue] = useState(0);
-	const [seeking, setSeeking] = useState(false);
 	const songInfo = useSelector((state) => state.audioPlayer.songInfo);
 	const queue = useSelector((state) => state.audioPlayer.queue);
 	const [averageColor, setAverageColor] = useState('');
@@ -38,9 +41,7 @@ const AudioControlsPanel = (props) => {
 	const songInfoRef = useRef();
 
 	useEffect(() => {
-		// if not seeking, change range input value to the current audio progress,
-		// otherwise do nothing in order to avoid setting state from both places, which causes the handle to 'glitch' back and forth
-		!seeking && setRangeInputValue(audioProgressValue);
+		setRangeInputValue(audioProgressValue);
 
 		if (staticProgressBarRef.current) {
 			staticProgressBarRef.current.style.width = `${audioProgressValue}%`;
@@ -271,8 +272,8 @@ const AudioControlsPanel = (props) => {
 							</div>
 							<div
 								className='flex w-full my-1'
-								onMouseDown={() => setSeeking(true)}
-								onPointerDown={() => setSeeking(true)}>
+								onMouseDown={() => dispatch(setIsSeeking(true))}
+								onPointerDown={() => dispatch(setIsSeeking(true))}>
 								<Slider
 									value={rangeInputValue}
 									size='small'
@@ -292,7 +293,7 @@ const AudioControlsPanel = (props) => {
 										audio.current.currentTime =
 											(rangeInputValue / 100) * audio.current.duration;
 
-										setSeeking(false);
+										dispatch(setIsSeeking(false));
 									}}
 									sx={{
 										'& .MuiSlider-thumb': {
