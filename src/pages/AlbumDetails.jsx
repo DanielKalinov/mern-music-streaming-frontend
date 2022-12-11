@@ -14,7 +14,6 @@ import {
 	setLoading,
 	setQueue,
 	setSongInfo,
-	setSrc,
 	togglePlaying,
 } from '../features/audioPlayerSlice';
 import { FastAverageColor } from 'fast-average-color';
@@ -25,7 +24,6 @@ const AlbumDetails = () => {
 	const [averageColor, setAverageColor] = useState();
 	const loading = useSelector((state) => state.audioPlayer.loading);
 	const songInfo = useSelector((state) => state.audioPlayer.songInfo);
-	const src = useSelector((state) => state.audioPlayer.src);
 
 	const albumTopSectionRef = useRef();
 	const albumImageRef = useRef();
@@ -121,10 +119,9 @@ const AlbumDetails = () => {
 					<IconButton
 						className='!bg-accent rounded-full coloredShadow !transition-transform active:scale-90'
 						onClick={() => {
-							if (!src) {
+							if (!songInfo.audioUrl) {
 								const firstTrack = albumDetails.songs[0];
 
-								dispatch(setSrc(firstTrack.audioUrl));
 								dispatch(togglePlaying(true));
 								dispatch(
 									setSongInfo({
@@ -133,10 +130,11 @@ const AlbumDetails = () => {
 										artist: firstTrack.artist,
 										albumImageUrl: firstTrack.albumImageUrl,
 										duration: firstTrack.duration,
+										audioUrl: firstTrack.audioUrl,
 									})
 								);
 								dispatch(setQueue(albumDetails.songs));
-							} else if (src && isPlaying) {
+							} else if (songInfo.audioUrl && isPlaying) {
 								dispatch(togglePlaying(false));
 							} else {
 								dispatch(togglePlaying(true));
@@ -156,27 +154,25 @@ const AlbumDetails = () => {
 							<ButtonBase
 								className='w-full text-left'
 								onClick={() => {
-									dispatch(
-										setSongInfo({
-											position: index,
-											title: item.title,
-											artist: item.artist,
-											albumImageUrl: item.albumImageUrl,
-											duration: item.duration,
-										})
-									);
-
-									dispatch(setQueue(albumDetails.songs));
-
-									if (item.audioUrl == src) {
+									if (item.audioUrl == songInfo.audioUrl) {
 										if (isPlaying) {
 											dispatch(togglePlaying(false));
 										} else {
 											dispatch(togglePlaying(true));
 										}
 									} else {
-										dispatch(setSrc(item.audioUrl));
+										dispatch(
+											setSongInfo({
+												position: index,
+												title: item.title,
+												artist: item.artist,
+												albumImageUrl: item.albumImageUrl,
+												duration: item.duration,
+												audioUrl: item.audioUrl,
+											})
+										);
 										dispatch(togglePlaying(true));
+										dispatch(setQueue(albumDetails.songs));
 									}
 								}}>
 								<div className='w-full flex justify-between py-2 pl-4'>

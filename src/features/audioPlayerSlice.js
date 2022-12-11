@@ -8,7 +8,6 @@ const initialState = {
 	queue: [],
 	loading: false,
 	isSeeking: false,
-	src: '',
 	duration: 0,
 };
 
@@ -37,9 +36,6 @@ export const audioPlayerSlice = createSlice({
 		setIsSeeking: (state, action) => {
 			state.isSeeking = action.payload;
 		},
-		setSrc: (state, action) => {
-			state.src = action.payload;
-		},
 		setDuration: (state, action) => {
 			state.duration = action.payload;
 		},
@@ -54,7 +50,6 @@ export const {
 	setQueue,
 	setLoading,
 	setIsSeeking,
-	setSrc,
 	setDuration,
 } = audioPlayerSlice.actions;
 

@@ -31,44 +31,44 @@ const App = () => {
 	}, [isSeeking]);
 
 	useEffect(() => {
-		audio.current.onended = () => {
-			skipToNextTrack();
-		};
+		// audio.current.onended = () => {
+		// 	skipToNextTrack();
+		// };
 
 		audio.current.onloadedmetadata = () => {
 			dispatch(setDuration(audio.current.duration));
 		};
 	}, [songInfo]);
 
-	const skipToNextTrack = () => {
-		const nextTrack = queue[songInfo.position + 1];
+	// const skipToNextTrack = () => {
+	// 	const nextTrack = queue[songInfo.position + 1];
 
-		if (nextTrack !== undefined) {
-			dispatch(
-				setSongInfo({
-					position: nextTrack.position,
-					title: nextTrack.title,
-					artist: nextTrack.artist,
-					albumImageUrl: nextTrack.albumImageUrl,
-					duration: nextTrack.duration,
-				})
-			);
-			dispatch(togglePlaying(true));
+	// 	if (nextTrack !== undefined) {
+	// 		dispatch(
+	// 			setSongInfo({
+	// 				position: nextTrack.position,
+	// 				title: nextTrack.title,
+	// 				artist: nextTrack.artist,
+	// 				albumImageUrl: nextTrack.albumImageUrl,
+	// 				duration: nextTrack.duration,
+	// 			})
+	// 		);
+	// 		dispatch(togglePlaying(true));
 
-			audio.current.src = nextTrack.audioUrl;
-			audio.current.oncanplaythrough = () => {
-				audio.current.play();
-			};
-		} else {
-			dispatch(togglePlaying(false));
-		}
-	};
+	// 		audio.current.src = nextTrack.audioUrl;
+	// 		audio.current.oncanplaythrough = () => {
+	// 			audio.current.play();
+	// 		};
+	// 	} else {
+	// 		dispatch(togglePlaying(false));
+	// 	}
+	// };
 
 	useEffect(() => {
-		if (src) {
-			audio.current.src = src;
+		if (songInfo.audioUrl) {
+			audio.current.src = songInfo.audioUrl;
 		}
-	}, [src]);
+	}, [songInfo]);
 
 	useEffect(() => {
 		if (isPlaying) {
