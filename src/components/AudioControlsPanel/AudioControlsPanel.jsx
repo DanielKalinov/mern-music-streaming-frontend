@@ -24,8 +24,10 @@ const AudioControlsPanel = (props) => {
 	useEffect(() => {
 		setRangeInputValue(audioProgressValue);
 
+		const percent = (audio.current.currentTime / audio.current.duration) * 100;
+
 		if (staticProgressBarRef.current) {
-			staticProgressBarRef.current.style.width = `${audioProgressValue}px`;
+			staticProgressBarRef.current.style.width = `${percent}%`;
 		}
 	}, [audioProgressValue]);
 
