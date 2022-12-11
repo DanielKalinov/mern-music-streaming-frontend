@@ -5,6 +5,7 @@ import {
 	setSongInfo,
 	togglePlaying,
 	setIsSeeking,
+	setSrc,
 } from '../../features/audioPlayerSlice';
 import ExpandMoreRoundedIcon from '@mui/icons-material/ExpandMoreRounded';
 import MoreVertRoundedIcon from '@mui/icons-material/MoreVertRounded';
@@ -82,12 +83,8 @@ const SongInfo = (props) => {
 				duration: track.duration,
 			})
 		);
+		dispatch(setSrc(track.audioUrl));
 		dispatch(togglePlaying(true));
-
-		audio.current.src = track.audioUrl;
-		audio.current.oncanplaythrough = () => {
-			audio.current.play();
-		};
 	};
 
 	return (

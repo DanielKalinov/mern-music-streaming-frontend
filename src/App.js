@@ -60,7 +60,9 @@ const App = () => {
 	};
 
 	useEffect(() => {
-		audio.current.src = src;
+		if (src) {
+			audio.current.src = src;
+		}
 	}, [src]);
 
 	useEffect(() => {
@@ -69,7 +71,7 @@ const App = () => {
 		} else {
 			audio.current.pause();
 		}
-	}, [isPlaying]);
+	}, [isPlaying, songInfo]);
 
 	return (
 		<>
