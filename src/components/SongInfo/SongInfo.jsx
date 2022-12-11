@@ -33,7 +33,7 @@ const SongInfo = (props) => {
 	const queue = useSelector((state) => state.audioPlayer.queue);
 	const isPlaying = useSelector((state) => state.audioPlayer.isPlaying);
 	const [averageColor, setAverageColor] = useState('');
-	const [duration, setDuration] = useState(0);
+	const [songDuration, setSongDuration] = useState(0);
 
 	useEffect(() => {
 		const albumImage = document.getElementById(`${songInfo.position}`);
@@ -52,7 +52,7 @@ const SongInfo = (props) => {
 		}
 
 		audio.current.onloadedmetadata = () => {
-			setDuration(audio.current.duration);
+			setSongDuration(audio.current.duration);
 		};
 	}, [songInfo]);
 
@@ -166,7 +166,7 @@ const SongInfo = (props) => {
 								value={rangeInputValue}
 								size='small'
 								aria-label='Small'
-								max={duration}
+								max={songDuration}
 								onChange={(e, value) => {
 									setRangeInputValue(value);
 								}}
