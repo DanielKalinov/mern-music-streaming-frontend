@@ -5,7 +5,6 @@ import {
 	setSongInfo,
 	togglePlaying,
 	setIsSeeking,
-	setTotalSeconds,
 } from '../../features/audioPlayerSlice';
 import ExpandMoreRoundedIcon from '@mui/icons-material/ExpandMoreRounded';
 import MoreVertRoundedIcon from '@mui/icons-material/MoreVertRounded';
@@ -31,10 +30,10 @@ const SongInfo = (props) => {
 	const dispatch = useDispatch();
 
 	const songInfo = useSelector((state) => state.audioPlayer.songInfo);
-	const totalSeconds = useSelector((state) => state.audioPlayer.totalSeconds);
 	const queue = useSelector((state) => state.audioPlayer.queue);
 	const isPlaying = useSelector((state) => state.audioPlayer.isPlaying);
 	const [averageColor, setAverageColor] = useState('');
+	const [duration, setDuration] = useState(0);
 
 	useEffect(() => {
 		const albumImage = document.getElementById(`${songInfo.position}`);
@@ -51,6 +50,10 @@ const SongInfo = (props) => {
 					console.log(e);
 				});
 		}
+
+		audio.current.onloadedmetadata = () => {
+			setDuration(audio.current.duration);
+		};
 	}, [songInfo]);
 
 	const format = (val) => {
@@ -163,22 +166,15 @@ const SongInfo = (props) => {
 								value={rangeInputValue}
 								size='small'
 								aria-label='Small'
+								max={duration}
 								onChange={(e, value) => {
 									setRangeInputValue(value);
-
-									// update timestamp on slider move
-									dispatch(
-										setTotalSeconds(
-											(rangeInputValue / 100) * audio.current.duration
-										)
-									);
 								}}
-								onChangeCommitted={() => {
-									// on mouse up, set the audio currentTime to percent converted to milliseconds
-									audio.current.currentTime =
-										(rangeInputValue / 100) * audio.current.duration;
+								onChangeCommitted={(e, value) => {
+									audio.current.currentTime = value;
 
 									dispatch(setIsSeeking(false));
+									dispatch(togglePlaying(true));
 								}}
 								sx={{
 									'& .MuiSlider-thumb': {
@@ -197,7 +193,7 @@ const SongInfo = (props) => {
 						</div>
 						<div className='flex justify-between'>
 							<span className='text-xs -mt-3'>
-								{formattedTime(totalSeconds)}
+								{formattedTime(rangeInputValue)}
 							</span>
 							<span className='text-xs -mt-3'>{songInfo.duration}</span>
 						</div>

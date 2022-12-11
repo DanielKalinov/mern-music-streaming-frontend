@@ -4,7 +4,6 @@ import { useSelector, useDispatch } from 'react-redux';
 import {
 	setAudioProgressValue,
 	setSongInfo,
-	setTotalSeconds,
 	togglePlaying,
 } from './features/audioPlayerSlice';
 import { Route, Routes } from 'react-router-dom';
@@ -14,8 +13,8 @@ import AlbumDetails from './pages/AlbumDetails';
 
 const App = () => {
 	const audio = useRef(new Audio());
+	audio.current.preload = 'metadata';
 
-	const totalSeconds = useSelector((state) => state.audioPlayer.totalSeconds);
 	const isPlaying = useSelector((state) => state.audioPlayer.isPlaying);
 	const audioProgressValue = useSelector(
 		(state) => state.audioPlayer.audioProgressValue
@@ -28,13 +27,7 @@ const App = () => {
 
 	useEffect(() => {
 		audio.current.ontimeupdate = () => {
-			// convert audio current progress to percent
-			const percent =
-				(audio.current.currentTime / audio.current.duration) * 100;
-
-			!isSeeking &&
-				dispatch(setAudioProgressValue(!Number.isNaN(percent) ? percent : 0));
-			!isSeeking && dispatch(setTotalSeconds(audio.current.currentTime));
+			!isSeeking && dispatch(setAudioProgressValue(audio.current.currentTime));
 		};
 	}, [isSeeking]);
 
@@ -87,8 +80,6 @@ const App = () => {
 				isPlaying={isPlaying}
 				audio={audio}
 				audioProgressValue={audioProgressValue}
-				totalSeconds={totalSeconds}
-				setTotalSeconds={setTotalSeconds}
 				dispatch={dispatch}
 			/>
 		</>

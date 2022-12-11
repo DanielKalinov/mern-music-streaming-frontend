@@ -25,7 +25,7 @@ const AudioControlsPanel = (props) => {
 		setRangeInputValue(audioProgressValue);
 
 		if (staticProgressBarRef.current) {
-			staticProgressBarRef.current.style.width = `${audioProgressValue}%`;
+			staticProgressBarRef.current.style.width = `${audioProgressValue}px`;
 		}
 	}, [audioProgressValue]);
 
