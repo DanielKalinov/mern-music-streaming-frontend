@@ -76,12 +76,7 @@ const App = () => {
 					</Routes>
 				</div>
 			</div>
-			<AudioControlsPanel
-				isPlaying={isPlaying}
-				audio={audio}
-				audioProgressValue={audioProgressValue}
-				dispatch={dispatch}
-			/>
+			<AudioControlsPanel audio={audio} />
 		</>
 	);
 };

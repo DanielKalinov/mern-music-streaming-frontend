@@ -7,16 +7,22 @@ import SearchIcon from '@mui/icons-material/Search';
 import LibraryMusicIcon from '@mui/icons-material/LibraryMusic';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import { togglePlaying } from '../../features/audioPlayerSlice';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import SongInfo from '../SongInfo/SongInfo';
 
 const AudioControlsPanel = (props) => {
-	const { isPlaying, audio, audioProgressValue, dispatch } = props;
+	const { audio } = props;
 
 	const [showSongInfo, setShowSongInfo] = useState(false);
 	const [rangeInputValue, setRangeInputValue] = useState(0);
+	const isPlaying = useSelector((state) => state.audioPlayer.isPlaying);
+	const audioProgressValue = useSelector(
+		(state) => state.audioPlayer.audioProgressValue
+	);
 	const queue = useSelector((state) => state.audioPlayer.queue);
 	const songInfo = useSelector((state) => state.audioPlayer.songInfo);
+
+	const dispatch = useDispatch();
 
 	const staticProgressBarRef = useRef();
 	const songInfoRef = useRef();
