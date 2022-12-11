@@ -6,7 +6,7 @@ import HomeIcon from '@mui/icons-material/Home';
 import SearchIcon from '@mui/icons-material/Search';
 import LibraryMusicIcon from '@mui/icons-material/LibraryMusic';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
-import togglePlaying from '../../features/audioPlayerSlice';
+import { togglePlaying } from '../../features/audioPlayerSlice';
 import { useSelector } from 'react-redux';
 import SongInfo from '../SongInfo/SongInfo';
 
