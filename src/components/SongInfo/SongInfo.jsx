@@ -20,20 +20,20 @@ import IconButton from '@mui/material/IconButton';
 
 const SongInfo = (props) => {
 	const {
+		audio,
 		showSongInfo,
 		setShowSongInfo,
 		rangeInputValue,
 		setRangeInputValue,
-		audio,
 	} = props;
 
 	const dispatch = useDispatch();
 
+	const isPlaying = useSelector((state) => state.audioPlayer.isPlaying);
 	const songInfo = useSelector((state) => state.audioPlayer.songInfo);
 	const queue = useSelector((state) => state.audioPlayer.queue);
-	const isPlaying = useSelector((state) => state.audioPlayer.isPlaying);
-	const [averageColor, setAverageColor] = useState('');
 	const [songDuration, setSongDuration] = useState(0);
+	const [averageColor, setAverageColor] = useState('');
 
 	useEffect(() => {
 		const albumImage = document.getElementById(`${songInfo.position}`);

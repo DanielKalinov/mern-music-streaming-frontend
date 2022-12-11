@@ -15,10 +15,6 @@ const App = () => {
 	const audio = useRef(new Audio());
 	audio.current.preload = 'metadata';
 
-	const isPlaying = useSelector((state) => state.audioPlayer.isPlaying);
-	const audioProgressValue = useSelector(
-		(state) => state.audioPlayer.audioProgressValue
-	);
 	const songInfo = useSelector((state) => state.audioPlayer.songInfo);
 	const queue = useSelector((state) => state.audioPlayer.queue);
 	const isSeeking = useSelector((state) => state.audioPlayer.isSeeking);

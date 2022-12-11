@@ -141,9 +141,9 @@ const AudioControlsPanel = (props) => {
 			</div>
 
 			<SongInfo
+				audio={audio}
 				showSongInfo={showSongInfo}
 				setShowSongInfo={setShowSongInfo}
-				audio={audio}
 				rangeInputValue={rangeInputValue}
 				setRangeInputValue={setRangeInputValue}
 			/>
