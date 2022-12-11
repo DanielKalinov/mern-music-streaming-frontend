@@ -14,6 +14,7 @@ import {
 	setLoading,
 	setQueue,
 	setSongInfo,
+	setSrc,
 	togglePlaying,
 } from '../features/audioPlayerSlice';
 import { FastAverageColor } from 'fast-average-color';
@@ -24,6 +25,7 @@ const AlbumDetails = ({ audio }) => {
 	const [averageColor, setAverageColor] = useState();
 	const loading = useSelector((state) => state.audioPlayer.loading);
 	const songInfo = useSelector((state) => state.audioPlayer.songInfo);
+	const src = useSelector((state) => state.audioPlayer.src);
 
 	const albumTopSectionRef = useRef();
 	const albumImageRef = useRef();
@@ -119,12 +121,10 @@ const AlbumDetails = ({ audio }) => {
 					<IconButton
 						className='!bg-accent rounded-full coloredShadow !transition-transform active:scale-90'
 						onClick={() => {
-							if (!audio.current.src) {
+							if (!src) {
 								const firstTrack = albumDetails.songs[0];
 
-								audio.current.src = firstTrack.audioUrl;
-								audio.current.play();
-
+								dispatch(setSrc(firstTrack.audioUrl));
 								dispatch(togglePlaying(true));
 								dispatch(
 									setSongInfo({
@@ -136,13 +136,9 @@ const AlbumDetails = ({ audio }) => {
 									})
 								);
 								dispatch(setQueue(albumDetails.songs));
-							} else if (audio.current.src && isPlaying) {
-								audio.current.pause();
-
+							} else if (src && isPlaying) {
 								dispatch(togglePlaying(false));
 							} else {
-								audio.current.play();
-
 								dispatch(togglePlaying(true));
 							}
 						}}>
@@ -172,20 +168,15 @@ const AlbumDetails = ({ audio }) => {
 
 									dispatch(setQueue(albumDetails.songs));
 
-									if (item.audioUrl == audio.current.src) {
-										if (!audio.current.paused) {
+									if (item.audioUrl == src) {
+										if (isPlaying) {
 											dispatch(togglePlaying(false));
-											audio.current.pause();
 										} else {
 											dispatch(togglePlaying(true));
-											audio.current.play();
 										}
 									} else {
+										dispatch(setSrc(item.audioUrl));
 										dispatch(togglePlaying(true));
-										audio.current.src = item.audioUrl;
-										audio.current.oncanplaythrough = () => {
-											audio.current.play();
-										};
 									}
 								}}>
 								<div className='w-full flex justify-between py-2 pl-4'>

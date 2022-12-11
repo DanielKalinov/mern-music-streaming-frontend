@@ -18,6 +18,8 @@ const App = () => {
 	const songInfo = useSelector((state) => state.audioPlayer.songInfo);
 	const queue = useSelector((state) => state.audioPlayer.queue);
 	const isSeeking = useSelector((state) => state.audioPlayer.isSeeking);
+	const isPlaying = useSelector((state) => state.audioPlayer.isPlaying);
+	const src = useSelector((state) => state.audioPlayer.src);
 
 	const dispatch = useDispatch();
 
@@ -56,6 +58,18 @@ const App = () => {
 			dispatch(togglePlaying(false));
 		}
 	};
+
+	useEffect(() => {
+		audio.current.src = src;
+	}, [src]);
+
+	useEffect(() => {
+		if (isPlaying) {
+			audio.current.play();
+		} else {
+			audio.current.pause();
+		}
+	}, [isPlaying]);
 
 	return (
 		<>

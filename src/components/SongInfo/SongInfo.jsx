@@ -221,12 +221,10 @@ const SongInfo = (props) => {
 							onClick={(e) => {
 								e.stopPropagation();
 
-								if (audio.current.paused) {
-									dispatch(togglePlaying(true));
-									audio.current.play();
-								} else {
+								if (isPlaying) {
 									dispatch(togglePlaying(false));
-									audio.current.pause();
+								} else {
+									dispatch(togglePlaying(true));
 								}
 							}}>
 							{isPlaying ? (
