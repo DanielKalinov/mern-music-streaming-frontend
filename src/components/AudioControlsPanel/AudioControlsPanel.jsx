@@ -16,6 +16,7 @@ const AudioControlsPanel = (props) => {
 	const [showSongInfo, setShowSongInfo] = useState(false);
 	const [rangeInputValue, setRangeInputValue] = useState(0);
 	const isPlaying = useSelector((state) => state.audioPlayer.isPlaying);
+	const duration = useSelector((state) => state.audioPlayer.duration);
 	const audioProgressValue = useSelector(
 		(state) => state.audioPlayer.audioProgressValue
 	);
@@ -30,7 +31,7 @@ const AudioControlsPanel = (props) => {
 	useEffect(() => {
 		setRangeInputValue(audioProgressValue);
 
-		const percent = (audio.current.currentTime / audio.current.duration) * 100;
+		const percent = (audioProgressValue / duration) * 100;
 
 		if (staticProgressBarRef.current) {
 			staticProgressBarRef.current.style.width = `${percent}%`;

@@ -3,6 +3,7 @@ import AudioControlsPanel from './components/AudioControlsPanel';
 import { useSelector, useDispatch } from 'react-redux';
 import {
 	setAudioProgressValue,
+	setDuration,
 	setSongInfo,
 	togglePlaying,
 } from './features/audioPlayerSlice';
@@ -32,6 +33,10 @@ const App = () => {
 	useEffect(() => {
 		audio.current.onended = () => {
 			skipToNextTrack();
+		};
+
+		audio.current.onloadedmetadata = () => {
+			dispatch(setDuration(audio.current.duration));
 		};
 	}, [songInfo]);
 
@@ -81,10 +86,7 @@ const App = () => {
 					<Routes>
 						<Route path='/' element={<Home />} />
 						<Route path='/albums' element={<Albums />} />
-						<Route
-							path={`/albums/:id`}
-							element={<AlbumDetails audio={audio} />}
-						/>
+						<Route path={`/albums/:id`} element={<AlbumDetails />} />
 					</Routes>
 				</div>
 			</div>

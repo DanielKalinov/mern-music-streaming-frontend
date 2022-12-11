@@ -33,7 +33,7 @@ const SongInfo = (props) => {
 	const isPlaying = useSelector((state) => state.audioPlayer.isPlaying);
 	const songInfo = useSelector((state) => state.audioPlayer.songInfo);
 	const queue = useSelector((state) => state.audioPlayer.queue);
-	const [songDuration, setSongDuration] = useState(0);
+	const duration = useSelector((state) => state.audioPlayer.duration);
 	const [averageColor, setAverageColor] = useState('');
 
 	useEffect(() => {
@@ -51,10 +51,6 @@ const SongInfo = (props) => {
 					console.log(e);
 				});
 		}
-
-		audio.current.onloadedmetadata = () => {
-			setSongDuration(audio.current.duration);
-		};
 	}, [songInfo]);
 
 	const format = (val) => {
@@ -163,7 +159,7 @@ const SongInfo = (props) => {
 								value={rangeInputValue}
 								size='small'
 								aria-label='Small'
-								max={songDuration}
+								max={duration}
 								onChange={(e, value) => {
 									setRangeInputValue(value);
 								}}

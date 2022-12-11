@@ -19,7 +19,7 @@ import {
 } from '../features/audioPlayerSlice';
 import { FastAverageColor } from 'fast-average-color';
 
-const AlbumDetails = ({ audio }) => {
+const AlbumDetails = () => {
 	const isPlaying = useSelector((state) => state.audioPlayer.isPlaying);
 	const [albumDetails, setAlbumDetails] = useState();
 	const [averageColor, setAverageColor] = useState();
