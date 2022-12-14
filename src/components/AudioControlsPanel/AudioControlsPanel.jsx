@@ -19,7 +19,9 @@ const AudioControlsPanel = () => {
 		(state) => state.audioPlayer.audioProgressValue
 	);
 	const queue = useSelector((state) => state.audioPlayer.queue);
-	const songInfo = useSelector((state) => state.audioPlayer.songInfo);
+	const currentSongInfo = useSelector(
+		(state) => state.audioPlayer.currentSongInfo
+	);
 
 	const dispatch = useDispatch();
 
@@ -46,7 +48,7 @@ const AudioControlsPanel = () => {
 		<>
 			<div
 				className={`${
-					Object.keys(songInfo).length > 0
+					Object.keys(currentSongInfo).length > 0
 						? 'translate-y-0'
 						: 'translate-y-full'
 				} fixed bottom-0 w-full p-2 transition-all duration-300 ease-in-out`}>
@@ -57,7 +59,7 @@ const AudioControlsPanel = () => {
 						<div className='flex items-center'>
 							<div className='p-2 z-10 bg-primary'>
 								<img
-									src={songInfo.albumImageUrl}
+									src={currentSongInfo.albumImageUrl}
 									width={40}
 									height={40}
 									className='rounded-md'
@@ -71,7 +73,7 @@ const AudioControlsPanel = () => {
 										songInfoRef.current &&
 										songInfoRef.current.clientWidth * queue.length,
 									transform: `translateX(-${
-										songInfoRef?.current?.clientWidth * songInfo.position
+										songInfoRef?.current?.clientWidth * currentSongInfo.position
 									}px)`,
 								}}>
 								{queue.map((item, index) => {
@@ -82,7 +84,7 @@ const AudioControlsPanel = () => {
 											className='transition-all duration-1000 ease-in-out'
 											style={{
 												width: window.innerWidth,
-												opacity: songInfo.position == index ? 1 : 0,
+												opacity: currentSongInfo.position == index ? 1 : 0,
 											}}>
 											<span className='block text-sm font-bold'>
 												{item.title}

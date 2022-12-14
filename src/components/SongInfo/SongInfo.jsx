@@ -26,13 +26,15 @@ const SongInfo = (props) => {
 	const dispatch = useDispatch();
 
 	const isPlaying = useSelector((state) => state.audioPlayer.isPlaying);
-	const songInfo = useSelector((state) => state.audioPlayer.songInfo);
+	const currentSongInfo = useSelector(
+		(state) => state.audioPlayer.currentSongInfo
+	);
 	const queue = useSelector((state) => state.audioPlayer.queue);
 	const duration = useSelector((state) => state.audioPlayer.duration);
 	const [averageColor, setAverageColor] = useState('');
 
 	useEffect(() => {
-		const albumImage = document.getElementById(`${songInfo.position}`);
+		const albumImage = document.getElementById(`${currentSongInfo.position}`);
 
 		if (albumImage) {
 			const fac = new FastAverageColor();
@@ -46,7 +48,7 @@ const SongInfo = (props) => {
 					console.log(e);
 				});
 		}
-	}, [songInfo]);
+	}, [currentSongInfo]);
 
 	const format = (val) => {
 		const valString = val + '';
@@ -107,7 +109,7 @@ const SongInfo = (props) => {
 					style={{
 						width: window.innerWidth * queue.length,
 						transform: `translateX(-${
-							window.innerWidth * songInfo.position
+							window.innerWidth * currentSongInfo.position
 						}px)`,
 					}}>
 					{queue.map((item, index) => {
@@ -118,7 +120,7 @@ const SongInfo = (props) => {
 								style={{
 									width: window.innerWidth,
 									transform: `scale(${
-										songInfo.position == index ? '1' : '0.7'
+										currentSongInfo.position == index ? '1' : '0.7'
 									})`,
 								}}>
 								<img
@@ -138,9 +140,11 @@ const SongInfo = (props) => {
 						<div className='flex justify-between items-center mt-4'>
 							<div>
 								<span className='block font-bold text-xl mb-1'>
-									{songInfo.title}
+									{currentSongInfo.title}
 								</span>
-								<span className='block text-zinc-300'>{songInfo.artist}</span>
+								<span className='block text-zinc-300'>
+									{currentSongInfo.artist}
+								</span>
 							</div>
 							<IconButton edge='end'>
 								<FavoriteBorderIcon />
@@ -190,15 +194,15 @@ const SongInfo = (props) => {
 							<ShuffleIcon />
 						</IconButton>
 						<IconButton
-							disabled={!queue[songInfo.position - 1]}
+							disabled={!queue[currentSongInfo.position - 1]}
 							onClick={() => {
-								skipTrack(queue[songInfo.position - 1]);
+								skipTrack(queue[currentSongInfo.position - 1]);
 							}}
 							size='large'>
 							<SkipPreviousIcon
 								fontSize='large'
 								className={`${
-									!queue[songInfo.position - 1] && 'text-disabled'
+									!queue[currentSongInfo.position - 1] && 'text-disabled'
 								}`}
 							/>
 						</IconButton>
@@ -221,15 +225,15 @@ const SongInfo = (props) => {
 							)}
 						</IconButton>
 						<IconButton
-							disabled={!queue[songInfo.position + 1]}
+							disabled={!queue[currentSongInfo.position + 1]}
 							onClick={() => {
-								skipTrack(queue[songInfo.position + 1]);
+								skipTrack(queue[currentSongInfo.position + 1]);
 							}}
 							size='large'>
 							<SkipNextIcon
 								fontSize='large'
 								className={`${
-									!queue[songInfo.position + 1] && 'text-disabled'
+									!queue[currentSongInfo.position + 1] && 'text-disabled'
 								}`}
 							/>
 						</IconButton>

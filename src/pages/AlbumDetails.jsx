@@ -23,7 +23,9 @@ const AlbumDetails = () => {
 	const [albumDetails, setAlbumDetails] = useState();
 	const [averageColor, setAverageColor] = useState();
 	const loading = useSelector((state) => state.audioPlayer.loading);
-	const songInfo = useSelector((state) => state.audioPlayer.songInfo);
+	const currentSongInfo = useSelector(
+		(state) => state.audioPlayer.currentSongInfo
+	);
 
 	const albumTopSectionRef = useRef();
 	const albumImageRef = useRef();
@@ -119,7 +121,7 @@ const AlbumDetails = () => {
 					<IconButton
 						className='!bg-accent rounded-full coloredShadow !transition-transform active:scale-90'
 						onClick={() => {
-							if (!songInfo.audioUrl) {
+							if (!currentSongInfo.audioUrl) {
 								const firstTrack = albumDetails.songs[0];
 
 								dispatch(togglePlaying(true));
@@ -134,7 +136,7 @@ const AlbumDetails = () => {
 									})
 								);
 								dispatch(setQueue(albumDetails.songs));
-							} else if (songInfo.audioUrl && isPlaying) {
+							} else if (currentSongInfo.audioUrl && isPlaying) {
 								dispatch(togglePlaying(false));
 							} else {
 								dispatch(togglePlaying(true));
@@ -154,7 +156,7 @@ const AlbumDetails = () => {
 							<ButtonBase
 								className='w-full text-left'
 								onClick={() => {
-									if (item.audioUrl == songInfo.audioUrl) {
+									if (item.audioUrl == currentSongInfo.audioUrl) {
 										if (isPlaying) {
 											dispatch(togglePlaying(false));
 										} else {
@@ -178,7 +180,8 @@ const AlbumDetails = () => {
 								<div className='w-full flex justify-between py-2 pl-4'>
 									<div
 										className={`flex items-center ${
-											item.title == songInfo.title && 'text-accent font-bold'
+											item.title == currentSongInfo.title &&
+											'text-accent font-bold'
 										}`}>
 										<span className='w-6'>{index + 1}</span>
 										<div>

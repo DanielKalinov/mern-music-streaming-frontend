@@ -16,7 +16,9 @@ const App = () => {
 	const audio = useRef(new Audio());
 	audio.current.preload = 'metadata';
 
-	const songInfo = useSelector((state) => state.audioPlayer.songInfo);
+	const currentSongInfo = useSelector(
+		(state) => state.audioPlayer.currentSongInfo
+	);
 	const queue = useSelector((state) => state.audioPlayer.queue);
 	const isSeeking = useSelector((state) => state.audioPlayer.isSeeking);
 	const isPlaying = useSelector((state) => state.audioPlayer.isPlaying);
@@ -41,10 +43,10 @@ const App = () => {
 		audio.current.onloadedmetadata = () => {
 			dispatch(setDuration(audio.current.duration));
 		};
-	}, [songInfo]);
+	}, [currentSongInfo]);
 
 	// const skipToNextTrack = () => {
-	// 	const nextTrack = queue[songInfo.position + 1];
+	// 	const nextTrack = queue[currentSongInfo.position + 1];
 
 	// 	if (nextTrack !== undefined) {
 	// 		dispatch(
@@ -69,10 +71,10 @@ const App = () => {
 
 	// set new src
 	useEffect(() => {
-		if (songInfo.audioUrl) {
-			audio.current.src = songInfo.audioUrl;
+		if (currentSongInfo.audioUrl) {
+			audio.current.src = currentSongInfo.audioUrl;
 		}
-	}, [songInfo]);
+	}, [currentSongInfo]);
 
 	// toggle playing
 	useEffect(() => {
@@ -81,7 +83,7 @@ const App = () => {
 		} else {
 			audio.current.pause();
 		}
-	}, [isPlaying, songInfo]);
+	}, [isPlaying, currentSongInfo]);
 
 	// seek audio to range slider value
 	useEffect(() => {

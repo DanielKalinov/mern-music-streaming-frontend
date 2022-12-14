@@ -3,7 +3,7 @@ import { createSlice } from '@reduxjs/toolkit';
 const initialState = {
 	isPlaying: false,
 	audioProgressValue: 0,
-	songInfo: {},
+	currentSongInfo: {},
 	averageColor: '',
 	queue: [],
 	loading: false,
@@ -23,7 +23,7 @@ export const audioPlayerSlice = createSlice({
 			state.audioProgressValue = action.payload;
 		},
 		setSongInfo: (state, action) => {
-			state.songInfo = action.payload;
+			state.currentSongInfo = action.payload;
 		},
 		setAverageColor: (state, action) => {
 			state.averageColor = action.payload;
