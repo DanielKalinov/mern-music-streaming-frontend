@@ -4,7 +4,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import {
 	setAudioProgressValue,
 	setDuration,
-	setSongInfo,
+	setCurrentSongInfo,
 	togglePlaying,
 } from './features/audioPlayerSlice';
 import { Route, Routes } from 'react-router-dom';
@@ -50,7 +50,7 @@ const App = () => {
 
 	// 	if (nextTrack !== undefined) {
 	// 		dispatch(
-	// 			setSongInfo({
+	// 			setCurrentSongInfo({
 	// 				position: nextTrack.position,
 	// 				title: nextTrack.title,
 	// 				artist: nextTrack.artist,

@@ -13,7 +13,7 @@ import {
 	setAverageColor,
 	setLoading,
 	setQueue,
-	setSongInfo,
+	setCurrentSongInfo,
 	togglePlaying,
 } from '../features/audioPlayerSlice';
 import { FastAverageColor } from 'fast-average-color';
@@ -126,7 +126,7 @@ const AlbumDetails = () => {
 
 								dispatch(togglePlaying(true));
 								dispatch(
-									setSongInfo({
+									setCurrentSongInfo({
 										position: 0,
 										title: firstTrack.title,
 										artist: firstTrack.artist,
@@ -164,7 +164,7 @@ const AlbumDetails = () => {
 										}
 									} else {
 										dispatch(
-											setSongInfo({
+											setCurrentSongInfo({
 												position: index,
 												title: item.title,
 												artist: item.artist,

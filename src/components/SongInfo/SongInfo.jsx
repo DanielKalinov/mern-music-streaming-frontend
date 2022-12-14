@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { FastAverageColor } from 'fast-average-color';
 import Slider from '@mui/material/Slider';
 import {
-	setSongInfo,
+	setCurrentSongInfo,
 	togglePlaying,
 	setIsSeeking,
 	setSeekCurrentTime,
@@ -68,7 +68,7 @@ const SongInfo = (props) => {
 
 	const skipTrack = (track) => {
 		dispatch(
-			setSongInfo({
+			setCurrentSongInfo({
 				position: track.position,
 				title: track.title,
 				artist: track.artist,

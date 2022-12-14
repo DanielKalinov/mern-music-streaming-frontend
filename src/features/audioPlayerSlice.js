@@ -22,7 +22,7 @@ export const audioPlayerSlice = createSlice({
 		setAudioProgressValue: (state, action) => {
 			state.audioProgressValue = action.payload;
 		},
-		setSongInfo: (state, action) => {
+		setCurrentSongInfo: (state, action) => {
 			state.currentSongInfo = action.payload;
 		},
 		setAverageColor: (state, action) => {
@@ -49,7 +49,7 @@ export const audioPlayerSlice = createSlice({
 export const {
 	togglePlaying,
 	setAudioProgressValue,
-	setSongInfo,
+	setCurrentSongInfo,
 	setAverageColor,
 	setQueue,
 	setLoading,
