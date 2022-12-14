@@ -20,7 +20,6 @@ const App = () => {
 	const queue = useSelector((state) => state.audioPlayer.queue);
 	const isSeeking = useSelector((state) => state.audioPlayer.isSeeking);
 	const isPlaying = useSelector((state) => state.audioPlayer.isPlaying);
-	const src = useSelector((state) => state.audioPlayer.src);
 
 	const dispatch = useDispatch();
 
