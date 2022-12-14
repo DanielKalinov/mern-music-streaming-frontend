@@ -182,7 +182,7 @@ const SongInfo = (props) => {
 							<span className='text-xs -mt-3'>
 								{formattedTime(rangeInputValue)}
 							</span>
-							<span className='text-xs -mt-3'>{songInfo.duration}</span>
+							<span className='text-xs -mt-3'>{formattedTime(duration)}</span>
 						</div>
 					</div>
 					<div className='flex justify-evenly'>
