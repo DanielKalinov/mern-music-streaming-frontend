@@ -29,46 +29,6 @@ const App = () => {
 
 	const dispatch = useDispatch();
 
-	useEffect(() => {
-		audio.current.ontimeupdate = () => {
-			!isSeeking && dispatch(setAudioProgressValue(audio.current.currentTime));
-		};
-	}, [isSeeking]);
-
-	useEffect(() => {
-		// audio.current.onended = () => {
-		// 	skipToNextTrack();
-		// };
-
-		audio.current.onloadedmetadata = () => {
-			dispatch(setDuration(audio.current.duration));
-		};
-	}, [currentSongInfo]);
-
-	// const skipToNextTrack = () => {
-	// 	const nextTrack = queue[currentSongInfo.position + 1];
-
-	// 	if (nextTrack !== undefined) {
-	// 		dispatch(
-	// 			setCurrentSongInfo({
-	// 				position: nextTrack.position,
-	// 				title: nextTrack.title,
-	// 				artist: nextTrack.artist,
-	// 				albumImageUrl: nextTrack.albumImageUrl,
-	// 				duration: nextTrack.duration,
-	// 			})
-	// 		);
-	// 		dispatch(togglePlaying(true));
-
-	// 		audio.current.src = nextTrack.audioUrl;
-	// 		audio.current.oncanplaythrough = () => {
-	// 			audio.current.play();
-	// 		};
-	// 	} else {
-	// 		dispatch(togglePlaying(false));
-	// 	}
-	// };
-
 	// set new src
 	useEffect(() => {
 		if (currentSongInfo.audioUrl) {
@@ -85,10 +45,53 @@ const App = () => {
 		}
 	}, [isPlaying, currentSongInfo]);
 
+	// save audio progress value on update
+	useEffect(() => {
+		audio.current.ontimeupdate = () => {
+			!isSeeking && dispatch(setAudioProgressValue(audio.current.currentTime));
+		};
+	}, [isSeeking]);
+
 	// seek audio to range slider value
 	useEffect(() => {
 		audio.current.currentTime = seekCurrentTime;
 	}, [seekCurrentTime]);
+
+	useEffect(() => {
+		// get audio duration on loaded data
+		audio.current.onloadedmetadata = () => {
+			dispatch(setDuration(audio.current.duration));
+		};
+
+		// skip to next track on song end
+		audio.current.onended = () => {
+			skipToNextTrack();
+		};
+	}, [currentSongInfo]);
+
+	const skipToNextTrack = () => {
+		const nextTrack = queue[currentSongInfo.position + 1];
+
+		if (nextTrack) {
+			dispatch(
+				setCurrentSongInfo({
+					position: nextTrack.position,
+					title: nextTrack.title,
+					artist: nextTrack.artist,
+					albumImageUrl: nextTrack.albumImageUrl,
+					duration: nextTrack.duration,
+				})
+			);
+			dispatch(togglePlaying(true));
+
+			audio.current.src = nextTrack.audioUrl;
+			audio.current.oncanplaythrough = () => {
+				audio.current.play();
+			};
+		} else {
+			dispatch(togglePlaying(false));
+		}
+	};
 
 	return (
 		<>
