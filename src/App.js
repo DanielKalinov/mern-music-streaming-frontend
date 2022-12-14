@@ -21,6 +21,10 @@ const App = () => {
 	const isSeeking = useSelector((state) => state.audioPlayer.isSeeking);
 	const isPlaying = useSelector((state) => state.audioPlayer.isPlaying);
 
+	const seekCurrentTime = useSelector(
+		(state) => state.audioPlayer.seekCurrentTime
+	);
+
 	const dispatch = useDispatch();
 
 	useEffect(() => {
@@ -63,12 +67,14 @@ const App = () => {
 	// 	}
 	// };
 
+	// set new src
 	useEffect(() => {
 		if (songInfo.audioUrl) {
 			audio.current.src = songInfo.audioUrl;
 		}
 	}, [songInfo]);
 
+	// toggle playing
 	useEffect(() => {
 		if (isPlaying) {
 			audio.current.play();
@@ -76,6 +82,11 @@ const App = () => {
 			audio.current.pause();
 		}
 	}, [isPlaying, songInfo]);
+
+	// seek audio to range slider value
+	useEffect(() => {
+		audio.current.currentTime = seekCurrentTime;
+	}, [seekCurrentTime]);
 
 	return (
 		<>
@@ -89,7 +100,7 @@ const App = () => {
 					</Routes>
 				</div>
 			</div>
-			<AudioControlsPanel audio={audio} />
+			<AudioControlsPanel />
 		</>
 	);
 };

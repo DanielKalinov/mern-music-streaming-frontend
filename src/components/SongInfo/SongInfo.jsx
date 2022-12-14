@@ -5,6 +5,7 @@ import {
 	setSongInfo,
 	togglePlaying,
 	setIsSeeking,
+	setSeekCurrentTime,
 } from '../../features/audioPlayerSlice';
 import ExpandMoreRoundedIcon from '@mui/icons-material/ExpandMoreRounded';
 import MoreVertRoundedIcon from '@mui/icons-material/MoreVertRounded';
@@ -19,13 +20,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import IconButton from '@mui/material/IconButton';
 
 const SongInfo = (props) => {
-	const {
-		audio,
-		showSongInfo,
-		setShowSongInfo,
-		rangeInputValue,
-		setRangeInputValue,
-	} = props;
+	const { showSongInfo, setShowSongInfo, rangeInputValue, setRangeInputValue } =
+		props;
 
 	const dispatch = useDispatch();
 
@@ -163,10 +159,9 @@ const SongInfo = (props) => {
 									setRangeInputValue(value);
 								}}
 								onChangeCommitted={(e, value) => {
-									audio.current.currentTime = value;
-
 									dispatch(setIsSeeking(false));
 									dispatch(togglePlaying(true));
+									dispatch(setSeekCurrentTime(value));
 								}}
 								sx={{
 									'& .MuiSlider-thumb': {
