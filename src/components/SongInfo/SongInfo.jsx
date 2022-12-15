@@ -130,7 +130,7 @@ const SongInfo = (props) => {
 					<div className='flex flex-col px-1'>
 						<div className='flex justify-between items-center mt-4'>
 							<div>
-								<span className='block font-bold text-xl mb-1'>
+								<span className='block font-bold text-xl'>
 									{currentSongInfo.title}
 								</span>
 								<span className='block text-inactive'>
