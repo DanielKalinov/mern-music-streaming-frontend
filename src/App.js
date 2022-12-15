@@ -22,9 +22,11 @@ const App = () => {
 	const queue = useSelector((state) => state.audioPlayer.queue);
 	const isSeeking = useSelector((state) => state.audioPlayer.isSeeking);
 	const isPlaying = useSelector((state) => state.audioPlayer.isPlaying);
-
 	const seekCurrentTime = useSelector(
 		(state) => state.audioPlayer.seekCurrentTime
+	);
+	const repeatCurrentSong = useSelector(
+		(state) => state.audioPlayer.repeatCurrentSong
 	);
 
 	const dispatch = useDispatch();
@@ -92,6 +94,10 @@ const App = () => {
 			dispatch(togglePlaying(false));
 		}
 	};
+
+	useEffect(() => {
+		audio.current.loop = repeatCurrentSong;
+	}, [repeatCurrentSong]);
 
 	return (
 		<>

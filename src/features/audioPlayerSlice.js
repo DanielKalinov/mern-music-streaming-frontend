@@ -10,6 +10,7 @@ const initialState = {
 	isSeeking: false,
 	duration: 0,
 	seekCurrentTime: 0,
+	repeatCurrentSong: false,
 };
 
 export const audioPlayerSlice = createSlice({
@@ -43,6 +44,9 @@ export const audioPlayerSlice = createSlice({
 		setSeekCurrentTime: (state, action) => {
 			state.seekCurrentTime = action.payload;
 		},
+		setRepeatCurrentSong: (state) => {
+			state.repeatCurrentSong = !state.repeatCurrentSong;
+		},
 	},
 });
 
@@ -56,6 +60,7 @@ export const {
 	setIsSeeking,
 	setDuration,
 	setSeekCurrentTime,
+	setRepeatCurrentSong,
 } = audioPlayerSlice.actions;
 
 export default audioPlayerSlice.reducer;

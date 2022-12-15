@@ -6,6 +6,7 @@ import {
 	togglePlaying,
 	setIsSeeking,
 	setSeekCurrentTime,
+	setRepeatCurrentSong,
 } from '../../features/audioPlayerSlice';
 import ExpandMoreRoundedIcon from '@mui/icons-material/ExpandMoreRounded';
 import MoreVertRoundedIcon from '@mui/icons-material/MoreVertRounded';
@@ -31,6 +32,10 @@ const SongInfo = (props) => {
 	);
 	const queue = useSelector((state) => state.audioPlayer.queue);
 	const duration = useSelector((state) => state.audioPlayer.duration);
+	const repeatCurrentSong = useSelector(
+		(state) => state.audioPlayer.repeatCurrentSong
+	);
+
 	const [averageColor, setAverageColor] = useState('');
 
 	useEffect(() => {
@@ -237,8 +242,8 @@ const SongInfo = (props) => {
 								}`}
 							/>
 						</IconButton>
-						<IconButton>
-							<RepeatIcon />
+						<IconButton onClick={() => dispatch(setRepeatCurrentSong())}>
+							<RepeatIcon className={`${repeatCurrentSong && 'text-accent'}`} />
 						</IconButton>
 					</div>
 				</div>
