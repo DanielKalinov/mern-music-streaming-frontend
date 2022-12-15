@@ -6,10 +6,11 @@ import HomeIcon from '@mui/icons-material/Home';
 import SearchIcon from '@mui/icons-material/Search';
 import LibraryMusicIcon from '@mui/icons-material/LibraryMusic';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
+import SkipNextIcon from '@mui/icons-material/SkipNext';
+import SkipPreviousIcon from '@mui/icons-material/SkipPrevious';
 import { togglePlaying } from '../../features/audioPlayerSlice';
 import { useDispatch, useSelector } from 'react-redux';
 import SongInfo from '../SongInfo/SongInfo';
-
 const AudioControlsPanel = () => {
 	const [showSongInfo, setShowSongInfo] = useState(false);
 	const [rangeInputValue, setRangeInputValue] = useState(0);
@@ -99,13 +100,12 @@ const AudioControlsPanel = () => {
 						</div>
 						<div className='flex bg-primary z-10'>
 							<IconButton
-								size='large'
-								edge='end'
-								onClick={(e) => e.stopPropagation()}>
-								<FavoriteBorderIcon />
+								onClick={(e) => {
+									e.stopPropagation();
+								}}>
+								<SkipPreviousIcon />
 							</IconButton>
 							<IconButton
-								size='large'
 								onClick={(e) => {
 									e.stopPropagation();
 
@@ -116,6 +116,12 @@ const AudioControlsPanel = () => {
 									}
 								}}>
 								{isPlaying ? <PauseIcon /> : <PlayArrowIcon />}
+							</IconButton>
+							<IconButton
+								onClick={(e) => {
+									e.stopPropagation();
+								}}>
+								<SkipNextIcon />
 							</IconButton>
 						</div>
 					</div>
