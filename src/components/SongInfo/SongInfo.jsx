@@ -191,17 +191,12 @@ const SongInfo = (props) => {
 							<ShuffleIcon />
 						</IconButton>
 						<IconButton
-							disabled={!queue[currentSongInfo.position - 1]}
+							disabled={currentSongInfo.position == 0}
 							onClick={() => {
 								dispatch(skipTrack('prev'));
 							}}
 							size='large'>
-							<SkipPreviousIcon
-								fontSize='large'
-								className={`${
-									!queue[currentSongInfo.position - 1] && 'text-disabled'
-								}`}
-							/>
+							<SkipPreviousIcon fontSize='large' />
 						</IconButton>
 						<IconButton
 							size='large'
@@ -222,17 +217,12 @@ const SongInfo = (props) => {
 							)}
 						</IconButton>
 						<IconButton
-							disabled={!queue[currentSongInfo.position + 1]}
+							disabled={currentSongInfo.position + 1 == queue.length}
 							onClick={() => {
 								dispatch(skipTrack('next'));
 							}}
 							size='large'>
-							<SkipNextIcon
-								fontSize='large'
-								className={`${
-									!queue[currentSongInfo.position + 1] && 'text-disabled'
-								}`}
-							/>
+							<SkipNextIcon fontSize='large' />
 						</IconButton>
 						<IconButton onClick={() => dispatch(setRepeatCurrentSong())}>
 							<RepeatIcon className={`${repeatCurrentSong && 'text-accent'}`} />

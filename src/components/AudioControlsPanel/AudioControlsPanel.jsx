@@ -121,6 +121,7 @@ const AudioControlsPanel = () => {
 								{isPlaying ? <PauseIcon /> : <PlayArrowIcon />}
 							</IconButton>
 							<IconButton
+								disabled={currentSongInfo.position + 1 == queue.length}
 								onClick={(e) => {
 									e.stopPropagation();
 
