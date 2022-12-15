@@ -147,7 +147,7 @@ const SongInfo = (props) => {
 								<span className='block font-bold text-xl mb-1'>
 									{currentSongInfo.title}
 								</span>
-								<span className='block text-zinc-300'>
+								<span className='block text-inactive'>
 									{currentSongInfo.artist}
 								</span>
 							</div>

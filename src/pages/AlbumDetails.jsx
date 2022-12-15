@@ -108,7 +108,7 @@ const AlbumDetails = () => {
 							<span className='block font-bold text-2xl'>
 								{albumDetails.name} • {albumDetails.year}
 							</span>
-							<span className='block text-lg text-zinc-300'>
+							<span className='block text-lg text-inactive'>
 								{albumDetails.artist}
 							</span>
 						</div>
@@ -186,7 +186,7 @@ const AlbumDetails = () => {
 										<span className='w-6'>{index + 1}</span>
 										<div>
 											<span className='block text-sm'>{item.title}</span>
-											<span className='block text-sm text-zinc-300 font-normal'>
+											<span className='block text-sm text-inactive font-normal'>
 												{albumDetails.artist}
 											</span>
 										</div>
@@ -205,7 +205,7 @@ const AlbumDetails = () => {
 									<span className='w-6'>12</span>
 									<div>
 										<span className='block text-sm'>Title</span>
-										<span className='block text-sm text-zinc-300 font-normal'>
+										<span className='block text-sm text-inactive font-normal'>
 											Artist
 										</span>
 									</div>
@@ -223,7 +223,7 @@ const AlbumDetails = () => {
 									<span className='w-6'>12</span>
 									<div>
 										<span className='block text-sm'>Title</span>
-										<span className='block text-sm text-zinc-300 font-normal'>
+										<span className='block text-sm text-inactive font-normal'>
 											Artist
 										</span>
 									</div>
@@ -241,7 +241,7 @@ const AlbumDetails = () => {
 									<span className='w-6'>12</span>
 									<div>
 										<span className='block text-sm'>Title</span>
-										<span className='block text-sm text-zinc-300 font-normal'>
+										<span className='block text-sm text-inactive font-normal'>
 											Artist
 										</span>
 									</div>
@@ -259,7 +259,7 @@ const AlbumDetails = () => {
 									<span className='w-6'>12</span>
 									<div>
 										<span className='block text-sm'>Title</span>
-										<span className='block text-sm text-zinc-300 font-normal'>
+										<span className='block text-sm text-inactive font-normal'>
 											Artist
 										</span>
 									</div>
@@ -277,7 +277,7 @@ const AlbumDetails = () => {
 									<span className='w-6'>12</span>
 									<div>
 										<span className='block text-sm'>Title</span>
-										<span className='block text-sm text-zinc-300 font-normal'>
+										<span className='block text-sm text-inactive font-normal'>
 											Artist
 										</span>
 									</div>
@@ -295,7 +295,7 @@ const AlbumDetails = () => {
 									<span className='w-6'>12</span>
 									<div>
 										<span className='block text-sm'>Title</span>
-										<span className='block text-sm text-zinc-300 font-normal'>
+										<span className='block text-sm text-inactive font-normal'>
 											Artist
 										</span>
 									</div>
@@ -313,7 +313,7 @@ const AlbumDetails = () => {
 									<span className='w-6'>12</span>
 									<div>
 										<span className='block text-sm'>Title</span>
-										<span className='block text-sm text-zinc-300 font-normal'>
+										<span className='block text-sm text-inactive font-normal'>
 											Artist
 										</span>
 									</div>
@@ -331,7 +331,7 @@ const AlbumDetails = () => {
 									<span className='w-6'>12</span>
 									<div>
 										<span className='block text-sm'>Title</span>
-										<span className='block text-sm text-zinc-300 font-normal'>
+										<span className='block text-sm text-inactive font-normal'>
 											Artist
 										</span>
 									</div>
@@ -349,7 +349,7 @@ const AlbumDetails = () => {
 									<span className='w-6'>12</span>
 									<div>
 										<span className='block text-sm'>Title</span>
-										<span className='block text-sm text-zinc-300 font-normal'>
+										<span className='block text-sm text-inactive font-normal'>
 											Artist
 										</span>
 									</div>
@@ -367,7 +367,7 @@ const AlbumDetails = () => {
 									<span className='w-6'>12</span>
 									<div>
 										<span className='block text-sm'>Title</span>
-										<span className='block text-sm text-zinc-300 font-normal'>
+										<span className='block text-sm text-inactive font-normal'>
 											Artist
 										</span>
 									</div>
@@ -385,7 +385,7 @@ const AlbumDetails = () => {
 									<span className='w-6'>12</span>
 									<div>
 										<span className='block text-sm'>Title</span>
-										<span className='block text-sm text-zinc-300 font-normal'>
+										<span className='block text-sm text-inactive font-normal'>
 											Artist
 										</span>
 									</div>
@@ -403,7 +403,7 @@ const AlbumDetails = () => {
 									<span className='w-6'>12</span>
 									<div>
 										<span className='block text-sm'>Title</span>
-										<span className='block text-sm text-zinc-300 font-normal'>
+										<span className='block text-sm text-inactive font-normal'>
 											Artist
 										</span>
 									</div>
@@ -421,7 +421,7 @@ const AlbumDetails = () => {
 									<span className='w-6'>12</span>
 									<div>
 										<span className='block text-sm'>Title</span>
-										<span className='block text-sm text-zinc-300 font-normal'>
+										<span className='block text-sm text-inactive font-normal'>
 											Artist
 										</span>
 									</div>

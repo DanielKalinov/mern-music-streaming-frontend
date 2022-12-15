@@ -89,7 +89,7 @@ const AudioControlsPanel = () => {
 											<span className='block text-sm font-bold'>
 												{item.title}
 											</span>
-											<span className='block text-sm text-zinc-300'>
+											<span className='block text-sm text-inactive'>
 												{item.artist}
 											</span>
 										</div>
