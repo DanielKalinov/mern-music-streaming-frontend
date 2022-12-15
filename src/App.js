@@ -60,6 +60,10 @@ const App = () => {
 	}, [seekCurrentTime]);
 
 	useEffect(() => {
+		audio.current.loop = repeatCurrentSong;
+	}, [repeatCurrentSong]);
+
+	useEffect(() => {
 		// get audio duration on loaded data
 		audio.current.onloadedmetadata = () => {
 			dispatch(setDuration(audio.current.duration));
@@ -94,10 +98,6 @@ const App = () => {
 			dispatch(togglePlaying(false));
 		}
 	};
-
-	useEffect(() => {
-		audio.current.loop = repeatCurrentSong;
-	}, [repeatCurrentSong]);
 
 	return (
 		<>
