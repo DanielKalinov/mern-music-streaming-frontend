@@ -161,14 +161,20 @@ const SongInfo = (props) => {
 								sx={{
 									'& .MuiSlider-thumb': {
 										backgroundColor: '#ffffff',
+										height: 14,
+										width: 14,
 										'&.Mui-active': {
 											boxShadow: '0 0 0 7px rgba(255, 255, 255, 16%)',
-											height: 14,
-											width: 14,
+											height: 16,
+											width: 16,
 										},
 									},
 									'& .MuiSlider-track': {
 										backgroundColor: '#ec4899',
+										height: '4px',
+									},
+									'& .MuiSlider-rail': {
+										height: '4px',
 									},
 								}}
 							/>
