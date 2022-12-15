@@ -114,7 +114,7 @@ const AlbumDetails = () => {
 						</div>
 					</div>
 				</div>
-				<div className='flex justify-between px-4'>
+				<div className='flex justify-between px-4 mb-2'>
 					<IconButton edge='start'>
 						<FavoriteBorderIcon fontSize='large' />
 					</IconButton>
