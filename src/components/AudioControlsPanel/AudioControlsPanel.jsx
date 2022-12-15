@@ -100,6 +100,7 @@ const AudioControlsPanel = () => {
 						</div>
 						<div className='flex bg-primary z-10'>
 							<IconButton
+								disabled={currentSongInfo.position == 0}
 								onClick={(e) => {
 									e.stopPropagation();
 
