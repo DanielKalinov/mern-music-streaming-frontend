@@ -49,7 +49,7 @@ export const audioPlayerSlice = createSlice({
 		},
 		skipTrack: (state, action) => {
 			const trackPosition =
-				state.currentSongInfo.position + (action.payload == 'prev' ? -1 : 1);
+				state.currentSongInfo.position + (action.payload == 'next' ? 1 : -1);
 
 			const track = state.queue[trackPosition];
 
