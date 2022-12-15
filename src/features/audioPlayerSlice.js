@@ -53,14 +53,7 @@ export const audioPlayerSlice = createSlice({
 
 			const track = state.queue[trackPosition];
 
-			state.currentSongInfo = {
-				position: track.position,
-				title: track.title,
-				artist: track.artist,
-				albumImageUrl: track.albumImageUrl,
-				duration: track.duration,
-				audioUrl: track.audioUrl,
-			};
+			state.currentSongInfo = track;
 			state.isPlaying = true;
 		},
 	},
