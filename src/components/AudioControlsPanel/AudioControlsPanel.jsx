@@ -5,12 +5,12 @@ import IconButton from '@mui/material/IconButton';
 import HomeIcon from '@mui/icons-material/Home';
 import SearchIcon from '@mui/icons-material/Search';
 import LibraryMusicIcon from '@mui/icons-material/LibraryMusic';
-import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import SkipNextIcon from '@mui/icons-material/SkipNext';
 import SkipPreviousIcon from '@mui/icons-material/SkipPrevious';
-import { togglePlaying } from '../../features/audioPlayerSlice';
+import { skipTrack, togglePlaying } from '../../features/audioPlayerSlice';
 import { useDispatch, useSelector } from 'react-redux';
 import SongInfo from '../SongInfo/SongInfo';
+
 const AudioControlsPanel = () => {
 	const [showSongInfo, setShowSongInfo] = useState(false);
 	const [rangeInputValue, setRangeInputValue] = useState(0);
@@ -102,6 +102,8 @@ const AudioControlsPanel = () => {
 							<IconButton
 								onClick={(e) => {
 									e.stopPropagation();
+
+									dispatch(skipTrack('prev'));
 								}}>
 								<SkipPreviousIcon />
 							</IconButton>
@@ -120,6 +122,8 @@ const AudioControlsPanel = () => {
 							<IconButton
 								onClick={(e) => {
 									e.stopPropagation();
+
+									dispatch(skipTrack('next'));
 								}}>
 								<SkipNextIcon />
 							</IconButton>

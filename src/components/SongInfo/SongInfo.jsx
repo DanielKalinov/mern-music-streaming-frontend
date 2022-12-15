@@ -2,11 +2,11 @@ import React, { useEffect, useState } from 'react';
 import { FastAverageColor } from 'fast-average-color';
 import Slider from '@mui/material/Slider';
 import {
-	setCurrentSongInfo,
 	togglePlaying,
 	setIsSeeking,
 	setSeekCurrentTime,
 	setRepeatCurrentSong,
+	skipTrack,
 } from '../../features/audioPlayerSlice';
 import ExpandMoreRoundedIcon from '@mui/icons-material/ExpandMoreRounded';
 import MoreVertRoundedIcon from '@mui/icons-material/MoreVertRounded';
@@ -69,20 +69,6 @@ const SongInfo = (props) => {
 		const minutes = parseInt(val / 60);
 
 		return `${minutes}:${seconds}`;
-	};
-
-	const skipTrack = (track) => {
-		dispatch(
-			setCurrentSongInfo({
-				position: track.position,
-				title: track.title,
-				artist: track.artist,
-				albumImageUrl: track.albumImageUrl,
-				duration: track.duration,
-				audioUrl: track.audioUrl,
-			})
-		);
-		dispatch(togglePlaying(true));
 	};
 
 	return (
@@ -201,7 +187,7 @@ const SongInfo = (props) => {
 						<IconButton
 							disabled={!queue[currentSongInfo.position - 1]}
 							onClick={() => {
-								skipTrack(queue[currentSongInfo.position - 1]);
+								dispatch(skipTrack('prev'));
 							}}
 							size='large'>
 							<SkipPreviousIcon
@@ -232,7 +218,7 @@ const SongInfo = (props) => {
 						<IconButton
 							disabled={!queue[currentSongInfo.position + 1]}
 							onClick={() => {
-								skipTrack(queue[currentSongInfo.position + 1]);
+								dispatch(skipTrack('next'));
 							}}
 							size='large'>
 							<SkipNextIcon

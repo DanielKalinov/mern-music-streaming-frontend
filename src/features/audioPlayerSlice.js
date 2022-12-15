@@ -47,6 +47,22 @@ export const audioPlayerSlice = createSlice({
 		setRepeatCurrentSong: (state) => {
 			state.repeatCurrentSong = !state.repeatCurrentSong;
 		},
+		skipTrack: (state, action) => {
+			const trackPosition =
+				state.currentSongInfo.position + (action.payload == 'prev' ? -1 : 1);
+
+			const track = state.queue[trackPosition];
+
+			state.currentSongInfo = {
+				position: track.position,
+				title: track.title,
+				artist: track.artist,
+				albumImageUrl: track.albumImageUrl,
+				duration: track.duration,
+				audioUrl: track.audioUrl,
+			};
+			state.isPlaying = true;
+		},
 	},
 });
 
@@ -61,6 +77,7 @@ export const {
 	setDuration,
 	setSeekCurrentTime,
 	setRepeatCurrentSong,
+	skipTrack,
 } = audioPlayerSlice.actions;
 
 export default audioPlayerSlice.reducer;
