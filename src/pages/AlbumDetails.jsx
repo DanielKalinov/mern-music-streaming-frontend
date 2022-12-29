@@ -119,7 +119,7 @@ const AlbumDetails = () => {
 						<FavoriteBorderIcon fontSize='large' />
 					</IconButton>
 					<IconButton
-						className='!bg-accent rounded-full coloredShadow !transition-transform active:scale-90'
+						className='rounded-full !border-2 !border-solid !transition-transform active:scale-90'
 						onClick={() => {
 							if (!currentSongInfo.audioUrl) {
 								const firstTrack = albumDetails.songs[0];
