@@ -31,10 +31,15 @@ const App = () => {
 
 	const dispatch = useDispatch();
 
-	// set new src
+	// set new src and play
 	useEffect(() => {
 		if (currentSongInfo.audioUrl) {
 			audio.current.src = currentSongInfo.audioUrl;
+
+			// play audio once it has loaded
+			audio.current.oncanplaythrough = () => {
+				audio.current.play();
+			};
 		}
 	}, [currentSongInfo]);
 
@@ -45,7 +50,7 @@ const App = () => {
 		} else {
 			audio.current.pause();
 		}
-	}, [isPlaying, currentSongInfo]);
+	}, [isPlaying]);
 
 	// save audio progress value on update
 	useEffect(() => {
