@@ -77,25 +77,23 @@ const AudioControlsPanel = () => {
 										songInfoRef?.current?.clientWidth * currentSongInfo.position
 									}px)`,
 								}}>
-								{queue.map((item, index) => {
-									return (
-										<div
-											ref={songInfoRef}
-											key={index}
-											className='transition-all duration-1000 ease-in-out'
-											style={{
-												width: window.innerWidth,
-												opacity: currentSongInfo.position == index ? 1 : 0,
-											}}>
-											<span className='block text-sm font-bold'>
-												{item.title}
-											</span>
-											<span className='block text-sm text-inactive'>
-												{item.artist}
-											</span>
-										</div>
-									);
-								})}
+								{queue.map((item, index) => (
+									<div
+										ref={songInfoRef}
+										key={index}
+										className='transition-all duration-1000 ease-in-out'
+										style={{
+											width: window.innerWidth,
+											opacity: currentSongInfo.position == index ? 1 : 0,
+										}}>
+										<span className='block text-sm font-bold'>
+											{item.title}
+										</span>
+										<span className='block text-sm text-inactive'>
+											{item.artist}
+										</span>
+									</div>
+								))}
 							</div>
 						</div>
 						<div className='flex bg-primary z-10'>
