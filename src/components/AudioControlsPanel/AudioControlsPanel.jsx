@@ -59,12 +59,21 @@ const AudioControlsPanel = () => {
 						onClick={() => setShowSongInfo(true)}>
 						<div className='flex items-center'>
 							<div className='p-2 z-10 bg-primary'>
-								<img
-									src={currentSongInfo.albumImageUrl}
-									width={40}
-									height={40}
-									className='rounded-md'
-								/>
+								<div className='w-[40px] h-[40px] relative'>
+									{queue.map((item, index) => (
+										<img
+											key={index}
+											src={item.albumImageUrl}
+											width={40}
+											height={40}
+											className={`${
+												currentSongInfo.position == index
+													? 'opacity-1'
+													: 'opacity-0'
+											} absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 rounded-md transition-opacity duration-500 ease-in-out`}
+										/>
+									))}
+								</div>
 							</div>
 
 							<div
