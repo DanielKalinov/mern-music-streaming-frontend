@@ -6,6 +6,7 @@ import {
 	setDuration,
 	setCurrentSongInfo,
 	togglePlaying,
+	setSeekCurrentTime,
 } from './features/audioPlayerSlice';
 import { Route, Routes } from 'react-router-dom';
 import Albums from './pages/Albums';
@@ -62,6 +63,9 @@ const App = () => {
 	// seek audio to range slider value
 	useEffect(() => {
 		audio.current.currentTime = seekCurrentTime;
+
+		// set value to null, if seeked value is 0, in order to update state
+		seekCurrentTime == 0 && dispatch(setSeekCurrentTime(null));
 	}, [seekCurrentTime]);
 
 	useEffect(() => {

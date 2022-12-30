@@ -9,7 +9,7 @@ const initialState = {
 	loading: false,
 	isSeeking: false,
 	duration: 0,
-	seekCurrentTime: 0,
+	seekCurrentTime: null,
 	repeatCurrentSong: false,
 };
 
