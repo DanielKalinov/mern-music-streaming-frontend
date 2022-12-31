@@ -95,14 +95,10 @@ const App = () => {
 					artist: nextTrack.artist,
 					albumImageUrl: nextTrack.albumImageUrl,
 					duration: nextTrack.duration,
+					audioUrl: nextTrack.audioUrl,
 				})
 			);
 			dispatch(togglePlaying(true));
-
-			audio.current.src = nextTrack.audioUrl;
-			audio.current.oncanplaythrough = () => {
-				audio.current.play();
-			};
 		} else {
 			dispatch(togglePlaying(false));
 		}
