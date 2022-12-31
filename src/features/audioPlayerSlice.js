@@ -9,7 +9,6 @@ const initialState = {
 	loading: false,
 	isSeeking: false,
 	duration: 0,
-	seekCurrentTime: null,
 	repeatCurrentSong: false,
 };
 
@@ -41,9 +40,6 @@ export const audioPlayerSlice = createSlice({
 		setDuration: (state, action) => {
 			state.duration = action.payload;
 		},
-		setSeekCurrentTime: (state, action) => {
-			state.seekCurrentTime = action.payload;
-		},
 		setRepeatCurrentSong: (state) => {
 			state.repeatCurrentSong = !state.repeatCurrentSong;
 		},
@@ -68,7 +64,6 @@ export const {
 	setLoading,
 	setIsSeeking,
 	setDuration,
-	setSeekCurrentTime,
 	setRepeatCurrentSong,
 	skipTrack,
 } = audioPlayerSlice.actions;

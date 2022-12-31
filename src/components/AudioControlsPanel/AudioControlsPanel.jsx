@@ -11,7 +11,7 @@ import { skipTrack, togglePlaying } from '../../features/audioPlayerSlice';
 import { useDispatch, useSelector } from 'react-redux';
 import SongInfo from '../SongInfo/SongInfo';
 
-const AudioControlsPanel = () => {
+const AudioControlsPanel = ({ setSeekCurrentTime }) => {
 	const [showSongInfo, setShowSongInfo] = useState(false);
 	const [rangeInputValue, setRangeInputValue] = useState(0);
 	const isPlaying = useSelector((state) => state.audioPlayer.isPlaying);
@@ -165,6 +165,7 @@ const AudioControlsPanel = () => {
 				setShowSongInfo={setShowSongInfo}
 				rangeInputValue={rangeInputValue}
 				setRangeInputValue={setRangeInputValue}
+				setSeekCurrentTime={setSeekCurrentTime}
 			/>
 		</>
 	);

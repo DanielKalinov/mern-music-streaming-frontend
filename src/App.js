@@ -6,7 +6,6 @@ import {
 	setDuration,
 	setCurrentSongInfo,
 	togglePlaying,
-	setSeekCurrentTime,
 } from './features/audioPlayerSlice';
 import { Route, Routes } from 'react-router-dom';
 import Albums from './pages/Albums';
@@ -23,9 +22,6 @@ const App = () => {
 	const queue = useSelector((state) => state.audioPlayer.queue);
 	const isSeeking = useSelector((state) => state.audioPlayer.isSeeking);
 	const isPlaying = useSelector((state) => state.audioPlayer.isPlaying);
-	const seekCurrentTime = useSelector(
-		(state) => state.audioPlayer.seekCurrentTime
-	);
 	const repeatCurrentSong = useSelector(
 		(state) => state.audioPlayer.repeatCurrentSong
 	);
@@ -59,14 +55,6 @@ const App = () => {
 			!isSeeking && dispatch(setAudioProgressValue(audio.current.currentTime));
 		};
 	}, [isSeeking]);
-
-	// seek audio to range slider value
-	useEffect(() => {
-		audio.current.currentTime = seekCurrentTime;
-
-		// set value to null, if seeked value is 0, in order to update state
-		seekCurrentTime == 0 && dispatch(setSeekCurrentTime(null));
-	}, [seekCurrentTime]);
 
 	useEffect(() => {
 		audio.current.loop = repeatCurrentSong;
@@ -104,6 +92,10 @@ const App = () => {
 		}
 	};
 
+	const setSeekCurrentTime = (value) => {
+		audio.current.currentTime = value;
+	};
+
 	return (
 		<>
 			{/* offset panel height */}
@@ -116,7 +108,7 @@ const App = () => {
 					</Routes>
 				</div>
 			</div>
-			<AudioControlsPanel />
+			<AudioControlsPanel setSeekCurrentTime={setSeekCurrentTime} />
 		</>
 	);
 };
