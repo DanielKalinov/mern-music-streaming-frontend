@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef } from 'react';
 import AudioControlsPanel from './components/AudioControlsPanel';
 import { useSelector, useDispatch } from 'react-redux';
 import {
@@ -18,7 +18,6 @@ const App = () => {
 	const currentSongInfo = useSelector(
 		(state) => state.audioPlayer.currentSongInfo
 	);
-	const queue = useSelector((state) => state.audioPlayer.queue);
 	const isSeeking = useSelector((state) => state.audioPlayer.isSeeking);
 	const isPlaying = useSelector((state) => state.audioPlayer.isPlaying);
 	const repeatCurrentSong = useSelector(
