@@ -1,12 +1,27 @@
 import React from 'react';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import {
+	togglePlaying,
+	setRepeatCurrentSong,
+	skipTrack,
+} from '../../features/audioPlayerSlice';
 import { IconButton } from '@mui/material';
 import ExpandMoreRoundedIcon from '@mui/icons-material/ExpandMoreRounded';
 import DragHandleIcon from '@mui/icons-material/DragHandle';
+import SkipNextIcon from '@mui/icons-material/SkipNext';
+import SkipPreviousIcon from '@mui/icons-material/SkipPrevious';
+import ShuffleIcon from '@mui/icons-material/Shuffle';
+import RepeatIcon from '@mui/icons-material/Repeat';
+import PlayArrowIcon from '@mui/icons-material/PlayArrow';
+import PauseIcon from '@mui/icons-material/Pause';
 
 const QueueInfo = (props) => {
 	const { showQueueInfo, setShowQueueInfo } = props;
+
+	const dispatch = useDispatch();
+
 	const queue = useSelector((state) => state.audioPlayer.queue);
+	const isPlaying = useSelector((state) => state.audioPlayer.isPlaying);
 	const currentSongInfo = useSelector(
 		(state) => state.audioPlayer.currentSongInfo
 	);
@@ -18,7 +33,7 @@ const QueueInfo = (props) => {
 			className={`${showQueueInfo ? 'opacity-100' : 'opacity-0'} ${
 				showQueueInfo ? 'translate-y-0' : 'translate-y-full'
 			} bg-primary z-40 fixed top-0 h-full w-full [transition:transform_300ms_ease-in-out,opacity_200ms_ease-in-out]`}>
-			<div>
+			<div className='h-full flex flex-col'>
 				<div className='flex justify-between items-center'>
 					<IconButton
 						onClick={() => {
@@ -31,39 +46,39 @@ const QueueInfo = (props) => {
 						<span className='block font-bold'>Album Name</span>
 					</div>
 				</div>
-				<div className='px-6'>
-					<div className='mb-6'>
-						<span className='block mb-2 font-bold '>Now Playing</span>
-						<div className='flex items-center'>
-							<div className='mr-2'>
-								<div className='w-[40px] h-[40px] relative'>
-									{queue.map((item, index) => (
-										<img
-											key={index}
-											src={item.albumImageUrl}
-											width={40}
-											height={40}
-											className={`${
-												currentSongInfo.position == index
-													? 'opacity-1'
-													: 'opacity-0'
-											} absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 rounded-md transition-opacity duration-300 ease-in-out`}
-										/>
-									))}
-								</div>
-							</div>
-
-							<div>
-								<span className='block text-sm font-semibold'>
-									{currentSongInfo.title}
-								</span>
-								<span className='block text-sm text-inactive'>
-									{currentSongInfo.artist}
-								</span>
+				<div className='mb-6 px-6'>
+					<span className='block mb-2 font-bold '>Now Playing</span>
+					<div className='flex items-center'>
+						<div className='mr-2'>
+							<div className='w-[40px] h-[40px] relative'>
+								{queue.map((item, index) => (
+									<img
+										key={index}
+										src={item.albumImageUrl}
+										width={40}
+										height={40}
+										className={`${
+											currentSongInfo.position == index
+												? 'opacity-1'
+												: 'opacity-0'
+										} absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 rounded-md transition-opacity duration-300 ease-in-out`}
+									/>
+								))}
 							</div>
 						</div>
+
+						<div>
+							<span className='block text-sm font-semibold'>
+								{currentSongInfo.title}
+							</span>
+							<span className='block text-sm text-inactive'>
+								{currentSongInfo.artist}
+							</span>
+						</div>
 					</div>
-					{nextFromList.length > 0 && (
+				</div>
+				{nextFromList.length > 0 && (
+					<div className='px-6'>
 						<div>
 							<span className='block mb-2 font-bold'>
 								Next From: Album Name
@@ -86,7 +101,45 @@ const QueueInfo = (props) => {
 								))}
 							</ul>
 						</div>
-					)}
+					</div>
+				)}
+				<div className='mt-auto w-full'>
+					<div className='flex justify-evenly my-4'>
+						<IconButton
+							disabled={currentSongInfo.position == 0}
+							onClick={() => {
+								dispatch(skipTrack('prev'));
+							}}
+							size='large'>
+							<SkipPreviousIcon fontSize='large' />
+						</IconButton>
+						<IconButton
+							size='large'
+							className='!bg-white/10 rounded-full !transition-transform active:scale-90'
+							onClick={(e) => {
+								e.stopPropagation();
+
+								if (isPlaying) {
+									dispatch(togglePlaying(false));
+								} else {
+									dispatch(togglePlaying(true));
+								}
+							}}>
+							{isPlaying ? (
+								<PauseIcon fontSize='large' />
+							) : (
+								<PlayArrowIcon fontSize='large' />
+							)}
+						</IconButton>
+						<IconButton
+							disabled={currentSongInfo.position + 1 == queue.length}
+							onClick={() => {
+								dispatch(skipTrack('next'));
+							}}
+							size='large'>
+							<SkipNextIcon fontSize='large' />
+						</IconButton>
+					</div>
 				</div>
 			</div>
 		</div>
