@@ -23,6 +23,7 @@ const SongInfo = (props) => {
 	const {
 		showSongInfo,
 		setShowSongInfo,
+		setShowQueue,
 		rangeInputValue,
 		setRangeInputValue,
 		setSeekCurrentTime,
@@ -97,7 +98,7 @@ const SongInfo = (props) => {
 							<span className='block tracking-widest'>PLAYING FROM ALBUM</span>
 							<span className='block font-bold'>Album Name</span>
 						</div>
-						<IconButton>
+						<IconButton onClick={() => setShowQueue(true)}>
 							<FormatListBulletedIcon />
 						</IconButton>
 					</div>

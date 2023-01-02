@@ -13,6 +13,7 @@ import SongInfo from '../SongInfo/SongInfo';
 
 const AudioControlsPanel = ({ setSeekCurrentTime }) => {
 	const [showSongInfo, setShowSongInfo] = useState(false);
+	const [showQueue, setShowQueue] = useState(false);
 	const [rangeInputValue, setRangeInputValue] = useState(0);
 	const isPlaying = useSelector((state) => state.audioPlayer.isPlaying);
 	const duration = useSelector((state) => state.audioPlayer.duration);
@@ -27,7 +28,6 @@ const AudioControlsPanel = ({ setSeekCurrentTime }) => {
 	const dispatch = useDispatch();
 
 	const staticProgressBarRef = useRef();
-	const songInfoRef = useRef();
 
 	useEffect(() => {
 		setRangeInputValue(audioProgressValue);
@@ -146,6 +146,7 @@ const AudioControlsPanel = ({ setSeekCurrentTime }) => {
 				rangeInputValue={rangeInputValue}
 				setRangeInputValue={setRangeInputValue}
 				setSeekCurrentTime={setSeekCurrentTime}
+				setShowQueue={setShowQueue}
 			/>
 		</>
 	);
