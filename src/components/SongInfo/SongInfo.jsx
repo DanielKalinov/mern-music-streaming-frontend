@@ -8,7 +8,7 @@ import {
 	skipTrack,
 } from '../../features/audioPlayerSlice';
 import ExpandMoreRoundedIcon from '@mui/icons-material/ExpandMoreRounded';
-import MoreVertRoundedIcon from '@mui/icons-material/MoreVertRounded';
+import FormatListBulletedIcon from '@mui/icons-material/FormatListBulleted';
 import SkipNextIcon from '@mui/icons-material/SkipNext';
 import SkipPreviousIcon from '@mui/icons-material/SkipPrevious';
 import ShuffleIcon from '@mui/icons-material/Shuffle';
@@ -98,7 +98,7 @@ const SongInfo = (props) => {
 							<span className='block font-bold'>Album Name</span>
 						</div>
 						<IconButton>
-							<MoreVertRoundedIcon />
+							<FormatListBulletedIcon />
 						</IconButton>
 					</div>
 				</div>
