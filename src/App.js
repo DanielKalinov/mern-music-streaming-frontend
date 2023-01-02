@@ -37,6 +37,16 @@ const App = () => {
 				audio.current.play();
 			};
 		}
+
+		// get audio duration on loaded data
+		audio.current.onloadedmetadata = () => {
+			dispatch(setDuration(audio.current.duration));
+		};
+
+		// skip to next track on song end
+		audio.current.onended = () => {
+			dispatch(skipTrack('next'));
+		};
 	}, [currentSongInfo]);
 
 	// toggle playing
@@ -58,18 +68,6 @@ const App = () => {
 	useEffect(() => {
 		audio.current.loop = repeatCurrentSong;
 	}, [repeatCurrentSong]);
-
-	useEffect(() => {
-		// get audio duration on loaded data
-		audio.current.onloadedmetadata = () => {
-			dispatch(setDuration(audio.current.duration));
-		};
-
-		// skip to next track on song end
-		audio.current.onended = () => {
-			dispatch(skipTrack('next'));
-		};
-	}, [currentSongInfo]);
 
 	const setSeekCurrentTime = (value) => {
 		audio.current.currentTime = value;
