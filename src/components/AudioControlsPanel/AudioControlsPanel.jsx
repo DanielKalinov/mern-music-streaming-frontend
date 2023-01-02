@@ -10,10 +10,11 @@ import SkipPreviousIcon from '@mui/icons-material/SkipPrevious';
 import { skipTrack, togglePlaying } from '../../features/audioPlayerSlice';
 import { useDispatch, useSelector } from 'react-redux';
 import SongInfo from '../SongInfo/SongInfo';
+import QueueInfo from '../QueueInfo/QueueInfo';
 
 const AudioControlsPanel = ({ setSeekCurrentTime }) => {
 	const [showSongInfo, setShowSongInfo] = useState(false);
-	const [showQueue, setShowQueue] = useState(false);
+	const [showQueueInfo, setShowQueueInfo] = useState(false);
 	const [rangeInputValue, setRangeInputValue] = useState(0);
 	const isPlaying = useSelector((state) => state.audioPlayer.isPlaying);
 	const duration = useSelector((state) => state.audioPlayer.duration);
@@ -146,7 +147,12 @@ const AudioControlsPanel = ({ setSeekCurrentTime }) => {
 				rangeInputValue={rangeInputValue}
 				setRangeInputValue={setRangeInputValue}
 				setSeekCurrentTime={setSeekCurrentTime}
-				setShowQueue={setShowQueue}
+				setShowQueueInfo={setShowQueueInfo}
+			/>
+
+			<QueueInfo
+				showQueueInfo={showQueueInfo}
+				setShowQueueInfo={setShowQueueInfo}
 			/>
 		</>
 	);
