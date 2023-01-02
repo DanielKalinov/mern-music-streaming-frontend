@@ -4,8 +4,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import {
 	setAudioProgressValue,
 	setDuration,
-	setCurrentSongInfo,
-	togglePlaying,
+	skipTrack,
 } from './features/audioPlayerSlice';
 import { Route, Routes } from 'react-router-dom';
 import Albums from './pages/Albums';
@@ -34,7 +33,7 @@ const App = () => {
 			audio.current.src = currentSongInfo.audioUrl;
 
 			// play audio once it has loaded
-			audio.current.oncanplaythrough = () => {
+			audio.current.onloadeddata = () => {
 				audio.current.play();
 			};
 		}
@@ -68,29 +67,9 @@ const App = () => {
 
 		// skip to next track on song end
 		audio.current.onended = () => {
-			skipToNextTrack();
+			dispatch(skipTrack('next'));
 		};
 	}, [currentSongInfo]);
-
-	const skipToNextTrack = () => {
-		const nextTrack = queue[currentSongInfo.position + 1];
-
-		if (nextTrack) {
-			dispatch(
-				setCurrentSongInfo({
-					position: nextTrack.position,
-					title: nextTrack.title,
-					artist: nextTrack.artist,
-					albumImageUrl: nextTrack.albumImageUrl,
-					duration: nextTrack.duration,
-					audioUrl: nextTrack.audioUrl,
-				})
-			);
-			dispatch(togglePlaying(true));
-		} else {
-			dispatch(togglePlaying(false));
-		}
-	};
 
 	const setSeekCurrentTime = (value) => {
 		audio.current.currentTime = value;
