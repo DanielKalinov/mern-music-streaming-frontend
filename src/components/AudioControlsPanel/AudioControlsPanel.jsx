@@ -58,7 +58,7 @@ const AudioControlsPanel = ({ setSeekCurrentTime }) => {
 						className='relative flex items-center justify-between w-full'
 						onClick={() => setShowSongInfo(true)}>
 						<div className='flex items-center'>
-							<div className='p-2 z-10 bg-primary'>
+							<div className='p-2'>
 								<div className='w-[40px] h-[40px] relative'>
 									{queue.map((item, index) => (
 										<img
@@ -85,7 +85,7 @@ const AudioControlsPanel = ({ setSeekCurrentTime }) => {
 								</span>
 							</div>
 						</div>
-						<div className='flex bg-primary z-10'>
+						<div className='flex'>
 							<IconButton
 								disabled={currentSongInfo.position == 0}
 								onClick={(e) => {
