@@ -93,6 +93,10 @@ const SongInfo = (props) => {
 							}}>
 							<ExpandMoreRoundedIcon fontSize='large' />
 						</IconButton>
+						<div className='text-center text-xs'>
+							<span className='block tracking-widest'>PLAYING FROM ALBUM</span>
+							<span className='block font-bold'>Album Name</span>
+						</div>
 						<IconButton>
 							<MoreVertRoundedIcon />
 						</IconButton>
