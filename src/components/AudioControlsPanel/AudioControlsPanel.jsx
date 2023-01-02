@@ -70,39 +70,19 @@ const AudioControlsPanel = ({ setSeekCurrentTime }) => {
 												currentSongInfo.position == index
 													? 'opacity-1'
 													: 'opacity-0'
-											} absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 rounded-md transition-opacity duration-500 ease-in-out`}
+											} absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 rounded-md transition-opacity duration-300 ease-in-out`}
 										/>
 									))}
 								</div>
 							</div>
 
-							<div
-								className='flex absolute left-14 transition-all duration-200 ease-in-out'
-								style={{
-									width:
-										songInfoRef.current &&
-										songInfoRef.current.clientWidth * queue.length,
-									transform: `translateX(-${
-										songInfoRef?.current?.clientWidth * currentSongInfo.position
-									}px)`,
-								}}>
-								{queue.map((item, index) => (
-									<div
-										ref={songInfoRef}
-										key={index}
-										className='transition-all duration-1000 ease-in-out'
-										style={{
-											width: window.innerWidth,
-											opacity: currentSongInfo.position == index ? 1 : 0,
-										}}>
-										<span className='block text-sm font-bold'>
-											{item.title}
-										</span>
-										<span className='block text-sm text-inactive'>
-											{item.artist}
-										</span>
-									</div>
-								))}
+							<div>
+								<span className='block text-sm font-bold'>
+									{currentSongInfo.title}
+								</span>
+								<span className='block text-sm text-inactive'>
+									{currentSongInfo.artist}
+								</span>
 							</div>
 						</div>
 						<div className='flex bg-primary z-10'>

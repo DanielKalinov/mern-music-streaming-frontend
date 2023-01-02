@@ -179,7 +179,7 @@ const AlbumDetails = () => {
 								}}>
 								<div className='w-full flex justify-between py-2 pl-4'>
 									<div
-										className={`flex items-center ${
+										className={`flex items-center transition-colors duration-200 ease-in-out ${
 											item.title == currentSongInfo.title && 'text-accent'
 										}`}>
 										<span className='w-6'>{index + 1}</span>
