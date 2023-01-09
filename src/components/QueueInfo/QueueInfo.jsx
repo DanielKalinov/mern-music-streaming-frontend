@@ -85,7 +85,7 @@ const QueueInfo = (props) => {
 							</span>
 							<ul className='space-y-2'>
 								{nextFromList.map((item) => (
-									<li className='flex justify-between'>
+									<li className='flex justify-between cursor-pointer' draggable>
 										<div>
 											<span className='block text-sm font-semibold'>
 												{item.title}
