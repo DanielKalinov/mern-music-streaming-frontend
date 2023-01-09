@@ -1,9 +1,10 @@
-import React from 'react';
+import React, { useRef, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import {
 	togglePlaying,
 	setRepeatCurrentSong,
 	skipTrack,
+	setQueue,
 } from '../../features/audioPlayerSlice';
 import { IconButton } from '@mui/material';
 import ExpandMoreRoundedIcon from '@mui/icons-material/ExpandMoreRounded';
@@ -14,6 +15,7 @@ import ShuffleIcon from '@mui/icons-material/Shuffle';
 import RepeatIcon from '@mui/icons-material/Repeat';
 import PlayArrowIcon from '@mui/icons-material/PlayArrow';
 import PauseIcon from '@mui/icons-material/Pause';
+import { useEffect } from 'react';
 
 const QueueInfo = (props) => {
 	const { showQueueInfo, setShowQueueInfo } = props;
@@ -26,7 +28,44 @@ const QueueInfo = (props) => {
 		(state) => state.audioPlayer.currentSongInfo
 	);
 
-	const nextFromList = queue.slice(currentSongInfo.position + 1, queue.length);
+	const [nextFromList, setNextFromList] = useState([]);
+
+	useEffect(() => {
+		setNextFromList(queue.slice(currentSongInfo.position + 1, queue.length));
+	}, [queue, currentSongInfo]);
+
+	const dragItem = useRef();
+	const dragOverItem = useRef();
+
+	const dragStart = (e, position) => {
+		dragItem.current = position;
+	};
+
+	const dragEnter = (e, position) => {
+		dragOverItem.current = position;
+	};
+
+	const drop = (e) => {
+		const copyListItems = [...nextFromList];
+		const dragItemContent = copyListItems[dragItem.current];
+		copyListItems.splice(dragItem.current, 1);
+		copyListItems.splice(dragOverItem.current, 0, dragItemContent);
+
+		dragItem.current = null;
+		dragOverItem.current = null;
+
+		setNextFromList(copyListItems);
+
+		// const arr1 = [...queue];
+		// const arr2 = [...copyListItems];
+
+		// Array.prototype.splice.apply(
+		// 	arr1,
+		// 	[currentSongInfo.position + 1, arr2.length].concat(arr2)
+		// );
+
+		// dispatch(setQueue(arr1));
+	};
 
 	return (
 		<div
@@ -84,8 +123,14 @@ const QueueInfo = (props) => {
 								Next From: Album Name
 							</span>
 							<ul className='space-y-2'>
-								{nextFromList.map((item) => (
-									<li className='flex justify-between cursor-pointer' draggable>
+								{nextFromList.map((item, index) => (
+									<li
+										key={index}
+										className='flex justify-between cursor-pointer'
+										draggable
+										onDragStart={(e) => dragStart(e, index)}
+										onDragEnter={(e) => dragEnter(e, index)}
+										onDragEnd={drop}>
 										<div>
 											<span className='block text-sm font-semibold'>
 												{item.title}

@@ -29,6 +29,7 @@ export const audioPlayerSlice = createSlice({
 			state.averageColor = action.payload;
 		},
 		setQueue: (state, action) => {
+			console.log(action.payload);
 			state.queue = action.payload;
 		},
 		setLoading: (state, action) => {
