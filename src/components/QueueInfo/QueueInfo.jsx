@@ -27,12 +27,8 @@ const QueueInfo = (props) => {
 
 	const [nextFromList, setNextFromList] = useState([]);
 
-	const currentSongPosition = queue.findIndex(
-		(item) => item.title == currentSongInfo.title
-	);
-
 	useEffect(() => {
-		setNextFromList(queue.slice(currentSongPosition + 1, queue.length));
+		setNextFromList(queue.slice(currentSongInfo.position + 1, queue.length));
 	}, [queue, currentSongInfo]);
 
 	const dragItem = useRef();
@@ -61,7 +57,7 @@ const QueueInfo = (props) => {
 
 		newQueue.splice.apply(
 			newQueue,
-			[currentSongPosition + 1, copyListItems.length].concat(copyListItems)
+			[currentSongInfo.position + 1, copyListItems.length].concat(copyListItems)
 		);
 
 		dispatch(setQueue(newQueue));
@@ -97,7 +93,9 @@ const QueueInfo = (props) => {
 										width={40}
 										height={40}
 										className={`${
-											currentSongPosition == index ? 'opacity-1' : 'opacity-0'
+											currentSongInfo.position == index
+												? 'opacity-1'
+												: 'opacity-0'
 										} absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 rounded-md transition-opacity duration-300 ease-in-out`}
 									/>
 								))}
@@ -149,7 +147,7 @@ const QueueInfo = (props) => {
 				<div className='mt-auto w-full'>
 					<div className='flex justify-evenly my-4'>
 						<IconButton
-							disabled={currentSongPosition == 0}
+							disabled={currentSongInfo.position == 0}
 							onClick={() => {
 								dispatch(skipTrack('prev'));
 							}}
@@ -175,7 +173,7 @@ const QueueInfo = (props) => {
 							)}
 						</IconButton>
 						<IconButton
-							disabled={currentSongPosition + 1 == queue.length}
+							disabled={currentSongInfo.position + 1 == queue.length}
 							onClick={() => {
 								dispatch(skipTrack('next'));
 							}}

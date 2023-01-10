@@ -43,12 +43,8 @@ const SongInfo = (props) => {
 
 	const [averageColor, setAverageColor] = useState('');
 
-	const currentSongPosition = queue.findIndex(
-		(item) => item.title == currentSongInfo.title
-	);
-
 	useEffect(() => {
-		const albumImage = document.getElementById(`${currentSongPosition}`);
+		const albumImage = document.getElementById(`${currentSongInfo.position}`);
 
 		if (albumImage) {
 			const fac = new FastAverageColor();
@@ -113,7 +109,7 @@ const SongInfo = (props) => {
 					style={{
 						width: window.innerWidth * queue.length,
 						transform: `translateX(-${
-							window.innerWidth * currentSongPosition
+							window.innerWidth * currentSongInfo.position
 						}px)`,
 					}}>
 					{queue.map((item, index) => {
@@ -124,7 +120,7 @@ const SongInfo = (props) => {
 								style={{
 									width: window.innerWidth,
 									transform: `scale(${
-										currentSongPosition == index ? '1' : '0.7'
+										currentSongInfo.position == index ? '1' : '0.7'
 									})`,
 								}}>
 								<img
@@ -204,7 +200,7 @@ const SongInfo = (props) => {
 							<ShuffleIcon />
 						</IconButton>
 						<IconButton
-							disabled={currentSongPosition == 0}
+							disabled={currentSongInfo.position == 0}
 							onClick={() => {
 								dispatch(skipTrack('prev'));
 							}}
@@ -230,7 +226,7 @@ const SongInfo = (props) => {
 							)}
 						</IconButton>
 						<IconButton
-							disabled={currentSongPosition + 1 == queue.length}
+							disabled={currentSongInfo.position + 1 == queue.length}
 							onClick={() => {
 								dispatch(skipTrack('next'));
 							}}

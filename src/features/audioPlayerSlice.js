@@ -44,16 +44,17 @@ export const audioPlayerSlice = createSlice({
 			state.repeatCurrentSong = !state.repeatCurrentSong;
 		},
 		skipTrack: (state, action) => {
-			const pos = state.queue.findIndex(
+			const currentTrackPosition = state.queue.findIndex(
 				(item) => item.title == state.currentSongInfo.title
 			);
 
-			const trackPosition = pos + (action.payload == 'next' ? 1 : -1);
+			const nextTrackPosition =
+				currentTrackPosition + (action.payload == 'next' ? 1 : -1);
 
-			const track = state.queue[trackPosition];
+			const track = state.queue[nextTrackPosition];
 
 			if (track) {
-				state.currentSongInfo = track;
+				state.currentSongInfo = { ...track, position: nextTrackPosition };
 				state.isPlaying = true;
 			} else {
 				state.isPlaying = false;
