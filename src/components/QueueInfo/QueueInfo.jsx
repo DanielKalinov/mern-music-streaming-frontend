@@ -5,6 +5,7 @@ import {
 	setRepeatCurrentSong,
 	skipTrack,
 	setQueue,
+	setCurrentSongInfo,
 } from '../../features/audioPlayerSlice';
 import { IconButton } from '@mui/material';
 import ExpandMoreRoundedIcon from '@mui/icons-material/ExpandMoreRounded';
@@ -30,8 +31,12 @@ const QueueInfo = (props) => {
 
 	const [nextFromList, setNextFromList] = useState([]);
 
+	const currentSongPosition = queue.findIndex(
+		(item) => item.title == currentSongInfo.title
+	);
+
 	useEffect(() => {
-		setNextFromList(queue.slice(currentSongInfo.position + 1, queue.length));
+		setNextFromList(queue.slice(currentSongPosition + 1, queue.length));
 	}, [queue, currentSongInfo]);
 
 	const dragItem = useRef();
@@ -56,15 +61,14 @@ const QueueInfo = (props) => {
 
 		setNextFromList(copyListItems);
 
-		// const arr1 = [...queue];
-		// const arr2 = [...copyListItems];
+		const newQueue = [...queue];
 
-		// Array.prototype.splice.apply(
-		// 	arr1,
-		// 	[currentSongInfo.position + 1, arr2.length].concat(arr2)
-		// );
+		newQueue.splice.apply(
+			newQueue,
+			[currentSongPosition + 1, copyListItems.length].concat(copyListItems)
+		);
 
-		// dispatch(setQueue(arr1));
+		dispatch(setQueue(newQueue));
 	};
 
 	return (
@@ -97,9 +101,7 @@ const QueueInfo = (props) => {
 										width={40}
 										height={40}
 										className={`${
-											currentSongInfo.position == index
-												? 'opacity-1'
-												: 'opacity-0'
+											currentSongPosition == index ? 'opacity-1' : 'opacity-0'
 										} absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 rounded-md transition-opacity duration-300 ease-in-out`}
 									/>
 								))}
@@ -151,7 +153,7 @@ const QueueInfo = (props) => {
 				<div className='mt-auto w-full'>
 					<div className='flex justify-evenly my-4'>
 						<IconButton
-							disabled={currentSongInfo.position == 0}
+							disabled={currentSongPosition == 0}
 							onClick={() => {
 								dispatch(skipTrack('prev'));
 							}}
@@ -177,7 +179,7 @@ const QueueInfo = (props) => {
 							)}
 						</IconButton>
 						<IconButton
-							disabled={currentSongInfo.position + 1 == queue.length}
+							disabled={currentSongPosition + 1 == queue.length}
 							onClick={() => {
 								dispatch(skipTrack('next'));
 							}}

@@ -1,4 +1,4 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice, current } from '@reduxjs/toolkit';
 
 const initialState = {
 	isPlaying: false,
@@ -44,8 +44,11 @@ export const audioPlayerSlice = createSlice({
 			state.repeatCurrentSong = !state.repeatCurrentSong;
 		},
 		skipTrack: (state, action) => {
-			const trackPosition =
-				state.currentSongInfo.position + (action.payload == 'next' ? 1 : -1);
+			const pos = state.queue.findIndex(
+				(item) => item.title == state.currentSongInfo.title
+			);
+
+			const trackPosition = pos + (action.payload == 'next' ? 1 : -1);
 
 			const track = state.queue[trackPosition];
 

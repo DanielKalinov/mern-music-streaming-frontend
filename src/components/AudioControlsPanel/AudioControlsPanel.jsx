@@ -46,6 +46,10 @@ const AudioControlsPanel = ({ setSeekCurrentTime }) => {
 			: (document.body.style.overflow = 'auto');
 	}, [showSongInfo]);
 
+	const currentSongPosition = queue.findIndex(
+		(item) => item.title == currentSongInfo.title
+	);
+
 	return (
 		<>
 			<div
@@ -68,9 +72,7 @@ const AudioControlsPanel = ({ setSeekCurrentTime }) => {
 											width={40}
 											height={40}
 											className={`${
-												currentSongInfo.position == index
-													? 'opacity-1'
-													: 'opacity-0'
+												currentSongPosition == index ? 'opacity-1' : 'opacity-0'
 											} absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 rounded-md transition-opacity duration-300 ease-in-out`}
 										/>
 									))}
@@ -88,7 +90,7 @@ const AudioControlsPanel = ({ setSeekCurrentTime }) => {
 						</div>
 						<div className='flex'>
 							<IconButton
-								disabled={currentSongInfo.position == 0}
+								disabled={currentSongPosition == 0}
 								onClick={(e) => {
 									e.stopPropagation();
 
@@ -109,7 +111,7 @@ const AudioControlsPanel = ({ setSeekCurrentTime }) => {
 								{isPlaying ? <PauseIcon /> : <PlayArrowIcon />}
 							</IconButton>
 							<IconButton
-								disabled={currentSongInfo.position + 1 == queue.length}
+								disabled={currentSongPosition + 1 == queue.length}
 								onClick={(e) => {
 									e.stopPropagation();
 
