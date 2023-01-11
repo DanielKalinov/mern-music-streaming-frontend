@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react';
+import React, { useRef, useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import {
 	togglePlaying,
@@ -12,7 +12,7 @@ import SkipNextIcon from '@mui/icons-material/SkipNext';
 import SkipPreviousIcon from '@mui/icons-material/SkipPrevious';
 import PlayArrowIcon from '@mui/icons-material/PlayArrow';
 import PauseIcon from '@mui/icons-material/Pause';
-import { useEffect } from 'react';
+import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
 
 const QueueInfo = (props) => {
 	const { showQueueInfo, setShowQueueInfo } = props;
@@ -31,37 +31,37 @@ const QueueInfo = (props) => {
 		setNextFromList(queue.slice(currentSongInfo.position + 1, queue.length));
 	}, [queue, currentSongInfo]);
 
-	const dragItem = useRef();
-	const dragOverItem = useRef();
+	// const dragItem = useRef();
+	// const dragOverItem = useRef();
 
-	const dragStart = (e, position) => {
-		dragItem.current = position;
-	};
+	// const dragStart = (e, position) => {
+	// 	dragItem.current = position;
+	// };
 
-	const dragEnter = (e, position) => {
-		dragOverItem.current = position;
-	};
+	// const dragEnter = (e, position) => {
+	// 	dragOverItem.current = position;
+	// };
 
-	const drop = (e) => {
-		const copyListItems = [...nextFromList];
-		const dragItemContent = copyListItems[dragItem.current];
-		copyListItems.splice(dragItem.current, 1);
-		copyListItems.splice(dragOverItem.current, 0, dragItemContent);
+	// const drop = (e) => {
+	// 	const copyListItems = [...nextFromList];
+	// 	const dragItemContent = copyListItems[dragItem.current];
+	// 	copyListItems.splice(dragItem.current, 1);
+	// 	copyListItems.splice(dragOverItem.current, 0, dragItemContent);
 
-		dragItem.current = null;
-		dragOverItem.current = null;
+	// 	dragItem.current = null;
+	// 	dragOverItem.current = null;
 
-		setNextFromList(copyListItems);
+	// 	setNextFromList(copyListItems);
 
-		const newQueue = [...queue];
+	// 	const newQueue = [...queue];
 
-		newQueue.splice.apply(
-			newQueue,
-			[currentSongInfo.position + 1, copyListItems.length].concat(copyListItems)
-		);
+	// 	newQueue.splice.apply(
+	// 		newQueue,
+	// 		[currentSongInfo.position + 1, copyListItems.length].concat(copyListItems)
+	// 	);
 
-		dispatch(setQueue(newQueue));
-	};
+	// 	dispatch(setQueue(newQueue));
+	// };
 
 	return (
 		<div
@@ -118,29 +118,49 @@ const QueueInfo = (props) => {
 							<span className='block mb-2 font-bold'>
 								Next From: Album Name
 							</span>
-							<ul className='space-y-2'>
-								{nextFromList.map((item, index) => (
-									<li
-										key={index}
-										className='flex justify-between cursor-pointer'
-										draggable
-										onDragStart={(e) => dragStart(e, index)}
-										onDragEnter={(e) => dragEnter(e, index)}
-										onDragEnd={drop}>
-										<div>
-											<span className='block text-sm font-semibold'>
-												{item.title}
-											</span>
-											<span className='block text-sm text-inactive'>
-												{item.artist}
-											</span>
-										</div>
-										<IconButton edge='end'>
-											<DragHandleIcon />
-										</IconButton>
-									</li>
-								))}
-							</ul>
+							<DragDropContext>
+								<Droppable droppableId='queue'>
+									{(provided) => (
+										<ul
+											className='space-y-2'
+											{...provided.droppableProps}
+											ref={provided.innerRef}>
+											{nextFromList.map((item, index) => (
+												<Draggable
+													key={item._id}
+													draggableId={item._id}
+													index={index}>
+													{(provided) => (
+														<li
+															ref={provided.innerRef}
+															{...provided.draggableProps}
+															{...provided.dragHandleProps}
+															className='flex justify-between cursor-pointer'
+															draggable
+															// onDragStart={(e) => dragStart(e, index)}
+															// onDragEnter={(e) => dragEnter(e, index)}
+															// onDragEnd={drop}
+														>
+															<div>
+																<span className='block text-sm font-semibold'>
+																	{item.title}
+																</span>
+																<span className='block text-sm text-inactive'>
+																	{item.artist}
+																</span>
+															</div>
+															<IconButton edge='end'>
+																<DragHandleIcon />
+															</IconButton>
+														</li>
+													)}
+												</Draggable>
+											))}
+											{provided.placeholder}
+										</ul>
+									)}
+								</Droppable>
+							</DragDropContext>
 						</div>
 					</div>
 				)}

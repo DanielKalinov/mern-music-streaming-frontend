@@ -19,15 +19,16 @@ const theme = createTheme({
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-	<React.StrictMode>
-		<ThemeProvider theme={theme}>
-			<Provider store={store}>
-				<Router>
-					<App />
-				</Router>
-			</Provider>
-		</ThemeProvider>
-	</React.StrictMode>
+	// Strict mode causes beautiful-dnd to issue a warning
+	// <React.StrictMode>
+	<ThemeProvider theme={theme}>
+		<Provider store={store}>
+			<Router>
+				<App />
+			</Router>
+		</Provider>
+	</ThemeProvider>
+	// </React.StrictMode>
 );
 
 // If you want to start measuring performance in your app, pass a function
