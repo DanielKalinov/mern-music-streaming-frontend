@@ -31,37 +31,23 @@ const QueueInfo = (props) => {
 		setNextFromList(queue.slice(currentSongInfo.position + 1, queue.length));
 	}, [queue, currentSongInfo]);
 
-	// const dragItem = useRef();
-	// const dragOverItem = useRef();
+	const handleOnDragEnd = (e) => {
+		const copyListItems = [...nextFromList];
+		const sourceContent = copyListItems[e.source.index];
 
-	// const dragStart = (e, position) => {
-	// 	dragItem.current = position;
-	// };
+		copyListItems.splice(e.source.index, 1);
+		copyListItems.splice(e.destination.index, 0, sourceContent);
 
-	// const dragEnter = (e, position) => {
-	// 	dragOverItem.current = position;
-	// };
+		setNextFromList(copyListItems);
 
-	// const drop = (e) => {
-	// 	const copyListItems = [...nextFromList];
-	// 	const dragItemContent = copyListItems[dragItem.current];
-	// 	copyListItems.splice(dragItem.current, 1);
-	// 	copyListItems.splice(dragOverItem.current, 0, dragItemContent);
+		const newQueue = [...queue];
+		newQueue.splice.apply(
+			newQueue,
+			[currentSongInfo.position + 1, copyListItems.length].concat(copyListItems)
+		);
 
-	// 	dragItem.current = null;
-	// 	dragOverItem.current = null;
-
-	// 	setNextFromList(copyListItems);
-
-	// 	const newQueue = [...queue];
-
-	// 	newQueue.splice.apply(
-	// 		newQueue,
-	// 		[currentSongInfo.position + 1, copyListItems.length].concat(copyListItems)
-	// 	);
-
-	// 	dispatch(setQueue(newQueue));
-	// };
+		dispatch(setQueue(newQueue));
+	};
 
 	return (
 		<div
@@ -118,7 +104,7 @@ const QueueInfo = (props) => {
 							<span className='block mb-2 font-bold'>
 								Next From: Album Name
 							</span>
-							<DragDropContext>
+							<DragDropContext onDragEnd={handleOnDragEnd}>
 								<Droppable droppableId='queue'>
 									{(provided) => (
 										<ul
@@ -135,12 +121,7 @@ const QueueInfo = (props) => {
 															ref={provided.innerRef}
 															{...provided.draggableProps}
 															{...provided.dragHandleProps}
-															className='flex justify-between cursor-pointer'
-															draggable
-															// onDragStart={(e) => dragStart(e, index)}
-															// onDragEnter={(e) => dragEnter(e, index)}
-															// onDragEnd={drop}
-														>
+															className='flex justify-between cursor-pointer'>
 															<div>
 																<span className='block text-sm font-semibold'>
 																	{item.title}
