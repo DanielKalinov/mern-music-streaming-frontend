@@ -119,7 +119,7 @@ const QueueInfo = (props) => {
 														ref={provided.innerRef}
 														{...provided.draggableProps}
 														{...provided.dragHandleProps}
-														className={`flex justify-between px-6 py-2 ${
+														className={`flex justify-between px-6 py-2 transition-colors duration-300 ${
 															snapshot.isDragging ? 'bg-secondary' : ''
 														}`}>
 														<div>
