@@ -101,50 +101,47 @@ const QueueInfo = (props) => {
 					</div>
 				</div>
 				{nextFromList.length > 0 && (
-					<div className='px-6'>
-						<div>
-							<span className='block mb-2 font-bold'>
-								Next From: Album Name
-							</span>
-							<DragDropContext onDragEnd={handleOnDragEnd}>
-								<Droppable droppableId='queue'>
-									{(provided) => (
-										<ul
-											className='space-y-2'
-											{...provided.droppableProps}
-											ref={provided.innerRef}>
-											{nextFromList.map((item, index) => (
-												<Draggable
-													key={item._id}
-													draggableId={item._id}
-													index={index}>
-													{(provided) => (
-														<li
-															ref={provided.innerRef}
-															{...provided.draggableProps}
-															{...provided.dragHandleProps}
-															className='flex justify-between cursor-pointer'>
-															<div>
-																<span className='block text-sm font-semibold'>
-																	{item.title}
-																</span>
-																<span className='block text-sm text-inactive'>
-																	{item.artist}
-																</span>
-															</div>
-															<IconButton edge='end'>
-																<DragHandleIcon />
-															</IconButton>
-														</li>
-													)}
-												</Draggable>
-											))}
-											{provided.placeholder}
-										</ul>
-									)}
-								</Droppable>
-							</DragDropContext>
-						</div>
+					<div>
+						<span className='block px-6 mb-2 font-bold'>
+							Next From: Album Name
+						</span>
+						<DragDropContext onDragEnd={handleOnDragEnd}>
+							<Droppable droppableId='queue'>
+								{(provided) => (
+									<ul {...provided.droppableProps} ref={provided.innerRef}>
+										{nextFromList.map((item, index) => (
+											<Draggable
+												key={item._id}
+												draggableId={item._id}
+												index={index}>
+												{(provided, snapshot) => (
+													<li
+														ref={provided.innerRef}
+														{...provided.draggableProps}
+														{...provided.dragHandleProps}
+														className={`flex justify-between px-6 py-2 ${
+															snapshot.isDragging ? 'bg-secondary' : ''
+														}`}>
+														<div>
+															<span className='block text-sm font-semibold'>
+																{item.title}
+															</span>
+															<span className='block text-sm text-inactive'>
+																{item.artist}
+															</span>
+														</div>
+														<IconButton edge='end'>
+															<DragHandleIcon />
+														</IconButton>
+													</li>
+												)}
+											</Draggable>
+										))}
+										{provided.placeholder}
+									</ul>
+								)}
+							</Droppable>
+						</DragDropContext>
 					</div>
 				)}
 				<div className='mt-auto w-full'>
