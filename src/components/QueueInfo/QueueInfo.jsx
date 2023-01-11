@@ -32,6 +32,8 @@ const QueueInfo = (props) => {
 	}, [queue, currentSongInfo]);
 
 	const handleOnDragEnd = (e) => {
+		if (!e.destination) return;
+
 		const copyListItems = [...nextFromList];
 		const sourceContent = copyListItems[e.source.index];
 
