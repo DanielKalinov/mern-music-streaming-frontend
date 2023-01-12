@@ -24,31 +24,34 @@ const QueueInfo = (props) => {
 	const currentSongInfo = useSelector(
 		(state) => state.audioPlayer.currentSongInfo
 	);
-
 	const [nextFromList, setNextFromList] = useState([]);
 
 	useEffect(() => {
+		// update queue on song change
+
 		setNextFromList(queue.slice(currentSongInfo.position + 1, queue.length));
 	}, [queue, currentSongInfo]);
 
-	const handleOnDragEnd = (e) => {
-		if (!e.destination) return;
-
-		const copyListItems = [...nextFromList];
-		const sourceContent = copyListItems[e.source.index];
-
-		copyListItems.splice(e.source.index, 1);
-		copyListItems.splice(e.destination.index, 0, sourceContent);
-
-		setNextFromList(copyListItems);
+	useEffect(() => {
+		// update queue on list item rearrange
 
 		const newQueue = [...queue];
 		newQueue.splice.apply(
 			newQueue,
-			[currentSongInfo.position + 1, copyListItems.length].concat(copyListItems)
+			[currentSongInfo.position + 1, nextFromList.length].concat(nextFromList)
 		);
 
 		dispatch(setQueue(newQueue));
+	}, [nextFromList]);
+
+	const handleOnDragEnd = (e) => {
+		if (!e.destination) return;
+
+		const items = Array.from(nextFromList);
+		const [reorderedItem] = items.splice(e.source.index, 1);
+		items.splice(e.destination.index, 0, reorderedItem);
+
+		setNextFromList(items);
 	};
 
 	return (
