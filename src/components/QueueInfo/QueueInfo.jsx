@@ -30,7 +30,7 @@ const QueueInfo = (props) => {
 		// update queue on song change
 
 		setNextFromList(queue.slice(currentSongInfo.position + 1, queue.length));
-	}, [queue, currentSongInfo]);
+	}, [currentSongInfo]);
 
 	useEffect(() => {
 		// update queue on list item rearrange
@@ -122,7 +122,7 @@ const QueueInfo = (props) => {
 														ref={provided.innerRef}
 														{...provided.draggableProps}
 														{...provided.dragHandleProps}
-														className={`flex justify-between px-6 py-2 transition-colors duration-300 ${
+														className={`flex justify-between px-6 py-2 transition-colors duration-300 select-none ${
 															snapshot.isDragging ? 'bg-secondary' : ''
 														}`}>
 														<div>
