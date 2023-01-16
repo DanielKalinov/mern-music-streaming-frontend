@@ -177,12 +177,23 @@ const AlbumDetails = () => {
 										dispatch(setQueue(albumDetails.songs));
 									}
 								}}>
-								<div className='w-full flex justify-between py-2 pl-4'>
+								<div className='w-full flex justify-between py-2'>
 									<div
 										className={`flex items-center transition-colors duration-200 ease-in-out ${
 											item.title == currentSongInfo.title && 'text-accent'
 										}`}>
-										<span className='w-6'>{index + 1}</span>
+										{item.title == currentSongInfo.title && isPlaying ? (
+											<div className='flex items-center m-auto h-6 w-6 ml-4 mr-2 space-x-1'>
+												<div className='h-full w-1 bg-accent rounded-full strokeWave' />
+												<div className='h-full w-1 bg-accent rounded-full strokeWave' />
+												<div className='h-full w-1 bg-accent rounded-full strokeWave' />
+											</div>
+										) : (
+											<span className='w-6 text-center ml-4 mr-2'>
+												{index + 1}
+											</span>
+										)}
+
 										<div>
 											<span className='block text-sm'>{item.title}</span>
 											<span className='block text-sm text-inactive font-normal'>
@@ -192,245 +203,12 @@ const AlbumDetails = () => {
 									</div>
 								</div>
 							</ButtonBase>
+
 							<IconButton edge='end'>
 								<MoreVertRoundedIcon />
 							</IconButton>
 						</li>
 					))}
-					<li className='flex pr-4'>
-						<ButtonBase className='w-full text-left'>
-							<div className='w-full flex justify-between py-2 pl-4'>
-								<div className='flex items-center'>
-									<span className='w-6'>12</span>
-									<div>
-										<span className='block text-sm'>Title</span>
-										<span className='block text-sm text-inactive font-normal'>
-											Artist
-										</span>
-									</div>
-								</div>
-							</div>
-						</ButtonBase>
-						<IconButton edge='end'>
-							<MoreVertRoundedIcon />
-						</IconButton>
-					</li>
-					<li className='flex pr-4'>
-						<ButtonBase className='w-full text-left'>
-							<div className='w-full flex justify-between py-2 pl-4'>
-								<div className='flex items-center'>
-									<span className='w-6'>12</span>
-									<div>
-										<span className='block text-sm'>Title</span>
-										<span className='block text-sm text-inactive font-normal'>
-											Artist
-										</span>
-									</div>
-								</div>
-							</div>
-						</ButtonBase>
-						<IconButton edge='end'>
-							<MoreVertRoundedIcon />
-						</IconButton>
-					</li>
-					<li className='flex pr-4'>
-						<ButtonBase className='w-full text-left'>
-							<div className='w-full flex justify-between py-2 pl-4'>
-								<div className='flex items-center'>
-									<span className='w-6'>12</span>
-									<div>
-										<span className='block text-sm'>Title</span>
-										<span className='block text-sm text-inactive font-normal'>
-											Artist
-										</span>
-									</div>
-								</div>
-							</div>
-						</ButtonBase>
-						<IconButton edge='end'>
-							<MoreVertRoundedIcon />
-						</IconButton>
-					</li>
-					<li className='flex pr-4'>
-						<ButtonBase className='w-full text-left'>
-							<div className='w-full flex justify-between py-2 pl-4'>
-								<div className='flex items-center'>
-									<span className='w-6'>12</span>
-									<div>
-										<span className='block text-sm'>Title</span>
-										<span className='block text-sm text-inactive font-normal'>
-											Artist
-										</span>
-									</div>
-								</div>
-							</div>
-						</ButtonBase>
-						<IconButton edge='end'>
-							<MoreVertRoundedIcon />
-						</IconButton>
-					</li>
-					<li className='flex pr-4'>
-						<ButtonBase className='w-full text-left'>
-							<div className='w-full flex justify-between py-2 pl-4'>
-								<div className='flex items-center'>
-									<span className='w-6'>12</span>
-									<div>
-										<span className='block text-sm'>Title</span>
-										<span className='block text-sm text-inactive font-normal'>
-											Artist
-										</span>
-									</div>
-								</div>
-							</div>
-						</ButtonBase>
-						<IconButton edge='end'>
-							<MoreVertRoundedIcon />
-						</IconButton>
-					</li>
-					<li className='flex pr-4'>
-						<ButtonBase className='w-full text-left'>
-							<div className='w-full flex justify-between py-2 pl-4'>
-								<div className='flex items-center'>
-									<span className='w-6'>12</span>
-									<div>
-										<span className='block text-sm'>Title</span>
-										<span className='block text-sm text-inactive font-normal'>
-											Artist
-										</span>
-									</div>
-								</div>
-							</div>
-						</ButtonBase>
-						<IconButton edge='end'>
-							<MoreVertRoundedIcon />
-						</IconButton>
-					</li>
-					<li className='flex pr-4'>
-						<ButtonBase className='w-full text-left'>
-							<div className='w-full flex justify-between py-2 pl-4'>
-								<div className='flex items-center'>
-									<span className='w-6'>12</span>
-									<div>
-										<span className='block text-sm'>Title</span>
-										<span className='block text-sm text-inactive font-normal'>
-											Artist
-										</span>
-									</div>
-								</div>
-							</div>
-						</ButtonBase>
-						<IconButton edge='end'>
-							<MoreVertRoundedIcon />
-						</IconButton>
-					</li>
-					<li className='flex pr-4'>
-						<ButtonBase className='w-full text-left'>
-							<div className='w-full flex justify-between py-2 pl-4'>
-								<div className='flex items-center'>
-									<span className='w-6'>12</span>
-									<div>
-										<span className='block text-sm'>Title</span>
-										<span className='block text-sm text-inactive font-normal'>
-											Artist
-										</span>
-									</div>
-								</div>
-							</div>
-						</ButtonBase>
-						<IconButton edge='end'>
-							<MoreVertRoundedIcon />
-						</IconButton>
-					</li>
-					<li className='flex pr-4'>
-						<ButtonBase className='w-full text-left'>
-							<div className='w-full flex justify-between py-2 pl-4'>
-								<div className='flex items-center'>
-									<span className='w-6'>12</span>
-									<div>
-										<span className='block text-sm'>Title</span>
-										<span className='block text-sm text-inactive font-normal'>
-											Artist
-										</span>
-									</div>
-								</div>
-							</div>
-						</ButtonBase>
-						<IconButton edge='end'>
-							<MoreVertRoundedIcon />
-						</IconButton>
-					</li>
-					<li className='flex pr-4'>
-						<ButtonBase className='w-full text-left'>
-							<div className='w-full flex justify-between py-2 pl-4'>
-								<div className='flex items-center'>
-									<span className='w-6'>12</span>
-									<div>
-										<span className='block text-sm'>Title</span>
-										<span className='block text-sm text-inactive font-normal'>
-											Artist
-										</span>
-									</div>
-								</div>
-							</div>
-						</ButtonBase>
-						<IconButton edge='end'>
-							<MoreVertRoundedIcon />
-						</IconButton>
-					</li>
-					<li className='flex pr-4'>
-						<ButtonBase className='w-full text-left'>
-							<div className='w-full flex justify-between py-2 pl-4'>
-								<div className='flex items-center'>
-									<span className='w-6'>12</span>
-									<div>
-										<span className='block text-sm'>Title</span>
-										<span className='block text-sm text-inactive font-normal'>
-											Artist
-										</span>
-									</div>
-								</div>
-							</div>
-						</ButtonBase>
-						<IconButton edge='end'>
-							<MoreVertRoundedIcon />
-						</IconButton>
-					</li>
-					<li className='flex pr-4'>
-						<ButtonBase className='w-full text-left'>
-							<div className='w-full flex justify-between py-2 pl-4'>
-								<div className='flex items-center'>
-									<span className='w-6'>12</span>
-									<div>
-										<span className='block text-sm'>Title</span>
-										<span className='block text-sm text-inactive font-normal'>
-											Artist
-										</span>
-									</div>
-								</div>
-							</div>
-						</ButtonBase>
-						<IconButton edge='end'>
-							<MoreVertRoundedIcon />
-						</IconButton>
-					</li>
-					<li className='flex pr-4'>
-						<ButtonBase className='w-full text-left'>
-							<div className='w-full flex justify-between py-2 pl-4'>
-								<div className='flex items-center'>
-									<span className='w-6'>12</span>
-									<div>
-										<span className='block text-sm'>Title</span>
-										<span className='block text-sm text-inactive font-normal'>
-											Artist
-										</span>
-									</div>
-								</div>
-							</div>
-						</ButtonBase>
-						<IconButton edge='end'>
-							<MoreVertRoundedIcon />
-						</IconButton>
-					</li>
 				</ul>
 			</div>
 		)
