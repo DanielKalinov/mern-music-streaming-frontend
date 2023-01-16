@@ -78,9 +78,11 @@ const SongInfo = (props) => {
 
 	return (
 		<div
-			className={`${showSongInfo ? 'opacity-100' : 'opacity-0'} ${
-				showSongInfo ? 'translate-y-0' : 'translate-y-full'
-			} z-30 fixed top-0 h-full w-full [transition:transform_300ms_ease-in-out,opacity_200ms_ease-in-out]`}>
+			className={`${
+				showSongInfo
+					? 'opacity-100 translate-y-0'
+					: 'opacity-0 translate-y-full'
+			} z-30 fixed top-0 h-full w-full [transition:transform_0.3s_ease-in-out,opacity_0.2s_ease-in-out]`}>
 			<div
 				className='absolute top-0 h-full w-full transition-all duration-500 ease-in-out'
 				style={{ backgroundColor: averageColor }}
