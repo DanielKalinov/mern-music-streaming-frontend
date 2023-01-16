@@ -183,10 +183,10 @@ const AlbumDetails = () => {
 											item.title == currentSongInfo.title && 'text-accent'
 										}`}>
 										{item.title == currentSongInfo.title && isPlaying ? (
-											<div className='flex items-center m-auto h-6 w-6 ml-4 mr-2 space-x-1'>
-												<div className='h-full w-1 bg-accent rounded-full strokeWave' />
-												<div className='h-full w-1 bg-accent rounded-full strokeWave' />
-												<div className='h-full w-1 bg-accent rounded-full strokeWave' />
+											<div className='flex justify-center items-center m-auto h-4 w-6 ml-4 mr-2 space-x-1'>
+												<div className='h-full w-0.5 bg-accent rounded-full strokeWave' />
+												<div className='h-full w-0.5 bg-accent rounded-full strokeWave' />
+												<div className='h-full w-0.5 bg-accent rounded-full strokeWave' />
 											</div>
 										) : (
 											<span className='w-6 text-center ml-4 mr-2'>
