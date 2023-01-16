@@ -53,10 +53,10 @@ const AlbumDetails = () => {
 
 			albumTopSectionRef.current.style.opacity = albumTopSectionOpacity;
 			albumHeaderRef.current.style.backgroundColor = `rgba(30, 41, 59, ${
-				window.scrollY >= 350 ? '1' : '0'
+				window.scrollY >= 300 ? '1' : '0'
 			})`;
 			albumHeaderRef.current.children[1].style.opacity = `${
-				window.scrollY >= 350 ? '1' : '0'
+				window.scrollY >= 300 ? '1' : '0'
 			}`;
 		};
 
