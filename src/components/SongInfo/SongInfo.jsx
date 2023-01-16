@@ -107,7 +107,7 @@ const SongInfo = (props) => {
 				</div>
 
 				<div
-					className='flex transition-all duration-200 ease-in-out'
+					className='flex transition-transform duration-200 ease-in-out'
 					style={{
 						width: window.innerWidth * queue.length,
 						transform: `translateX(-${
@@ -118,7 +118,7 @@ const SongInfo = (props) => {
 						return (
 							<div
 								key={index}
-								className='px-6 transition-all duration-300 ease-in-out'
+								className='px-6 transition-transform duration-300 ease-in-out'
 								style={{
 									width: window.innerWidth,
 									transform: `scale(${
