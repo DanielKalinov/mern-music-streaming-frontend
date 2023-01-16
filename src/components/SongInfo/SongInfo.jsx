@@ -88,7 +88,10 @@ const SongInfo = (props) => {
 				style={{ backgroundColor: averageColor }}
 			/>
 			<div className='relative flex flex-col h-full w-full bg-gradient-to-t from-background-dark [&>*]:mb-auto'>
-				<div>
+				<div
+					className={`${
+						showSongInfo ? 'translate-y-0' : '-translate-y-full'
+					} transition-transform duration-500 ease-in-out`}>
 					<div className='flex justify-between items-center'>
 						<IconButton
 							onClick={() => {
