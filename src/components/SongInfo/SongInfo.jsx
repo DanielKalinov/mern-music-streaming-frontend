@@ -78,22 +78,15 @@ const SongInfo = (props) => {
 
 	return (
 		<div
-			className={`${
-				showSongInfo
-					? 'opacity-100 translate-y-0'
-					: 'opacity-0 translate-y-full'
-			} z-30 fixed top-0 h-full w-full [transition:transform_0.3s_ease-in-out,opacity_0.2s_ease-in-out]`}>
+			className={`${showSongInfo ? 'opacity-100' : 'opacity-0'} ${
+				showSongInfo ? 'translate-y-0' : 'translate-y-full'
+			} z-30 fixed top-0 h-full w-full [transition:transform_300ms_ease-in-out,opacity_200ms_ease-in-out]`}>
 			<div
 				className='absolute top-0 h-full w-full transition-all duration-500 ease-in-out'
 				style={{ backgroundColor: averageColor }}
 			/>
 			<div className='relative flex flex-col h-full w-full bg-gradient-to-t from-background-dark [&>*]:mb-auto'>
-				<div
-					className={`${
-						showSongInfo
-							? 'translate-y-0 opacity-1'
-							: '-translate-y-full opacity-0'
-					} [transition:transform_0.2s_0.2s_ease-in-out,opacity_0.5s_0.2s_ease-in-out]`}>
+				<div>
 					<div className='flex justify-between items-center'>
 						<IconButton
 							onClick={() => {
@@ -112,49 +105,37 @@ const SongInfo = (props) => {
 				</div>
 
 				<div
-					className={`${
-						showSongInfo
-							? 'translate-y-0 opacity-1'
-							: 'translate-y-full opacity-0'
-					} [transition:transform_0.2s_0.2s_ease-in-out,opacity_0.5s_0.2s_ease-in-out]`}>
-					<div
-						className='flex transition-all duration-200 ease-in-out'
-						style={{
-							width: window.innerWidth * queue.length,
-							transform: `translateX(-${
-								window.innerWidth * currentSongInfo.position
-							}px)`,
-						}}>
-						{queue.map((item, index) => {
-							return (
-								<div
-									key={index}
-									className='px-6 transition-all duration-300 ease-in-out'
-									style={{
-										width: window.innerWidth,
-										transform: `scale(${
-											currentSongInfo.position == index ? '1' : '0.7'
-										})`,
-									}}>
-									<img
-										id={index}
-										src={item.albumImageUrl}
-										width={'100%'}
-										height={'100%'}
-										className='shadow-lg rounded-lg'
-									/>
-								</div>
-							);
-						})}
-					</div>
+					className='flex transition-all duration-200 ease-in-out'
+					style={{
+						width: window.innerWidth * queue.length,
+						transform: `translateX(-${
+							window.innerWidth * currentSongInfo.position
+						}px)`,
+					}}>
+					{queue.map((item, index) => {
+						return (
+							<div
+								key={index}
+								className='px-6 transition-all duration-300 ease-in-out'
+								style={{
+									width: window.innerWidth,
+									transform: `scale(${
+										currentSongInfo.position == index ? '1' : '0.7'
+									})`,
+								}}>
+								<img
+									id={index}
+									src={item.albumImageUrl}
+									width={'100%'}
+									height={'100%'}
+									className='shadow-lg rounded-lg'
+								/>
+							</div>
+						);
+					})}
 				</div>
 
-				<div
-					className={`${
-						showSongInfo
-							? 'opacity-1 translate-y-0'
-							: 'opacity-0 translate-y-full'
-					} [transition:transform_0.2s_0.2s_ease-in-out,opacity_0.5s_0.2s_ease-in-out] px-6`}>
+				<div className='px-6'>
 					<div className='flex flex-col px-1'>
 						<div className='flex justify-between items-center mt-4'>
 							<div>
