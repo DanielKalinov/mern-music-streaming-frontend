@@ -1,5 +1,5 @@
-import axios from 'axios';
 import React, { useEffect, useRef, useState } from 'react';
+import axios from 'axios';
 import { useParams } from 'react-router-dom';
 import { IconButton } from '@mui/material';
 import { ButtonBase } from '@mui/material';
@@ -19,17 +19,19 @@ import {
 import { FastAverageColor } from 'fast-average-color';
 
 const AlbumDetails = () => {
-	const isPlaying = useSelector((state) => state.audioPlayer.isPlaying);
-	const [albumDetails, setAlbumDetails] = useState();
-	const [averageColor, setAverageColor] = useState();
-	const loading = useSelector((state) => state.audioPlayer.loading);
+	const isPlaying = useSelector(
+		(state: AudioPlayerState) => state.audioPlayer.isPlaying
+	);
+	const [albumDetails, setAlbumDetails] = useState<AlbumDetails>();
+	// const [averageColor, setAverageColor] = useState();
+	// const loading = useSelector((state) => state.audioPlayer.loading);
 	const currentSongInfo = useSelector(
-		(state) => state.audioPlayer.currentSongInfo
+		(state: AudioPlayerState) => state.audioPlayer.currentSongInfo
 	);
 
-	const albumTopSectionRef = useRef();
-	const albumImageRef = useRef();
-	const albumHeaderRef = useRef();
+	const albumTopSectionRef = useRef<HTMLDivElement>(null);
+	const albumImageRef = useRef<HTMLImageElement>(null);
+	const albumHeaderRef = useRef<HTMLDivElement>(null);
 
 	const dispatch = useDispatch();
 
@@ -49,15 +51,19 @@ const AlbumDetails = () => {
 		});
 
 		const changeOpacityOnScroll = () => {
-			const albumTopSectionOpacity = (400 - window.scrollY) / 400;
+			if (albumTopSectionRef.current && albumHeaderRef.current) {
+				const albumTopSectionOpacity = (400 - window.scrollY) / 400;
 
-			albumTopSectionRef.current.style.opacity = albumTopSectionOpacity;
-			albumHeaderRef.current.style.backgroundColor = `rgba(30, 41, 59, ${
-				window.scrollY >= 300 ? '1' : '0'
-			})`;
-			albumHeaderRef.current.children[1].style.opacity = `${
-				window.scrollY >= 300 ? '1' : '0'
-			}`;
+				albumTopSectionRef.current.style.opacity =
+					albumTopSectionOpacity.toString();
+				albumHeaderRef.current.style.backgroundColor = `rgba(30, 41, 59, ${
+					window.scrollY >= 300 ? '1' : '0'
+				})`;
+
+				const child = albumHeaderRef.current.children[1] as HTMLElement;
+
+				child.style.opacity = `${window.scrollY >= 300 ? '1' : '0'}`;
+			}
 		};
 
 		window.addEventListener('scroll', changeOpacityOnScroll);
@@ -130,7 +136,6 @@ const AlbumDetails = () => {
 									title: firstTrack.title,
 									artist: firstTrack.artist,
 									albumImageUrl: firstTrack.albumImageUrl,
-									duration: firstTrack.duration,
 									audioUrl: firstTrack.audioUrl,
 								})
 							);
@@ -168,7 +173,6 @@ const AlbumDetails = () => {
 											title: item.title,
 											artist: item.artist,
 											albumImageUrl: item.albumImageUrl,
-											duration: item.duration,
 											audioUrl: item.audioUrl,
 										})
 									);
@@ -212,5 +216,31 @@ const AlbumDetails = () => {
 		</div>
 	) : null;
 };
+
+interface AudioPlayerState {
+	audioPlayer: {
+		currentSongInfo: {
+			audioUrl: string;
+			title: string;
+		};
+		isSeeking: boolean;
+		isPlaying: boolean;
+		repeatCurrentSong: boolean;
+	};
+}
+
+interface AlbumDetails {
+	name: string;
+	albumImageUrl: string;
+	year: string;
+	artist: string;
+	songs: {
+		_id: string;
+		title: string;
+		artist: string;
+		albumImageUrl: string;
+		audioUrl: string;
+	}[];
+}
 
 export default AlbumDetails;
