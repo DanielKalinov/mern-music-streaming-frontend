@@ -15,16 +15,16 @@
 }
 
 .strokeWave {
-	animation: strokeWaveAnimation 0.6s ease-in-out infinite;
+	animation: strokeWaveAnimation 0.8s ease-in-out infinite;
 }
 
-.strokeWave:nth-child(even) {
-	animation-delay: 0.5s;
+.strokeWave:nth-child(odd) {
+	animation-delay: 0.2s;
 }
 
 @keyframes strokeWaveAnimation {
 	50% {
-		height: 50%;
+		height: 30%;
 	}
 
 	100% {
