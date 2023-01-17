@@ -1,4 +1,4 @@
-import { useEffect, useRef } from 'react';
+import React, { useEffect, useRef } from 'react';
 import AudioControlsPanel from './components/AudioControlsPanel';
 import { useSelector, useDispatch } from 'react-redux';
 import {
@@ -16,12 +16,16 @@ const App = () => {
 	audio.current.preload = 'metadata';
 
 	const currentSongInfo = useSelector(
-		(state) => state.audioPlayer.currentSongInfo
+		(state: AudioPlayerState) => state.audioPlayer.currentSongInfo
 	);
-	const isSeeking = useSelector((state) => state.audioPlayer.isSeeking);
-	const isPlaying = useSelector((state) => state.audioPlayer.isPlaying);
+	const isSeeking = useSelector(
+		(state: AudioPlayerState) => state.audioPlayer.isSeeking
+	);
+	const isPlaying = useSelector(
+		(state: AudioPlayerState) => state.audioPlayer.isPlaying
+	);
 	const repeatCurrentSong = useSelector(
-		(state) => state.audioPlayer.repeatCurrentSong
+		(state: AudioPlayerState) => state.audioPlayer.repeatCurrentSong
 	);
 
 	const dispatch = useDispatch();
@@ -88,5 +92,16 @@ const App = () => {
 		</>
 	);
 };
+
+interface AudioPlayerState {
+	audioPlayer: {
+		currentSongInfo: {
+			audioUrl: string;
+		};
+		isSeeking: boolean;
+		isPlaying: boolean;
+		repeatCurrentSong: boolean;
+	};
+}
 
 export default App;
