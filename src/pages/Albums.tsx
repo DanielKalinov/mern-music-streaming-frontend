@@ -13,7 +13,7 @@ const Albums = () => {
 
 	return (
 		<div>
-			{albumList.map((item) => (
+			{albumList.map((item: { _id: string; albumImageUrl: string }) => (
 				<Link key={item._id} to={`/albums/${item._id}`}>
 					<img src={item.albumImageUrl} width={'100%'} height={'100%'} />
 				</Link>
