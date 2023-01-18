@@ -12,23 +12,31 @@ import { useDispatch, useSelector } from 'react-redux';
 import SongInfo from '../SongInfo/SongInfo';
 import QueueInfo from '../QueueInfo/QueueInfo';
 
-const AudioControlsPanel = ({ setSeekCurrentTime }) => {
+const AudioControlsPanel = ({
+	setSeekCurrentTime,
+}: {
+	setSeekCurrentTime: (value: number) => void;
+}) => {
 	const [showSongInfo, setShowSongInfo] = useState(false);
 	const [showQueueInfo, setShowQueueInfo] = useState(false);
 	const [rangeInputValue, setRangeInputValue] = useState(0);
-	const isPlaying = useSelector((state) => state.audioPlayer.isPlaying);
-	const duration = useSelector((state) => state.audioPlayer.duration);
-	const audioProgressValue = useSelector(
-		(state) => state.audioPlayer.audioProgressValue
+	const isPlaying = useSelector(
+		(state: AudioPlayer) => state.audioPlayer.isPlaying
 	);
-	const queue = useSelector((state) => state.audioPlayer.queue);
+	const duration = useSelector(
+		(state: AudioPlayer) => state.audioPlayer.duration
+	);
+	const audioProgressValue = useSelector(
+		(state: AudioPlayer) => state.audioPlayer.audioProgressValue
+	);
+	const queue = useSelector((state: AudioPlayer) => state.audioPlayer.queue);
 	const currentSongInfo = useSelector(
-		(state) => state.audioPlayer.currentSongInfo
+		(state: AudioPlayer) => state.audioPlayer.currentSongInfo
 	);
 
 	const dispatch = useDispatch();
 
-	const staticProgressBarRef = useRef();
+	const staticProgressBarRef = useRef<HTMLDivElement>(null);
 
 	useEffect(() => {
 		setRangeInputValue(audioProgressValue);
@@ -157,5 +165,19 @@ const AudioControlsPanel = ({ setSeekCurrentTime }) => {
 		</>
 	);
 };
+
+interface AudioPlayer {
+	audioPlayer: {
+		isPlaying: boolean;
+		duration: number;
+		audioProgressValue: number;
+		queue: { albumImageUrl: string }[];
+		currentSongInfo: {
+			position: number;
+			title: string;
+			artist: string;
+		};
+	};
+}
 
 export default AudioControlsPanel;
