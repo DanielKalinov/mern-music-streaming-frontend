@@ -72,7 +72,7 @@ const App = () => {
 		audio.current.loop = repeatCurrentSong;
 	}, [repeatCurrentSong]);
 
-	const setSeekCurrentTime = (value) => {
+	const setSeekCurrentTime = (value: number) => {
 		audio.current.currentTime = value;
 	};
 

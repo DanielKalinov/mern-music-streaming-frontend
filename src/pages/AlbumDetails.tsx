@@ -41,7 +41,7 @@ const AlbumDetails = () => {
 		axios.get(`http://localhost:5000/albums/${params.id}`).then((res) => {
 			setAlbumDetails(res.data);
 
-			res.data.songs.map((item) => {
+			res.data.songs.map((item: { albumImageUrl: string }) => {
 				dispatch(setLoading(true));
 
 				const img = new Image();
