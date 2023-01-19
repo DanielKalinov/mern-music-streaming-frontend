@@ -47,11 +47,12 @@ const QueueInfo = (props: QueueInfoProps) => {
 		// update queue on list item rearrange
 		if (nextFromList) {
 			const newQueue = [...queue];
-			newQueue.splice.apply(newQueue, [
+			newQueue.splice(
 				currentSongInfo.position + 1,
 				nextFromList.length,
-				...nextFromList,
-			]);
+				...nextFromList
+			);
+
 			dispatch(setQueue(newQueue));
 		}
 	}, [nextFromList]);
