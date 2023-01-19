@@ -1,4 +1,4 @@
-import React, { useRef, useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import {
 	togglePlaying,
@@ -14,17 +14,28 @@ import PlayArrowIcon from '@mui/icons-material/PlayArrow';
 import PauseIcon from '@mui/icons-material/Pause';
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
 
-const QueueInfo = (props) => {
+const QueueInfo = (props: QueueInfoProps) => {
 	const { showQueueInfo, setShowQueueInfo } = props;
 
 	const dispatch = useDispatch();
 
-	const queue = useSelector((state) => state.audioPlayer.queue);
-	const isPlaying = useSelector((state) => state.audioPlayer.isPlaying);
-	const currentSongInfo = useSelector(
-		(state) => state.audioPlayer.currentSongInfo
+	const queue = useSelector((state: AudioPlayer) => state.audioPlayer.queue);
+	const isPlaying = useSelector(
+		(state: AudioPlayer) => state.audioPlayer.isPlaying
 	);
-	const [nextFromList, setNextFromList] = useState([]);
+	const currentSongInfo = useSelector(
+		(state: AudioPlayer) => state.audioPlayer.currentSongInfo
+	);
+	const [nextFromList, setNextFromList] = useState<
+		| {
+				_id: string;
+				albumImageUrl: string;
+				position: number;
+				title: string;
+				artist: string;
+		  }[]
+		| null
+	>(null);
 
 	useEffect(() => {
 		// update queue on song change
@@ -32,27 +43,17 @@ const QueueInfo = (props) => {
 		setNextFromList(queue.slice(currentSongInfo.position + 1, queue.length));
 	}, [currentSongInfo]);
 
-	useEffect(() => {
-		// update queue on list item rearrange
+	// useEffect(() => {
+	// 	// update queue on list item rearrange
 
-		const newQueue = [...queue];
-		newQueue.splice.apply(
-			newQueue,
-			[currentSongInfo.position + 1, nextFromList.length].concat(nextFromList)
-		);
+	// 	const newQueue = [...queue];
+	// 	newQueue.splice.apply(
+	// 		newQueue,
+	// 		[currentSongInfo.position + 1, nextFromList.length].concat(nextFromList)
+	// 	);
 
-		dispatch(setQueue(newQueue));
-	}, [nextFromList]);
-
-	const handleOnDragEnd = (e) => {
-		if (!e.destination) return;
-
-		const items = Array.from(nextFromList);
-		const [reorderedItem] = items.splice(e.source.index, 1);
-		items.splice(e.destination.index, 0, reorderedItem);
-
-		setNextFromList(items);
-	};
+	// 	dispatch(setQueue(newQueue));
+	// }, [nextFromList]);
 
 	return (
 		<div
@@ -103,44 +104,57 @@ const QueueInfo = (props) => {
 						</div>
 					</div>
 				</div>
-				{nextFromList.length > 0 && (
+				{nextFromList && nextFromList.length > 0 && (
 					<div>
 						<span className='block px-6 mb-2 font-bold'>
 							Next From: Album Name
 						</span>
-						<DragDropContext onDragEnd={handleOnDragEnd}>
+						<DragDropContext
+							onDragEnd={(e) => {
+								if (!e.destination) return;
+
+								if (nextFromList) {
+									const items = Array.from(nextFromList);
+									const [reorderedItem] = items.splice(e.source.index, 1);
+									items.splice(e.destination.index, 0, reorderedItem);
+
+									setNextFromList(items);
+								}
+							}}>
 							<Droppable droppableId='queue'>
 								{(provided) => (
 									<ul {...provided.droppableProps} ref={provided.innerRef}>
-										{nextFromList.map((item, index) => (
-											<Draggable
-												key={item._id}
-												draggableId={item._id}
-												index={index}>
-												{(provided, snapshot) => (
-													<li
-														ref={provided.innerRef}
-														{...provided.draggableProps}
-														{...provided.dragHandleProps}
-														className={`flex justify-between px-6 py-2 transition-colors duration-300 select-none ${
-															snapshot.isDragging ? 'bg-secondary' : ''
-														}`}>
-														<div>
-															<span className='block text-sm font-semibold'>
-																{item.title}
-															</span>
-															<span className='block text-sm text-inactive'>
-																{item.artist}
-															</span>
-														</div>
-														<IconButton edge='end'>
-															<DragHandleIcon />
-														</IconButton>
-													</li>
-												)}
-											</Draggable>
-										))}
-										{provided.placeholder}
+										<>
+											{nextFromList.map((item, index) => (
+												<Draggable
+													key={item._id}
+													draggableId={item._id}
+													index={index}>
+													{(provided, snapshot) => (
+														<li
+															ref={provided.innerRef}
+															{...provided.draggableProps}
+															{...provided.dragHandleProps}
+															className={`flex justify-between px-6 py-2 transition-colors duration-300 select-none ${
+																snapshot.isDragging ? 'bg-secondary' : ''
+															}`}>
+															<div>
+																<span className='block text-sm font-semibold'>
+																	{item.title}
+																</span>
+																<span className='block text-sm text-inactive'>
+																	{item.artist}
+																</span>
+															</div>
+															<IconButton edge='end'>
+																<DragHandleIcon />
+															</IconButton>
+														</li>
+													)}
+												</Draggable>
+											))}
+											{provided.placeholder}
+										</>
 									</ul>
 								)}
 							</Droppable>
@@ -189,5 +203,28 @@ const QueueInfo = (props) => {
 		</div>
 	);
 };
+
+interface QueueInfoProps {
+	showQueueInfo: boolean;
+	setShowQueueInfo: React.Dispatch<React.SetStateAction<boolean>>;
+}
+
+interface AudioPlayer {
+	audioPlayer: {
+		queue: {
+			_id: string;
+			albumImageUrl: string;
+			position: number;
+			title: string;
+			artist: string;
+		}[];
+		isPlaying: boolean;
+		currentSongInfo: {
+			position: number;
+			title: string;
+			artist: string;
+		};
+	};
+}
 
 export default QueueInfo;
