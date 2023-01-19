@@ -43,17 +43,18 @@ const QueueInfo = (props: QueueInfoProps) => {
 		setNextFromList(queue.slice(currentSongInfo.position + 1, queue.length));
 	}, [currentSongInfo]);
 
-	// useEffect(() => {
-	// 	// update queue on list item rearrange
-
-	// 	const newQueue = [...queue];
-	// 	newQueue.splice.apply(
-	// 		newQueue,
-	// 		[currentSongInfo.position + 1, nextFromList.length].concat(nextFromList)
-	// 	);
-
-	// 	dispatch(setQueue(newQueue));
-	// }, [nextFromList]);
+	useEffect(() => {
+		// update queue on list item rearrange
+		if (nextFromList) {
+			const newQueue = [...queue];
+			newQueue.splice.apply(newQueue, [
+				currentSongInfo.position + 1,
+				nextFromList.length,
+				...nextFromList,
+			]);
+			dispatch(setQueue(newQueue));
+		}
+	}, [nextFromList]);
 
 	return (
 		<div
