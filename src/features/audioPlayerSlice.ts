@@ -1,11 +1,25 @@
-import { createSlice, current } from '@reduxjs/toolkit';
+import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
 	isPlaying: false,
 	audioProgressValue: 0,
-	currentSongInfo: {},
+	currentSongInfo: <
+		{
+			position: number;
+			title: string;
+			artist: string;
+			audioUrl: string;
+		}
+	>{},
 	averageColor: '',
-	queue: [],
+	queue: <
+		{
+			position: number;
+			title: string;
+			artist: string;
+			audioUrl: string;
+		}[]
+	>[],
 	loading: false,
 	isSeeking: false,
 	duration: 0,
