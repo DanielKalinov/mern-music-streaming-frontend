@@ -17,6 +17,8 @@ import {
 	togglePlaying,
 } from '../features/audioPlayerSlice';
 import { FastAverageColor } from 'fast-average-color';
+import Song from '../types/Song';
+import AudioPlayerState from '../types/AudioPlayerState';
 
 const AlbumDetails = () => {
 	const isPlaying = useSelector(
@@ -219,30 +221,12 @@ const AlbumDetails = () => {
 	) : null;
 };
 
-interface AudioPlayerState {
-	audioPlayer: {
-		currentSongInfo: {
-			audioUrl: string;
-			title: string;
-		};
-		isSeeking: boolean;
-		isPlaying: boolean;
-		repeatCurrentSong: boolean;
-	};
-}
-
 interface AlbumDetails {
 	name: string;
 	albumImageUrl: string;
 	year: string;
 	artist: string;
-	songs: {
-		_id: string;
-		title: string;
-		artist: string;
-		albumImageUrl: string;
-		audioUrl: string;
-	}[];
+	songs: Song[];
 }
 
 export default AlbumDetails;

@@ -13,25 +13,20 @@ import SkipPreviousIcon from '@mui/icons-material/SkipPrevious';
 import PlayArrowIcon from '@mui/icons-material/PlayArrow';
 import PauseIcon from '@mui/icons-material/Pause';
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
+import AudioPlayerState from '../../types/AudioPlayerState';
+import Song from '../../types/Song';
 
 const QueueInfo = (props: QueueInfoProps) => {
 	const { showQueueInfo, setShowQueueInfo } = props;
 
 	const dispatch = useDispatch();
 
-	const audioPlayer = useSelector((state: AudioPlayer) => state.audioPlayer);
+	const audioPlayer = useSelector(
+		(state: AudioPlayerState) => state.audioPlayer
+	);
 	const { queue, isPlaying, currentSongInfo } = audioPlayer;
 
-	const [nextFromList, setNextFromList] = useState<
-		| {
-				_id: string;
-				albumImageUrl: string;
-				position: number;
-				title: string;
-				artist: string;
-		  }[]
-		| null
-	>(null);
+	const [nextFromList, setNextFromList] = useState<Song[]>([]);
 
 	useEffect(() => {
 		// update queue on song change
@@ -205,24 +200,6 @@ const QueueInfo = (props: QueueInfoProps) => {
 interface QueueInfoProps {
 	showQueueInfo: boolean;
 	setShowQueueInfo: React.Dispatch<React.SetStateAction<boolean>>;
-}
-
-interface AudioPlayer {
-	audioPlayer: {
-		queue: {
-			_id: string;
-			albumImageUrl: string;
-			position: number;
-			title: string;
-			artist: string;
-		}[];
-		isPlaying: boolean;
-		currentSongInfo: {
-			position: number;
-			title: string;
-			artist: string;
-		};
-	};
 }
 
 export default QueueInfo;

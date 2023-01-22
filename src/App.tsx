@@ -10,12 +10,15 @@ import { Route, Routes } from 'react-router-dom';
 import Albums from './pages/Albums';
 import Home from './pages/Home';
 import AlbumDetails from './pages/AlbumDetails';
+import AudioPlayerState from './types/AudioPlayerState';
 
 const App = () => {
 	const audio = useRef(new Audio());
 	audio.current.preload = 'metadata';
 
-	const audioPlayer = useSelector((state: AudioPlayer) => state.audioPlayer);
+	const audioPlayer = useSelector(
+		(state: AudioPlayerState) => state.audioPlayer
+	);
 	const { isPlaying, currentSongInfo, isSeeking, repeatCurrentSong } =
 		audioPlayer;
 
@@ -83,16 +86,5 @@ const App = () => {
 		</>
 	);
 };
-
-interface AudioPlayer {
-	audioPlayer: {
-		currentSongInfo: {
-			audioUrl: string;
-		};
-		isSeeking: boolean;
-		isPlaying: boolean;
-		repeatCurrentSong: boolean;
-	};
-}
 
 export default App;

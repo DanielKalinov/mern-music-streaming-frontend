@@ -11,6 +11,7 @@ import { skipTrack, togglePlaying } from '../../features/audioPlayerSlice';
 import { useDispatch, useSelector } from 'react-redux';
 import SongInfo from '../SongInfo/SongInfo';
 import QueueInfo from '../QueueInfo/QueueInfo';
+import AudioPlayerState from '../../types/AudioPlayerState';
 
 const AudioControlsPanel = ({
 	setSeekCurrentTime,
@@ -20,7 +21,9 @@ const AudioControlsPanel = ({
 	const [showSongInfo, setShowSongInfo] = useState(false);
 	const [showQueueInfo, setShowQueueInfo] = useState(false);
 	const [rangeInputValue, setRangeInputValue] = useState(0);
-	const audioPlayer = useSelector((state: AudioPlayer) => state.audioPlayer);
+	const audioPlayer = useSelector(
+		(state: AudioPlayerState) => state.audioPlayer
+	);
 	const { isPlaying, duration, audioProgressValue, queue, currentSongInfo } =
 		audioPlayer;
 
@@ -155,19 +158,5 @@ const AudioControlsPanel = ({
 		</>
 	);
 };
-
-interface AudioPlayer {
-	audioPlayer: {
-		isPlaying: boolean;
-		duration: number;
-		audioProgressValue: number;
-		queue: { albumImageUrl: string }[];
-		currentSongInfo: {
-			position: number;
-			title: string;
-			artist: string;
-		};
-	};
-}
 
 export default AudioControlsPanel;

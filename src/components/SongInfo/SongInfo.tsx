@@ -18,6 +18,7 @@ import PlayArrowIcon from '@mui/icons-material/PlayArrow';
 import PauseIcon from '@mui/icons-material/Pause';
 import { useDispatch, useSelector } from 'react-redux';
 import IconButton from '@mui/material/IconButton';
+import AudioPlayerState from '../../types/AudioPlayerState';
 
 const SongInfo = (props: SongInfoProps) => {
 	const {
@@ -31,7 +32,9 @@ const SongInfo = (props: SongInfoProps) => {
 
 	const dispatch = useDispatch();
 
-	const audioPlayer = useSelector((state: AudioPlayer) => state.audioPlayer);
+	const audioPlayer = useSelector(
+		(state: AudioPlayerState) => state.audioPlayer
+	);
 	const { isPlaying, currentSongInfo, queue, duration, repeatCurrentSong } =
 		audioPlayer;
 
@@ -258,22 +261,6 @@ interface SongInfoProps {
 	setShowQueueInfo: Dispatch<SetStateAction<boolean>>;
 	setRangeInputValue: Dispatch<SetStateAction<number>>;
 	setSeekCurrentTime: (value: number) => void;
-}
-
-interface AudioPlayer {
-	audioPlayer: {
-		isPlaying: boolean;
-		currentSongInfo: {
-			position: number;
-			title: string;
-			artist: string;
-		};
-		queue: {
-			albumImageUrl: string;
-		}[];
-		duration: number;
-		repeatCurrentSong: boolean;
-	};
 }
 
 export default SongInfo;
