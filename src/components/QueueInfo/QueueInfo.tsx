@@ -19,13 +19,9 @@ const QueueInfo = (props: QueueInfoProps) => {
 
 	const dispatch = useDispatch();
 
-	const queue = useSelector((state: AudioPlayer) => state.audioPlayer.queue);
-	const isPlaying = useSelector(
-		(state: AudioPlayer) => state.audioPlayer.isPlaying
-	);
-	const currentSongInfo = useSelector(
-		(state: AudioPlayer) => state.audioPlayer.currentSongInfo
-	);
+	const audioPlayer = useSelector((state: AudioPlayer) => state.audioPlayer);
+	const { queue, isPlaying, currentSongInfo } = audioPlayer;
+
 	const [nextFromList, setNextFromList] = useState<
 		| {
 				_id: string;

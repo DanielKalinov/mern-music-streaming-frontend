@@ -20,19 +20,9 @@ const AudioControlsPanel = ({
 	const [showSongInfo, setShowSongInfo] = useState(false);
 	const [showQueueInfo, setShowQueueInfo] = useState(false);
 	const [rangeInputValue, setRangeInputValue] = useState(0);
-	const isPlaying = useSelector(
-		(state: AudioPlayer) => state.audioPlayer.isPlaying
-	);
-	const duration = useSelector(
-		(state: AudioPlayer) => state.audioPlayer.duration
-	);
-	const audioProgressValue = useSelector(
-		(state: AudioPlayer) => state.audioPlayer.audioProgressValue
-	);
-	const queue = useSelector((state: AudioPlayer) => state.audioPlayer.queue);
-	const currentSongInfo = useSelector(
-		(state: AudioPlayer) => state.audioPlayer.currentSongInfo
-	);
+	const audioPlayer = useSelector((state: AudioPlayer) => state.audioPlayer);
+	const { isPlaying, duration, audioProgressValue, queue, currentSongInfo } =
+		audioPlayer;
 
 	const dispatch = useDispatch();
 

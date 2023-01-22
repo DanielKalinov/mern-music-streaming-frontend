@@ -15,18 +15,9 @@ const App = () => {
 	const audio = useRef(new Audio());
 	audio.current.preload = 'metadata';
 
-	const currentSongInfo = useSelector(
-		(state: AudioPlayerState) => state.audioPlayer.currentSongInfo
-	);
-	const isSeeking = useSelector(
-		(state: AudioPlayerState) => state.audioPlayer.isSeeking
-	);
-	const isPlaying = useSelector(
-		(state: AudioPlayerState) => state.audioPlayer.isPlaying
-	);
-	const repeatCurrentSong = useSelector(
-		(state: AudioPlayerState) => state.audioPlayer.repeatCurrentSong
-	);
+	const audioPlayer = useSelector((state: AudioPlayer) => state.audioPlayer);
+	const { isPlaying, currentSongInfo, isSeeking, repeatCurrentSong } =
+		audioPlayer;
 
 	const dispatch = useDispatch();
 
@@ -93,7 +84,7 @@ const App = () => {
 	);
 };
 
-interface AudioPlayerState {
+interface AudioPlayer {
 	audioPlayer: {
 		currentSongInfo: {
 			audioUrl: string;
