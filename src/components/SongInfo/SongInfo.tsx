@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { Dispatch, SetStateAction, useEffect, useState } from 'react';
 import { FastAverageColor } from 'fast-average-color';
 import Slider from '@mui/material/Slider';
 import {
@@ -19,7 +19,7 @@ import PauseIcon from '@mui/icons-material/Pause';
 import { useDispatch, useSelector } from 'react-redux';
 import IconButton from '@mui/material/IconButton';
 
-const SongInfo = (props) => {
+const SongInfo = (props: SongInfoProps) => {
 	const {
 		showSongInfo,
 		setShowSongInfo,
@@ -31,20 +31,16 @@ const SongInfo = (props) => {
 
 	const dispatch = useDispatch();
 
-	const isPlaying = useSelector((state) => state.audioPlayer.isPlaying);
-	const currentSongInfo = useSelector(
-		(state) => state.audioPlayer.currentSongInfo
-	);
-	const queue = useSelector((state) => state.audioPlayer.queue);
-	const duration = useSelector((state) => state.audioPlayer.duration);
-	const repeatCurrentSong = useSelector(
-		(state) => state.audioPlayer.repeatCurrentSong
-	);
+	const audioPlayer = useSelector((state: AudioPlayer) => state.audioPlayer);
+	const { isPlaying, currentSongInfo, queue, duration, repeatCurrentSong } =
+		audioPlayer;
 
 	const [averageColor, setAverageColor] = useState('');
 
 	useEffect(() => {
-		const albumImage = document.getElementById(`${currentSongInfo.position}`);
+		const albumImage = document.getElementById(
+			`${currentSongInfo.position}`
+		) as HTMLImageElement;
 
 		if (albumImage) {
 			const fac = new FastAverageColor();
@@ -60,7 +56,7 @@ const SongInfo = (props) => {
 		}
 	}, [currentSongInfo]);
 
-	const format = (val) => {
+	const format = (val: number) => {
 		const valString = val + '';
 		if (valString.length < 2) {
 			return '0' + valString;
@@ -69,9 +65,9 @@ const SongInfo = (props) => {
 		}
 	};
 
-	const formattedTime = (val) => {
-		const seconds = format(parseInt(val % 60));
-		const minutes = parseInt(val / 60);
+	const formattedTime = (val: any) => {
+		const seconds = format(Math.trunc(val % 60));
+		const minutes = Math.trunc((val / 60) as any);
 
 		return `${minutes}:${seconds}`;
 	};
@@ -135,7 +131,7 @@ const SongInfo = (props) => {
 										})`,
 									}}>
 									<img
-										id={index}
+										id={index.toString()}
 										src={item.albumImageUrl}
 										width={'100%'}
 										height={'100%'}
@@ -171,13 +167,13 @@ const SongInfo = (props) => {
 								size='small'
 								aria-label='Small'
 								max={duration}
-								onChange={(e, value) => {
-									setRangeInputValue(value);
+								onChange={(_, value) => {
+									setRangeInputValue(value as number);
 								}}
-								onChangeCommitted={(e, value) => {
+								onChangeCommitted={(_, value) => {
 									dispatch(setIsSeeking(false));
 									dispatch(togglePlaying(true));
-									setSeekCurrentTime(value);
+									setSeekCurrentTime(value as number);
 								}}
 								sx={{
 									'& .MuiSlider-thumb': {
@@ -254,5 +250,30 @@ const SongInfo = (props) => {
 		</div>
 	);
 };
+
+interface SongInfoProps {
+	showSongInfo: boolean;
+	rangeInputValue: number;
+	setShowSongInfo: Dispatch<SetStateAction<boolean>>;
+	setShowQueueInfo: Dispatch<SetStateAction<boolean>>;
+	setRangeInputValue: Dispatch<SetStateAction<number>>;
+	setSeekCurrentTime: (value: number) => void;
+}
+
+interface AudioPlayer {
+	audioPlayer: {
+		isPlaying: boolean;
+		currentSongInfo: {
+			position: number;
+			title: string;
+			artist: string;
+		};
+		queue: {
+			albumImageUrl: string;
+		}[];
+		duration: number;
+		repeatCurrentSong: boolean;
+	};
+}
 
 export default SongInfo;
