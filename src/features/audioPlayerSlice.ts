@@ -5,19 +5,23 @@ const initialState = {
 	audioProgressValue: 0,
 	currentSongInfo: <
 		{
+			id: string;
 			position: number;
 			title: string;
 			artist: string;
 			audioUrl: string;
+			albumImageUrl: string;
 		}
 	>{},
 	averageColor: '',
 	queue: <
 		{
+			id: string;
 			position: number;
 			title: string;
 			artist: string;
 			audioUrl: string;
+			albumImageUrl: string;
 		}[]
 	>[],
 	loading: false,

@@ -132,6 +132,7 @@ const AlbumDetails = () => {
 							dispatch(togglePlaying(true));
 							dispatch(
 								setCurrentSongInfo({
+									id: firstTrack._id,
 									position: 0,
 									title: firstTrack.title,
 									artist: firstTrack.artist,
@@ -169,6 +170,7 @@ const AlbumDetails = () => {
 								} else {
 									dispatch(
 										setCurrentSongInfo({
+											id: item._id,
 											position: index,
 											title: item.title,
 											artist: item.artist,
