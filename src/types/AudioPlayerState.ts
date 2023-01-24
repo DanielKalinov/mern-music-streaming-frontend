@@ -11,5 +11,6 @@ export default interface AudioPlayerState {
 		queue: Song[];
 		loading: boolean;
 		averageColor: string;
+		shuffleList: boolean;
 	};
 }

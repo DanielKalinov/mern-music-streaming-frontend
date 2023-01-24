@@ -6,6 +6,7 @@ import {
 	setIsSeeking,
 	setRepeatCurrentSong,
 	skipTrack,
+	setShuffleList,
 } from '../../features/audioPlayerSlice';
 import ExpandMoreRoundedIcon from '@mui/icons-material/ExpandMoreRounded';
 import FormatListBulletedIcon from '@mui/icons-material/FormatListBulleted';
@@ -35,8 +36,14 @@ const SongInfo = (props: SongInfoProps) => {
 	const audioPlayer = useSelector(
 		(state: AudioPlayerState) => state.audioPlayer
 	);
-	const { isPlaying, currentSongInfo, queue, duration, repeatCurrentSong } =
-		audioPlayer;
+	const {
+		isPlaying,
+		currentSongInfo,
+		queue,
+		duration,
+		repeatCurrentSong,
+		shuffleList,
+	} = audioPlayer;
 
 	const [averageColor, setAverageColor] = useState('');
 
@@ -207,8 +214,8 @@ const SongInfo = (props: SongInfoProps) => {
 						</div>
 					</div>
 					<div className='flex justify-evenly'>
-						<IconButton>
-							<ShuffleIcon />
+						<IconButton onClick={() => dispatch(setShuffleList())}>
+							<ShuffleIcon className={`${shuffleList ? 'text-accent' : ''}`} />
 						</IconButton>
 						<IconButton
 							disabled={currentSongInfo.position == 0}
@@ -245,7 +252,9 @@ const SongInfo = (props: SongInfoProps) => {
 							<SkipNextIcon fontSize='large' />
 						</IconButton>
 						<IconButton onClick={() => dispatch(setRepeatCurrentSong())}>
-							<RepeatIcon className={`${repeatCurrentSong && 'text-accent'}`} />
+							<RepeatIcon
+								className={`${repeatCurrentSong ? 'text-accent' : ''}`}
+							/>
 						</IconButton>
 					</div>
 				</div>

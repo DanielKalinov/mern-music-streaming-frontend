@@ -11,6 +11,7 @@ const initialState = {
 	isSeeking: false,
 	duration: 0,
 	repeatCurrentSong: false,
+	shuffleList: false,
 };
 
 export const audioPlayerSlice = createSlice({
@@ -57,6 +58,9 @@ export const audioPlayerSlice = createSlice({
 				state.isPlaying = false;
 			}
 		},
+		setShuffleList: (state) => {
+			state.shuffleList = !state.shuffleList;
+		},
 	},
 });
 
@@ -71,6 +75,7 @@ export const {
 	setDuration,
 	setRepeatCurrentSong,
 	skipTrack,
+	setShuffleList,
 } = audioPlayerSlice.actions;
 
 export default audioPlayerSlice.reducer;
