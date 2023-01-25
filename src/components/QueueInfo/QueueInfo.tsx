@@ -1,9 +1,10 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import {
 	togglePlaying,
 	skipTrack,
 	setQueue,
+	// setQueue,
 } from '../../features/audioPlayerSlice';
 import { IconButton } from '@mui/material';
 import ExpandMoreRoundedIcon from '@mui/icons-material/ExpandMoreRounded';
@@ -14,7 +15,6 @@ import PlayArrowIcon from '@mui/icons-material/PlayArrow';
 import PauseIcon from '@mui/icons-material/Pause';
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
 import AudioPlayerState from '../../types/AudioPlayerState';
-import Song from '../../types/Song';
 
 const QueueInfo = (props: QueueInfoProps) => {
 	const { showQueueInfo, setShowQueueInfo } = props;
@@ -26,27 +26,7 @@ const QueueInfo = (props: QueueInfoProps) => {
 	);
 	const { queue, isPlaying, currentSongInfo } = audioPlayer;
 
-	const [nextFromList, setNextFromList] = useState<Song[]>([]);
-
-	useEffect(() => {
-		// update queue on song change
-
-		setNextFromList(queue.slice(currentSongInfo.position + 1, queue.length));
-	}, [currentSongInfo]);
-
-	useEffect(() => {
-		// update queue on list item rearrange
-		if (nextFromList) {
-			const newQueue = [...queue];
-			newQueue.splice(
-				currentSongInfo.position + 1,
-				nextFromList.length,
-				...nextFromList
-			);
-
-			dispatch(setQueue(newQueue));
-		}
-	}, [nextFromList]);
+	const nextFromList = queue.slice(currentSongInfo.position + 1, queue.length);
 
 	return (
 		<div
@@ -97,7 +77,7 @@ const QueueInfo = (props: QueueInfoProps) => {
 						</div>
 					</div>
 				</div>
-				{nextFromList && nextFromList.length > 0 && (
+				{nextFromList.length > 0 && (
 					<div>
 						<span className='block px-6 mb-2 font-bold'>
 							Next From: Album Name
@@ -106,13 +86,19 @@ const QueueInfo = (props: QueueInfoProps) => {
 							onDragEnd={(e) => {
 								if (!e.destination) return;
 
-								if (nextFromList) {
-									const items = Array.from(nextFromList);
-									const [reorderedItem] = items.splice(e.source.index, 1);
-									items.splice(e.destination.index, 0, reorderedItem);
+								// reorder items in nextFromList variable
+								const [reorderedItem] = nextFromList.splice(e.source.index, 1);
+								nextFromList.splice(e.destination.index, 0, reorderedItem);
 
-									setNextFromList(items);
-								}
+								// insert reordered items in state
+								const newQueue = [...queue];
+								newQueue.splice(
+									currentSongInfo.position + 1,
+									nextFromList.length,
+									...nextFromList
+								);
+
+								dispatch(setQueue(newQueue));
 							}}>
 							<Droppable droppableId='queue'>
 								{(provided) => (
