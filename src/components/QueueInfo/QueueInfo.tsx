@@ -4,6 +4,7 @@ import {
 	togglePlaying,
 	skipTrack,
 	setQueue,
+	setCurrentSongPosition,
 } from '../../features/audioPlayerSlice';
 import { IconButton } from '@mui/material';
 import ExpandMoreRoundedIcon from '@mui/icons-material/ExpandMoreRounded';
@@ -50,7 +51,23 @@ const QueueInfo = (props: QueueInfoProps) => {
 
 			dispatch(setQueue(newQueue));
 		} else {
-			console.log(prevArray);
+			const currentSongIndex = prevArray.findIndex(
+				(item) => item._id == currentSongInfo._id
+			);
+			const nextFromList2 = prevArray.slice(
+				currentSongIndex + 1,
+				prevArray.length
+			);
+			dispatch(setCurrentSongPosition(currentSongIndex));
+
+			const newQueue = [...prevArray];
+			newQueue.splice(
+				currentSongIndex + 1,
+				nextFromList2.length,
+				...nextFromList2
+			);
+
+			dispatch(setQueue(newQueue));
 		}
 	}, [shuffleList]);
 
