@@ -56,7 +56,7 @@ export const audioPlayerSlice = createSlice({
 			const track = state.queue[trackPosition];
 
 			if (track) {
-				state.currentSongInfo = { ...track };
+				state.currentSongInfo = track;
 				state.isPlaying = true;
 			} else {
 				state.isPlaying = false;
