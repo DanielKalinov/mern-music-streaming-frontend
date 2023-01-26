@@ -39,6 +39,7 @@ const SongInfo = (props: SongInfoProps) => {
 	const {
 		isPlaying,
 		currentSongInfo,
+		currentSongPosition,
 		queue,
 		duration,
 		repeatCurrentSong,
@@ -49,7 +50,7 @@ const SongInfo = (props: SongInfoProps) => {
 
 	useEffect(() => {
 		const albumImage = document.getElementById(
-			`${currentSongInfo.position}`
+			`${currentSongPosition}`
 		) as HTMLImageElement;
 
 		if (albumImage) {
@@ -64,7 +65,7 @@ const SongInfo = (props: SongInfoProps) => {
 					console.log(e);
 				});
 		}
-	}, [currentSongInfo]);
+	}, [currentSongPosition]);
 
 	const format = (val: number) => {
 		const valString = val + '';
@@ -126,7 +127,7 @@ const SongInfo = (props: SongInfoProps) => {
 						style={{
 							width: window.innerWidth * queue.length,
 							transform: `translateX(-${
-								window.innerWidth * currentSongInfo.position
+								window.innerWidth * currentSongPosition
 							}px)`,
 						}}>
 						{queue.map((item, index) => {
@@ -137,7 +138,7 @@ const SongInfo = (props: SongInfoProps) => {
 									style={{
 										width: window.innerWidth,
 										transform: `scale(${
-											currentSongInfo.position == index ? '1' : '0.7'
+											currentSongPosition == index ? '1' : '0.7'
 										})`,
 									}}>
 									<img
@@ -218,7 +219,7 @@ const SongInfo = (props: SongInfoProps) => {
 							<ShuffleIcon className={`${shuffleList ? 'text-accent' : ''}`} />
 						</IconButton>
 						<IconButton
-							disabled={currentSongInfo.position == 0}
+							disabled={currentSongPosition == 0}
 							onClick={() => {
 								dispatch(skipTrack('prev'));
 							}}
@@ -244,7 +245,7 @@ const SongInfo = (props: SongInfoProps) => {
 							)}
 						</IconButton>
 						<IconButton
-							disabled={currentSongInfo.position + 1 == queue.length}
+							disabled={currentSongPosition + 1 == queue.length}
 							onClick={() => {
 								dispatch(skipTrack('next'));
 							}}

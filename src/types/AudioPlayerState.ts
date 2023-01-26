@@ -4,6 +4,7 @@ export default interface AudioPlayerState {
 	audioPlayer: {
 		isPlaying: boolean;
 		currentSongInfo: Song;
+		currentSongPosition: number;
 		isSeeking: boolean;
 		audioProgressValue: number;
 		duration: number;

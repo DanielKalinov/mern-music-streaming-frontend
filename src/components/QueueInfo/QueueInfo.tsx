@@ -23,9 +23,10 @@ const QueueInfo = (props: QueueInfoProps) => {
 	const audioPlayer = useSelector(
 		(state: AudioPlayerState) => state.audioPlayer
 	);
-	const { queue, isPlaying, currentSongInfo } = audioPlayer;
+	const { queue, isPlaying, currentSongInfo, currentSongPosition } =
+		audioPlayer;
 
-	const nextFromList = queue.slice(currentSongInfo.position + 1, queue.length);
+	const nextFromList = queue.slice(currentSongPosition + 1, queue.length);
 
 	return (
 		<div
@@ -57,9 +58,7 @@ const QueueInfo = (props: QueueInfoProps) => {
 										width={40}
 										height={40}
 										className={`${
-											currentSongInfo.position == index
-												? 'opacity-1'
-												: 'opacity-0'
+											currentSongPosition == index ? 'opacity-1' : 'opacity-0'
 										} absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 rounded-md transition-opacity duration-300 ease-in-out`}
 									/>
 								))}
@@ -92,7 +91,7 @@ const QueueInfo = (props: QueueInfoProps) => {
 								// insert reordered items in state
 								const newQueue = [...queue];
 								newQueue.splice(
-									currentSongInfo.position + 1,
+									currentSongPosition + 1,
 									nextFromList.length,
 									...nextFromList
 								);
@@ -142,7 +141,7 @@ const QueueInfo = (props: QueueInfoProps) => {
 				<div className='mt-auto w-full'>
 					<div className='flex justify-evenly my-4'>
 						<IconButton
-							disabled={currentSongInfo.position == 0}
+							disabled={currentSongPosition == 0}
 							onClick={() => {
 								dispatch(skipTrack('prev'));
 							}}
@@ -168,7 +167,7 @@ const QueueInfo = (props: QueueInfoProps) => {
 							)}
 						</IconButton>
 						<IconButton
-							disabled={currentSongInfo.position + 1 == queue.length}
+							disabled={currentSongPosition + 1 == queue.length}
 							onClick={() => {
 								dispatch(skipTrack('next'));
 							}}

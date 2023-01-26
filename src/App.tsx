@@ -3,6 +3,7 @@ import AudioControlsPanel from './components/AudioControlsPanel';
 import { useSelector, useDispatch } from 'react-redux';
 import {
 	setAudioProgressValue,
+	setCurrentSongPosition,
 	setDuration,
 	skipTrack,
 } from './features/audioPlayerSlice';
@@ -19,7 +20,7 @@ const App = () => {
 	const audioPlayer = useSelector(
 		(state: AudioPlayerState) => state.audioPlayer
 	);
-	const { isPlaying, currentSongInfo, isSeeking, repeatCurrentSong } =
+	const { isPlaying, currentSongInfo, queue, isSeeking, repeatCurrentSong } =
 		audioPlayer;
 
 	const dispatch = useDispatch();
@@ -34,6 +35,11 @@ const App = () => {
 				audio.current.play();
 			};
 		}
+
+		const currentSongIndex = queue.findIndex(
+			(item) => item._id == currentSongInfo._id
+		);
+		dispatch(setCurrentSongPosition(currentSongIndex));
 
 		// get audio duration on loaded data
 		audio.current.onloadedmetadata = () => {

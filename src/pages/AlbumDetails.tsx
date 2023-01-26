@@ -135,7 +135,6 @@ const AlbumDetails = () => {
 							dispatch(
 								setCurrentSongInfo({
 									_id: firstTrack._id,
-									position: 0,
 									title: firstTrack.title,
 									artist: firstTrack.artist,
 									albumImageUrl: firstTrack.albumImageUrl,
@@ -173,7 +172,6 @@ const AlbumDetails = () => {
 									dispatch(
 										setCurrentSongInfo({
 											_id: item._id,
-											position: index,
 											title: item.title,
 											artist: item.artist,
 											albumImageUrl: item.albumImageUrl,

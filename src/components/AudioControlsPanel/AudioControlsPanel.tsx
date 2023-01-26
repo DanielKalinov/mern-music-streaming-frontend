@@ -24,8 +24,14 @@ const AudioControlsPanel = ({
 	const audioPlayer = useSelector(
 		(state: AudioPlayerState) => state.audioPlayer
 	);
-	const { isPlaying, duration, audioProgressValue, queue, currentSongInfo } =
-		audioPlayer;
+	const {
+		isPlaying,
+		duration,
+		audioProgressValue,
+		queue,
+		currentSongInfo,
+		currentSongPosition,
+	} = audioPlayer;
 
 	const dispatch = useDispatch();
 
@@ -69,9 +75,7 @@ const AudioControlsPanel = ({
 											width={40}
 											height={40}
 											className={`${
-												currentSongInfo.position == index
-													? 'opacity-1'
-													: 'opacity-0'
+												currentSongPosition == index ? 'opacity-1' : 'opacity-0'
 											} absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 rounded-md transition-opacity duration-300 ease-in-out`}
 										/>
 									))}
@@ -89,7 +93,7 @@ const AudioControlsPanel = ({
 						</div>
 						<div className='flex'>
 							<IconButton
-								disabled={currentSongInfo.position == 0}
+								disabled={currentSongPosition == 0}
 								onClick={(e) => {
 									e.stopPropagation();
 
@@ -110,7 +114,7 @@ const AudioControlsPanel = ({
 								{isPlaying ? <PauseIcon /> : <PlayArrowIcon />}
 							</IconButton>
 							<IconButton
-								disabled={currentSongInfo.position + 1 == queue.length}
+								disabled={currentSongPosition + 1 == queue.length}
 								onClick={(e) => {
 									e.stopPropagation();
 
