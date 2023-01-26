@@ -38,6 +38,8 @@ const QueueInfo = (props: QueueInfoProps) => {
 
 	useEffect(() => {
 		if (shuffleList) {
+			// shuffle the queue
+
 			setPrevQueue(queue);
 
 			nextFromList.sort(() => 0.5 - Math.random());
@@ -51,6 +53,8 @@ const QueueInfo = (props: QueueInfoProps) => {
 
 			dispatch(setQueue(newQueue));
 		} else {
+			// restore previous queue
+
 			const currentSongIndex = prevQueue.findIndex(
 				(item) => item._id == currentSongInfo._id
 			);
