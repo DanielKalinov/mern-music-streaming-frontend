@@ -25,7 +25,7 @@ const QueueInfo = (props: QueueInfoProps) => {
 	const audioPlayer = useSelector(
 		(state: AudioPlayerState) => state.audioPlayer
 	);
-	const [prevArray, setPrevArray] = useState<Song[]>([]);
+	const [prevQueue, setPrevQueue] = useState<Song[]>([]);
 	const {
 		queue,
 		isPlaying,
@@ -38,7 +38,7 @@ const QueueInfo = (props: QueueInfoProps) => {
 
 	useEffect(() => {
 		if (shuffleList) {
-			setPrevArray(queue);
+			setPrevQueue(queue);
 
 			nextFromList.sort(() => 0.5 - Math.random());
 
@@ -51,20 +51,20 @@ const QueueInfo = (props: QueueInfoProps) => {
 
 			dispatch(setQueue(newQueue));
 		} else {
-			const currentSongIndex = prevArray.findIndex(
+			const currentSongIndex = prevQueue.findIndex(
 				(item) => item._id == currentSongInfo._id
 			);
-			const nextFromList2 = prevArray.slice(
+			const nextFromListPrev = prevQueue.slice(
 				currentSongIndex + 1,
-				prevArray.length
+				prevQueue.length
 			);
 			dispatch(setCurrentSongPosition(currentSongIndex));
 
-			const newQueue = [...prevArray];
+			const newQueue = [...prevQueue];
 			newQueue.splice(
 				currentSongIndex + 1,
-				nextFromList2.length,
-				...nextFromList2
+				nextFromListPrev.length,
+				...nextFromListPrev
 			);
 
 			dispatch(setQueue(newQueue));
