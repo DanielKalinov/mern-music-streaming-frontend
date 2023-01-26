@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import {
 	togglePlaying,
@@ -14,6 +14,7 @@ import PlayArrowIcon from '@mui/icons-material/PlayArrow';
 import PauseIcon from '@mui/icons-material/Pause';
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
 import AudioPlayerState from '../../types/AudioPlayerState';
+import Song from '../../types/Song';
 
 const QueueInfo = (props: QueueInfoProps) => {
 	const { showQueueInfo, setShowQueueInfo } = props;
@@ -23,10 +24,35 @@ const QueueInfo = (props: QueueInfoProps) => {
 	const audioPlayer = useSelector(
 		(state: AudioPlayerState) => state.audioPlayer
 	);
-	const { queue, isPlaying, currentSongInfo, currentSongPosition } =
-		audioPlayer;
+	const [prevArray, setPrevArray] = useState<Song[]>([]);
+	const {
+		queue,
+		isPlaying,
+		currentSongInfo,
+		currentSongPosition,
+		shuffleList,
+	} = audioPlayer;
 
 	const nextFromList = queue.slice(currentSongPosition + 1, queue.length);
+
+	useEffect(() => {
+		if (shuffleList) {
+			setPrevArray(queue);
+
+			nextFromList.sort(() => 0.5 - Math.random());
+
+			const newQueue = [...queue];
+			newQueue.splice(
+				currentSongPosition + 1,
+				nextFromList.length,
+				...nextFromList
+			);
+
+			dispatch(setQueue(newQueue));
+		} else {
+			console.log(prevArray);
+		}
+	}, [shuffleList]);
 
 	return (
 		<div
