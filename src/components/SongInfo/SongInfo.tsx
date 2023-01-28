@@ -133,7 +133,7 @@ const SongInfo = (props: SongInfoProps) => {
 						{queue.map((item, index) => {
 							return (
 								<div
-									key={item._id}
+									key={index}
 									className='px-6 transition-transform duration-300 ease-in-out'
 									style={{
 										width: window.innerWidth,
@@ -142,7 +142,7 @@ const SongInfo = (props: SongInfoProps) => {
 										})`,
 									}}>
 									<img
-										id={item._id}
+										id={index.toString()}
 										src={item.albumImageUrl}
 										width={'100%'}
 										height={'100%'}
