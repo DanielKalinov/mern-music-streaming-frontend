@@ -91,7 +91,7 @@ const SongInfo = (props: SongInfoProps) => {
 					: 'opacity-0 translate-y-full'
 			} z-30 fixed top-0 h-full w-full [transition:transform_0.3s_ease-in-out,opacity_0.2s_ease-in-out]`}>
 			<div
-				className='absolute top-0 h-full w-full transition-all duration-500 ease-in-out'
+				className='absolute top-0 h-full w-full transition-all duration-500 ease-in-out bg-secondary'
 				style={{ backgroundColor: averageColor }}
 			/>
 			<div className='relative flex flex-col h-full w-full bg-gradient-to-t from-background-dark [&>*]:mb-auto'>
@@ -121,37 +121,13 @@ const SongInfo = (props: SongInfoProps) => {
 						showSongInfo
 							? 'translate-y-0 opacity-1'
 							: 'translate-y-full opacity-0'
-					} [transition:transform_0.4s_ease-in-out,opacity_0.7s_ease-in-out]`}>
-					<div
-						className='flex transition-transform duration-200 ease-in-out'
-						style={{
-							width: window.innerWidth * queue.length,
-							transform: `translateX(-${
-								window.innerWidth * currentSongPosition
-							}px)`,
-						}}>
-						{queue.map((item, index) => {
-							return (
-								<div
-									key={index}
-									className='px-6 transition-transform duration-300 ease-in-out'
-									style={{
-										width: window.innerWidth,
-										transform: `scale(${
-											currentSongPosition == index ? '1' : '0.7'
-										})`,
-									}}>
-									<img
-										id={index.toString()}
-										src={item.albumImageUrl}
-										width={'100%'}
-										height={'100%'}
-										className='shadow-lg rounded-lg'
-									/>
-								</div>
-							);
-						})}
-					</div>
+					} [transition:transform_0.4s_ease-in-out,opacity_0.7s_ease-in-out] px-6`}>
+					<img
+						src={currentSongInfo.albumImageUrl}
+						width={'100%'}
+						height={'100%'}
+						className='shadow-lg rounded-lg'
+					/>
 				</div>
 
 				<div className='px-6'>
