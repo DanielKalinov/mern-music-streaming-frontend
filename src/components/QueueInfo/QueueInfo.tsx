@@ -42,16 +42,15 @@ const QueueInfo = (props: QueueInfoProps) => {
 
 			setPrevQueue(queue);
 
-			nextFromList.sort(() => 0.5 - Math.random());
-
 			const newQueue = [...queue];
-			newQueue.splice(
-				currentSongPosition + 1,
-				nextFromList.length,
-				...nextFromList
-			);
 
-			dispatch(setQueue(newQueue));
+			const currentItem = newQueue.splice(currentSongPosition, 1);
+
+			newQueue.sort(() => 0.5 - Math.random());
+
+			dispatch(setCurrentSongPosition(0));
+
+			dispatch(setQueue([currentItem[0], ...newQueue]));
 		} else {
 			// restore previous queue
 

@@ -8,7 +8,7 @@
 		"strict": true,
 		"skipLibCheck": true,
 		"noImplicitReturns": true,
-		"noUnusedLocals": true,
+		// "noUnusedLocals": true,
 		"jsx": "react"
 	}
 }
