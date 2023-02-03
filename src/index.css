@@ -31,3 +31,19 @@
 		height: 100%;
 	}
 }
+
+.album-image-enter {
+	transform: translateX(100%);
+}
+.album-image-enter-active {
+	transform: translateX(0);
+	transition: transform 200ms ease-in-out;
+}
+
+.album-image-exit {
+	transform: translateX(0);
+}
+.album-image-exit-active {
+	transform: translateX(-100%);
+	transition: transform 200ms ease-in-out;
+}

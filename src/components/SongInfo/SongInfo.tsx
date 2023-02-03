@@ -20,6 +20,7 @@ import PauseIcon from '@mui/icons-material/Pause';
 import { useDispatch, useSelector } from 'react-redux';
 import IconButton from '@mui/material/IconButton';
 import AudioPlayerState from '../../types/AudioPlayerState';
+import { CSSTransition, TransitionGroup } from 'react-transition-group';
 
 const SongInfo = (props: SongInfoProps) => {
 	const {
@@ -122,35 +123,22 @@ const SongInfo = (props: SongInfoProps) => {
 							? 'translate-y-0 opacity-1'
 							: 'translate-y-full opacity-0'
 					} [transition:transform_0.4s_ease-in-out,opacity_0.7s_ease-in-out]`}>
-					<div
-						className='flex transition-transform duration-200 ease-in-out'
-						style={{
-							width: window.innerWidth * queue.length,
-							transform: `translateX(-${
-								window.innerWidth * currentSongPosition
-							}px)`,
-						}}>
-						{queue.map((item, index) => {
-							return (
-								<div
-									key={index}
-									className='px-6 transition-transform duration-300 ease-in-out'
-									style={{
-										width: window.innerWidth,
-										transform: `scale(${
-											currentSongPosition == index ? '1' : '0.7'
-										})`,
-									}}>
+					<div className='relative h-80'>
+						<TransitionGroup>
+							<CSSTransition
+								key={currentSongInfo.albumImageUrl}
+								classNames='album-image'
+								timeout={200}>
+								<div className='w-full px-6 absolute'>
 									<img
-										id={index.toString()}
-										src={item.albumImageUrl}
+										src={currentSongInfo.albumImageUrl}
 										width={'100%'}
 										height={'100%'}
 										className='shadow-lg rounded-lg'
 									/>
 								</div>
-							);
-						})}
+							</CSSTransition>
+						</TransitionGroup>
 					</div>
 				</div>
 
