@@ -10,13 +10,11 @@ import PauseIcon from '@mui/icons-material/Pause';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import { useDispatch, useSelector } from 'react-redux';
 import {
-	setAverageColor,
 	setLoading,
 	setQueue,
 	setCurrentSongInfo,
 	togglePlaying,
 } from '../features/audioPlayerSlice';
-import { FastAverageColor } from 'fast-average-color';
 import Song from '../types/Song';
 import AudioPlayerState from '../types/AudioPlayerState';
 
@@ -25,7 +23,6 @@ const AlbumDetails = () => {
 		(state: AudioPlayerState) => state.audioPlayer.isPlaying
 	);
 	const [albumDetails, setAlbumDetails] = useState<AlbumDetails>();
-	// const [averageColor, setAverageColor] = useState();
 	// const loading = useSelector((state) => state.audioPlayer.loading);
 	const currentSongInfo = useSelector(
 		(state: AudioPlayerState) => state.audioPlayer.currentSongInfo
@@ -72,21 +69,6 @@ const AlbumDetails = () => {
 
 		return () => window.removeEventListener('scroll', changeOpacityOnScroll);
 	}, []);
-
-	useEffect(() => {
-		if (albumImageRef.current) {
-			const fac = new FastAverageColor();
-			albumImageRef.current.crossOrigin = 'Anonymous';
-			fac
-				.getColorAsync(albumImageRef.current)
-				.then((color) => {
-					setAverageColor(color.hex);
-				})
-				.catch((e) => {
-					console.log(e);
-				});
-		}
-	}, [albumImageRef.current]);
 
 	return albumDetails ? (
 		<div>

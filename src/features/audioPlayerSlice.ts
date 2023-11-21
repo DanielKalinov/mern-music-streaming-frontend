@@ -6,7 +6,6 @@ const initialState = {
 	audioProgressValue: 0,
 	currentSongInfo: <Song>{},
 	currentSongPosition: 0,
-	averageColor: '',
 	queue: <Song[]>[],
 	loading: false,
 	isSeeking: false,
@@ -30,9 +29,6 @@ export const audioPlayerSlice = createSlice({
 		},
 		setCurrentSongPosition: (state, action) => {
 			state.currentSongPosition = action.payload;
-		},
-		setAverageColor: (state, action) => {
-			state.averageColor = action.payload;
 		},
 		setQueue: (state, action) => {
 			state.queue = action.payload;
@@ -73,7 +69,6 @@ export const {
 	setAudioProgressValue,
 	setCurrentSongInfo,
 	setCurrentSongPosition,
-	setAverageColor,
 	setQueue,
 	setLoading,
 	setIsSeeking,

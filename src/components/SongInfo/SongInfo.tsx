@@ -1,5 +1,4 @@
 import React, { Dispatch, SetStateAction, useEffect, useState } from 'react';
-import { FastAverageColor } from 'fast-average-color';
 import Slider from '@mui/material/Slider';
 import {
 	togglePlaying,
@@ -47,27 +46,6 @@ const SongInfo = (props: SongInfoProps) => {
 		shuffleList,
 	} = audioPlayer;
 
-	const [averageColor, setAverageColor] = useState('');
-
-	useEffect(() => {
-		const albumImage = document.getElementById(
-			`${currentSongPosition}`
-		) as HTMLImageElement;
-
-		if (albumImage) {
-			const fac = new FastAverageColor();
-			albumImage.crossOrigin = 'Anonymous';
-			fac
-				.getColorAsync(albumImage)
-				.then((color) => {
-					setAverageColor(color.hex);
-				})
-				.catch((e) => {
-					console.log(e);
-				});
-		}
-	}, [currentSongPosition]);
-
 	const format = (val: number) => {
 		const valString = val + '';
 		if (valString.length < 2) {
@@ -91,10 +69,7 @@ const SongInfo = (props: SongInfoProps) => {
 					? 'opacity-100 translate-y-0'
 					: 'opacity-0 translate-y-full'
 			} z-30 fixed top-0 h-full w-full [transition:transform_0.3s_ease-in-out,opacity_0.2s_ease-in-out]`}>
-			<div
-				className='absolute top-0 h-full w-full transition-all duration-500 ease-in-out'
-				style={{ backgroundColor: averageColor }}
-			/>
+			<div className='absolute top-0 h-full w-full transition-all duration-500 ease-in-out bg-secondary' />
 			<div className='relative flex flex-col h-full w-full bg-gradient-to-t from-background-dark [&>*]:mb-auto'>
 				<div
 					className={`${

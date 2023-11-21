@@ -11,7 +11,6 @@ export default interface AudioPlayerState {
 		repeatCurrentSong: boolean;
 		queue: Song[];
 		loading: boolean;
-		averageColor: string;
 		shuffleList: boolean;
 	};
 }
