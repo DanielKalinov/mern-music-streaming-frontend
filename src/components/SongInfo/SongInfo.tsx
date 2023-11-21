@@ -69,8 +69,16 @@ const SongInfo = (props: SongInfoProps) => {
 					? 'opacity-100 translate-y-0'
 					: 'opacity-0 translate-y-full'
 			} z-30 fixed top-0 h-full w-full [transition:transform_0.3s_ease-in-out,opacity_0.2s_ease-in-out]`}>
-			<div className='absolute top-0 h-full w-full transition-all duration-500 ease-in-out bg-secondary' />
-			<div className='relative flex flex-col h-full w-full bg-gradient-to-t from-background-dark [&>*]:mb-auto'>
+			<div
+				className='absolute top-0 h-full w-full transition-all duration-500 ease-in-out'
+				style={{
+					backgroundImage: `url(${currentSongInfo.albumImageUrl})`,
+					backgroundRepeat: 'no-repeat',
+					backgroundSize: 'cover',
+					backgroundPosition: 'center',
+				}}
+			/>
+			<div className='relative flex flex-col h-full w-full bg-black/70 backdrop-blur-3xl [&>*]:mb-auto'>
 				<div
 					className={`${
 						showSongInfo ? 'translate-y-0' : '-translate-y-full'
