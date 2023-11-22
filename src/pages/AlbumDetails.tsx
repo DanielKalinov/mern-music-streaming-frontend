@@ -83,16 +83,26 @@ const AlbumDetails = () => {
 				</span>
 			</div>
 			<div ref={albumTopSectionRef} className='p-4'>
-				<div className='p-8'>
+				<div className='absolute top-0 left-0 w-full z-0'>
 					<img
-						className='shadow-lg rounded-lg'
 						ref={albumImageRef}
 						src={albumDetails.albumImageUrl}
 						height='100%'
 						width='100%'
 					/>
+					<div className='absolute top-0 left-0 h-full w-full bg-black/50 backdrop-blur-3xl' />
+					<div className='absolute top-0 left-0 h-full w-full bg-gradient-to-b from-transparent to-background-dark' />
 				</div>
-				<div className='flex items-center justify-between mb-2'>
+				<div className='relative p-8 z-10'>
+					<img
+						ref={albumImageRef}
+						src={albumDetails.albumImageUrl}
+						height='100%'
+						width='100%'
+						className='shadow-lg rounded-lg z-20'
+					/>
+				</div>
+				<div className='relative flex items-center justify-between mb-2 z-10'>
 					<div>
 						<span className='block font-bold text-2xl'>
 							{albumDetails.name} • {albumDetails.year}
