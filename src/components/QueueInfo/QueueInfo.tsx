@@ -78,7 +78,7 @@ const QueueInfo = (props: QueueInfoProps) => {
 		<div
 			className={`${showQueueInfo ? 'opacity-100' : 'opacity-0'} ${
 				showQueueInfo ? 'translate-y-0' : 'translate-y-full'
-			} bg-primary z-40 fixed top-0 h-full w-full [transition:transform_300ms_ease-in-out,opacity_200ms_ease-in-out]`}>
+			} bg-primary/80 backdrop-blur-xl z-40 fixed top-0 h-full w-full [transition:transform_300ms_ease-in-out,opacity_200ms_ease-in-out]`}>
 			<div className='h-full flex flex-col'>
 				<div className='flex justify-between items-center'>
 					<IconButton
