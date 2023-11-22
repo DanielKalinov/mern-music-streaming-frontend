@@ -150,7 +150,12 @@ const AlbumDetails = () => {
 
 			<ul>
 				{albumDetails.songs.map((item, index) => (
-					<li key={item._id} className='flex pr-4'>
+					<li
+						key={item._id}
+						className={`flex pr-4 ${
+							item.title == currentSongInfo.title &&
+							'bg-gradient-to-r from-white/5 to-transparent'
+						}`}>
 						<ButtonBase
 							className='w-full text-left'
 							onClick={() => {
@@ -176,7 +181,7 @@ const AlbumDetails = () => {
 							}}>
 							<div className='w-full flex justify-between py-2'>
 								<div
-									className={`flex items-center transition-colors duration-200 ease-in-out ${
+									className={`flex items-center transition-colors duration-200 ease-in-out font-medium ${
 										item.title == currentSongInfo.title && 'text-accent'
 									}`}>
 									{item.title == currentSongInfo.title && isPlaying ? (
