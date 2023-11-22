@@ -61,6 +61,24 @@ const SongInfo = (props: SongInfoProps) => {
 		return `${minutes}:${seconds}`;
 	};
 
+	const carouselAnimation = (index: number) => {
+		// This function adds a carousel effect on song change.
+
+		switch (index - currentSongPosition) {
+			case 0:
+				// Current song - move to center.
+				return 'translate-x-0 opacity-100';
+			case 1:
+				// Next song - move to left.
+				return 'translate-x-full scale-0 opacity-0';
+			case -1:
+				// Previous song - move to right.
+				return '-translate-x-full scale-0 opacity-0';
+			default:
+				return '';
+		}
+	};
+
 	return (
 		<div
 			className={`${
@@ -106,24 +124,27 @@ const SongInfo = (props: SongInfoProps) => {
 							: 'translate-y-full opacity-0'
 					} [transition:transform_0.4s_ease-in-out,opacity_0.7s_ease-in-out]`}>
 					<div className='relative h-80'>
-						{queue.map((item, index) => (
-							<div
-								key={item._id}
-								className={`w-full px-6 absolute transition-all duration-200 origin-center ${
-									index === currentSongPosition
-										? 'translate-x-0 opacity-100'
-										: index > currentSongPosition
-										? 'translate-x-full scale-0 opacity-0'
-										: '-translate-x-full scale-0 opacity-0'
-								}`}>
-								<img
-									src={item.albumImageUrl}
-									width={'100%'}
-									height={'100%'}
-									className='shadow-lg rounded-lg'
-								/>
-							</div>
-						))}
+						{queue.map(
+							(item, index) =>
+								// Render only the current song, the next one, or the previous one.
+								// This avoids attaching all items to the DOM.
+								(index === currentSongPosition ||
+									index === currentSongPosition + 1 ||
+									index === currentSongPosition - 1) && (
+									<div
+										key={item._id}
+										className={`w-full px-6 absolute transition-all duration-200 origin-center ${carouselAnimation(
+											index
+										)}`}>
+										<img
+											src={item.albumImageUrl}
+											width={'100%'}
+											height={'100%'}
+											className='shadow-lg rounded-lg'
+										/>
+									</div>
+								)
+						)}
 					</div>
 				</div>
 
