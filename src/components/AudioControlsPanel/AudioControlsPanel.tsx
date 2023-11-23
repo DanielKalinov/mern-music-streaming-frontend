@@ -60,7 +60,7 @@ const AudioControlsPanel = ({
 					Object.keys(currentSongInfo).length > 0
 						? 'translate-y-0'
 						: 'translate-y-full'
-				} fixed bottom-0 w-full p-2 transition-all duration-300 ease-in-out`}>
+				} fixed bottom-0 left-0 px-4 pb-4 w-full transition-all duration-300 ease-in-out`}>
 				<div className='overflow-hidden flex flex-col items-center bg-primary rounded-xl rounded-b-3xl panelShadow border solid border-slate-700'>
 					<div
 						className='relative flex items-center justify-between w-full'

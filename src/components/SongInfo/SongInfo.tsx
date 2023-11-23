@@ -85,7 +85,7 @@ const SongInfo = (props: SongInfoProps) => {
 				showSongInfo
 					? 'opacity-100 translate-y-0'
 					: 'opacity-0 translate-y-full'
-			} z-30 fixed top-0 h-full w-full [transition:transform_0.3s_ease-in-out,opacity_0.2s_ease-in-out]`}>
+			} z-30 fixed top-0 left-0 h-full w-full [transition:transform_0.3s_ease-in-out,opacity_0.2s_ease-in-out]`}>
 			<div
 				className='absolute top-0 h-full w-full transition-all duration-500 ease-in-out'
 				style={{
@@ -95,13 +95,14 @@ const SongInfo = (props: SongInfoProps) => {
 					backgroundPosition: 'center',
 				}}
 			/>
-			<div className='relative flex flex-col h-full w-full bg-black/70 backdrop-blur-3xl [&>*]:mb-auto'>
+			<div className='relative flex flex-col h-full w-full px-4 bg-black/70 backdrop-blur-3xl [&>*]:mb-auto'>
 				<div
 					className={`${
 						showSongInfo ? 'translate-y-0' : '-translate-y-full'
 					} transition-transform duration-500 ease-in-out`}>
 					<div className='flex justify-between items-center'>
 						<IconButton
+							edge='start'
 							onClick={() => {
 								setShowSongInfo(false);
 							}}>
@@ -111,7 +112,7 @@ const SongInfo = (props: SongInfoProps) => {
 							<span className='block tracking-widest'>PLAYING FROM ALBUM</span>
 							<span className='block font-bold'>Album Name</span>
 						</div>
-						<IconButton onClick={() => setShowQueueInfo(true)}>
+						<IconButton edge='end' onClick={() => setShowQueueInfo(true)}>
 							<FormatListBulletedIcon />
 						</IconButton>
 					</div>
@@ -133,7 +134,7 @@ const SongInfo = (props: SongInfoProps) => {
 									index === currentSongPosition - 1) && (
 									<div
 										key={item._id}
-										className={`w-full px-6 absolute transition-all duration-200 origin-center ${carouselAnimation(
+										className={`w-full absolute transition-all duration-200 origin-center ${carouselAnimation(
 											index
 										)}`}>
 										<img
@@ -148,8 +149,8 @@ const SongInfo = (props: SongInfoProps) => {
 					</div>
 				</div>
 
-				<div className='px-6'>
-					<div className='flex flex-col px-1'>
+				<div>
+					<div className='flex flex-col'>
 						<div className='flex justify-between items-center mt-4'>
 							<div>
 								<span className='block font-bold text-xl'>

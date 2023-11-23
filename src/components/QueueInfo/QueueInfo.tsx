@@ -78,10 +78,11 @@ const QueueInfo = (props: QueueInfoProps) => {
 		<div
 			className={`${showQueueInfo ? 'opacity-100' : 'opacity-0'} ${
 				showQueueInfo ? 'translate-y-0' : 'translate-y-full'
-			} bg-primary/80 backdrop-blur-3xl z-40 fixed top-0 h-full w-full [transition:transform_300ms_ease-in-out,opacity_200ms_ease-in-out]`}>
+			} fixed top-0 left-0 h-full w-full px-4 z-40 bg-primary/80 backdrop-blur-3xl [transition:transform_300ms_ease-in-out,opacity_200ms_ease-in-out]`}>
 			<div className='h-full flex flex-col'>
 				<div className='flex justify-between items-center'>
 					<IconButton
+						edge='start'
 						onClick={() => {
 							setShowQueueInfo(false);
 						}}>
@@ -92,7 +93,7 @@ const QueueInfo = (props: QueueInfoProps) => {
 						<span className='block font-bold'>Album Name</span>
 					</div>
 				</div>
-				<div className='mb-6 px-6'>
+				<div className='mb-6'>
 					<span className='block mb-2 font-bold '>Now Playing</span>
 					<div className='flex items-center'>
 						<div className='mr-2'>
@@ -123,9 +124,7 @@ const QueueInfo = (props: QueueInfoProps) => {
 				</div>
 				{nextFromList.length > 0 && (
 					<div>
-						<span className='block px-6 mb-2 font-bold'>
-							Next From: Album Name
-						</span>
+						<span className='block mb-2 font-bold'>Next From: Album Name</span>
 						<DragDropContext
 							onDragEnd={(e) => {
 								if (!e.destination) return;
@@ -158,7 +157,7 @@ const QueueInfo = (props: QueueInfoProps) => {
 															ref={provided.innerRef}
 															{...provided.draggableProps}
 															{...provided.dragHandleProps}
-															className={`flex justify-between px-6 py-2 transition-colors duration-300 select-none ${
+															className={`flex justify-between py-2 transition-colors duration-300 select-none ${
 																snapshot.isDragging ? 'bg-secondary' : ''
 															}`}>
 															<div>

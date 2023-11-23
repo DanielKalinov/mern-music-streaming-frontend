@@ -74,15 +74,15 @@ const AlbumDetails = () => {
 		<div>
 			<div
 				ref={albumHeaderRef}
-				className='fixed w-full z-20 transition-colors duration-300 p-1'>
-				<IconButton className='!mr-4'>
+				className='fixed w-full z-20 transition-colors duration-300'>
+				<IconButton edge='start'>
 					<ArrowBackIcon />
 				</IconButton>
 				<span className='opacity-0 transition-all duration-300'>
 					{albumDetails.name}
 				</span>
 			</div>
-			<div ref={albumTopSectionRef} className='p-4'>
+			<div ref={albumTopSectionRef}>
 				<div className='absolute top-0 left-0 w-full z-0'>
 					<img
 						ref={albumImageRef}
@@ -90,7 +90,7 @@ const AlbumDetails = () => {
 						height='100%'
 						width='100%'
 					/>
-					<div className='absolute top-0 left-0 h-full w-full bg-black/50 backdrop-blur-3xl' />
+					<div className='absolute top-0 left-0 h-full w-full bg-black/30 backdrop-blur-3xl' />
 					<div className='absolute top-0 left-0 h-full w-full bg-gradient-to-b from-transparent to-background-dark' />
 				</div>
 				<div className='relative p-8 z-10'>
@@ -113,7 +113,7 @@ const AlbumDetails = () => {
 					</div>
 				</div>
 			</div>
-			<div className='flex justify-between px-4 mb-2'>
+			<div className='flex justify-between mb-2'>
 				<IconButton edge='start'>
 					<FavoriteBorderIcon fontSize='large' />
 				</IconButton>
@@ -152,7 +152,7 @@ const AlbumDetails = () => {
 				{albumDetails.songs.map((item, index) => (
 					<li
 						key={item._id}
-						className={`flex pr-4 ${
+						className={`flex ${
 							item.title == currentSongInfo.title &&
 							'bg-gradient-to-r from-white/5 to-transparent'
 						}`}>
@@ -185,15 +185,13 @@ const AlbumDetails = () => {
 										item.title == currentSongInfo.title && 'text-accent'
 									}`}>
 									{item.title == currentSongInfo.title && isPlaying ? (
-										<div className='flex justify-center items-center m-auto h-4 w-6 ml-4 mr-2 space-x-1'>
+										<div className='flex justify-center items-center m-auto h-4 w-6 mr-2 space-x-1'>
 											<div className='h-full w-0.5 bg-accent rounded-full strokeWave' />
 											<div className='h-full w-0.5 bg-accent rounded-full strokeWave' />
 											<div className='h-full w-0.5 bg-accent rounded-full strokeWave' />
 										</div>
 									) : (
-										<span className='w-6 text-center ml-4 mr-2'>
-											{index + 1}
-										</span>
+										<span className='w-6 text-center mr-2'>{index + 1}</span>
 									)}
 
 									<div>

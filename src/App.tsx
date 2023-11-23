@@ -77,7 +77,7 @@ const App = () => {
 	};
 
 	return (
-		<>
+		<div className='px-4'>
 			{/* offset panel height */}
 			<div className='pb-[150px]'>
 				<div>
@@ -89,7 +89,7 @@ const App = () => {
 				</div>
 			</div>
 			<AudioControlsPanel setSeekCurrentTime={setSeekCurrentTime} />
-		</>
+		</div>
 	);
 };
 
