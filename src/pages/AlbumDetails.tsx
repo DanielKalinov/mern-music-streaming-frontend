@@ -76,7 +76,7 @@ const AlbumDetails = () => {
 				ref={albumHeaderRef}
 				className='fixed top-0 left-0 px-4 w-full z-20 transition-colors duration-300'>
 				<IconButton edge='start'>
-					<ArrowBackIcon fontSize='large' className='ml-1.5' />
+					<ArrowBackIcon fontSize='large' />
 				</IconButton>
 				<span className='opacity-0 transition-all duration-300'>
 					{albumDetails.name}
@@ -154,10 +154,10 @@ const AlbumDetails = () => {
 						key={item._id}
 						className={`flex ${
 							item.title == currentSongInfo.title &&
-							'bg-gradient-to-r from-white/5 to-transparent'
+							'bg-gradient-to-r from-white/5 to-transparent rounded-xl'
 						}`}>
 						<ButtonBase
-							className='w-full text-left'
+							className='w-full text-left !rounded-xl'
 							onClick={() => {
 								if (item.audioUrl == currentSongInfo.audioUrl) {
 									if (isPlaying) {
@@ -179,7 +179,7 @@ const AlbumDetails = () => {
 									dispatch(setQueue(albumDetails.songs));
 								}
 							}}>
-							<div className='w-full flex justify-between py-2'>
+							<div className='w-full flex justify-between py-2 px-4'>
 								<div
 									className={`flex items-center transition-colors duration-200 ease-in-out font-medium ${
 										item.title == currentSongInfo.title && 'text-accent'
