@@ -97,14 +97,14 @@ const QueueInfo = (props: QueueInfoProps) => {
 								}}>
 								<ExpandMoreRoundedIcon fontSize='large' />
 							</IconButton>
-							<div className='text-center text-xs m-auto'>
+							<div className='absolute left-1/2 -translate-x-1/2 text-center text-xs'>
 								<span className='block tracking-widest'>
 									PLAYING FROM ALBUM
 								</span>
 								<span className='block font-bold'>Album Name</span>
 							</div>
 						</div>
-						<div className='mb-6'>
+						<div className='my-6'>
 							<span className='block mb-2 font-bold '>Now Playing</span>
 							<div className='flex items-center'>
 								<div className='mr-2'>
