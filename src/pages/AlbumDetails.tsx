@@ -76,7 +76,7 @@ const AlbumDetails = () => {
 				ref={albumHeaderRef}
 				className='fixed top-0 left-0 px-4 w-full z-20 transition-colors duration-300'>
 				<IconButton edge='start'>
-					<ArrowBackIcon fontSize='large' />
+					<ArrowBackIcon fontSize='large' className='ml-1.5' />
 				</IconButton>
 				<span className='opacity-0 transition-all duration-300'>
 					{albumDetails.name}
@@ -185,13 +185,13 @@ const AlbumDetails = () => {
 										item.title == currentSongInfo.title && 'text-accent'
 									}`}>
 									{item.title == currentSongInfo.title && isPlaying ? (
-										<div className='flex justify-center items-center m-auto h-4 w-6 mr-2 space-x-1'>
+										<div className='flex justify-center items-center m-auto h-4 w-4 mr-2 space-x-1'>
 											<div className='h-full w-0.5 bg-accent rounded-full strokeWave' />
 											<div className='h-full w-0.5 bg-accent rounded-full strokeWave' />
 											<div className='h-full w-0.5 bg-accent rounded-full strokeWave' />
 										</div>
 									) : (
-										<span className='w-6 text-center mr-2'>{index + 1}</span>
+										<span className='w-4 text-center mr-2'>{index + 1}</span>
 									)}
 
 									<div>
