@@ -76,8 +76,10 @@ const QueueInfo = (props: QueueInfoProps) => {
 
 	return (
 		<div
-			className={`${showQueueInfo ? 'opacity-100' : 'opacity-0'} ${
-				showQueueInfo ? 'translate-y-0' : 'translate-y-full'
+			className={`${
+				showQueueInfo
+					? 'opacity-100 translate-y-0'
+					: 'opacity-0 translate-y-full'
 			} fixed top-0 left-0 h-full w-full px-4 z-40 bg-primary/80 backdrop-blur-3xl [transition:transform_300ms_ease-in-out,opacity_200ms_ease-in-out]`}>
 			<div className='h-full flex flex-col'>
 				<div className='flex justify-between items-center'>
