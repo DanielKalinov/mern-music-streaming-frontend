@@ -74,15 +74,15 @@ const AlbumDetails = () => {
 		<div>
 			<div
 				ref={albumHeaderRef}
-				className='fixed w-full z-20 transition-colors duration-300'>
+				className='fixed top-0 left-0 px-4 w-full z-20 transition-colors duration-300'>
 				<IconButton edge='start'>
-					<ArrowBackIcon />
+					<ArrowBackIcon fontSize='large' />
 				</IconButton>
 				<span className='opacity-0 transition-all duration-300'>
 					{albumDetails.name}
 				</span>
 			</div>
-			<div ref={albumTopSectionRef}>
+			<div className='mt-12' ref={albumTopSectionRef}>
 				<div className='absolute top-0 left-0 w-full z-0'>
 					<img
 						ref={albumImageRef}
