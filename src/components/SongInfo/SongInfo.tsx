@@ -134,7 +134,7 @@ const SongInfo = (props: SongInfoProps) => {
 									index === currentSongPosition - 1) && (
 									<div
 										key={item._id}
-										className={`w-full absolute transition-all duration-200 origin-center ${carouselAnimation(
+										className={`w-full absolute transition-all duration-200 ease-in-out ${carouselAnimation(
 											index
 										)}`}>
 										<img
