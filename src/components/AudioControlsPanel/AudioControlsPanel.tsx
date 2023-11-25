@@ -88,7 +88,7 @@ const AudioControlsPanel = ({
 								</span>
 							</div>
 						</div>
-						<div className='flex'>
+						<div className='flex mr-2'>
 							<IconButton
 								disabled={currentSongPosition == 0}
 								onClick={(e) => {
