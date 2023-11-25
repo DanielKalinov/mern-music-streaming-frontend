@@ -82,9 +82,7 @@ const SongInfo = (props: SongInfoProps) => {
 	return (
 		<div
 			className={`${
-				showSongInfo
-					? 'opacity-100 translate-y-0'
-					: 'opacity-0 translate-y-full'
+				showSongInfo ? 'translate-y-0' : 'translate-y-full'
 			} z-30 fixed top-0 left-0 h-full w-full [transition:transform_0.3s_ease-in-out,opacity_0.2s_ease-in-out]`}>
 			<div
 				className='absolute top-0 h-full w-full transition-all duration-500 ease-in-out'
@@ -96,26 +94,21 @@ const SongInfo = (props: SongInfoProps) => {
 				}}
 			/>
 			<div className='relative flex flex-col h-full w-full px-4 bg-black/70 backdrop-blur-3xl [&>*]:mb-auto'>
-				<div
-					className={`${
-						showSongInfo ? 'translate-y-0' : '-translate-y-full'
-					} transition-transform duration-500 ease-in-out`}>
-					<div className='flex justify-between items-center'>
-						<IconButton
-							edge='start'
-							onClick={() => {
-								setShowSongInfo(false);
-							}}>
-							<ExpandMoreRoundedIcon fontSize='large' />
-						</IconButton>
-						<div className='text-center text-xs'>
-							<span className='block tracking-widest'>PLAYING FROM ALBUM</span>
-							<span className='block font-bold'>Album Name</span>
-						</div>
-						<IconButton edge='end' onClick={() => setShowQueueInfo(true)}>
-							<FormatListBulletedIcon />
-						</IconButton>
+				<div className='flex justify-between items-center'>
+					<IconButton
+						edge='start'
+						onClick={() => {
+							setShowSongInfo(false);
+						}}>
+						<ExpandMoreRoundedIcon fontSize='large' />
+					</IconButton>
+					<div className='text-center text-xs'>
+						<span className='block tracking-widest'>PLAYING FROM ALBUM</span>
+						<span className='block font-bold'>Album Name</span>
 					</div>
+					<IconButton edge='end' onClick={() => setShowQueueInfo(true)}>
+						<FormatListBulletedIcon />
+					</IconButton>
 				</div>
 
 				<div

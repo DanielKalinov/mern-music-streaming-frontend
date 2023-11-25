@@ -2,9 +2,6 @@ import React, { useEffect, useState, useRef } from 'react';
 import PlayArrowIcon from '@mui/icons-material/PlayArrow';
 import PauseIcon from '@mui/icons-material/Pause';
 import IconButton from '@mui/material/IconButton';
-import HomeIcon from '@mui/icons-material/Home';
-import SearchIcon from '@mui/icons-material/Search';
-import LibraryMusicIcon from '@mui/icons-material/LibraryMusic';
 import SkipNextIcon from '@mui/icons-material/SkipNext';
 import SkipPreviousIcon from '@mui/icons-material/SkipPrevious';
 import { skipTrack, togglePlaying } from '../../features/audioPlayerSlice';
@@ -61,7 +58,7 @@ const AudioControlsPanel = ({
 						? 'translate-y-0'
 						: 'translate-y-full'
 				} fixed bottom-0 left-0 px-4 pb-4 w-full transition-all duration-300 ease-in-out`}>
-				<div className='overflow-hidden flex flex-col items-center bg-primary rounded-xl rounded-b-3xl panelShadow border solid border-slate-700'>
+				<div className='overflow-hidden flex flex-col items-center bg-primary rounded-xl panelShadow border solid border-slate-700'>
 					<div
 						className='relative flex items-center justify-between w-full'
 						onClick={() => setShowSongInfo(true)}>
@@ -131,17 +128,6 @@ const AudioControlsPanel = ({
 								className='h-0.5 w-0 bg-accent transition-all duration-300 ease-in-out'
 							/>
 						</div>
-					</div>
-					<div className='flex justify-evenly w-full p-1 bg-primary rounded-b-3xl'>
-						<IconButton>
-							<HomeIcon fontSize='medium' />
-						</IconButton>
-						<IconButton className='!text-inactive'>
-							<SearchIcon fontSize='medium' />
-						</IconButton>
-						<IconButton className='!text-inactive'>
-							<LibraryMusicIcon fontSize='medium' />
-						</IconButton>
 					</div>
 				</div>
 			</div>
