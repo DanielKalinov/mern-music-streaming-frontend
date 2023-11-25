@@ -201,7 +201,7 @@ const AlbumDetails = () => {
 							</div>
 						</ButtonBase>
 
-						<IconButton edge='end'>
+						<IconButton>
 							<MoreVertRoundedIcon />
 						</IconButton>
 					</li>
