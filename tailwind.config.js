@@ -9,7 +9,7 @@ module.exports = {
 				'background-dark': colors.slate[900],
 				primary: colors.slate[800],
 				secondary: colors.slate[600],
-				accent: colors.pink[500],
+				accent: colors.yellow[300],
 				inactive: colors.slate[400],
 				disabled: colors.slate[500],
 			},

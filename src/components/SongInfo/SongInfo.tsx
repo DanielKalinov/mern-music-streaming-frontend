@@ -177,8 +177,8 @@ const SongInfo = (props: SongInfoProps) => {
 								sx={{
 									'& .MuiSlider-thumb': {
 										backgroundColor: '#ffffff',
-										height: 12,
-										width: 12,
+										height: 11,
+										width: 11,
 										'&.Mui-active': {
 											boxShadow: '0 0 0 7px rgba(255, 255, 255, 16%)',
 											height: 14,
@@ -186,7 +186,7 @@ const SongInfo = (props: SongInfoProps) => {
 										},
 									},
 									'& .MuiSlider-track': {
-										backgroundColor: '#ec4899',
+										backgroundColor: '#fde047',
 										height: '4px',
 									},
 									'& .MuiSlider-rail': {
