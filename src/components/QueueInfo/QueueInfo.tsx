@@ -16,6 +16,7 @@ import PauseIcon from '@mui/icons-material/Pause';
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
 import AudioPlayerState from '../../types/AudioPlayerState';
 import Song from '../../types/Song';
+import WaveAnimation from '../WaveAnimation';
 
 const QueueInfo = (props: QueueInfoProps) => {
 	const { showQueueInfo, setShowQueueInfo } = props;
@@ -125,13 +126,16 @@ const QueueInfo = (props: QueueInfoProps) => {
 									</div>
 								</div>
 
-								<div>
-									<span className='block text-sm font-semibold'>
-										{currentSongInfo.title}
-									</span>
-									<span className='block text-sm text-inactive'>
-										{currentSongInfo.artist}
-									</span>
+								<div className='flex justify-between w-full'>
+									<div>
+										<span className='block text-sm text-accent'>
+											{currentSongInfo.title}
+										</span>
+										<span className='block text-sm text-inactive'>
+											{currentSongInfo.artist}
+										</span>
+									</div>
+									{isPlaying && <WaveAnimation />}
 								</div>
 							</div>
 						</div>
@@ -179,7 +183,7 @@ const QueueInfo = (props: QueueInfoProps) => {
 																		snapshot.isDragging ? 'bg-secondary' : ''
 																	}`}>
 																	<div>
-																		<span className='block text-sm font-semibold'>
+																		<span className='block text-sm'>
 																			{item.title}
 																		</span>
 																		<span className='block text-sm text-inactive'>

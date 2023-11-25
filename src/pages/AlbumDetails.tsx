@@ -17,6 +17,7 @@ import {
 } from '../features/audioPlayerSlice';
 import Song from '../types/Song';
 import AudioPlayerState from '../types/AudioPlayerState';
+import WaveAnimation from '../components/WaveAnimation';
 
 const AlbumDetails = () => {
 	const isPlaying = useSelector(
@@ -185,11 +186,7 @@ const AlbumDetails = () => {
 										item.title == currentSongInfo.title && 'text-accent'
 									}`}>
 									{item.title == currentSongInfo.title && isPlaying ? (
-										<div className='flex justify-center items-center m-auto h-4 w-4 mr-2 space-x-1'>
-											<div className='h-full w-0.5 bg-accent rounded-full strokeWave' />
-											<div className='h-full w-0.5 bg-accent rounded-full strokeWave' />
-											<div className='h-full w-0.5 bg-accent rounded-full strokeWave' />
-										</div>
+										<WaveAnimation />
 									) : (
 										<span className='w-4 text-center mr-2'>{index + 1}</span>
 									)}
