@@ -9,10 +9,10 @@ import {
 } from './features/audioPlayerSlice';
 import { Route, Routes } from 'react-router-dom';
 import Albums from './pages/Albums';
-import Home from './pages/Home';
 import AlbumDetails from './pages/AlbumDetails';
 import AudioPlayerState from './types/AudioPlayerState';
 import Artists from './pages/Artists';
+import ArtistDetails from './pages/ArtistDetails';
 
 const App = () => {
 	const audio = useRef(new Audio());
@@ -83,10 +83,10 @@ const App = () => {
 			<div className='pb-[150px]'>
 				<div>
 					<Routes>
-						<Route path='/' element={<Home />} />
-						<Route path='/artists' element={<Artists />} />
-						<Route path='/albums' element={<Albums />} />
-						<Route path={`/albums/:id`} element={<AlbumDetails />} />
+						<Route path='/' element={<Artists />} />
+						<Route path='/:id' element={<ArtistDetails />} />
+						{/* <Route path='/albums' element={<Albums />} /> */}
+						{/* <Route path={`/albums/:id`} element={<AlbumDetails />} /> */}
 					</Routes>
 				</div>
 			</div>
