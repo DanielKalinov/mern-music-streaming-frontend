@@ -13,6 +13,9 @@ module.exports = {
 				inactive: colors.slate[400],
 				disabled: colors.slate[500],
 			},
+			screens: {
+				xs: '425px',
+			},
 		},
 	},
 	plugins: [],

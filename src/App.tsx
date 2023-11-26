@@ -12,6 +12,7 @@ import Albums from './pages/Albums';
 import Home from './pages/Home';
 import AlbumDetails from './pages/AlbumDetails';
 import AudioPlayerState from './types/AudioPlayerState';
+import Artists from './pages/Artists';
 
 const App = () => {
 	const audio = useRef(new Audio());
@@ -83,6 +84,7 @@ const App = () => {
 				<div>
 					<Routes>
 						<Route path='/' element={<Home />} />
+						<Route path='/artists' element={<Artists />} />
 						<Route path='/albums' element={<Albums />} />
 						<Route path={`/albums/:id`} element={<AlbumDetails />} />
 					</Routes>

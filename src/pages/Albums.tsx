@@ -7,7 +7,8 @@ const Albums = () => {
 
 	useEffect(() => {
 		axios.get('http://localhost:5000/albums').then((res) => {
-			setAlbumList(res.data);
+			console.log(res.data);
+			// setAlbumList(res.data);
 		});
 	}, []);
 
