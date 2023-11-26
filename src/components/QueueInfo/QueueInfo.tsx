@@ -132,7 +132,7 @@ const QueueInfo = (props: QueueInfoProps) => {
 											{currentSongInfo.title}
 										</span>
 										<span className='block text-sm text-inactive'>
-											{currentSongInfo.artist?.name}
+											{currentSongInfo.artist}
 										</span>
 									</div>
 									{isPlaying && <WaveAnimation />}
@@ -187,7 +187,7 @@ const QueueInfo = (props: QueueInfoProps) => {
 																			{item.title}
 																		</span>
 																		<span className='block text-sm text-inactive'>
-																			{item.artist?.name}
+																			{item.artist}
 																		</span>
 																	</div>
 																	<IconButton edge='end'>

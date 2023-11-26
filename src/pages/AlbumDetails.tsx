@@ -24,6 +24,7 @@ const AlbumDetails = () => {
 		(state: AudioPlayerState) => state.audioPlayer.isPlaying
 	);
 	const [albumDetails, setAlbumDetails] = useState<AlbumDetails>();
+	// const loading = useSelector((state) => state.audioPlayer.loading);
 	const currentSongInfo = useSelector(
 		(state: AudioPlayerState) => state.audioPlayer.currentSongInfo
 	);
@@ -38,10 +39,11 @@ const AlbumDetails = () => {
 
 	useEffect(() => {
 		axios.get(`http://localhost:5000/albums/${params.id}`).then((res) => {
-			console.log(res.data);
 			setAlbumDetails(res.data);
-			res.data.tracks.map((item: { albumImageUrl: string }) => {
+
+			res.data.songs.map((item: { albumImageUrl: string }) => {
 				dispatch(setLoading(true));
+
 				const img = new Image();
 				img.onload = () => dispatch(setLoading(false));
 				img.src = item.albumImageUrl;
@@ -107,7 +109,7 @@ const AlbumDetails = () => {
 							{albumDetails.name} • {albumDetails.year}
 						</span>
 						<span className='block text-lg text-inactive'>
-							{albumDetails.artist.name}
+							{albumDetails.artist}
 						</span>
 					</div>
 				</div>
@@ -120,19 +122,19 @@ const AlbumDetails = () => {
 					className='rounded-full !border-2 !border-solid !transition-transform active:scale-90'
 					onClick={() => {
 						if (!currentSongInfo.audioUrl) {
-							const firstTrack = albumDetails.tracks[0];
+							const firstTrack = albumDetails.songs[0];
 
 							dispatch(togglePlaying(true));
 							dispatch(
 								setCurrentSongInfo({
 									_id: firstTrack._id,
 									title: firstTrack.title,
-									artist: albumDetails.artist,
+									artist: firstTrack.artist,
 									albumImageUrl: firstTrack.albumImageUrl,
 									audioUrl: firstTrack.audioUrl,
 								})
 							);
-							dispatch(setQueue(albumDetails.tracks));
+							dispatch(setQueue(albumDetails.songs));
 						} else if (currentSongInfo.audioUrl && isPlaying) {
 							dispatch(togglePlaying(false));
 						} else {
@@ -148,7 +150,7 @@ const AlbumDetails = () => {
 			</div>
 
 			<ul>
-				{albumDetails.tracks.map((item, index) => (
+				{albumDetails.songs.map((item, index) => (
 					<li
 						key={item._id}
 						className={`flex ${
@@ -169,13 +171,13 @@ const AlbumDetails = () => {
 										setCurrentSongInfo({
 											_id: item._id,
 											title: item.title,
-											artist: albumDetails.artist,
+											artist: item.artist,
 											albumImageUrl: item.albumImageUrl,
 											audioUrl: item.audioUrl,
 										})
 									);
 									dispatch(togglePlaying(true));
-									dispatch(setQueue(albumDetails.tracks));
+									dispatch(setQueue(albumDetails.songs));
 								}
 							}}>
 							<div className='w-full flex justify-between py-2 px-4'>
@@ -192,7 +194,7 @@ const AlbumDetails = () => {
 									<div>
 										<span className='block text-sm'>{item.title}</span>
 										<span className='block text-sm text-inactive font-normal'>
-											{albumDetails.artist.name}
+											{albumDetails.artist}
 										</span>
 									</div>
 								</div>
@@ -213,8 +215,8 @@ interface AlbumDetails {
 	name: string;
 	albumImageUrl: string;
 	year: string;
-	artist: { name: string };
-	tracks: Song[];
+	artist: string;
+	songs: Song[];
 }
 
 export default AlbumDetails;

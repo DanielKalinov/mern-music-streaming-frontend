@@ -150,7 +150,7 @@ const SongInfo = (props: SongInfoProps) => {
 									{currentSongInfo.title}
 								</span>
 								<span className='block text-inactive'>
-									{currentSongInfo.artist?.name}
+									{currentSongInfo.artist}
 								</span>
 							</div>
 							<IconButton edge='end'>
