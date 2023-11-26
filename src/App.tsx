@@ -8,7 +8,6 @@ import {
 	skipTrack,
 } from './features/audioPlayerSlice';
 import { Route, Routes } from 'react-router-dom';
-import Albums from './pages/Albums';
 import AlbumDetails from './pages/AlbumDetails';
 import AudioPlayerState from './types/AudioPlayerState';
 import Artists from './pages/Artists';
@@ -85,11 +84,11 @@ const App = () => {
 					<Routes>
 						<Route path='/' element={<Artists />} />
 						<Route path='/:id' element={<ArtistDetails />} />
-						{/* <Route path='/albums' element={<Albums />} /> */}
-						{/* <Route path={`/albums/:id`} element={<AlbumDetails />} /> */}
+						<Route path='/:id/albums/:id' element={<AlbumDetails />} />
 					</Routes>
 				</div>
 			</div>
+
 			<AudioControlsPanel setSeekCurrentTime={setSeekCurrentTime} />
 		</div>
 	);
