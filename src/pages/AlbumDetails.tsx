@@ -30,9 +30,8 @@ const AlbumDetails = () => {
 		(state: AudioPlayerState) => state.audioPlayer.currentSongInfo
 	);
 
-	const albumTopSectionRef = useRef<HTMLDivElement>(null);
+	const targetRef = useRef<HTMLDivElement>(null);
 	const albumImageRef = useRef<HTMLImageElement>(null);
-	const albumHeaderRef = useRef<HTMLDivElement>(null);
 
 	const dispatch = useDispatch();
 
@@ -48,47 +47,17 @@ const AlbumDetails = () => {
 				img.src = item.albumImageUrl;
 			});
 		});
-
-		// const changeOpacityOnScroll = () => {
-		// 	if (albumTopSectionRef.current && albumHeaderRef.current) {
-		// 		const albumTopSectionOpacity = (400 - window.scrollY) / 400;
-
-		// 		albumTopSectionRef.current.style.opacity =
-		// 			albumTopSectionOpacity.toString();
-		// 		albumHeaderRef.current.style.backgroundColor = `rgba(30, 41, 59, ${
-		// 			window.scrollY >= 300 ? '1' : '0'
-		// 		})`;
-
-		// 		const child = albumHeaderRef.current.children[1] as HTMLElement;
-
-		// 		child.style.opacity = `${window.scrollY >= 300 ? '1' : '0'}`;
-		// 	}
-		// };
-
-		// window.addEventListener('scroll', changeOpacityOnScroll);
-
-		// return () => window.removeEventListener('scroll', changeOpacityOnScroll);
 	}, []);
 
 	return albumDetails ? (
 		<div>
-			{/* <div
-				ref={albumHeaderRef}
-				className='fixed top-0 left-0 px-4 w-full z-20 transition-colors duration-300'>
-				<Link to={`/${albumDetails.artist._id}`}>
-					<IconButton edge='start'>
-						<ArrowBackIcon fontSize='large' />
-					</IconButton>
-				</Link>
-				<span className='opacity-0 transition-all duration-300'>
-					{albumDetails.name}
-				</span>
-			</div> */}
 			<BackButton
 				url={`/${albumDetails.artist._id}`}
 				text={albumDetails.name}
+				targetRef={targetRef}
+				threshold={70}
 			/>
-			<div className='mt-12' ref={albumTopSectionRef}>
+			<div className='mt-12'>
 				<div className='absolute top-0 left-0 w-full z-0'>
 					<img
 						ref={albumImageRef}
@@ -108,7 +77,9 @@ const AlbumDetails = () => {
 						className='shadow-lg rounded-lg z-20'
 					/>
 				</div>
-				<div className='relative flex items-center justify-between mb-2 z-10'>
+				<div
+					ref={targetRef}
+					className='relative flex items-center justify-between mb-2 z-10 transition-opacity duration-200'>
 					<div>
 						<span className='block font-bold text-2xl'>
 							{albumDetails.name} • {albumDetails.year}
@@ -154,6 +125,501 @@ const AlbumDetails = () => {
 			</div>
 
 			<ul>
+				{albumDetails.tracks.map((item, index) => (
+					<li
+						key={item._id}
+						className={`flex ${
+							item.title == currentSongInfo.title &&
+							'bg-gradient-to-r from-white/5 to-transparent rounded-xl'
+						}`}>
+						<ButtonBase
+							className='w-full text-left !rounded-xl'
+							onClick={() => {
+								if (item.audioUrl == currentSongInfo.audioUrl) {
+									if (isPlaying) {
+										dispatch(togglePlaying(false));
+									} else {
+										dispatch(togglePlaying(true));
+									}
+								} else {
+									dispatch(
+										setCurrentSongInfo({
+											_id: item._id,
+											title: item.title,
+											album: item.album,
+											audioUrl: item.audioUrl,
+										})
+									);
+									dispatch(togglePlaying(true));
+									dispatch(setQueue(albumDetails.tracks));
+								}
+							}}>
+							<div className='w-full flex justify-between py-2 px-4'>
+								<div
+									className={`flex items-center transition-colors duration-200 ease-in-out font-medium ${
+										item.title == currentSongInfo.title && 'text-accent'
+									}`}>
+									{item.title == currentSongInfo.title && isPlaying ? (
+										<WaveAnimation />
+									) : (
+										<span className='w-4 text-center mr-2'>{index + 1}</span>
+									)}
+
+									<div>
+										<span className='block text-sm'>{item.title}</span>
+										<span className='block text-sm text-inactive font-normal'>
+											{albumDetails.artist.name}
+										</span>
+									</div>
+								</div>
+							</div>
+						</ButtonBase>
+
+						<IconButton>
+							<MoreVertRoundedIcon />
+						</IconButton>
+					</li>
+				))}
+				{albumDetails.tracks.map((item, index) => (
+					<li
+						key={item._id}
+						className={`flex ${
+							item.title == currentSongInfo.title &&
+							'bg-gradient-to-r from-white/5 to-transparent rounded-xl'
+						}`}>
+						<ButtonBase
+							className='w-full text-left !rounded-xl'
+							onClick={() => {
+								if (item.audioUrl == currentSongInfo.audioUrl) {
+									if (isPlaying) {
+										dispatch(togglePlaying(false));
+									} else {
+										dispatch(togglePlaying(true));
+									}
+								} else {
+									dispatch(
+										setCurrentSongInfo({
+											_id: item._id,
+											title: item.title,
+											album: item.album,
+											audioUrl: item.audioUrl,
+										})
+									);
+									dispatch(togglePlaying(true));
+									dispatch(setQueue(albumDetails.tracks));
+								}
+							}}>
+							<div className='w-full flex justify-between py-2 px-4'>
+								<div
+									className={`flex items-center transition-colors duration-200 ease-in-out font-medium ${
+										item.title == currentSongInfo.title && 'text-accent'
+									}`}>
+									{item.title == currentSongInfo.title && isPlaying ? (
+										<WaveAnimation />
+									) : (
+										<span className='w-4 text-center mr-2'>{index + 1}</span>
+									)}
+
+									<div>
+										<span className='block text-sm'>{item.title}</span>
+										<span className='block text-sm text-inactive font-normal'>
+											{albumDetails.artist.name}
+										</span>
+									</div>
+								</div>
+							</div>
+						</ButtonBase>
+
+						<IconButton>
+							<MoreVertRoundedIcon />
+						</IconButton>
+					</li>
+				))}
+				{albumDetails.tracks.map((item, index) => (
+					<li
+						key={item._id}
+						className={`flex ${
+							item.title == currentSongInfo.title &&
+							'bg-gradient-to-r from-white/5 to-transparent rounded-xl'
+						}`}>
+						<ButtonBase
+							className='w-full text-left !rounded-xl'
+							onClick={() => {
+								if (item.audioUrl == currentSongInfo.audioUrl) {
+									if (isPlaying) {
+										dispatch(togglePlaying(false));
+									} else {
+										dispatch(togglePlaying(true));
+									}
+								} else {
+									dispatch(
+										setCurrentSongInfo({
+											_id: item._id,
+											title: item.title,
+											album: item.album,
+											audioUrl: item.audioUrl,
+										})
+									);
+									dispatch(togglePlaying(true));
+									dispatch(setQueue(albumDetails.tracks));
+								}
+							}}>
+							<div className='w-full flex justify-between py-2 px-4'>
+								<div
+									className={`flex items-center transition-colors duration-200 ease-in-out font-medium ${
+										item.title == currentSongInfo.title && 'text-accent'
+									}`}>
+									{item.title == currentSongInfo.title && isPlaying ? (
+										<WaveAnimation />
+									) : (
+										<span className='w-4 text-center mr-2'>{index + 1}</span>
+									)}
+
+									<div>
+										<span className='block text-sm'>{item.title}</span>
+										<span className='block text-sm text-inactive font-normal'>
+											{albumDetails.artist.name}
+										</span>
+									</div>
+								</div>
+							</div>
+						</ButtonBase>
+
+						<IconButton>
+							<MoreVertRoundedIcon />
+						</IconButton>
+					</li>
+				))}
+				{albumDetails.tracks.map((item, index) => (
+					<li
+						key={item._id}
+						className={`flex ${
+							item.title == currentSongInfo.title &&
+							'bg-gradient-to-r from-white/5 to-transparent rounded-xl'
+						}`}>
+						<ButtonBase
+							className='w-full text-left !rounded-xl'
+							onClick={() => {
+								if (item.audioUrl == currentSongInfo.audioUrl) {
+									if (isPlaying) {
+										dispatch(togglePlaying(false));
+									} else {
+										dispatch(togglePlaying(true));
+									}
+								} else {
+									dispatch(
+										setCurrentSongInfo({
+											_id: item._id,
+											title: item.title,
+											album: item.album,
+											audioUrl: item.audioUrl,
+										})
+									);
+									dispatch(togglePlaying(true));
+									dispatch(setQueue(albumDetails.tracks));
+								}
+							}}>
+							<div className='w-full flex justify-between py-2 px-4'>
+								<div
+									className={`flex items-center transition-colors duration-200 ease-in-out font-medium ${
+										item.title == currentSongInfo.title && 'text-accent'
+									}`}>
+									{item.title == currentSongInfo.title && isPlaying ? (
+										<WaveAnimation />
+									) : (
+										<span className='w-4 text-center mr-2'>{index + 1}</span>
+									)}
+
+									<div>
+										<span className='block text-sm'>{item.title}</span>
+										<span className='block text-sm text-inactive font-normal'>
+											{albumDetails.artist.name}
+										</span>
+									</div>
+								</div>
+							</div>
+						</ButtonBase>
+
+						<IconButton>
+							<MoreVertRoundedIcon />
+						</IconButton>
+					</li>
+				))}
+				{albumDetails.tracks.map((item, index) => (
+					<li
+						key={item._id}
+						className={`flex ${
+							item.title == currentSongInfo.title &&
+							'bg-gradient-to-r from-white/5 to-transparent rounded-xl'
+						}`}>
+						<ButtonBase
+							className='w-full text-left !rounded-xl'
+							onClick={() => {
+								if (item.audioUrl == currentSongInfo.audioUrl) {
+									if (isPlaying) {
+										dispatch(togglePlaying(false));
+									} else {
+										dispatch(togglePlaying(true));
+									}
+								} else {
+									dispatch(
+										setCurrentSongInfo({
+											_id: item._id,
+											title: item.title,
+											album: item.album,
+											audioUrl: item.audioUrl,
+										})
+									);
+									dispatch(togglePlaying(true));
+									dispatch(setQueue(albumDetails.tracks));
+								}
+							}}>
+							<div className='w-full flex justify-between py-2 px-4'>
+								<div
+									className={`flex items-center transition-colors duration-200 ease-in-out font-medium ${
+										item.title == currentSongInfo.title && 'text-accent'
+									}`}>
+									{item.title == currentSongInfo.title && isPlaying ? (
+										<WaveAnimation />
+									) : (
+										<span className='w-4 text-center mr-2'>{index + 1}</span>
+									)}
+
+									<div>
+										<span className='block text-sm'>{item.title}</span>
+										<span className='block text-sm text-inactive font-normal'>
+											{albumDetails.artist.name}
+										</span>
+									</div>
+								</div>
+							</div>
+						</ButtonBase>
+
+						<IconButton>
+							<MoreVertRoundedIcon />
+						</IconButton>
+					</li>
+				))}
+				{albumDetails.tracks.map((item, index) => (
+					<li
+						key={item._id}
+						className={`flex ${
+							item.title == currentSongInfo.title &&
+							'bg-gradient-to-r from-white/5 to-transparent rounded-xl'
+						}`}>
+						<ButtonBase
+							className='w-full text-left !rounded-xl'
+							onClick={() => {
+								if (item.audioUrl == currentSongInfo.audioUrl) {
+									if (isPlaying) {
+										dispatch(togglePlaying(false));
+									} else {
+										dispatch(togglePlaying(true));
+									}
+								} else {
+									dispatch(
+										setCurrentSongInfo({
+											_id: item._id,
+											title: item.title,
+											album: item.album,
+											audioUrl: item.audioUrl,
+										})
+									);
+									dispatch(togglePlaying(true));
+									dispatch(setQueue(albumDetails.tracks));
+								}
+							}}>
+							<div className='w-full flex justify-between py-2 px-4'>
+								<div
+									className={`flex items-center transition-colors duration-200 ease-in-out font-medium ${
+										item.title == currentSongInfo.title && 'text-accent'
+									}`}>
+									{item.title == currentSongInfo.title && isPlaying ? (
+										<WaveAnimation />
+									) : (
+										<span className='w-4 text-center mr-2'>{index + 1}</span>
+									)}
+
+									<div>
+										<span className='block text-sm'>{item.title}</span>
+										<span className='block text-sm text-inactive font-normal'>
+											{albumDetails.artist.name}
+										</span>
+									</div>
+								</div>
+							</div>
+						</ButtonBase>
+
+						<IconButton>
+							<MoreVertRoundedIcon />
+						</IconButton>
+					</li>
+				))}
+				{albumDetails.tracks.map((item, index) => (
+					<li
+						key={item._id}
+						className={`flex ${
+							item.title == currentSongInfo.title &&
+							'bg-gradient-to-r from-white/5 to-transparent rounded-xl'
+						}`}>
+						<ButtonBase
+							className='w-full text-left !rounded-xl'
+							onClick={() => {
+								if (item.audioUrl == currentSongInfo.audioUrl) {
+									if (isPlaying) {
+										dispatch(togglePlaying(false));
+									} else {
+										dispatch(togglePlaying(true));
+									}
+								} else {
+									dispatch(
+										setCurrentSongInfo({
+											_id: item._id,
+											title: item.title,
+											album: item.album,
+											audioUrl: item.audioUrl,
+										})
+									);
+									dispatch(togglePlaying(true));
+									dispatch(setQueue(albumDetails.tracks));
+								}
+							}}>
+							<div className='w-full flex justify-between py-2 px-4'>
+								<div
+									className={`flex items-center transition-colors duration-200 ease-in-out font-medium ${
+										item.title == currentSongInfo.title && 'text-accent'
+									}`}>
+									{item.title == currentSongInfo.title && isPlaying ? (
+										<WaveAnimation />
+									) : (
+										<span className='w-4 text-center mr-2'>{index + 1}</span>
+									)}
+
+									<div>
+										<span className='block text-sm'>{item.title}</span>
+										<span className='block text-sm text-inactive font-normal'>
+											{albumDetails.artist.name}
+										</span>
+									</div>
+								</div>
+							</div>
+						</ButtonBase>
+
+						<IconButton>
+							<MoreVertRoundedIcon />
+						</IconButton>
+					</li>
+				))}
+				{albumDetails.tracks.map((item, index) => (
+					<li
+						key={item._id}
+						className={`flex ${
+							item.title == currentSongInfo.title &&
+							'bg-gradient-to-r from-white/5 to-transparent rounded-xl'
+						}`}>
+						<ButtonBase
+							className='w-full text-left !rounded-xl'
+							onClick={() => {
+								if (item.audioUrl == currentSongInfo.audioUrl) {
+									if (isPlaying) {
+										dispatch(togglePlaying(false));
+									} else {
+										dispatch(togglePlaying(true));
+									}
+								} else {
+									dispatch(
+										setCurrentSongInfo({
+											_id: item._id,
+											title: item.title,
+											album: item.album,
+											audioUrl: item.audioUrl,
+										})
+									);
+									dispatch(togglePlaying(true));
+									dispatch(setQueue(albumDetails.tracks));
+								}
+							}}>
+							<div className='w-full flex justify-between py-2 px-4'>
+								<div
+									className={`flex items-center transition-colors duration-200 ease-in-out font-medium ${
+										item.title == currentSongInfo.title && 'text-accent'
+									}`}>
+									{item.title == currentSongInfo.title && isPlaying ? (
+										<WaveAnimation />
+									) : (
+										<span className='w-4 text-center mr-2'>{index + 1}</span>
+									)}
+
+									<div>
+										<span className='block text-sm'>{item.title}</span>
+										<span className='block text-sm text-inactive font-normal'>
+											{albumDetails.artist.name}
+										</span>
+									</div>
+								</div>
+							</div>
+						</ButtonBase>
+
+						<IconButton>
+							<MoreVertRoundedIcon />
+						</IconButton>
+					</li>
+				))}
+				{albumDetails.tracks.map((item, index) => (
+					<li
+						key={item._id}
+						className={`flex ${
+							item.title == currentSongInfo.title &&
+							'bg-gradient-to-r from-white/5 to-transparent rounded-xl'
+						}`}>
+						<ButtonBase
+							className='w-full text-left !rounded-xl'
+							onClick={() => {
+								if (item.audioUrl == currentSongInfo.audioUrl) {
+									if (isPlaying) {
+										dispatch(togglePlaying(false));
+									} else {
+										dispatch(togglePlaying(true));
+									}
+								} else {
+									dispatch(
+										setCurrentSongInfo({
+											_id: item._id,
+											title: item.title,
+											album: item.album,
+											audioUrl: item.audioUrl,
+										})
+									);
+									dispatch(togglePlaying(true));
+									dispatch(setQueue(albumDetails.tracks));
+								}
+							}}>
+							<div className='w-full flex justify-between py-2 px-4'>
+								<div
+									className={`flex items-center transition-colors duration-200 ease-in-out font-medium ${
+										item.title == currentSongInfo.title && 'text-accent'
+									}`}>
+									{item.title == currentSongInfo.title && isPlaying ? (
+										<WaveAnimation />
+									) : (
+										<span className='w-4 text-center mr-2'>{index + 1}</span>
+									)}
+
+									<div>
+										<span className='block text-sm'>{item.title}</span>
+										<span className='block text-sm text-inactive font-normal'>
+											{albumDetails.artist.name}
+										</span>
+									</div>
+								</div>
+							</div>
+						</ButtonBase>
+
+						<IconButton>
+							<MoreVertRoundedIcon />
+						</IconButton>
+					</li>
+				))}
 				{albumDetails.tracks.map((item, index) => (
 					<li
 						key={item._id}
