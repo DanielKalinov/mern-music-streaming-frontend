@@ -18,6 +18,7 @@ import {
 import Song from '../types/Song';
 import AudioPlayerState from '../types/AudioPlayerState';
 import WaveAnimation from '../components/WaveAnimation';
+import BackButton from '../components/BackButton';
 
 const AlbumDetails = () => {
 	const isPlaying = useSelector(
@@ -48,30 +49,30 @@ const AlbumDetails = () => {
 			});
 		});
 
-		const changeOpacityOnScroll = () => {
-			if (albumTopSectionRef.current && albumHeaderRef.current) {
-				const albumTopSectionOpacity = (400 - window.scrollY) / 400;
+		// const changeOpacityOnScroll = () => {
+		// 	if (albumTopSectionRef.current && albumHeaderRef.current) {
+		// 		const albumTopSectionOpacity = (400 - window.scrollY) / 400;
 
-				albumTopSectionRef.current.style.opacity =
-					albumTopSectionOpacity.toString();
-				albumHeaderRef.current.style.backgroundColor = `rgba(30, 41, 59, ${
-					window.scrollY >= 300 ? '1' : '0'
-				})`;
+		// 		albumTopSectionRef.current.style.opacity =
+		// 			albumTopSectionOpacity.toString();
+		// 		albumHeaderRef.current.style.backgroundColor = `rgba(30, 41, 59, ${
+		// 			window.scrollY >= 300 ? '1' : '0'
+		// 		})`;
 
-				const child = albumHeaderRef.current.children[1] as HTMLElement;
+		// 		const child = albumHeaderRef.current.children[1] as HTMLElement;
 
-				child.style.opacity = `${window.scrollY >= 300 ? '1' : '0'}`;
-			}
-		};
+		// 		child.style.opacity = `${window.scrollY >= 300 ? '1' : '0'}`;
+		// 	}
+		// };
 
-		window.addEventListener('scroll', changeOpacityOnScroll);
+		// window.addEventListener('scroll', changeOpacityOnScroll);
 
-		return () => window.removeEventListener('scroll', changeOpacityOnScroll);
+		// return () => window.removeEventListener('scroll', changeOpacityOnScroll);
 	}, []);
 
 	return albumDetails ? (
 		<div>
-			<div
+			{/* <div
 				ref={albumHeaderRef}
 				className='fixed top-0 left-0 px-4 w-full z-20 transition-colors duration-300'>
 				<Link to={`/${albumDetails.artist._id}`}>
@@ -82,7 +83,11 @@ const AlbumDetails = () => {
 				<span className='opacity-0 transition-all duration-300'>
 					{albumDetails.name}
 				</span>
-			</div>
+			</div> */}
+			<BackButton
+				url={`/${albumDetails.artist._id}`}
+				text={albumDetails.name}
+			/>
 			<div className='mt-12' ref={albumTopSectionRef}>
 				<div className='absolute top-0 left-0 w-full z-0'>
 					<img
