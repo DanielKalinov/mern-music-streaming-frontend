@@ -1,4 +1,3 @@
-// @ts-nocheck
 import React, { useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import { IconButton } from '@mui/material';
@@ -12,15 +11,16 @@ const BackButton = ({
 }: {
 	url: string;
 	text: string;
-	targetRef: React.RefObject<HTMLDivElement>;
+	targetRef?: React.RefObject<HTMLDivElement>;
 	threshold: number;
 }) => {
-	const containerRef = useRef();
-	const textRef = useRef();
+	const containerRef = useRef<HTMLDivElement>(null);
+	const textRef = useRef<HTMLSpanElement>(null);
 
 	useEffect(() => {
 		const handleScroll = () => {
-			if (targetRef) {
+			if (targetRef?.current && textRef.current && containerRef.current) {
+				// Distance to the top of the viewport
 				const { top } = targetRef.current.getBoundingClientRect();
 
 				if (top > threshold) {
@@ -35,10 +35,8 @@ const BackButton = ({
 			}
 		};
 
-		// Add a scroll event listener
 		window.addEventListener('scroll', handleScroll);
 
-		// Remove the event listener on cleanup
 		return () => {
 			window.removeEventListener('scroll', handleScroll);
 		};
