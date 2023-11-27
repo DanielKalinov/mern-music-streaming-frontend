@@ -1,12 +1,13 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 
 const ArtistDetails = () => {
 	const [artistDetails, setArtistDetails] = useState<{
 		name: string;
 		artistImageUrl: string;
 		albums: {
+			_id: string;
 			name: string;
 			albumImageUrl: string;
 		}[];
@@ -39,15 +40,17 @@ const ArtistDetails = () => {
 					<h2 className='mb-4'>Discography</h2>
 					<div className='grid grid-cols-2 gap-4 xs:grid-cols-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6 xl:grid-cols-7 2xl:grid-cols-8'>
 						{artistDetails?.albums.map((item) => (
-							<div className='aspect-square px-2 pt-2 bg-primary rounded-lg border solid border-slate-700 shadow-xl'>
-								<img
-									src={item.albumImageUrl}
-									className='object-cover w-full h-full rounded-lg shadow-md'
-								/>
-								<span className='block py-3 text-center text-sm font-semibold'>
-									{item.name}
-								</span>
-							</div>
+							<Link to={`/${item._id}/albums/${params.id}`}>
+								<div className='aspect-square px-2 pt-2 bg-primary rounded-lg border solid border-slate-700 shadow-xl'>
+									<img
+										src={item.albumImageUrl}
+										className='object-cover w-full h-full rounded-lg shadow-md'
+									/>
+									<span className='block py-3 text-center text-sm font-semibold'>
+										{item.name}
+									</span>
+								</div>
+							</Link>
 						))}
 					</div>
 				</div>
