@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
 import axios from 'axios';
-import { useParams } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import { IconButton } from '@mui/material';
 import { ButtonBase } from '@mui/material';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
@@ -74,9 +74,11 @@ const AlbumDetails = () => {
 			<div
 				ref={albumHeaderRef}
 				className='fixed top-0 left-0 px-4 w-full z-20 transition-colors duration-300'>
-				<IconButton edge='start'>
-					<ArrowBackIcon fontSize='large' />
-				</IconButton>
+				<Link to={`/${albumDetails.artist._id}`}>
+					<IconButton edge='start'>
+						<ArrowBackIcon fontSize='large' />
+					</IconButton>
+				</Link>
 				<span className='opacity-0 transition-all duration-300'>
 					{albumDetails.name}
 				</span>
@@ -211,7 +213,7 @@ interface AlbumDetails {
 	name: string;
 	albumImageUrl: string;
 	year: string;
-	artist: { name: string };
+	artist: { _id: string; name: string };
 	tracks: Song[];
 }
 

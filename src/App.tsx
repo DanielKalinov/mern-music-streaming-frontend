@@ -7,11 +7,12 @@ import {
 	setDuration,
 	skipTrack,
 } from './features/audioPlayerSlice';
-import { Route, Routes } from 'react-router-dom';
+import { Route, Routes, useLocation } from 'react-router-dom';
 import AlbumDetails from './pages/AlbumDetails';
 import AudioPlayerState from './types/AudioPlayerState';
 import Artists from './pages/Artists';
 import ArtistDetails from './pages/ArtistDetails';
+import { AnimatePresence, motion } from 'framer-motion';
 
 const App = () => {
 	const audio = useRef(new Audio());
@@ -24,6 +25,7 @@ const App = () => {
 		audioPlayer;
 
 	const dispatch = useDispatch();
+	const location = useLocation();
 
 	// set new src and play
 	useEffect(() => {
@@ -82,9 +84,51 @@ const App = () => {
 			<div className='pb-[150px]'>
 				<div>
 					<Routes>
-						<Route path='/' element={<Artists />} />
-						<Route path='/:id' element={<ArtistDetails />} />
-						<Route path='/:id/albums/:id' element={<AlbumDetails />} />
+						<Route
+							path='/'
+							element={
+								<AnimatePresence mode='wait'>
+									<motion.div
+										transition={{ duration: 0.1 }}
+										key={location.key}
+										initial={{ opacity: 0 }}
+										animate={{ opacity: 1 }}
+										exit={{ opacity: 0 }}>
+										<Artists />
+									</motion.div>
+								</AnimatePresence>
+							}
+						/>
+						<Route
+							path='/:id'
+							element={
+								<AnimatePresence mode='wait'>
+									<motion.div
+										transition={{ duration: 0.1 }}
+										key={location.key}
+										initial={{ opacity: 0 }}
+										animate={{ opacity: 1 }}
+										exit={{ opacity: 0 }}>
+										<ArtistDetails />
+									</motion.div>
+								</AnimatePresence>
+							}
+						/>
+						<Route
+							path='/:id/albums/:id'
+							element={
+								<AnimatePresence mode='wait'>
+									<motion.div
+										transition={{ duration: 0.1 }}
+										key={location.key}
+										initial={{ opacity: 0 }}
+										animate={{ opacity: 1 }}
+										exit={{ opacity: 0 }}>
+										<AlbumDetails />
+									</motion.div>
+								</AnimatePresence>
+							}
+						/>
 					</Routes>
 				</div>
 			</div>
