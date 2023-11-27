@@ -113,7 +113,7 @@ const QueueInfo = (props: QueueInfoProps) => {
 										{queue.map((item, index) => (
 											<img
 												key={index}
-												src={item.albumImageUrl}
+												src={item.album.albumImageUrl}
 												width={40}
 												height={40}
 												className={`${
@@ -132,7 +132,7 @@ const QueueInfo = (props: QueueInfoProps) => {
 											{currentSongInfo.title}
 										</span>
 										<span className='block text-sm text-inactive'>
-											{currentSongInfo.artist}
+											{currentSongInfo.album?.artist?.name}
 										</span>
 									</div>
 									{isPlaying && <WaveAnimation />}
@@ -187,7 +187,7 @@ const QueueInfo = (props: QueueInfoProps) => {
 																			{item.title}
 																		</span>
 																		<span className='block text-sm text-inactive'>
-																			{item.artist}
+																			{item.album.artist?.name}
 																		</span>
 																	</div>
 																	<IconButton edge='end'>

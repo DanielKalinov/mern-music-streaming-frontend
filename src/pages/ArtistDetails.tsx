@@ -40,7 +40,7 @@ const ArtistDetails = () => {
 					<h2 className='mb-4'>Discography</h2>
 					<div className='grid grid-cols-2 gap-4 xs:grid-cols-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6 xl:grid-cols-7 2xl:grid-cols-8'>
 						{artistDetails?.albums.map((item) => (
-							<Link to={`/${item._id}/albums/${params.id}`}>
+							<Link key={item._id} to={`/${params.id}/albums/${item._id}`}>
 								<div className='aspect-square px-2 pt-2 bg-primary rounded-lg border solid border-slate-700 shadow-xl'>
 									<img
 										src={item.albumImageUrl}

@@ -87,7 +87,7 @@ const SongInfo = (props: SongInfoProps) => {
 			<div
 				className='absolute top-0 h-full w-full transition-all duration-500 ease-in-out'
 				style={{
-					backgroundImage: `url(${currentSongInfo.albumImageUrl})`,
+					backgroundImage: `url(${currentSongInfo.album?.albumImageUrl})`,
 					backgroundRepeat: 'no-repeat',
 					backgroundSize: 'cover',
 					backgroundPosition: 'center',
@@ -131,7 +131,7 @@ const SongInfo = (props: SongInfoProps) => {
 											index
 										)}`}>
 										<img
-											src={item.albumImageUrl}
+											src={item.album?.albumImageUrl}
 											width={'100%'}
 											height={'100%'}
 											className='shadow-lg rounded-lg'
@@ -150,7 +150,7 @@ const SongInfo = (props: SongInfoProps) => {
 									{currentSongInfo.title}
 								</span>
 								<span className='block text-inactive'>
-									{currentSongInfo.artist}
+									{currentSongInfo.album?.artist?.name}
 								</span>
 							</div>
 							<IconButton edge='end'>

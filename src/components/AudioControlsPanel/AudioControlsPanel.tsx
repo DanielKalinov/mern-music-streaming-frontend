@@ -68,7 +68,7 @@ const AudioControlsPanel = ({
 									{queue.map((item, index) => (
 										<img
 											key={index}
-											src={item.albumImageUrl}
+											src={item.album?.albumImageUrl}
 											width={40}
 											height={40}
 											className={`${
@@ -84,7 +84,7 @@ const AudioControlsPanel = ({
 									{currentSongInfo.title}
 								</span>
 								<span className='block text-sm text-inactive'>
-									{currentSongInfo.artist}
+									{currentSongInfo.album?.artist?.name}
 								</span>
 							</div>
 						</div>
