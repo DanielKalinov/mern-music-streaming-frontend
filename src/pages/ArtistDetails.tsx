@@ -71,7 +71,7 @@ const ArtistDetails = () => {
 					<h2 className='mb-4'>Bio</h2>
 					<img
 						src={artistDetails?.artistImageUrl}
-						className='rounded-t-md border !border-solid !border-slate-700'
+						className='w-full rounded-t-md border border-solid border-slate-700'
 					/>
 					<ButtonBase
 						className='!block !p-4 !bg-primary !shadow-xl !rounded-b-md !border !border-t-0 !border-solid !border-slate-700 text-left'
