@@ -102,7 +102,9 @@ const QueueInfo = (props: QueueInfoProps) => {
 								<span className='block tracking-widest'>
 									PLAYING FROM ALBUM
 								</span>
-								<span className='block font-bold'>Album Name</span>
+								<span className='block font-bold'>
+									{currentSongInfo.album?.name}
+								</span>
 							</div>
 						</div>
 						<div className='my-6'>

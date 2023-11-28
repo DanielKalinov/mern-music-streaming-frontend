@@ -104,7 +104,9 @@ const SongInfo = (props: SongInfoProps) => {
 					</IconButton>
 					<div className='text-center text-xs'>
 						<span className='block tracking-widest'>PLAYING FROM ALBUM</span>
-						<span className='block font-bold'>Album Name</span>
+						<span className='block font-bold'>
+							{currentSongInfo.album?.name}
+						</span>
 					</div>
 					<IconButton edge='end' onClick={() => setShowQueueInfo(true)}>
 						<FormatListBulletedIcon />
