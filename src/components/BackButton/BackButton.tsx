@@ -27,10 +27,12 @@ const BackButton = ({
 					targetRef.current.style.opacity = '1';
 					textRef.current.style.opacity = '0';
 					containerRef.current.style.backgroundColor = 'rgba(30, 41, 59, 0)';
+					containerRef.current.style.backdropFilter = 'blur(0px)';
 				} else {
 					targetRef.current.style.opacity = '0';
 					textRef.current.style.opacity = '1';
-					containerRef.current.style.backgroundColor = 'rgba(30, 41, 59, 1)';
+					containerRef.current.style.backgroundColor = 'rgba(30, 41, 59, 0.8)';
+					containerRef.current.style.backdropFilter = 'blur(40px)';
 				}
 			}
 		};

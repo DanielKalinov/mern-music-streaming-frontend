@@ -1,6 +1,7 @@
 import axios from 'axios';
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
+import BackButton from '../components/BackButton';
 
 const ArtistDetails = () => {
 	const [artistDetails, setArtistDetails] = useState<{
@@ -13,6 +14,7 @@ const ArtistDetails = () => {
 			albumImageUrl: string;
 		}[];
 	}>();
+	const targetRef = useRef(null);
 
 	const params = useParams();
 
@@ -24,6 +26,12 @@ const ArtistDetails = () => {
 
 	return (
 		<>
+			<BackButton
+				url='/'
+				text={artistDetails?.name ?? ''}
+				targetRef={targetRef}
+				threshold={50}
+			/>
 			<div className='-mx-4'>
 				<div className='relative'>
 					<img
@@ -34,7 +42,9 @@ const ArtistDetails = () => {
 				</div>
 			</div>
 			<div>
-				<h1 className='text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-accent to-green-500'>
+				<h1
+					ref={targetRef}
+					className='text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-accent to-green-500'>
 					{artistDetails?.name}
 				</h1>
 				<div className='mt-8'>
