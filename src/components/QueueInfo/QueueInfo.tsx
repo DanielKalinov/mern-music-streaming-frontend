@@ -173,6 +173,7 @@ const QueueInfo = (props: QueueInfoProps) => {
 												<>
 													{nextFromList.map((item, index) => (
 														<Draggable
+															isDragDisabled={nextFromList.length == 1}
 															key={item._id}
 															draggableId={item._id}
 															index={index}>
@@ -192,9 +193,11 @@ const QueueInfo = (props: QueueInfoProps) => {
 																			{item.album.artist?.name}
 																		</span>
 																	</div>
-																	<IconButton edge='end'>
-																		<DragHandleIcon />
-																	</IconButton>
+																	{nextFromList.length > 1 && (
+																		<IconButton edge='end'>
+																			<DragHandleIcon />
+																		</IconButton>
+																	)}
 																</li>
 															)}
 														</Draggable>
