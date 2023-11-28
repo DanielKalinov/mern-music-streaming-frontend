@@ -38,10 +38,6 @@ a {
 	@apply border-solid border-slate-700;
 }
 
-.panelShadow {
-	box-shadow: 0px 5px 10px 0px rgba(0, 0, 0, 0.4);
-}
-
 .strokeWave {
 	animation: strokeWaveAnimation 0.8s ease-in-out infinite;
 }

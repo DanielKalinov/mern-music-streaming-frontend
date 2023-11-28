@@ -57,8 +57,8 @@ const AudioControlsPanel = ({
 					Object.keys(currentSongInfo).length > 0
 						? 'translate-y-0'
 						: 'translate-y-full'
-				} fixed bottom-0 left-0 px-4 pb-4 w-full transition-all duration-300 ease-in-out`}>
-				<div className='overflow-hidden flex flex-col items-center bg-primary rounded-lg panelShadow border solid border-slate-700'>
+				} fixed bottom-0 left-0 px-2 pb-2 w-full transition-all duration-300 ease-in-out`}>
+				<div className='overflow-hidden flex flex-col items-center card'>
 					<div
 						className='relative flex items-center justify-between w-full'
 						onClick={() => setShowSongInfo(true)}>
