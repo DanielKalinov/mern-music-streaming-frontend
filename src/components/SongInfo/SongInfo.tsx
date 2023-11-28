@@ -93,8 +93,8 @@ const SongInfo = (props: SongInfoProps) => {
 					backgroundPosition: 'center',
 				}}
 			/>
-			<div className='relative flex flex-col h-full w-full px-4 bg-black/70 backdrop-blur-3xl [&>*]:mb-auto'>
-				<div className='flex justify-between items-center'>
+			<div className='relative flex flex-col h-full w-full px-8 bg-black/70 backdrop-blur-3xl [&>*]:mb-auto'>
+				<div className='flex justify-between items-center -mx-4'>
 					<IconButton
 						edge='start'
 						onClick={() => {
