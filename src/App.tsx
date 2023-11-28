@@ -79,59 +79,54 @@ const App = () => {
 	};
 
 	return (
-		<div className='px-4'>
-			{/* offset panel height */}
-			<div className='pb-[150px]'>
-				<div>
-					<Routes>
-						<Route
-							path='/'
-							element={
-								<AnimatePresence mode='wait'>
-									<motion.div
-										transition={{ duration: 0.1 }}
-										key={location.key}
-										initial={{ opacity: 0 }}
-										animate={{ opacity: 1 }}
-										exit={{ opacity: 0 }}>
-										<Artists />
-									</motion.div>
-								</AnimatePresence>
-							}
-						/>
-						<Route
-							path='/:id'
-							element={
-								<AnimatePresence mode='wait'>
-									<motion.div
-										transition={{ duration: 0.1 }}
-										key={location.key}
-										initial={{ opacity: 0 }}
-										animate={{ opacity: 1 }}
-										exit={{ opacity: 0 }}>
-										<ArtistDetails />
-									</motion.div>
-								</AnimatePresence>
-							}
-						/>
-						<Route
-							path='/:id/albums/:id'
-							element={
-								<AnimatePresence mode='wait'>
-									<motion.div
-										transition={{ duration: 0.1 }}
-										key={location.key}
-										initial={{ opacity: 0 }}
-										animate={{ opacity: 1 }}
-										exit={{ opacity: 0 }}>
-										<AlbumDetails />
-									</motion.div>
-								</AnimatePresence>
-							}
-						/>
-					</Routes>
-				</div>
-			</div>
+		<div className='px-4 pb-40'>
+			<Routes>
+				<Route
+					path='/'
+					element={
+						<AnimatePresence mode='wait'>
+							<motion.div
+								transition={{ duration: 0.1 }}
+								key={location.key}
+								initial={{ opacity: 0 }}
+								animate={{ opacity: 1 }}
+								exit={{ opacity: 0 }}>
+								<Artists />
+							</motion.div>
+						</AnimatePresence>
+					}
+				/>
+				<Route
+					path='/:id'
+					element={
+						<AnimatePresence mode='wait'>
+							<motion.div
+								transition={{ duration: 0.1 }}
+								key={location.key}
+								initial={{ opacity: 0 }}
+								animate={{ opacity: 1 }}
+								exit={{ opacity: 0 }}>
+								<ArtistDetails />
+							</motion.div>
+						</AnimatePresence>
+					}
+				/>
+				<Route
+					path='/:id/albums/:id'
+					element={
+						<AnimatePresence mode='wait'>
+							<motion.div
+								transition={{ duration: 0.1 }}
+								key={location.key}
+								initial={{ opacity: 0 }}
+								animate={{ opacity: 1 }}
+								exit={{ opacity: 0 }}>
+								<AlbumDetails />
+							</motion.div>
+						</AnimatePresence>
+					}
+				/>
+			</Routes>
 			<AudioControlsPanel setSeekCurrentTime={setSeekCurrentTime} />
 		</div>
 	);
