@@ -95,8 +95,9 @@ const AudioControlsPanel = ({
 									e.stopPropagation();
 
 									dispatch(skipTrack('prev'));
-								}}>
-								<SkipPreviousIcon />
+								}}
+								className='disabled:opacity-30'>
+								<SkipPreviousIcon className='font-color' />
 							</IconButton>
 							<IconButton
 								onClick={(e) => {
@@ -107,8 +108,13 @@ const AudioControlsPanel = ({
 									} else {
 										dispatch(togglePlaying(true));
 									}
-								}}>
-								{isPlaying ? <PauseIcon /> : <PlayArrowIcon />}
+								}}
+								className='disabled:opacity-30'>
+								{isPlaying ? (
+									<PauseIcon className='font-color' />
+								) : (
+									<PlayArrowIcon className='font-color' />
+								)}
 							</IconButton>
 							<IconButton
 								disabled={currentSongPosition + 1 == queue.length}
@@ -116,8 +122,9 @@ const AudioControlsPanel = ({
 									e.stopPropagation();
 
 									dispatch(skipTrack('next'));
-								}}>
-								<SkipNextIcon />
+								}}
+								className='disabled:opacity-30'>
+								<SkipNextIcon className='font-color' />
 							</IconButton>
 						</div>
 					</div>

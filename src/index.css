@@ -12,7 +12,7 @@ a {
 
 @layer base {
 	body {
-		@apply bg-background-dark text-slate-200;
+		@apply bg-background-dark font-color;
 		font-family: 'Poppins', sans-serif;
 	}
 
@@ -27,6 +27,10 @@ a {
 	h3 {
 		@apply text-lg font-semibold;
 	}
+}
+
+.font-color {
+	@apply text-slate-200;
 }
 
 .card {
