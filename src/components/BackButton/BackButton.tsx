@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import { IconButton } from '@mui/material';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
@@ -13,26 +13,20 @@ const BackButton = ({
 	text: string;
 	targetRef?: React.RefObject<HTMLDivElement>;
 	threshold: number;
+	background?: boolean;
 }) => {
-	const containerRef = useRef<HTMLDivElement>(null);
-	const textRef = useRef<HTMLSpanElement>(null);
+	const [containerVisible, setContainerVisible] = useState(false);
 
 	useEffect(() => {
 		const handleScroll = () => {
-			if (targetRef?.current && textRef.current && containerRef.current) {
+			if (targetRef?.current) {
 				// Distance to the top of the viewport
 				const { top } = targetRef.current.getBoundingClientRect();
 
 				if (top > threshold) {
-					targetRef.current.style.opacity = '1';
-					textRef.current.style.opacity = '0';
-					containerRef.current.style.backgroundColor = 'rgba(30, 41, 59, 0)';
-					containerRef.current.style.backdropFilter = 'blur(0px)';
+					setContainerVisible(false);
 				} else {
-					targetRef.current.style.opacity = '0';
-					textRef.current.style.opacity = '1';
-					containerRef.current.style.backgroundColor = 'rgba(30, 41, 59, 0.8)';
-					containerRef.current.style.backdropFilter = 'blur(40px)';
+					setContainerVisible(true);
 				}
 			}
 		};
@@ -46,15 +40,24 @@ const BackButton = ({
 
 	return (
 		<div
-			ref={containerRef}
 			id='container'
-			className='fixed top-0 left-0 px-4 w-full z-20 transition-colors duration-300'>
+			className={`fixed top-0 left-0 flex items-center w-full p-2 z-20 transition-colors duration-200 ${
+				containerVisible
+					? 'bg-primary/100 shadow-md'
+					: 'bg-primary/0 backdrop-blur-0 shadow-none'
+			}`}>
 			<Link to={url}>
-				<IconButton edge='start'>
-					<ArrowBackIcon fontSize='large' />
+				<IconButton
+					sx={{
+						backgroundColor: `rgba(0, 0, 0, ${containerVisible ? 0 : 0.5})`,
+					}}>
+					<ArrowBackIcon />
 				</IconButton>
 			</Link>
-			<span ref={textRef} className='opacity-0 transition-all duration-300'>
+			<span
+				className={`transition-opacity duration-200 ${
+					containerVisible ? 'opacity-1' : 'opacity-0'
+				}`}>
 				{text}
 			</span>
 		</div>
