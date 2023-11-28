@@ -2,6 +2,7 @@ import axios from 'axios';
 import React, { useEffect, useRef, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import BackButton from '../components/BackButton';
+import { ButtonBase } from '@mui/material';
 
 const ArtistDetails = () => {
 	const [artistDetails, setArtistDetails] = useState<{
@@ -15,6 +16,7 @@ const ArtistDetails = () => {
 		}[];
 	}>();
 	const targetRef = useRef(null);
+	const [readMore, setReadMore] = useState(false);
 
 	const params = useParams();
 
@@ -67,9 +69,21 @@ const ArtistDetails = () => {
 				</div>
 				<div className='mt-8'>
 					<h2 className='mb-4'>Bio</h2>
-					<div className='p-4 bg-primary rounded-md shadow-xl'>
-						<p>{artistDetails?.bio}</p>
-					</div>
+					<img
+						src={artistDetails?.artistImageUrl}
+						className='rounded-t-md border !border-solid !border-slate-700'
+					/>
+					<ButtonBase
+						className='!block !p-4 !bg-primary !shadow-xl !rounded-b-md !border !border-t-0 !border-solid !border-slate-700 text-left'
+						onClick={() => setReadMore(!readMore)}>
+						<p className={`${!readMore && 'line-clamp-2'}`}>
+							{artistDetails?.bio}
+						</p>
+
+						<span className='block text-inactive mt-2'>
+							{readMore ? 'Read less' : 'Read more'}
+						</span>
+					</ButtonBase>
 				</div>
 			</div>
 		</>
