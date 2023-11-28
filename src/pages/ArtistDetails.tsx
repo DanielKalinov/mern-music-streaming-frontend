@@ -6,6 +6,7 @@ const ArtistDetails = () => {
 	const [artistDetails, setArtistDetails] = useState<{
 		name: string;
 		artistImageUrl: string;
+		bio: string;
 		albums: {
 			_id: string;
 			name: string;
@@ -52,6 +53,12 @@ const ArtistDetails = () => {
 								</div>
 							</Link>
 						))}
+					</div>
+				</div>
+				<div className='mt-8'>
+					<h2 className='mb-4'>Bio</h2>
+					<div className='p-4 bg-primary rounded-md shadow-xl'>
+						<p>{artistDetails?.bio}</p>
 					</div>
 				</div>
 			</div>
