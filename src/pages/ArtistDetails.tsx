@@ -54,7 +54,7 @@ const ArtistDetails = () => {
 					<div className='grid grid-cols-2 gap-4 xs:grid-cols-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6 xl:grid-cols-7 2xl:grid-cols-8'>
 						{artistDetails?.albums.map((item) => (
 							<Link key={item._id} to={`/${params.id}/albums/${item._id}`}>
-								<div className='aspect-square px-2 pt-2 bg-primary rounded-lg border solid border-slate-700 shadow-xl'>
+								<div className='aspect-square px-2 pt-2 card'>
 									<img
 										src={item.albumImageUrl}
 										className='object-cover w-full h-full rounded-lg shadow-md'
@@ -69,21 +69,23 @@ const ArtistDetails = () => {
 				</div>
 				<div className='mt-8'>
 					<h2 className='mb-4'>Bio</h2>
-					<img
-						src={artistDetails?.artistImageUrl}
-						className='w-full rounded-t-md border border-solid border-slate-700'
-					/>
-					<ButtonBase
-						className='!block !p-4 !bg-primary !shadow-xl !rounded-b-md !border !border-t-0 !border-solid !border-slate-700 text-left'
-						onClick={() => setReadMore(!readMore)}>
-						<p className={`${!readMore && 'line-clamp-2'}`}>
-							{artistDetails?.bio}
-						</p>
+					<div className='card'>
+						<img
+							src={artistDetails?.artistImageUrl}
+							className='w-full rounded-t-md border-b border-style'
+						/>
+						<ButtonBase
+							className='!block !p-4 text-left'
+							onClick={() => setReadMore(!readMore)}>
+							<p className={`${!readMore && 'line-clamp-2'}`}>
+								{artistDetails?.bio}
+							</p>
 
-						<span className='block text-inactive mt-2'>
-							{readMore ? 'Read less' : 'Read more'}
-						</span>
-					</ButtonBase>
+							<span className='block text-inactive mt-2'>
+								{readMore ? 'Read less' : 'Read more'}
+							</span>
+						</ButtonBase>
+					</div>
 				</div>
 			</div>
 		</>

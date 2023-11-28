@@ -18,7 +18,7 @@ const Artists = () => {
 				{artists.map(
 					(item: { _id: string; name: string; artistImageUrl: string }) => (
 						<Link key={item._id} to={`/${item._id}`}>
-							<div className='aspect-square px-2 pt-2 bg-primary rounded-lg border solid border-slate-700 shadow-xl'>
+							<div className='aspect-square px-2 pt-2 card'>
 								<img
 									src={item.artistImageUrl}
 									className='object-cover w-full h-full rounded-lg shadow-md'
