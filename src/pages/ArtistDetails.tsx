@@ -82,9 +82,9 @@ const ArtistDetails = () => {
 						<div className='relative'>
 							<img
 								src={artistDetails?.artistBioImageUrl}
-								className='h-[300px] w-full object-cover rounded-lg shadow-xl xs:h-[350px] sm:h-[400px] sm:w-[550px] md:h-[500px] md:w-[650px]'
+								className='h-[300px] w-full object-cover rounded-lg shadow-xl xs:h-[350px] sm:h-[400px] sm:w-screen md:h-[500px] md:w-[750px]'
 							/>
-							<div className='absolute bottom-0 left-0 flex items-center justify-between p-4 bg-gradient-to-b from-transparent to-black rounded-b-lg sm:max-w-[550px] md:max-w-[650px]'>
+							<div className='absolute bottom-0 left-0 flex items-center justify-between p-4 bg-gradient-to-b from-transparent to-black rounded-b-lg md:max-w-[750px]'>
 								<p className='text-sm line-clamp-2'>{artistDetails?.bio}</p>
 								<ChevronRightIcon fontSize='large' />
 							</div>
