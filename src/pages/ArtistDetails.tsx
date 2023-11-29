@@ -2,8 +2,9 @@ import axios from 'axios';
 import React, { useEffect, useRef, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import BackButton from '../components/BackButton';
-import { ButtonBase } from '@mui/material';
+// import { ButtonBase } from '@mui/material';
 import PageTransition from '../components/PageTransition';
+import ChevronRightIcon from '@mui/icons-material/ChevronRight';
 
 const ArtistDetails = () => {
 	const [artistDetails, setArtistDetails] = useState<{
@@ -18,7 +19,6 @@ const ArtistDetails = () => {
 		}[];
 	}>();
 	const targetRef = useRef(null);
-	const [readMore, setReadMore] = useState(false);
 	const [loaded, setLoaded] = useState(false);
 
 	const params = useParams();
@@ -79,22 +79,15 @@ const ArtistDetails = () => {
 					</div>
 					<div className='mt-8'>
 						<h2 className='mb-4'>Bio</h2>
-						<div className='card'>
+						<div className='relative'>
 							<img
 								src={artistDetails?.artistBioImageUrl}
-								className='w-full h-[300px] object-cover rounded-t-md border-b border-style'
+								className='h-[300px] w-full object-cover rounded-lg shadow-xl xs:h-[350px] sm:h-[400px] sm:w-[550px] md:h-[500px] md:w-[650px]'
 							/>
-							<ButtonBase
-								className='!block !p-4 text-left'
-								onClick={() => setReadMore(!readMore)}>
-								<p className={`${!readMore && 'line-clamp-2'}`}>
-									{artistDetails?.bio}
-								</p>
-
-								<span className='block text-inactive mt-2'>
-									{readMore ? 'Read less' : 'Read more'}
-								</span>
-							</ButtonBase>
+							<div className='absolute bottom-0 left-0 flex items-center justify-between p-4 bg-gradient-to-b from-transparent to-black rounded-b-lg sm:max-w-[550px] md:max-w-[650px]'>
+								<p className='text-sm line-clamp-2'>{artistDetails?.bio}</p>
+								<ChevronRightIcon fontSize='large' />
+							</div>
 						</div>
 					</div>
 				</div>
