@@ -2,9 +2,10 @@ import axios from 'axios';
 import React, { useEffect, useRef, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import BackButton from '../components/BackButton';
-// import { ButtonBase } from '@mui/material';
 import PageTransition from '../components/PageTransition';
 import ChevronRightIcon from '@mui/icons-material/ChevronRight';
+import CloseIcon from '@mui/icons-material/Close';
+import IconButton from '@mui/material/IconButton';
 
 const ArtistDetails = () => {
 	const [artistDetails, setArtistDetails] = useState<{
@@ -20,6 +21,7 @@ const ArtistDetails = () => {
 	}>();
 	const targetRef = useRef(null);
 	const [loaded, setLoaded] = useState(false);
+	const [showBioWindow, setShowBioWindow] = useState(false);
 
 	const params = useParams();
 
@@ -79,7 +81,12 @@ const ArtistDetails = () => {
 					</div>
 					<div className='mt-8'>
 						<h2 className='mb-4'>Bio</h2>
-						<div className='relative'>
+						<div
+							className='relative'
+							onClick={() => {
+								setShowBioWindow(true);
+								document.body.style.overflow = 'hidden';
+							}}>
 							<img
 								src={artistDetails?.artistBioImageUrl}
 								className='h-[300px] w-full object-cover rounded-lg shadow-xl xs:h-[350px] sm:h-[400px] sm:w-screen md:h-[500px] md:w-[750px]'
@@ -89,6 +96,35 @@ const ArtistDetails = () => {
 								<ChevronRightIcon fontSize='large' />
 							</div>
 						</div>
+					</div>
+				</div>
+
+				<div
+					className={`fixed top-0 left-0 w-full h-full bg-background-dark transition-all duration-200 z-20 overflow-y-scroll ${
+						showBioWindow ? 'opacity-1 visible' : 'opacity-0 invisible'
+					}`}>
+					<img src={artistDetails?.artistBioImageUrl} className='m-auto' />
+					<IconButton
+						size='medium'
+						disableRipple
+						sx={{
+							position: 'fixed',
+							top: 8,
+							right: 8,
+							backgroundColor: 'rgba(0, 0, 0, 0.5)',
+						}}
+						onClick={() => {
+							setShowBioWindow(false);
+							document.body.style.overflow = 'auto';
+						}}>
+						<CloseIcon />
+					</IconButton>
+					<div className='px-4 pt-4 pb-40'>
+						<h1 className='mb-4'>{artistDetails?.name}</h1>
+						<p
+							className='text-sm text-inactive '
+							dangerouslySetInnerHTML={{ __html: artistDetails?.bio ?? '' }}
+						/>
 					</div>
 				</div>
 			</div>
