@@ -103,32 +103,42 @@ const ArtistDetails = () => {
 				</div>
 
 				<div
-					ref={bioWindowRef}
-					className={`fixed top-0 left-0 w-full h-full bg-background-dark transition-all duration-200 z-20 overflow-y-scroll ${
+					className={`fixed top-0 left-0 w-full h-full bg-black/60 z-20 transition-all duration-200 xs:px-8 xs:py-16 ${
 						showBioWindow ? 'opacity-1 visible' : 'opacity-0 invisible'
-					}`}>
-					<img src={artistDetails?.artistBioImageUrl} className='m-auto' />
-					<IconButton
-						size='medium'
-						disableRipple
-						sx={{
-							position: 'fixed',
-							top: 8,
-							right: 8,
-							backgroundColor: 'rgba(0, 0, 0, 0.5)',
-						}}
-						onClick={() => {
-							setShowBioWindow(false);
-							document.body.style.overflow = 'auto';
-						}}>
-						<CloseIcon />
-					</IconButton>
-					<div className='px-4 pt-4 pb-40'>
-						<h1 className='mb-4'>{artistDetails?.name}</h1>
-						<p
-							className='text-sm text-inactive '
-							dangerouslySetInnerHTML={{ __html: artistDetails?.bio ?? '' }}
-						/>
+					}`}
+					onClick={(e) => {
+						setShowBioWindow(false);
+					}}>
+					<div
+						onClick={(e) => e.stopPropagation()}
+						ref={bioWindowRef}
+						className={`relative w-full h-full m-auto bg-background-dark overflow-y-scroll xs:rounded-lg sm:w-[600px] lg:w-[800px]`}>
+						<img src={artistDetails?.artistBioImageUrl} className='m-auto' />
+
+						<div className='absolute h-full top-2 right-2'>
+							<IconButton
+								size='medium'
+								disableRipple
+								sx={{
+									position: 'sticky',
+									top: 8,
+									right: 0,
+									backgroundColor: 'rgba(0, 0, 0, 0.5)',
+								}}
+								onClick={() => {
+									setShowBioWindow(false);
+									document.body.style.overflow = 'auto';
+								}}>
+								<CloseIcon />
+							</IconButton>
+						</div>
+						<div className='px-4 pt-4 pb-40'>
+							<h1 className='mb-4'>{artistDetails?.name}</h1>
+							<p
+								className='text-sm text-inactive '
+								dangerouslySetInnerHTML={{ __html: artistDetails?.bio ?? '' }}
+							/>
+						</div>
 					</div>
 				</div>
 			</div>
