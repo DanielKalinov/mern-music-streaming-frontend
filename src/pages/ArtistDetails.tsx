@@ -9,6 +9,7 @@ const ArtistDetails = () => {
 	const [artistDetails, setArtistDetails] = useState<{
 		name: string;
 		artistImageUrl: string;
+		artistBioImageUrl: string;
 		bio: string;
 		albums: {
 			_id: string;
@@ -80,8 +81,8 @@ const ArtistDetails = () => {
 						<h2 className='mb-4'>Bio</h2>
 						<div className='card'>
 							<img
-								src={artistDetails?.artistImageUrl}
-								className='w-full rounded-t-md border-b border-style'
+								src={artistDetails?.artistBioImageUrl}
+								className='w-full h-[300px] object-cover rounded-t-md border-b border-style'
 							/>
 							<ButtonBase
 								className='!block !p-4 text-left'
