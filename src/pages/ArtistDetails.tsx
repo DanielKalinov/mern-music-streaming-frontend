@@ -103,16 +103,16 @@ const ArtistDetails = () => {
 				</div>
 
 				<div
-					className={`fixed top-0 left-0 w-full h-full bg-black/60 z-20 transition-all duration-200 xs:px-8 xs:py-16 ${
+					className={`fixed top-0 left-0 w-full h-full z-20 transition-all duration-200 xs:bg-black/60 xs:backdrop-blur-2xl xs:px-8 xs:py-16 ${
 						showBioWindow ? 'opacity-1 visible' : 'opacity-0 invisible'
 					}`}
-					onClick={(e) => {
-						setShowBioWindow(false);
-					}}>
+					onClick={() => setShowBioWindow(false)}>
 					<div
-						onClick={(e) => e.stopPropagation()}
 						ref={bioWindowRef}
-						className={`relative w-full h-full m-auto bg-background-dark overflow-y-scroll xs:rounded-lg sm:w-[600px] lg:w-[800px]`}>
+						className={`relative w-full h-full m-auto bg-background-dark overflow-y-scroll transition-transform duration-200 xs:rounded-lg sm:w-[600px] lg:w-[800px] ${
+							showBioWindow ? 'scale-100' : 'scale-90'
+						}`}
+						onClick={(e) => e.stopPropagation()}>
 						<img src={artistDetails?.artistBioImageUrl} className='m-auto' />
 
 						<div className='absolute h-full top-2 right-2'>
