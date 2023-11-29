@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
 import axios from 'axios';
-import { Link, useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import { IconButton } from '@mui/material';
 import { ButtonBase } from '@mui/material';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';

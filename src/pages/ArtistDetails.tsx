@@ -1,6 +1,6 @@
 import axios from 'axios';
 import React, { useEffect, useRef, useState } from 'react';
-import { Link, useLocation, useParams } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import BackButton from '../components/BackButton';
 import { ButtonBase } from '@mui/material';
 import PageTransition from '../components/PageTransition';
