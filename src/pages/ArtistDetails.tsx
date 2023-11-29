@@ -109,7 +109,7 @@ const ArtistDetails = () => {
 					onClick={() => setShowBioWindow(false)}>
 					<div
 						ref={bioWindowRef}
-						className={`relative w-full h-full m-auto bg-background-dark overflow-y-scroll transition-transform duration-200 xs:rounded-lg sm:w-[600px] lg:w-[800px] ${
+						className={`relative w-full h-full m-auto bg-background-dark overflow-y-scroll transition-transform duration-200 xs:rounded-lg sm:w-[600px] ${
 							showBioWindow ? 'scale-100' : 'scale-90'
 						}`}
 						onClick={(e) => e.stopPropagation()}>
