@@ -23,6 +23,8 @@ const ArtistDetails = () => {
 	const [loaded, setLoaded] = useState(false);
 	const [showBioWindow, setShowBioWindow] = useState(false);
 
+	const bioWindowRef = useRef<HTMLDivElement>(null);
+
 	const params = useParams();
 
 	useEffect(() => {
@@ -84,6 +86,7 @@ const ArtistDetails = () => {
 						<div
 							className='relative'
 							onClick={() => {
+								bioWindowRef.current?.scrollTo(0, 0);
 								setShowBioWindow(true);
 								document.body.style.overflow = 'hidden';
 							}}>
@@ -100,6 +103,7 @@ const ArtistDetails = () => {
 				</div>
 
 				<div
+					ref={bioWindowRef}
 					className={`fixed top-0 left-0 w-full h-full bg-background-dark transition-all duration-200 z-20 overflow-y-scroll ${
 						showBioWindow ? 'opacity-1 visible' : 'opacity-0 invisible'
 					}`}>
