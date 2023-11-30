@@ -49,7 +49,7 @@ const ArtistDetails = () => {
 					<div className='relative'>
 						<ProgressiveImage
 							image={artistDetails?.artistImageUrl ?? { large: '', small: '' }}
-							classes=''
+							classes='grayscale w-full'
 						/>
 						<div className='absolute top-0 left-0 h-full w-full bg-gradient-to-b from-accent/20 to-background-dark' />
 					</div>

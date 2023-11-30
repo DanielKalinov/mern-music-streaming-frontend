@@ -17,7 +17,7 @@ const ProgressiveImage = ({
 						classes +
 						`${
 							loaded ? ' opacity-1' : ' opacity-0'
-						} object-cover transition-opacity duration-300`
+						} transition-opacity duration-300`
 					}
 					width={640}
 					height={480}
@@ -30,7 +30,7 @@ const ProgressiveImage = ({
 					}`}>
 					<div className='relative'>
 						<img
-							className={`${classes} object-cover`}
+							className={`${classes}`}
 							width={640}
 							height={480}
 							src={image.small}
