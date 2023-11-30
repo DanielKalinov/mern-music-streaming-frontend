@@ -11,14 +11,8 @@ import Image from '../components/Image';
 const ArtistDetails = () => {
 	const [artistDetails, setArtistDetails] = useState<{
 		name: string;
-		artistImageUrl: {
-			large: string;
-			small: string;
-		};
-		artistBioImageUrl: {
-			large: string;
-			small: string;
-		};
+		artistImageUrl: string;
+		artistBioImageUrl: string;
 		bio: string;
 		albums: {
 			_id: string;
@@ -51,7 +45,7 @@ const ArtistDetails = () => {
 				<div className='-mx-4'>
 					<div className='relative'>
 						<Image
-							image={artistDetails?.artistImageUrl ?? { large: '', small: '' }}
+							src={artistDetails?.artistImageUrl ?? ''}
 							width={640}
 							height={480}
 							classes='grayscale w-full object-cover'
@@ -93,12 +87,7 @@ const ArtistDetails = () => {
 								document.body.style.overflow = 'hidden';
 							}}>
 							<Image
-								image={
-									artistDetails?.artistBioImageUrl ?? {
-										large: '',
-										small: '',
-									}
-								}
+								src={artistDetails?.artistBioImageUrl ?? ''}
 								width={640}
 								height={480}
 								classes='w-full rounded-lg shadow-xl'
@@ -126,9 +115,7 @@ const ArtistDetails = () => {
 						}`}
 						onClick={(e) => e.stopPropagation()}>
 						<Image
-							image={
-								artistDetails?.artistBioImageUrl ?? { large: '', small: '' }
-							}
+							src={artistDetails?.artistBioImageUrl ?? ''}
 							width={640}
 							height={480}
 							classes='m-auto'

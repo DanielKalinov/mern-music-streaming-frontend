@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
 
 const Image = ({
-	image,
+	src,
 	width,
 	height,
 	classes,
 }: {
-	image: { large: string; small: string };
+	src: string;
 	width: number;
 	height: number;
 	placeholder?: boolean;
@@ -26,7 +26,7 @@ const Image = ({
 					}
 					width={width}
 					height={height}
-					src={image.large}
+					src={src}
 					onLoad={() => setLoaded(true)}
 				/>
 
