@@ -6,7 +6,7 @@ import PageTransition from '../components/PageTransition';
 import ChevronRightIcon from '@mui/icons-material/ChevronRight';
 import CloseIcon from '@mui/icons-material/Close';
 import IconButton from '@mui/material/IconButton';
-import ProgressiveImage from '../components/ProgressiveImage';
+import Image from '../components/Image';
 
 const ArtistDetails = () => {
 	const [artistDetails, setArtistDetails] = useState<{
@@ -50,7 +50,7 @@ const ArtistDetails = () => {
 				/>
 				<div className='-mx-4'>
 					<div className='relative'>
-						<ProgressiveImage
+						<Image
 							image={artistDetails?.artistImageUrl ?? { large: '', small: '' }}
 							width={640}
 							height={480}
@@ -83,7 +83,7 @@ const ArtistDetails = () => {
 							))}
 						</div>
 					</div>
-					<div className='mt-8 w-fit'>
+					<div className='max-w-[480px] mt-8'>
 						<h2 className='mb-4'>Bio</h2>
 						<div
 							className='relative'
@@ -92,7 +92,7 @@ const ArtistDetails = () => {
 								setShowBioWindow(true);
 								document.body.style.overflow = 'hidden';
 							}}>
-							<ProgressiveImage
+							<Image
 								image={
 									artistDetails?.artistBioImageUrl ?? {
 										large: '',
@@ -103,7 +103,7 @@ const ArtistDetails = () => {
 								height={480}
 								classes='w-full rounded-lg shadow-xl'
 							/>
-							<div className='absolute bottom-0 left-0 flex items-center justify-between p-4 bg-gradient-to-b from-transparent to-black rounded-b-lg md:max-w-[750px]'>
+							<div className='absolute bottom-0 left-0 w-full flex items-center justify-between p-4 bg-gradient-to-b from-transparent to-black rounded-b-lg'>
 								<p className='text-sm line-clamp-2'>{artistDetails?.bio}</p>
 								<ChevronRightIcon fontSize='large' />
 							</div>
@@ -125,7 +125,7 @@ const ArtistDetails = () => {
 							showBioWindow ? 'scale-100' : 'scale-90'
 						}`}
 						onClick={(e) => e.stopPropagation()}>
-						<ProgressiveImage
+						<Image
 							image={
 								artistDetails?.artistBioImageUrl ?? { large: '', small: '' }
 							}
