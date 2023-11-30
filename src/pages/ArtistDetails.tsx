@@ -115,7 +115,10 @@ const ArtistDetails = () => {
 					className={`fixed top-0 left-0 w-full h-full z-20 transition-all duration-200 xs:bg-black/60 xs:backdrop-blur-2xl xs:px-8 xs:py-16 ${
 						showBioWindow ? 'opacity-1 visible' : 'opacity-0 invisible'
 					}`}
-					onClick={() => setShowBioWindow(false)}>
+					onClick={() => {
+						setShowBioWindow(false);
+						document.body.style.overflow = 'auto';
+					}}>
 					<div
 						ref={bioWindowRef}
 						className={`relative w-full h-full m-auto bg-background-dark overflow-y-scroll transition-transform duration-200 xs:rounded-lg sm:w-[600px] ${
