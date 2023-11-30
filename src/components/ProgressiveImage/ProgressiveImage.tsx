@@ -2,9 +2,13 @@ import React, { useState } from 'react';
 
 const ProgressiveImage = ({
 	image,
+	width,
+	height,
 	classes,
 }: {
 	image: { large: string; small: string };
+	width?: number;
+	height?: number;
 	classes: string;
 }) => {
 	const [loaded, setLoaded] = useState(false);
@@ -19,8 +23,8 @@ const ProgressiveImage = ({
 							loaded ? ' opacity-1' : ' opacity-0'
 						} transition-opacity duration-300`
 					}
-					width={640}
-					height={480}
+					width={width}
+					height={height}
 					src={image.large}
 					onLoad={() => setLoaded(true)}
 				/>
@@ -31,8 +35,8 @@ const ProgressiveImage = ({
 					<div className='relative'>
 						<img
 							className={`${classes}`}
-							width={640}
-							height={480}
+							width={width}
+							height={height}
 							src={image.small}
 						/>
 						<div className='absolute top-0 left-0 h-full w-full backdrop-blur-sm' />
