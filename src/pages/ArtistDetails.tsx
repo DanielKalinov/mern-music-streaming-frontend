@@ -6,11 +6,15 @@ import PageTransition from '../components/PageTransition';
 import ChevronRightIcon from '@mui/icons-material/ChevronRight';
 import CloseIcon from '@mui/icons-material/Close';
 import IconButton from '@mui/material/IconButton';
+import ProgressiveImage from '../components/ProgressiveImage';
 
 const ArtistDetails = () => {
 	const [artistDetails, setArtistDetails] = useState<{
 		name: string;
-		artistImageUrl: string;
+		artistImageUrl: {
+			large: string;
+			small: string;
+		};
 		artistBioImageUrl: string;
 		bio: string;
 		albums: {
@@ -20,7 +24,6 @@ const ArtistDetails = () => {
 		}[];
 	}>();
 	const targetRef = useRef(null);
-	const [loaded, setLoaded] = useState(false);
 	const [showBioWindow, setShowBioWindow] = useState(false);
 
 	const bioWindowRef = useRef<HTMLDivElement>(null);
@@ -33,13 +36,7 @@ const ArtistDetails = () => {
 		});
 	}, []);
 
-	useEffect(() => {
-		const img = new Image();
-		img.onload = () => setLoaded(true);
-		img.src = artistDetails?.artistImageUrl ?? '';
-	}, [artistDetails]);
-
-	return loaded ? (
+	return (
 		<PageTransition duration={0.2}>
 			<div>
 				<BackButton
@@ -50,9 +47,9 @@ const ArtistDetails = () => {
 				/>
 				<div className='-mx-4'>
 					<div className='relative'>
-						<img
-							src={artistDetails?.artistImageUrl}
-							className='object-cover w-full h-72 grayscale'
+						<ProgressiveImage
+							image={artistDetails?.artistImageUrl ?? { large: '', small: '' }}
+							classes=''
 						/>
 						<div className='absolute top-0 left-0 h-full w-full bg-gradient-to-b from-accent/20 to-background-dark' />
 					</div>
@@ -143,7 +140,7 @@ const ArtistDetails = () => {
 				</div>
 			</div>
 		</PageTransition>
-	) : null;
+	);
 };
 
 export default ArtistDetails;

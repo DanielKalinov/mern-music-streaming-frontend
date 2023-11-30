@@ -44,7 +44,7 @@ const BackButton = ({
 			className={`fixed top-0 left-0 flex items-center w-full p-2 z-20 transition-colors duration-200 ${
 				containerVisible
 					? 'bg-primary/100 shadow-md'
-					: 'bg-primary/0 backdrop-blur-0 shadow-none'
+					: 'bg-primary/0 shadow-none'
 			}`}>
 			<Link to={url}>
 				<IconButton
