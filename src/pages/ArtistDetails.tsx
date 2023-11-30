@@ -15,7 +15,10 @@ const ArtistDetails = () => {
 			large: string;
 			small: string;
 		};
-		artistBioImageUrl: string;
+		artistBioImageUrl: {
+			large: string;
+			small: string;
+		};
 		bio: string;
 		albums: {
 			_id: string;
@@ -89,9 +92,16 @@ const ArtistDetails = () => {
 								setShowBioWindow(true);
 								document.body.style.overflow = 'hidden';
 							}}>
-							<img
-								src={artistDetails?.artistBioImageUrl}
-								className='h-[300px] w-full object-cover rounded-lg shadow-xl xs:h-[350px] sm:h-[400px] sm:w-screen md:h-[500px] md:w-[750px]'
+							<ProgressiveImage
+								width={640}
+								height={427}
+								image={
+									artistDetails?.artistBioImageUrl ?? {
+										large: '',
+										small: '',
+									}
+								}
+								classes='w-full object-cover rounded-lg shadow-xl xs:h-[350px] sm:h-[400px] sm:w-screen md:h-[500px] md:w-[750px]'
 							/>
 							<div className='absolute bottom-0 left-0 flex items-center justify-between p-4 bg-gradient-to-b from-transparent to-black rounded-b-lg md:max-w-[750px]'>
 								<p className='text-sm line-clamp-2'>{artistDetails?.bio}</p>
@@ -112,7 +122,12 @@ const ArtistDetails = () => {
 							showBioWindow ? 'scale-100' : 'scale-90'
 						}`}
 						onClick={(e) => e.stopPropagation()}>
-						<img src={artistDetails?.artistBioImageUrl} className='m-auto' />
+						<ProgressiveImage
+							image={
+								artistDetails?.artistBioImageUrl ?? { large: '', small: '' }
+							}
+							classes='m-auto'
+						/>
 
 						<div className='absolute h-full top-2 right-2'>
 							<IconButton

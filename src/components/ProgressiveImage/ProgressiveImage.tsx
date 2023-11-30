@@ -9,7 +9,7 @@ const ProgressiveImage = ({
 	image: { large: string; small: string };
 	width?: number;
 	height?: number;
-	classes: string;
+	classes?: string;
 }) => {
 	const [loaded, setLoaded] = useState(false);
 
@@ -39,7 +39,9 @@ const ProgressiveImage = ({
 							height={height}
 							src={image.small}
 						/>
-						<div className='absolute top-0 left-0 h-full w-full backdrop-blur-sm' />
+						<div
+							className={'absolute top-0 left-0 h-full w-full backdrop-blur-sm'}
+						/>
 					</div>
 				</div>
 			</div>
