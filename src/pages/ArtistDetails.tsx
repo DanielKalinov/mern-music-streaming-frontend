@@ -62,7 +62,7 @@ const ArtistDetails = () => {
 				<div>
 					<h1
 						ref={targetRef}
-						className='text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-accent to-green-500'>
+						className='text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-accent to-lime-500'>
 						{artistDetails?.name}
 					</h1>
 					<div className='mt-8'>

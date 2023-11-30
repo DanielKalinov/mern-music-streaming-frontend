@@ -17,15 +17,15 @@ a {
 	}
 
 	h1 {
-		@apply text-2xl font-semibold;
+		@apply text-2xl font-semibold w-fit;
 	}
 
 	h2 {
-		@apply text-xl font-semibold;
+		@apply text-xl font-semibold w-fit;
 	}
 
 	h3 {
-		@apply text-lg font-semibold;
+		@apply text-lg font-semibold w-fit;
 	}
 }
 
