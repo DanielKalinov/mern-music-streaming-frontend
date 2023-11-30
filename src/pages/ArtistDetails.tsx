@@ -83,7 +83,7 @@ const ArtistDetails = () => {
 							))}
 						</div>
 					</div>
-					<div className='mt-8'>
+					<div className='mt-8 w-fit'>
 						<h2 className='mb-4'>Bio</h2>
 						<div
 							className='relative'
