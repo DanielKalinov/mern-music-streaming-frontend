@@ -19,6 +19,7 @@ import PauseIcon from '@mui/icons-material/Pause';
 import { useDispatch, useSelector } from 'react-redux';
 import IconButton from '@mui/material/IconButton';
 import AudioPlayerState from '../../types/AudioPlayerState';
+import Image from '../Image';
 
 const SongInfo = (props: SongInfoProps) => {
 	const {
@@ -132,11 +133,11 @@ const SongInfo = (props: SongInfoProps) => {
 										className={`w-full absolute transition-all duration-200 ease-in-out ${carouselAnimation(
 											index
 										)}`}>
-										<img
+										<Image
 											src={item.album?.albumImageUrl}
-											width={'100%'}
-											height={'100%'}
-											className='shadow-lg rounded-lg'
+											width={300}
+											height={300}
+											classes='shadow-lg rounded-lg'
 										/>
 									</div>
 								)

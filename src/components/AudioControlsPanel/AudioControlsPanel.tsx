@@ -9,6 +9,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import SongInfo from '../SongInfo/SongInfo';
 import QueueInfo from '../QueueInfo/QueueInfo';
 import AudioPlayerState from '../../types/AudioPlayerState';
+import Image from '../Image';
 
 const AudioControlsPanel = ({
 	setSeekCurrentTime,
@@ -65,17 +66,18 @@ const AudioControlsPanel = ({
 						<div className='flex items-center'>
 							<div className='p-2'>
 								<div className='w-[40px] h-[40px] relative'>
-									{queue.map((item, index) => (
-										<img
-											key={index}
-											src={item.album?.albumImageUrl}
-											width={40}
-											height={40}
-											className={`${
-												currentSongPosition == index ? 'opacity-1' : 'opacity-0'
-											} absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 rounded-md transition-opacity duration-300 ease-in-out`}
-										/>
-									))}
+									{queue.map(
+										(item, index) =>
+											currentSongPosition === index && (
+												<Image
+													key={index}
+													src={item.album?.albumImageUrl}
+													height={40}
+													width={40}
+													classes='rounded-md shadow-md'
+												/>
+											)
+									)}
 								</div>
 							</div>
 

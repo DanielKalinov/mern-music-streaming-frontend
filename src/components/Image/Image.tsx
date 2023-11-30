@@ -7,23 +7,19 @@ const Image = ({
 	classes,
 }: {
 	src: string;
-	width: number;
-	height: number;
-	placeholder?: boolean;
+	width: number | string;
+	height: number | string;
 	classes?: string;
 }) => {
 	const [loaded, setLoaded] = useState(false);
 
 	return (
 		<>
-			<div className='relative'>
+			<div className={`relative overflow-hidden ${classes}`}>
 				<img
-					className={
-						classes +
-						`${
-							loaded ? ' opacity-1' : ' opacity-0'
-						} transition-opacity duration-300`
-					}
+					className={`${
+						loaded ? ' opacity-1' : ' opacity-0'
+					} w-full h-full object-cover transition-opacity duration-300 ease-in-out`}
 					width={width}
 					height={height}
 					src={src}
@@ -37,7 +33,7 @@ const Image = ({
 							: `${width}/${height}*100%`
 					} ${
 						!loaded && 'animate-pulse'
-					} rounded-lg transition-opacity duration-300 ${
+					} rounded-lg transition-opacity duration-300 ease-in-out ${
 						loaded ? 'opacity-0' : 'opacity-1'
 					}`}
 				/>

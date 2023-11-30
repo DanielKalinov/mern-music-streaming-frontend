@@ -17,6 +17,7 @@ import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
 import AudioPlayerState from '../../types/AudioPlayerState';
 import Song from '../../types/Song';
 import WaveAnimation from '../WaveAnimation';
+import Image from '../Image';
 
 const QueueInfo = (props: QueueInfoProps) => {
 	const { showQueueInfo, setShowQueueInfo } = props;
@@ -112,19 +113,18 @@ const QueueInfo = (props: QueueInfoProps) => {
 							<div className='flex items-center'>
 								<div className='mr-2'>
 									<div className='w-[40px] h-[40px] relative'>
-										{queue.map((item, index) => (
-											<img
-												key={index}
-												src={item.album.albumImageUrl}
-												width={40}
-												height={40}
-												className={`${
-													currentSongPosition == index
-														? 'opacity-1'
-														: 'opacity-0'
-												} absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 rounded-md transition-opacity duration-300 ease-in-out`}
-											/>
-										))}
+										{queue.map(
+											(item, index) =>
+												currentSongPosition === index && (
+													<Image
+														key={index}
+														src={item.album.albumImageUrl}
+														width={40}
+														height={40}
+														classes='rounded-md shadow-md'
+													/>
+												)
+										)}
 									</div>
 								</div>
 

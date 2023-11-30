@@ -48,7 +48,7 @@ const ArtistDetails = () => {
 							src={artistDetails?.artistImageUrl ?? ''}
 							width={640}
 							height={480}
-							classes='grayscale w-full object-cover'
+							classes='grayscale w-full'
 						/>
 						<div className='absolute top-0 left-0 h-full w-full bg-gradient-to-b from-accent/20 to-background-dark' />
 					</div>
@@ -65,9 +65,11 @@ const ArtistDetails = () => {
 							{artistDetails?.albums.map((item) => (
 								<Link key={item._id} to={`/${params.id}/albums/${item._id}`}>
 									<div className='aspect-square px-2 pt-2 card'>
-										<img
+										<Image
 											src={item.albumImageUrl}
-											className='object-cover w-full h-full rounded-lg shadow-md'
+											width={300}
+											height={300}
+											classes='shadow-md rounded-lg'
 										/>
 										<span className='block py-3 text-center text-sm font-semibold'>
 											{item.name}

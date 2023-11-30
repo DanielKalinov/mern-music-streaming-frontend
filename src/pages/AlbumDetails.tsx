@@ -9,7 +9,6 @@ import PlayArrowIcon from '@mui/icons-material/PlayArrow';
 import PauseIcon from '@mui/icons-material/Pause';
 import { useDispatch, useSelector } from 'react-redux';
 import {
-	setLoading,
 	setQueue,
 	setCurrentSongInfo,
 	togglePlaying,
@@ -19,6 +18,7 @@ import AudioPlayerState from '../types/AudioPlayerState';
 import WaveAnimation from '../components/WaveAnimation';
 import BackButton from '../components/BackButton';
 import PageTransition from '../components/PageTransition';
+import Image from '../components/Image';
 
 const AlbumDetails = () => {
 	const isPlaying = useSelector(
@@ -30,7 +30,6 @@ const AlbumDetails = () => {
 	);
 
 	const targetRef = useRef<HTMLDivElement>(null);
-	const albumImageRef = useRef<HTMLImageElement>(null);
 
 	const dispatch = useDispatch();
 
@@ -39,12 +38,6 @@ const AlbumDetails = () => {
 	useEffect(() => {
 		axios.get(`http://localhost:5000/albums/${params.id}`).then((res) => {
 			setAlbumDetails(res.data);
-			res.data.tracks.map((item: { albumImageUrl: string }) => {
-				dispatch(setLoading(true));
-				const img = new Image();
-				img.onload = () => dispatch(setLoading(false));
-				img.src = item.albumImageUrl;
-			});
 		});
 	}, []);
 
@@ -59,8 +52,7 @@ const AlbumDetails = () => {
 				/>
 				<div className='mt-12'>
 					<div className='absolute top-0 left-0 w-full z-0'>
-						<img
-							ref={albumImageRef}
+						<Image
 							src={albumDetails.albumImageUrl}
 							height='100%'
 							width='100%'
@@ -69,12 +61,11 @@ const AlbumDetails = () => {
 						<div className='absolute top-0 left-0 h-full w-full bg-gradient-to-b from-transparent to-background-dark' />
 					</div>
 					<div className='relative p-8 z-10'>
-						<img
-							ref={albumImageRef}
+						<Image
 							src={albumDetails.albumImageUrl}
-							height='100%'
-							width='100%'
-							className='shadow-lg rounded-lg z-20'
+							width={300}
+							height={300}
+							classes='shadow-lg rounded-lg'
 						/>
 					</div>
 					<div

@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
 import PageTransition from '../components/PageTransition';
+import Image from '../components/Image';
 
 const Artists = () => {
 	const [artists, setArtists] = useState([]);
@@ -20,11 +21,15 @@ const Artists = () => {
 					{artists.map(
 						(item: { _id: string; name: string; artistImageUrl: string }) => (
 							<Link key={item._id} to={`/${item._id}`}>
-								<div className='aspect-square px-2 pt-2 card'>
-									<img
-										src={item.artistImageUrl}
-										className='object-cover w-full h-full rounded-lg shadow-md'
-									/>
+								<div className='px-2 pt-2 card'>
+									<div className='aspect-square'>
+										<Image
+											src={item.artistImageUrl}
+											height={300}
+											width={300}
+											classes='h-full rounded-lg shadow-md'
+										/>
+									</div>
 									<span className='block py-3 text-center text-sm font-semibold'>
 										{item.name}
 									</span>
