@@ -29,6 +29,10 @@ a {
 	}
 }
 
+.pageContainer {
+	@apply max-w-7xl m-auto;
+}
+
 .font-color {
 	@apply text-slate-200;
 }
