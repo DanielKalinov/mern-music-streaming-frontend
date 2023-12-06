@@ -75,6 +75,7 @@ const ArtistDetails = () => {
 						<TracksList
 							tracks={artistDetails?.topTracks ?? []}
 							showAlbumImage
+							albumName={artistDetails?.name ?? ''}
 						/>
 					</div>
 					<div className='mt-8'>

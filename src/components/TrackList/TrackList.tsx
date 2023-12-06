@@ -16,9 +16,11 @@ import Song from '../../types/Song';
 const TracksList = ({
 	tracks,
 	showAlbumImage,
+	albumName,
 }: {
 	tracks: Song[];
 	showAlbumImage?: boolean;
+	albumName?: string;
 }) => {
 	const currentSongInfo = useSelector(
 		(state: AudioPlayerState) => state.audioPlayer.currentSongInfo
@@ -53,7 +55,9 @@ const TracksList = ({
 										setCurrentSongInfo({
 											_id: item._id,
 											title: item.title,
-											album: item.album,
+											album: albumName
+												? { ...item.album, name: albumName }
+												: item.album,
 											audioUrl: item.audioUrl,
 										})
 									);
