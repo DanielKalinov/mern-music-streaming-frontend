@@ -6,7 +6,7 @@ import { ChevronRight, Close } from '@mui/icons-material';
 import PageTransition from '../components/PageTransition';
 import BackButton from '../components/BackButton';
 import Image from '../components/Image';
-import TracksList from '../components/TrackList';
+import TrackList from '../components/TrackList';
 import Artist from '../types/Artist';
 
 const ArtistDetails = () => {
@@ -60,7 +60,7 @@ const ArtistDetails = () => {
 					</div>
 					<div className='mt-8'>
 						<h2 className='mb-4'>Top tracks</h2>
-						<TracksList
+						<TrackList
 							tracks={artistDetails?.topTracks ?? []}
 							showAlbumImage
 							albumName={artistDetails?.name ?? ''}
@@ -71,16 +71,21 @@ const ArtistDetails = () => {
 						<div className='grid grid-cols-2 gap-4 xs:grid-cols-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6'>
 							{artistDetails?.albums.map((item) => (
 								<Link key={item._id} to={`/${params.id}/albums/${item._id}`}>
-									<div className='aspect-square px-2 pt-2 card hover:bg-secondary'>
+									<div className='aspect-square p-2 card hover:bg-secondary'>
 										<Image
 											src={item.albumImageUrl}
 											width={300}
 											height={300}
 											classes='shadow-md rounded-lg'
 										/>
-										<span className='block py-2 text-center text-sm font-semibold'>
-											{item.name}
-										</span>
+										<div className='pt-2'>
+											<span className='block mb-1 text-sm font-semibold'>
+												{item.name}
+											</span>
+											<span className='block text-sm text-inactive'>
+												{item.year}
+											</span>
+										</div>
 									</div>
 								</Link>
 							))}

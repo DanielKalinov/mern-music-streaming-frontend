@@ -12,7 +12,7 @@ import MoreVertRoundedIcon from '@mui/icons-material/MoreVertRounded';
 import Image from '../Image';
 import Track from '../../types/Track';
 
-const TracksList = ({
+const TrackList = ({
 	tracks,
 	showAlbumImage,
 	albumName,
@@ -101,4 +101,4 @@ const TracksList = ({
 	);
 };
 
-export default TracksList;
+export default TrackList;

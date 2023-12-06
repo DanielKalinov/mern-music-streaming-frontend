@@ -56,7 +56,7 @@ a {
 }
 
 .card {
-	@apply border border-style bg-primary shadow-xl rounded-lg transition-all duration-200 ease-in-out;
+	@apply bg-primary shadow-xl rounded-lg transition-all duration-200 ease-in-out;
 }
 
 .border-style {
