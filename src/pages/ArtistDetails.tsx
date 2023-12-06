@@ -59,11 +59,11 @@ const ArtistDetails = () => {
 							src={artistDetails?.artistImageUrl ?? ''}
 							width={100}
 							height={100}
-							classes='object-cover h-[100px] w-[100px] rounded-full z-10 sm:h-[150px] sm:w-[150px]'
+							classes='object-cover h-[100px] w-[100px] rounded-full z-10 sm:h-[150px] sm:w-[150px] md:h-[200px] md:w-[200px]'
 						/>
 						<h1
 							ref={targetRef}
-							className='ml-4 text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-accent to-lime-500 sm:text-4xl'>
+							className='ml-4 text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-accent to-lime-500 sm:text-4xl md:text-5xl lg:text-6xl'>
 							{artistDetails?.name.toUpperCase()}
 						</h1>
 					</div>
