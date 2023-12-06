@@ -90,7 +90,7 @@ const ArtistDetails = () => {
 					<div className='max-w-[480px] mt-8'>
 						<h2 className='mb-4'>Bio</h2>
 						<div
-							className='relative'
+							className='relative cursor-pointer'
 							onClick={() => {
 								bioWindowRef.current?.scrollTo(0, 0);
 								setShowBioWindow(true);
