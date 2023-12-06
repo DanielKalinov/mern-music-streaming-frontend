@@ -5,8 +5,17 @@ import BackButton from '../components/BackButton';
 import PageTransition from '../components/PageTransition';
 import ChevronRightIcon from '@mui/icons-material/ChevronRight';
 import CloseIcon from '@mui/icons-material/Close';
-import IconButton from '@mui/material/IconButton';
+import { IconButton, ButtonBase } from '@mui/material';
 import Image from '../components/Image';
+import { useSelector, useDispatch } from 'react-redux';
+import AudioPlayerState from '../types/AudioPlayerState';
+import {
+	setQueue,
+	setCurrentSongInfo,
+	togglePlaying,
+} from '../features/audioPlayerSlice';
+import WaveAnimation from '../components/WaveAnimation';
+import MoreVertRoundedIcon from '@mui/icons-material/MoreVertRounded';
 
 const ArtistDetails = () => {
 	const [artistDetails, setArtistDetails] = useState<{
@@ -19,6 +28,13 @@ const ArtistDetails = () => {
 			name: string;
 			albumImageUrl: string;
 		}[];
+		topTracks: {
+			_id: string;
+			title: string;
+			name: string;
+			audioUrl: string;
+			album: { albumImageUrl: string };
+		}[];
 	}>();
 	const targetRef = useRef(null);
 	const [showBioWindow, setShowBioWindow] = useState(false);
@@ -26,6 +42,15 @@ const ArtistDetails = () => {
 	const bioWindowRef = useRef<HTMLDivElement>(null);
 
 	const params = useParams();
+
+	const currentSongInfo = useSelector(
+		(state: AudioPlayerState) => state.audioPlayer.currentSongInfo
+	);
+	const isPlaying = useSelector(
+		(state: AudioPlayerState) => state.audioPlayer.isPlaying
+	);
+
+	const dispatch = useDispatch();
 
 	useEffect(() => {
 		axios.get(`http://localhost:5000/artist/${params.id}`).then((res) => {
@@ -66,6 +91,73 @@ const ArtistDetails = () => {
 							className='ml-4 text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-accent to-lime-500 sm:text-4xl md:text-5xl lg:text-6xl'>
 							{artistDetails?.name.toUpperCase()}
 						</h1>
+					</div>
+					<div className='mt-8'>
+						<h2 className='mb-4'>Top tracks</h2>
+						<ul>
+							{artistDetails?.topTracks.map((item, index) => (
+								<li
+									key={item._id}
+									className={`flex ${
+										item.title == currentSongInfo.title &&
+										'bg-gradient-to-r from-white/5 to-transparent rounded-xl'
+									}`}>
+									<ButtonBase
+										className='w-full text-left !rounded-xl'
+										onClick={() => {
+											if (item.audioUrl == currentSongInfo.audioUrl) {
+												if (isPlaying) {
+													dispatch(togglePlaying(false));
+												} else {
+													dispatch(togglePlaying(true));
+												}
+											} else {
+												dispatch(
+													setCurrentSongInfo({
+														_id: item._id,
+														title: item.title,
+														album: { ...item.album, name: artistDetails.name },
+														audioUrl: item.audioUrl,
+													})
+												);
+												dispatch(togglePlaying(true));
+												dispatch(setQueue(artistDetails.topTracks));
+											}
+										}}>
+										<div className='w-full flex justify-between py-2 px-4'>
+											<div
+												className={`flex items-center transition-colors duration-200 ease-in-out font-medium ${
+													item.title == currentSongInfo.title && 'text-accent'
+												}`}>
+												{item.title == currentSongInfo.title && isPlaying ? (
+													<WaveAnimation />
+												) : (
+													<span className='w-4 text-center mr-2'>
+														{index + 1}
+													</span>
+												)}
+												<Image
+													src={item.album.albumImageUrl}
+													width={50}
+													height={50}
+													classes='h-11 shadow-md rounded-md mr-2'
+												/>
+												<div>
+													<span className='block text-sm'>{item.title}</span>
+													<span className='block text-sm text-inactive font-normal'>
+														{artistDetails.name}
+													</span>
+												</div>
+											</div>
+										</div>
+									</ButtonBase>
+
+									<IconButton>
+										<MoreVertRoundedIcon />
+									</IconButton>
+								</li>
+							))}
+						</ul>
 					</div>
 					<div className='mt-8'>
 						<h2 className='mb-4'>Discography</h2>
