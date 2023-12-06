@@ -71,7 +71,7 @@ const ArtistDetails = () => {
 						<div className='grid grid-cols-2 gap-4 xs:grid-cols-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6'>
 							{artistDetails?.albums.map((item) => (
 								<Link key={item._id} to={`/${params.id}/albums/${item._id}`}>
-									<div className='aspect-square px-1 pt-1 card hover:bg-secondary'>
+									<div className='aspect-square px-2 pt-2 card hover:bg-secondary'>
 										<Image
 											src={item.albumImageUrl}
 											width={300}

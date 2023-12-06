@@ -22,7 +22,7 @@ const Artists = () => {
 					{artists.map(
 						(item: { _id: string; name: string; artistImageUrl: string }) => (
 							<Link key={item._id} to={`/${item._id}`}>
-								<div className='px-1 pt-1 card hover:bg-secondary'>
+								<div className='px-2 pt-2 card hover:bg-secondary'>
 									<div className='aspect-square'>
 										<Image
 											src={item.artistImageUrl}
