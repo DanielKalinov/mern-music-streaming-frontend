@@ -4,7 +4,7 @@ import {
 	togglePlaying,
 	skipTrack,
 	setQueue,
-	setCurrentSongPosition,
+	setCurrentTrackPosition,
 } from '../../features/audioPlayerSlice';
 import { IconButton } from '@mui/material';
 import ExpandMoreRoundedIcon from '@mui/icons-material/ExpandMoreRounded';
@@ -15,7 +15,7 @@ import PlayArrowIcon from '@mui/icons-material/PlayArrow';
 import PauseIcon from '@mui/icons-material/Pause';
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
 import AudioPlayerState from '../../types/AudioPlayerState';
-import Song from '../../types/Song';
+import Track from '../../types/Track';
 import WaveAnimation from '../WaveAnimation';
 import Image from '../Image';
 
@@ -27,16 +27,16 @@ const QueueInfo = (props: QueueInfoProps) => {
 	const audioPlayer = useSelector(
 		(state: AudioPlayerState) => state.audioPlayer
 	);
-	const [prevQueue, setPrevQueue] = useState<Song[]>([]);
+	const [prevQueue, setPrevQueue] = useState<Track[]>([]);
 	const {
 		queue,
 		isPlaying,
-		currentSongInfo,
-		currentSongPosition,
+		currentTrackInfo,
+		currentTrackPosition,
 		shuffleList,
 	} = audioPlayer;
 
-	const nextFromList = queue.slice(currentSongPosition + 1, queue.length);
+	const nextFromList = queue.slice(currentTrackPosition + 1, queue.length);
 
 	useEffect(() => {
 		if (shuffleList) {
@@ -46,28 +46,28 @@ const QueueInfo = (props: QueueInfoProps) => {
 
 			const newQueue = [...queue];
 
-			const currentItem = newQueue.splice(currentSongPosition, 1);
+			const currentItem = newQueue.splice(currentTrackPosition, 1);
 
 			newQueue.sort(() => 0.5 - Math.random());
 
-			dispatch(setCurrentSongPosition(0));
+			dispatch(setCurrentTrackPosition(0));
 
 			dispatch(setQueue([currentItem[0], ...newQueue]));
 		} else {
 			// restore previous queue
 
-			const currentSongIndex = prevQueue.findIndex(
-				(item) => item._id == currentSongInfo._id
+			const currentTrackIndex = prevQueue.findIndex(
+				(item) => item._id == currentTrackInfo._id
 			);
 			const nextFromListPrev = prevQueue.slice(
-				currentSongIndex + 1,
+				currentTrackIndex + 1,
 				prevQueue.length
 			);
-			dispatch(setCurrentSongPosition(currentSongIndex));
+			dispatch(setCurrentTrackPosition(currentTrackIndex));
 
 			const newQueue = [...prevQueue];
 			newQueue.splice(
-				currentSongIndex + 1,
+				currentTrackIndex + 1,
 				nextFromListPrev.length,
 				...nextFromListPrev
 			);
@@ -104,7 +104,7 @@ const QueueInfo = (props: QueueInfoProps) => {
 									PLAYING FROM ALBUM
 								</span>
 								<span className='block font-bold'>
-									{currentSongInfo.album?.name}
+									{currentTrackInfo.album?.name}
 								</span>
 							</div>
 						</div>
@@ -115,7 +115,7 @@ const QueueInfo = (props: QueueInfoProps) => {
 									<div className='w-[40px] h-[40px] relative'>
 										{queue.map(
 											(item, index) =>
-												currentSongPosition === index && (
+												currentTrackPosition === index && (
 													<Image
 														key={index}
 														src={item.album.albumImageUrl}
@@ -131,10 +131,10 @@ const QueueInfo = (props: QueueInfoProps) => {
 								<div className='flex justify-between w-full'>
 									<div>
 										<span className='block text-sm text-accent'>
-											{currentSongInfo.title}
+											{currentTrackInfo.title}
 										</span>
 										<span className='block text-sm text-inactive'>
-											{currentSongInfo.album?.artist?.name}
+											{currentTrackInfo.album?.artist?.name}
 										</span>
 									</div>
 									{isPlaying && <WaveAnimation />}
@@ -160,7 +160,7 @@ const QueueInfo = (props: QueueInfoProps) => {
 										// insert reordered items in state
 										const newQueue = [...queue];
 										newQueue.splice(
-											currentSongPosition + 1,
+											currentTrackPosition + 1,
 											nextFromList.length,
 											...nextFromList
 										);
@@ -213,7 +213,7 @@ const QueueInfo = (props: QueueInfoProps) => {
 						<div className='mt-auto w-full'>
 							<div className='flex justify-evenly my-4'>
 								<IconButton
-									disabled={currentSongPosition == 0}
+									disabled={currentTrackPosition == 0}
 									onClick={() => {
 										dispatch(skipTrack('prev'));
 									}}
@@ -239,7 +239,7 @@ const QueueInfo = (props: QueueInfoProps) => {
 									)}
 								</IconButton>
 								<IconButton
-									disabled={currentSongPosition + 1 == queue.length}
+									disabled={currentTrackPosition + 1 == queue.length}
 									onClick={() => {
 										dispatch(skipTrack('next'));
 									}}

@@ -3,7 +3,7 @@ import Slider from '@mui/material/Slider';
 import {
 	togglePlaying,
 	setIsSeeking,
-	setRepeatCurrentSong,
+	setRepeatCurrentTrack,
 	skipTrack,
 	setShuffleList,
 } from '../../features/audioPlayerSlice';
@@ -21,10 +21,10 @@ import IconButton from '@mui/material/IconButton';
 import AudioPlayerState from '../../types/AudioPlayerState';
 import Image from '../Image';
 
-const SongInfo = (props: SongInfoProps) => {
+const TrackInfo = (props: TrackInfoProps) => {
 	const {
-		showSongInfo,
-		setShowSongInfo,
+		showTrackInfo,
+		setShowTrackInfo,
 		setShowQueueInfo,
 		rangeInputValue,
 		setRangeInputValue,
@@ -38,11 +38,11 @@ const SongInfo = (props: SongInfoProps) => {
 	);
 	const {
 		isPlaying,
-		currentSongInfo,
-		currentSongPosition,
+		currentTrackInfo,
+		currentTrackPosition,
 		queue,
 		duration,
-		repeatCurrentSong,
+		repeatCurrentTrack,
 		shuffleList,
 	} = audioPlayer;
 
@@ -63,17 +63,17 @@ const SongInfo = (props: SongInfoProps) => {
 	};
 
 	const carouselAnimation = (index: number) => {
-		// This function adds a carousel effect on song change.
+		// This function adds a carousel effect on track change.
 
-		switch (index - currentSongPosition) {
+		switch (index - currentTrackPosition) {
 			case 0:
-				// Current song - move to center.
+				// Current track - move to center.
 				return 'translate-x-0 opacity-100';
 			case 1:
-				// Next song - move to left.
+				// Next track - move to left.
 				return 'translate-x-full scale-0 opacity-0';
 			case -1:
-				// Previous song - move to right.
+				// Previous track - move to right.
 				return '-translate-x-full scale-0 opacity-0';
 			default:
 				return '';
@@ -83,12 +83,12 @@ const SongInfo = (props: SongInfoProps) => {
 	return (
 		<div
 			className={`${
-				showSongInfo ? 'translate-y-0 opacity-1' : 'translate-y-full opacity-0'
+				showTrackInfo ? 'translate-y-0 opacity-1' : 'translate-y-full opacity-0'
 			} z-30 fixed top-0 left-0 h-full w-full [transition:transform_0.3s_ease-in-out,opacity_0.2s_ease-in-out]`}>
 			<div
 				className='absolute top-0 h-full w-full transition-all duration-500 ease-in-out'
 				style={{
-					backgroundImage: `url(${currentSongInfo.album?.albumImageUrl})`,
+					backgroundImage: `url(${currentTrackInfo.album?.albumImageUrl})`,
 					backgroundRepeat: 'no-repeat',
 					backgroundSize: 'cover',
 					backgroundPosition: 'center',
@@ -99,14 +99,14 @@ const SongInfo = (props: SongInfoProps) => {
 					<IconButton
 						edge='start'
 						onClick={() => {
-							setShowSongInfo(false);
+							setShowTrackInfo(false);
 						}}>
 						<ExpandMoreRoundedIcon fontSize='large' />
 					</IconButton>
 					<div className='text-center text-xs'>
 						<span className='block tracking-widest'>PLAYING FROM ALBUM</span>
 						<span className='block font-bold'>
-							{currentSongInfo.album?.name}
+							{currentTrackInfo.album?.name}
 						</span>
 					</div>
 					<IconButton edge='end' onClick={() => setShowQueueInfo(true)}>
@@ -116,18 +116,18 @@ const SongInfo = (props: SongInfoProps) => {
 
 				<div
 					className={`${
-						showSongInfo
+						showTrackInfo
 							? 'translate-y-0 opacity-1'
 							: 'translate-y-full opacity-0'
 					} [transition:transform_0.4s_ease-in-out,opacity_0.7s_ease-in-out]`}>
 					<div className='relative h-80'>
 						{queue.map(
 							(item, index) =>
-								// Render only the current song, the next one, or the previous one.
+								// Render only the current track, the next one, or the previous one.
 								// This avoids attaching all items to the DOM.
-								(index === currentSongPosition ||
-									index === currentSongPosition + 1 ||
-									index === currentSongPosition - 1) && (
+								(index === currentTrackPosition ||
+									index === currentTrackPosition + 1 ||
+									index === currentTrackPosition - 1) && (
 									<div
 										key={item._id}
 										className={`w-full absolute transition-all duration-200 ease-in-out ${carouselAnimation(
@@ -150,10 +150,10 @@ const SongInfo = (props: SongInfoProps) => {
 						<div className='flex justify-between items-center mt-4'>
 							<div>
 								<span className='block font-bold text-xl'>
-									{currentSongInfo.title}
+									{currentTrackInfo.title}
 								</span>
 								<span className='block text-inactive'>
-									{currentSongInfo.album?.artist?.name}
+									{currentTrackInfo.album?.artist?.name}
 								</span>
 							</div>
 							<IconButton edge='end'>
@@ -210,7 +210,7 @@ const SongInfo = (props: SongInfoProps) => {
 							<ShuffleIcon className={`${shuffleList ? 'text-accent' : ''}`} />
 						</IconButton>
 						<IconButton
-							disabled={currentSongPosition == 0}
+							disabled={currentTrackPosition == 0}
 							onClick={() => {
 								dispatch(skipTrack('prev'));
 							}}
@@ -236,16 +236,16 @@ const SongInfo = (props: SongInfoProps) => {
 							)}
 						</IconButton>
 						<IconButton
-							disabled={currentSongPosition + 1 == queue.length}
+							disabled={currentTrackPosition + 1 == queue.length}
 							onClick={() => {
 								dispatch(skipTrack('next'));
 							}}
 							size='large'>
 							<SkipNextIcon fontSize='large' />
 						</IconButton>
-						<IconButton onClick={() => dispatch(setRepeatCurrentSong())}>
+						<IconButton onClick={() => dispatch(setRepeatCurrentTrack())}>
 							<RepeatIcon
-								className={`${repeatCurrentSong ? 'text-accent' : ''}`}
+								className={`${repeatCurrentTrack ? 'text-accent' : ''}`}
 							/>
 						</IconButton>
 					</div>
@@ -255,13 +255,13 @@ const SongInfo = (props: SongInfoProps) => {
 	);
 };
 
-interface SongInfoProps {
-	showSongInfo: boolean;
+interface TrackInfoProps {
+	showTrackInfo: boolean;
 	rangeInputValue: number;
-	setShowSongInfo: Dispatch<SetStateAction<boolean>>;
+	setShowTrackInfo: Dispatch<SetStateAction<boolean>>;
 	setShowQueueInfo: Dispatch<SetStateAction<boolean>>;
 	setRangeInputValue: Dispatch<SetStateAction<number>>;
 	setSeekCurrentTime: (value: number) => void;
 }
 
-export default SongInfo;
+export default TrackInfo;

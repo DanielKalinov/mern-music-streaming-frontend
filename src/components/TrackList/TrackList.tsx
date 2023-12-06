@@ -4,26 +4,26 @@ import { IconButton, ButtonBase } from '@mui/material';
 import { useDispatch } from 'react-redux';
 import AudioPlayerState from '../../types/AudioPlayerState';
 import {
-	setCurrentSongInfo,
+	setCurrentTrackInfo,
 	setQueue,
 	togglePlaying,
 } from '../../features/audioPlayerSlice';
 import WaveAnimation from '../WaveAnimation';
 import MoreVertRoundedIcon from '@mui/icons-material/MoreVertRounded';
 import Image from '../Image';
-import Song from '../../types/Song';
+import Track from '../../types/Track';
 
 const TracksList = ({
 	tracks,
 	showAlbumImage,
 	albumName,
 }: {
-	tracks: Song[];
+	tracks: Track[];
 	showAlbumImage?: boolean;
 	albumName?: string;
 }) => {
-	const currentSongInfo = useSelector(
-		(state: AudioPlayerState) => state.audioPlayer.currentSongInfo
+	const currentTrackInfo = useSelector(
+		(state: AudioPlayerState) => state.audioPlayer.currentTrackInfo
 	);
 	const isPlaying = useSelector(
 		(state: AudioPlayerState) => state.audioPlayer.isPlaying
@@ -34,17 +34,17 @@ const TracksList = ({
 	return (
 		<ul>
 			{tracks &&
-				tracks.map((item: Song, index) => (
+				tracks.map((item: Track, index) => (
 					<li
 						key={item._id}
 						className={`flex ${
-							item.title == currentSongInfo.title &&
+							item.title == currentTrackInfo.title &&
 							'bg-gradient-to-r from-white/5 to-transparent rounded-xl'
 						}`}>
 						<ButtonBase
 							className='w-full text-left !rounded-xl'
 							onClick={() => {
-								if (item.audioUrl == currentSongInfo.audioUrl) {
+								if (item.audioUrl == currentTrackInfo.audioUrl) {
 									if (isPlaying) {
 										dispatch(togglePlaying(false));
 									} else {
@@ -52,7 +52,7 @@ const TracksList = ({
 									}
 								} else {
 									dispatch(
-										setCurrentSongInfo({
+										setCurrentTrackInfo({
 											_id: item._id,
 											title: item.title,
 											album: albumName
@@ -68,9 +68,9 @@ const TracksList = ({
 							<div className='w-full flex justify-between py-2 px-4'>
 								<div
 									className={`flex items-center transition-colors duration-200 ease-in-out font-medium ${
-										item.title == currentSongInfo.title && 'text-accent'
+										item.title == currentTrackInfo.title && 'text-accent'
 									}`}>
-									{item.title == currentSongInfo.title && isPlaying ? (
+									{item.title == currentTrackInfo.title && isPlaying ? (
 										<WaveAnimation />
 									) : (
 										<span className='w-4 text-center mr-2'>{index + 1}</span>

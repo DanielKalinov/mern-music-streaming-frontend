@@ -1,15 +1,15 @@
-import Song from './Song';
+import Track from './Track';
 
 export default interface AudioPlayerState {
 	audioPlayer: {
 		isPlaying: boolean;
-		currentSongInfo: Song;
-		currentSongPosition: number;
+		currentTrackInfo: Track;
+		currentTrackPosition: number;
 		isSeeking: boolean;
 		audioProgressValue: number;
 		duration: number;
-		repeatCurrentSong: boolean;
-		queue: Song[];
+		repeatCurrentTrack: boolean;
+		queue: Track[];
 		loading: boolean;
 		shuffleList: boolean;
 	};

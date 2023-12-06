@@ -8,7 +8,7 @@ import PauseIcon from '@mui/icons-material/Pause';
 import { useDispatch, useSelector } from 'react-redux';
 import {
 	setQueue,
-	setCurrentSongInfo,
+	setCurrentTrackInfo,
 	togglePlaying,
 } from '../features/audioPlayerSlice';
 import AudioPlayerState from '../types/AudioPlayerState';
@@ -23,8 +23,8 @@ const AlbumDetails = () => {
 		(state: AudioPlayerState) => state.audioPlayer.isPlaying
 	);
 	const [albumDetails, setAlbumDetails] = useState<Album>();
-	const currentSongInfo = useSelector(
-		(state: AudioPlayerState) => state.audioPlayer.currentSongInfo
+	const currentTrackInfo = useSelector(
+		(state: AudioPlayerState) => state.audioPlayer.currentTrackInfo
 	);
 
 	const targetRef = useRef<HTMLDivElement>(null);
@@ -86,12 +86,12 @@ const AlbumDetails = () => {
 					<IconButton
 						className='rounded-full !border-2 !border-solid !transition-transform active:scale-90'
 						onClick={() => {
-							if (!currentSongInfo.audioUrl) {
+							if (!currentTrackInfo.audioUrl) {
 								const firstTrack = albumDetails.tracks[0];
 
 								dispatch(togglePlaying(true));
 								dispatch(
-									setCurrentSongInfo({
+									setCurrentTrackInfo({
 										_id: firstTrack._id,
 										title: firstTrack.title,
 										album: firstTrack.album,
@@ -99,7 +99,7 @@ const AlbumDetails = () => {
 									})
 								);
 								dispatch(setQueue(albumDetails.tracks));
-							} else if (currentSongInfo.audioUrl && isPlaying) {
+							} else if (currentTrackInfo.audioUrl && isPlaying) {
 								dispatch(togglePlaying(false));
 							} else {
 								dispatch(togglePlaying(true));

@@ -1,16 +1,16 @@
 import { createSlice } from '@reduxjs/toolkit';
-import Song from '../types/Song';
+import Track from '../types/Track';
 
 const initialState = {
 	isPlaying: false,
 	audioProgressValue: 0,
-	currentSongInfo: <Song>{},
-	currentSongPosition: 0,
-	queue: <Song[]>[],
+	currentTrackInfo: <Track>{},
+	currentTrackPosition: 0,
+	queue: <Track[]>[],
 	loading: false,
 	isSeeking: false,
 	duration: 0,
-	repeatCurrentSong: false,
+	repeatCurrentTrack: false,
 	shuffleList: false,
 };
 
@@ -24,11 +24,11 @@ export const audioPlayerSlice = createSlice({
 		setAudioProgressValue: (state, action) => {
 			state.audioProgressValue = action.payload;
 		},
-		setCurrentSongInfo: (state, action) => {
-			state.currentSongInfo = action.payload;
+		setCurrentTrackInfo: (state, action) => {
+			state.currentTrackInfo = action.payload;
 		},
-		setCurrentSongPosition: (state, action) => {
-			state.currentSongPosition = action.payload;
+		setCurrentTrackPosition: (state, action) => {
+			state.currentTrackPosition = action.payload;
 		},
 		setQueue: (state, action) => {
 			state.queue = action.payload;
@@ -42,17 +42,17 @@ export const audioPlayerSlice = createSlice({
 		setDuration: (state, action) => {
 			state.duration = action.payload;
 		},
-		setRepeatCurrentSong: (state) => {
-			state.repeatCurrentSong = !state.repeatCurrentSong;
+		setRepeatCurrentTrack: (state) => {
+			state.repeatCurrentTrack = !state.repeatCurrentTrack;
 		},
 		skipTrack: (state, action) => {
 			const trackPosition =
-				state.currentSongPosition + (action.payload == 'next' ? 1 : -1);
+				state.currentTrackPosition + (action.payload == 'next' ? 1 : -1);
 
 			const track = state.queue[trackPosition];
 
 			if (track) {
-				state.currentSongInfo = track;
+				state.currentTrackInfo = track;
 				state.isPlaying = true;
 			} else {
 				state.isPlaying = false;
@@ -67,13 +67,13 @@ export const audioPlayerSlice = createSlice({
 export const {
 	togglePlaying,
 	setAudioProgressValue,
-	setCurrentSongInfo,
-	setCurrentSongPosition,
+	setCurrentTrackInfo,
+	setCurrentTrackPosition,
 	setQueue,
 	setLoading,
 	setIsSeeking,
 	setDuration,
-	setRepeatCurrentSong,
+	setRepeatCurrentTrack,
 	skipTrack,
 	setShuffleList,
 } = audioPlayerSlice.actions;

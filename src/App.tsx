@@ -3,7 +3,7 @@ import AudioControlsPanel from './components/AudioControlsPanel';
 import { useSelector, useDispatch } from 'react-redux';
 import {
 	setAudioProgressValue,
-	setCurrentSongPosition,
+	setCurrentTrackPosition,
 	setDuration,
 	skipTrack,
 } from './features/audioPlayerSlice';
@@ -20,15 +20,15 @@ const App = () => {
 	const audioPlayer = useSelector(
 		(state: AudioPlayerState) => state.audioPlayer
 	);
-	const { isPlaying, currentSongInfo, queue, isSeeking, repeatCurrentSong } =
+	const { isPlaying, currentTrackInfo, queue, isSeeking, repeatCurrentTrack } =
 		audioPlayer;
 
 	const dispatch = useDispatch();
 
 	// set new src and play
 	useEffect(() => {
-		if (currentSongInfo.audioUrl) {
-			audio.current.src = currentSongInfo.audioUrl;
+		if (currentTrackInfo.audioUrl) {
+			audio.current.src = currentTrackInfo.audioUrl;
 
 			// play audio once it has loaded
 			audio.current.onloadeddata = () => {
@@ -36,21 +36,21 @@ const App = () => {
 			};
 		}
 
-		const currentSongIndex = queue.findIndex(
-			(item) => item._id == currentSongInfo._id
+		const currentTrackIndex = queue.findIndex(
+			(item) => item._id == currentTrackInfo._id
 		);
-		dispatch(setCurrentSongPosition(currentSongIndex));
+		dispatch(setCurrentTrackPosition(currentTrackIndex));
 
 		// get audio duration on loaded data
 		audio.current.onloadedmetadata = () => {
 			dispatch(setDuration(audio.current.duration));
 		};
 
-		// skip to next track on song end
+		// skip to next track on track end
 		audio.current.onended = () => {
 			dispatch(skipTrack('next'));
 		};
-	}, [currentSongInfo]);
+	}, [currentTrackInfo]);
 
 	// toggle playing
 	useEffect(() => {
@@ -69,8 +69,8 @@ const App = () => {
 	}, [isSeeking]);
 
 	useEffect(() => {
-		audio.current.loop = repeatCurrentSong;
-	}, [repeatCurrentSong]);
+		audio.current.loop = repeatCurrentTrack;
+	}, [repeatCurrentTrack]);
 
 	const setSeekCurrentTime = (value: number) => {
 		audio.current.currentTime = value;

@@ -6,7 +6,7 @@ import SkipNextIcon from '@mui/icons-material/SkipNext';
 import SkipPreviousIcon from '@mui/icons-material/SkipPrevious';
 import { skipTrack, togglePlaying } from '../../features/audioPlayerSlice';
 import { useDispatch, useSelector } from 'react-redux';
-import SongInfo from '../SongInfo/SongInfo';
+import TrackInfo from '../TrackInfo/TrackInfo';
 import QueueInfo from '../QueueInfo/QueueInfo';
 import AudioPlayerState from '../../types/AudioPlayerState';
 import Image from '../Image';
@@ -16,7 +16,7 @@ const AudioControlsPanel = ({
 }: {
 	setSeekCurrentTime: (value: number) => void;
 }) => {
-	const [showSongInfo, setShowSongInfo] = useState(false);
+	const [showTrackInfo, setShowTrackInfo] = useState(false);
 	const [showQueueInfo, setShowQueueInfo] = useState(false);
 	const [rangeInputValue, setRangeInputValue] = useState(0);
 	const audioPlayer = useSelector(
@@ -27,8 +27,8 @@ const AudioControlsPanel = ({
 		duration,
 		audioProgressValue,
 		queue,
-		currentSongInfo,
-		currentSongPosition,
+		currentTrackInfo,
+		currentTrackPosition,
 	} = audioPlayer;
 
 	const dispatch = useDispatch();
@@ -46,29 +46,29 @@ const AudioControlsPanel = ({
 	}, [audioProgressValue]);
 
 	useEffect(() => {
-		showSongInfo
+		showTrackInfo
 			? (document.body.style.overflow = 'hidden')
 			: (document.body.style.overflow = 'auto');
-	}, [showSongInfo]);
+	}, [showTrackInfo]);
 
 	return (
 		<>
 			<div
 				className={`${
-					Object.keys(currentSongInfo).length > 0
+					Object.keys(currentTrackInfo).length > 0
 						? 'translate-y-0'
 						: 'translate-y-full'
 				} fixed bottom-0 left-0 px-2 pb-2 w-full transition-all duration-300 ease-in-out z-20`}>
 				<div className='overflow-hidden flex flex-col items-center card'>
 					<div
 						className='relative flex items-center justify-between w-full'
-						onClick={() => setShowSongInfo(true)}>
+						onClick={() => setShowTrackInfo(true)}>
 						<div className='flex items-center'>
 							<div className='p-2'>
 								<div className='w-[40px] h-[40px] relative'>
 									{queue.map(
 										(item, index) =>
-											currentSongPosition === index && (
+											currentTrackPosition === index && (
 												<Image
 													key={index}
 													src={item.album?.albumImageUrl}
@@ -83,16 +83,16 @@ const AudioControlsPanel = ({
 
 							<div>
 								<span className='block text-sm font-bold'>
-									{currentSongInfo.title}
+									{currentTrackInfo.title}
 								</span>
 								<span className='block text-sm text-inactive'>
-									{currentSongInfo.album?.artist?.name}
+									{currentTrackInfo.album?.artist?.name}
 								</span>
 							</div>
 						</div>
 						<div className='flex mr-2'>
 							<IconButton
-								disabled={currentSongPosition == 0}
+								disabled={currentTrackPosition == 0}
 								onClick={(e) => {
 									e.stopPropagation();
 
@@ -119,7 +119,7 @@ const AudioControlsPanel = ({
 								)}
 							</IconButton>
 							<IconButton
-								disabled={currentSongPosition + 1 == queue.length}
+								disabled={currentTrackPosition + 1 == queue.length}
 								onClick={(e) => {
 									e.stopPropagation();
 
@@ -141,9 +141,9 @@ const AudioControlsPanel = ({
 				</div>
 			</div>
 
-			<SongInfo
-				showSongInfo={showSongInfo}
-				setShowSongInfo={setShowSongInfo}
+			<TrackInfo
+				showTrackInfo={showTrackInfo}
+				setShowTrackInfo={setShowTrackInfo}
 				rangeInputValue={rangeInputValue}
 				setRangeInputValue={setRangeInputValue}
 				setSeekCurrentTime={setSeekCurrentTime}

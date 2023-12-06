@@ -1,5 +1,5 @@
 import Album from './Album';
-import Song from './Song';
+import Track from './Track';
 
 export default interface Artist {
 	_id: string;
@@ -8,5 +8,5 @@ export default interface Artist {
 	artistBioImageUrl: string;
 	bio: string;
 	albums: Album[];
-	topTracks: Song[];
+	topTracks: Track[];
 }
