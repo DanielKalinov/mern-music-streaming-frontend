@@ -1,20 +1,22 @@
 import React, { useEffect, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
 import {
 	togglePlaying,
 	skipTrack,
 	setQueue,
 	setCurrentTrackPosition,
 } from '../../features/audioPlayerSlice';
-import { IconButton } from '@mui/material';
-import ExpandMoreRoundedIcon from '@mui/icons-material/ExpandMoreRounded';
-import DragHandleIcon from '@mui/icons-material/DragHandle';
-import SkipNextIcon from '@mui/icons-material/SkipNext';
-import SkipPreviousIcon from '@mui/icons-material/SkipPrevious';
-import PlayArrowIcon from '@mui/icons-material/PlayArrow';
-import PauseIcon from '@mui/icons-material/Pause';
-import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
+import { useDispatch, useSelector } from 'react-redux';
 import AudioPlayerState from '../../types/AudioPlayerState';
+import { IconButton } from '@mui/material';
+import {
+	ExpandMoreRounded,
+	DragHandle,
+	PlayArrow,
+	Pause,
+	SkipNext,
+	SkipPrevious,
+} from '@mui/icons-material';
+import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
 import Track from '../../types/Track';
 import WaveAnimation from '../WaveAnimation';
 import Image from '../Image';
@@ -97,7 +99,7 @@ const QueueInfo = (props: QueueInfoProps) => {
 								onClick={() => {
 									setShowQueueInfo(false);
 								}}>
-								<ExpandMoreRoundedIcon fontSize='large' />
+								<ExpandMoreRounded fontSize='large' />
 							</IconButton>
 							<div className='absolute left-1/2 -translate-x-1/2 text-center text-xs'>
 								<span className='block tracking-widest'>
@@ -195,7 +197,7 @@ const QueueInfo = (props: QueueInfoProps) => {
 																	</div>
 																	{nextFromList.length > 1 && (
 																		<IconButton edge='end'>
-																			<DragHandleIcon />
+																			<DragHandle />
 																		</IconButton>
 																	)}
 																</li>
@@ -218,7 +220,7 @@ const QueueInfo = (props: QueueInfoProps) => {
 										dispatch(skipTrack('prev'));
 									}}
 									size='large'>
-									<SkipPreviousIcon fontSize='large' />
+									<SkipPrevious fontSize='large' />
 								</IconButton>
 								<IconButton
 									size='large'
@@ -233,9 +235,9 @@ const QueueInfo = (props: QueueInfoProps) => {
 										}
 									}}>
 									{isPlaying ? (
-										<PauseIcon fontSize='large' />
+										<Pause fontSize='large' />
 									) : (
-										<PlayArrowIcon fontSize='large' />
+										<PlayArrow fontSize='large' />
 									)}
 								</IconButton>
 								<IconButton
@@ -244,7 +246,7 @@ const QueueInfo = (props: QueueInfoProps) => {
 										dispatch(skipTrack('next'));
 									}}
 									size='large'>
-									<SkipNextIcon fontSize='large' />
+									<SkipNext fontSize='large' />
 								</IconButton>
 							</div>
 						</div>

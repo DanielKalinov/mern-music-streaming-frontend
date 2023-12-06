@@ -7,18 +7,20 @@ import {
 	skipTrack,
 	setShuffleList,
 } from '../../features/audioPlayerSlice';
-import ExpandMoreRoundedIcon from '@mui/icons-material/ExpandMoreRounded';
-import FormatListBulletedIcon from '@mui/icons-material/FormatListBulleted';
-import SkipNextIcon from '@mui/icons-material/SkipNext';
-import SkipPreviousIcon from '@mui/icons-material/SkipPrevious';
-import ShuffleIcon from '@mui/icons-material/Shuffle';
-import RepeatIcon from '@mui/icons-material/Repeat';
-import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
-import PlayArrowIcon from '@mui/icons-material/PlayArrow';
-import PauseIcon from '@mui/icons-material/Pause';
 import { useDispatch, useSelector } from 'react-redux';
-import IconButton from '@mui/material/IconButton';
 import AudioPlayerState from '../../types/AudioPlayerState';
+import IconButton from '@mui/material/IconButton';
+import {
+	ExpandMoreRounded,
+	FormatListBulleted,
+	SkipNext,
+	SkipPrevious,
+	Shuffle,
+	Repeat,
+	FavoriteBorder,
+	PlayArrow,
+	Pause,
+} from '@mui/icons-material';
 import Image from '../Image';
 
 const TrackInfo = (props: TrackInfoProps) => {
@@ -101,7 +103,7 @@ const TrackInfo = (props: TrackInfoProps) => {
 						onClick={() => {
 							setShowTrackInfo(false);
 						}}>
-						<ExpandMoreRoundedIcon fontSize='large' />
+						<ExpandMoreRounded fontSize='large' />
 					</IconButton>
 					<div className='text-center text-xs'>
 						<span className='block tracking-widest'>PLAYING FROM ALBUM</span>
@@ -110,7 +112,7 @@ const TrackInfo = (props: TrackInfoProps) => {
 						</span>
 					</div>
 					<IconButton edge='end' onClick={() => setShowQueueInfo(true)}>
-						<FormatListBulletedIcon />
+						<FormatListBulleted />
 					</IconButton>
 				</div>
 
@@ -157,7 +159,7 @@ const TrackInfo = (props: TrackInfoProps) => {
 								</span>
 							</div>
 							<IconButton edge='end'>
-								<FavoriteBorderIcon />
+								<FavoriteBorder />
 							</IconButton>
 						</div>
 						<div
@@ -207,7 +209,7 @@ const TrackInfo = (props: TrackInfoProps) => {
 					</div>
 					<div className='flex justify-evenly'>
 						<IconButton onClick={() => dispatch(setShuffleList())}>
-							<ShuffleIcon className={`${shuffleList ? 'text-accent' : ''}`} />
+							<Shuffle className={`${shuffleList ? 'text-accent' : ''}`} />
 						</IconButton>
 						<IconButton
 							disabled={currentTrackPosition == 0}
@@ -215,7 +217,7 @@ const TrackInfo = (props: TrackInfoProps) => {
 								dispatch(skipTrack('prev'));
 							}}
 							size='large'>
-							<SkipPreviousIcon fontSize='large' />
+							<SkipPrevious fontSize='large' />
 						</IconButton>
 						<IconButton
 							size='large'
@@ -230,9 +232,9 @@ const TrackInfo = (props: TrackInfoProps) => {
 								}
 							}}>
 							{isPlaying ? (
-								<PauseIcon fontSize='large' />
+								<Pause fontSize='large' />
 							) : (
-								<PlayArrowIcon fontSize='large' />
+								<PlayArrow fontSize='large' />
 							)}
 						</IconButton>
 						<IconButton
@@ -241,10 +243,10 @@ const TrackInfo = (props: TrackInfoProps) => {
 								dispatch(skipTrack('next'));
 							}}
 							size='large'>
-							<SkipNextIcon fontSize='large' />
+							<SkipNext fontSize='large' />
 						</IconButton>
 						<IconButton onClick={() => dispatch(setRepeatCurrentTrack())}>
-							<RepeatIcon
+							<Repeat
 								className={`${repeatCurrentTrack ? 'text-accent' : ''}`}
 							/>
 						</IconButton>

@@ -1,16 +1,14 @@
 import React, { useEffect, useRef, useState } from 'react';
 import axios from 'axios';
-import { useParams } from 'react-router-dom';
-import { IconButton } from '@mui/material';
-import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
-import PlayArrowIcon from '@mui/icons-material/PlayArrow';
-import PauseIcon from '@mui/icons-material/Pause';
-import { useDispatch, useSelector } from 'react-redux';
 import {
 	setQueue,
 	setCurrentTrackInfo,
 	togglePlaying,
 } from '../features/audioPlayerSlice';
+import { useDispatch, useSelector } from 'react-redux';
+import { useParams } from 'react-router-dom';
+import { IconButton } from '@mui/material';
+import { FavoriteBorder, PlayArrow, Pause } from '@mui/icons-material';
 import AudioPlayerState from '../types/AudioPlayerState';
 import BackButton from '../components/BackButton';
 import PageTransition from '../components/PageTransition';
@@ -81,7 +79,7 @@ const AlbumDetails = () => {
 				</div>
 				<div className='flex justify-between mb-2'>
 					<IconButton edge='start'>
-						<FavoriteBorderIcon fontSize='large' />
+						<FavoriteBorder fontSize='large' />
 					</IconButton>
 					<IconButton
 						className='rounded-full !border-2 !border-solid !transition-transform active:scale-90'
@@ -106,9 +104,9 @@ const AlbumDetails = () => {
 							}
 						}}>
 						{isPlaying ? (
-							<PauseIcon fontSize='large' />
+							<Pause fontSize='large' />
 						) : (
-							<PlayArrowIcon fontSize='large' />
+							<PlayArrow fontSize='large' />
 						)}
 					</IconButton>
 				</div>

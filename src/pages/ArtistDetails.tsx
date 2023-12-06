@@ -1,11 +1,10 @@
-import axios from 'axios';
 import React, { useEffect, useRef, useState } from 'react';
+import axios from 'axios';
 import { Link, useParams } from 'react-router-dom';
-import BackButton from '../components/BackButton';
-import PageTransition from '../components/PageTransition';
-import ChevronRightIcon from '@mui/icons-material/ChevronRight';
-import CloseIcon from '@mui/icons-material/Close';
 import { IconButton } from '@mui/material';
+import { ChevronRight, Close } from '@mui/icons-material';
+import PageTransition from '../components/PageTransition';
+import BackButton from '../components/BackButton';
 import Image from '../components/Image';
 import TracksList from '../components/TrackList';
 import Artist from '../types/Artist';
@@ -104,7 +103,7 @@ const ArtistDetails = () => {
 							/>
 							<div className='absolute bottom-0 left-0 w-full flex items-center justify-between p-4 bg-gradient-to-b from-transparent to-black rounded-b-lg'>
 								<p className='text-sm line-clamp-2'>{artistDetails?.bio}</p>
-								<ChevronRightIcon fontSize='large' />
+								<ChevronRight fontSize='large' />
 							</div>
 						</div>
 					</div>
@@ -144,7 +143,7 @@ const ArtistDetails = () => {
 										setShowBioWindow(false);
 										document.body.style.overflow = 'auto';
 									}}>
-									<CloseIcon />
+									<Close />
 								</IconButton>
 							</div>
 							<div className='px-4 pt-4 pb-40'>

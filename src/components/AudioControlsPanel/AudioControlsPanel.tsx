@@ -1,14 +1,11 @@
 import React, { useEffect, useState, useRef } from 'react';
-import PlayArrowIcon from '@mui/icons-material/PlayArrow';
-import PauseIcon from '@mui/icons-material/Pause';
-import IconButton from '@mui/material/IconButton';
-import SkipNextIcon from '@mui/icons-material/SkipNext';
-import SkipPreviousIcon from '@mui/icons-material/SkipPrevious';
-import { skipTrack, togglePlaying } from '../../features/audioPlayerSlice';
 import { useDispatch, useSelector } from 'react-redux';
+import { skipTrack, togglePlaying } from '../../features/audioPlayerSlice';
 import TrackInfo from '../TrackInfo/TrackInfo';
 import QueueInfo from '../QueueInfo/QueueInfo';
 import AudioPlayerState from '../../types/AudioPlayerState';
+import IconButton from '@mui/material/IconButton';
+import { PlayArrow, Pause, SkipNext, SkipPrevious } from '@mui/icons-material';
 import Image from '../Image';
 
 const AudioControlsPanel = ({
@@ -99,7 +96,7 @@ const AudioControlsPanel = ({
 									dispatch(skipTrack('prev'));
 								}}
 								className='disabled:opacity-30'>
-								<SkipPreviousIcon className='font-color' />
+								<SkipPrevious className='font-color' />
 							</IconButton>
 							<IconButton
 								onClick={(e) => {
@@ -113,9 +110,9 @@ const AudioControlsPanel = ({
 								}}
 								className='disabled:opacity-30'>
 								{isPlaying ? (
-									<PauseIcon className='font-color' />
+									<Pause className='font-color' />
 								) : (
-									<PlayArrowIcon className='font-color' />
+									<PlayArrow className='font-color' />
 								)}
 							</IconButton>
 							<IconButton
@@ -126,7 +123,7 @@ const AudioControlsPanel = ({
 									dispatch(skipTrack('next'));
 								}}
 								className='disabled:opacity-30'>
-								<SkipNextIcon className='font-color' />
+								<SkipNext className='font-color' />
 							</IconButton>
 						</div>
 					</div>

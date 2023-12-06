@@ -1,13 +1,12 @@
 import React from 'react';
-import { useSelector } from 'react-redux';
-import { IconButton, ButtonBase } from '@mui/material';
-import { useDispatch } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import AudioPlayerState from '../../types/AudioPlayerState';
 import {
 	setCurrentTrackInfo,
 	setQueue,
 	togglePlaying,
 } from '../../features/audioPlayerSlice';
+import { IconButton, ButtonBase } from '@mui/material';
 import WaveAnimation from '../WaveAnimation';
 import MoreVertRoundedIcon from '@mui/icons-material/MoreVertRounded';
 import Image from '../Image';
