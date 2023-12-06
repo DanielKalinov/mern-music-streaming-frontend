@@ -11,18 +11,18 @@ import {
 	setCurrentSongInfo,
 	togglePlaying,
 } from '../features/audioPlayerSlice';
-import Song from '../types/Song';
 import AudioPlayerState from '../types/AudioPlayerState';
 import BackButton from '../components/BackButton';
 import PageTransition from '../components/PageTransition';
 import Image from '../components/Image';
 import TrackList from '../components/TrackList';
+import Album from '../types/Album';
 
 const AlbumDetails = () => {
 	const isPlaying = useSelector(
 		(state: AudioPlayerState) => state.audioPlayer.isPlaying
 	);
-	const [albumDetails, setAlbumDetails] = useState<AlbumDetails>();
+	const [albumDetails, setAlbumDetails] = useState<Album>();
 	const currentSongInfo = useSelector(
 		(state: AudioPlayerState) => state.audioPlayer.currentSongInfo
 	);
@@ -118,13 +118,5 @@ const AlbumDetails = () => {
 		</PageTransition>
 	) : null;
 };
-
-interface AlbumDetails {
-	name: string;
-	albumImageUrl: string;
-	year: string;
-	artist: { _id: string; name: string };
-	tracks: Song[];
-}
 
 export default AlbumDetails;

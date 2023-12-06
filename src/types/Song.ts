@@ -1,6 +1,8 @@
+import Album from './Album';
+
 export default interface Song {
 	_id: string;
 	title: string;
-	album: { name: string; albumImageUrl: string; artist: { name: string } };
+	album: Album;
 	audioUrl: string;
 }

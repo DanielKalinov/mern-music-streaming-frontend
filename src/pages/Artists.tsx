@@ -3,9 +3,10 @@ import axios from 'axios';
 import { Link } from 'react-router-dom';
 import PageTransition from '../components/PageTransition';
 import Image from '../components/Image';
+import Artist from '../types/Artist';
 
 const Artists = () => {
-	const [artists, setArtists] = useState([]);
+	const [artists, setArtists] = useState<Artist[]>([]);
 
 	useEffect(() => {
 		axios.get('http://localhost:5000/artists').then((res) => {

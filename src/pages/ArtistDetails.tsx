@@ -8,21 +8,10 @@ import CloseIcon from '@mui/icons-material/Close';
 import { IconButton } from '@mui/material';
 import Image from '../components/Image';
 import TracksList from '../components/TrackList';
-import Song from '../types/Song';
+import Artist from '../types/Artist';
 
 const ArtistDetails = () => {
-	const [artistDetails, setArtistDetails] = useState<{
-		name: string;
-		artistImageUrl: string;
-		artistBioImageUrl: string;
-		bio: string;
-		albums: {
-			_id: string;
-			name: string;
-			albumImageUrl: string;
-		}[];
-		topTracks: Song[];
-	}>();
+	const [artistDetails, setArtistDetails] = useState<Artist>();
 	const targetRef = useRef(null);
 	const [showBioWindow, setShowBioWindow] = useState(false);
 
