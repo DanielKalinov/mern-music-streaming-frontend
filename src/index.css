@@ -56,7 +56,7 @@ a {
 }
 
 .card {
-	@apply border border-style bg-primary shadow-xl rounded-lg transition-all duration-200 ease-in-out hover:bg-secondary;
+	@apply border border-style bg-primary shadow-xl rounded-lg transition-all duration-200 ease-in-out;
 }
 
 .border-style {
