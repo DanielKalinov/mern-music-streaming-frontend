@@ -2,9 +2,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import axios from 'axios';
 import { useParams } from 'react-router-dom';
 import { IconButton } from '@mui/material';
-import { ButtonBase } from '@mui/material';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
-import MoreVertRoundedIcon from '@mui/icons-material/MoreVertRounded';
 import PlayArrowIcon from '@mui/icons-material/PlayArrow';
 import PauseIcon from '@mui/icons-material/Pause';
 import { useDispatch, useSelector } from 'react-redux';
@@ -15,10 +13,10 @@ import {
 } from '../features/audioPlayerSlice';
 import Song from '../types/Song';
 import AudioPlayerState from '../types/AudioPlayerState';
-import WaveAnimation from '../components/WaveAnimation';
 import BackButton from '../components/BackButton';
 import PageTransition from '../components/PageTransition';
 import Image from '../components/Image';
+import TrackList from '../components/TrackList';
 
 const AlbumDetails = () => {
 	const isPlaying = useSelector(
@@ -115,63 +113,7 @@ const AlbumDetails = () => {
 					</IconButton>
 				</div>
 
-				<ul>
-					{albumDetails.tracks.map((item, index) => (
-						<li
-							key={item._id}
-							className={`flex ${
-								item.title == currentSongInfo.title &&
-								'bg-gradient-to-r from-white/5 to-transparent rounded-xl'
-							}`}>
-							<ButtonBase
-								className='w-full text-left !rounded-xl'
-								onClick={() => {
-									if (item.audioUrl == currentSongInfo.audioUrl) {
-										if (isPlaying) {
-											dispatch(togglePlaying(false));
-										} else {
-											dispatch(togglePlaying(true));
-										}
-									} else {
-										dispatch(
-											setCurrentSongInfo({
-												_id: item._id,
-												title: item.title,
-												album: item.album,
-												audioUrl: item.audioUrl,
-											})
-										);
-										dispatch(togglePlaying(true));
-										dispatch(setQueue(albumDetails.tracks));
-									}
-								}}>
-								<div className='w-full flex justify-between py-2 px-4'>
-									<div
-										className={`flex items-center transition-colors duration-200 ease-in-out font-medium ${
-											item.title == currentSongInfo.title && 'text-accent'
-										}`}>
-										{item.title == currentSongInfo.title && isPlaying ? (
-											<WaveAnimation />
-										) : (
-											<span className='w-4 text-center mr-2'>{index + 1}</span>
-										)}
-
-										<div>
-											<span className='block text-sm'>{item.title}</span>
-											<span className='block text-sm text-inactive font-normal'>
-												{albumDetails.artist.name}
-											</span>
-										</div>
-									</div>
-								</div>
-							</ButtonBase>
-
-							<IconButton>
-								<MoreVertRoundedIcon />
-							</IconButton>
-						</li>
-					))}
-				</ul>
+				<TrackList tracks={albumDetails.tracks} />
 			</div>
 		</PageTransition>
 	) : null;
