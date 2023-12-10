@@ -85,7 +85,6 @@ const AlbumDetails = () => {
 						className='rounded-full !border-2 !border-solid !transition-transform active:scale-90'
 						onClick={() => {
 							if (
-								!currentTrackInfo?.audioUrl &&
 								!albumDetails.tracks.find(
 									(item) => item._id == currentTrackInfo._id
 								)
@@ -104,7 +103,6 @@ const AlbumDetails = () => {
 								);
 								dispatch(setQueue(albumDetails.tracks));
 							} else if (
-								currentTrackInfo.audioUrl &&
 								isPlaying &&
 								albumDetails.tracks.find(
 									(item) => item._id == currentTrackInfo._id
