@@ -131,7 +131,7 @@ const TrackInfo = (props: TrackInfoProps) => {
 									index === currentTrackPosition + 1 ||
 									index === currentTrackPosition - 1) && (
 									<div
-										key={item._id}
+										key={item.id}
 										className={`w-full absolute transition-all duration-200 ease-in-out ${carouselAnimation(
 											index
 										)}`}>
@@ -155,7 +155,7 @@ const TrackInfo = (props: TrackInfoProps) => {
 									{currentTrackInfo.title}
 								</span>
 								<span className='block text-inactive'>
-									{currentTrackInfo.album?.artist?.name}
+									{currentTrackInfo.artist?.name}
 								</span>
 							</div>
 							<IconButton edge='end'>

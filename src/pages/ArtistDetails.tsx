@@ -55,13 +55,13 @@ const ArtistDetails = () => {
 						<h1
 							ref={targetRef}
 							className='ml-4 text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-accent to-lime-500 sm:text-4xl md:text-5xl lg:text-6xl'>
-							{artistDetails?.name.toUpperCase()}
+							{artistDetails?.name?.toUpperCase()}
 						</h1>
 					</div>
 					<div className='mt-8'>
 						<h2 className='mb-4'>Top tracks</h2>
 						<TrackList
-							tracks={artistDetails?.topTracks ?? []}
+							tracks={artistDetails?.tracks ?? []}
 							showAlbumImage
 							albumName={artistDetails?.name ?? ''}
 						/>
@@ -69,7 +69,7 @@ const ArtistDetails = () => {
 					<div className='mt-8'>
 						<h2 className='mb-4'>Discography</h2>
 						<div className='grid grid-cols-2 gap-4 xs:grid-cols-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6'>
-							{artistDetails?.albums.map((item) => (
+							{artistDetails?.albums?.map((item) => (
 								<Link key={item._id} to={`/${params.id}/albums/${item._id}`}>
 									<div className='aspect-square p-2 card hover:bg-secondary'>
 										<Image

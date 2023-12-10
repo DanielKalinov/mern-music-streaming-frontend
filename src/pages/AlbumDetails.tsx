@@ -93,7 +93,7 @@ const AlbumDetails = () => {
 								dispatch(togglePlaying(true));
 								dispatch(
 									setCurrentTrackInfo({
-										_id: firstTrack._id,
+										id: firstTrack.id,
 										title: firstTrack.title,
 										album: firstTrack.album,
 										audioUrl: firstTrack.audioUrl,
@@ -106,7 +106,7 @@ const AlbumDetails = () => {
 								dispatch(togglePlaying(true));
 							}
 						}}>
-						{isPlaying && albumDetails?._id == currentTrackInfo?.album._id ? (
+						{isPlaying && albumDetails?._id == currentTrackInfo?.album?._id ? (
 							<Pause fontSize='large' />
 						) : (
 							<PlayArrow fontSize='large' />

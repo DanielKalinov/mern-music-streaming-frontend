@@ -59,7 +59,7 @@ const QueueInfo = (props: QueueInfoProps) => {
 			// restore previous queue
 
 			const currentTrackIndex = prevQueue.findIndex(
-				(item) => item._id == currentTrackInfo._id
+				(item) => item.id == currentTrackInfo.id
 			);
 			const nextFromListPrev = prevQueue.slice(
 				currentTrackIndex + 1,
@@ -120,7 +120,7 @@ const QueueInfo = (props: QueueInfoProps) => {
 												currentTrackPosition === index && (
 													<Image
 														key={index}
-														src={item.album.albumImageUrl}
+														src={item.album?.albumImageUrl}
 														width={40}
 														height={40}
 														classes='rounded-md shadow-md'
@@ -136,7 +136,7 @@ const QueueInfo = (props: QueueInfoProps) => {
 											{currentTrackInfo.title}
 										</span>
 										<span className='block text-sm text-inactive'>
-											{currentTrackInfo.album?.artist?.name}
+											{currentTrackInfo.artist?.name}
 										</span>
 									</div>
 									{isPlaying && <WaveAnimation />}
@@ -176,8 +176,8 @@ const QueueInfo = (props: QueueInfoProps) => {
 													{nextFromList.map((item, index) => (
 														<Draggable
 															isDragDisabled={nextFromList.length == 1}
-															key={item._id}
-															draggableId={item._id}
+															key={item.id}
+															draggableId={item.id}
 															index={index}>
 															{(provided, snapshot) => (
 																<li
@@ -192,7 +192,7 @@ const QueueInfo = (props: QueueInfoProps) => {
 																			{item.title}
 																		</span>
 																		<span className='block text-sm text-inactive'>
-																			{item.album.artist?.name}
+																			{item.artist?.name}
 																		</span>
 																	</div>
 																	{nextFromList.length > 1 && (

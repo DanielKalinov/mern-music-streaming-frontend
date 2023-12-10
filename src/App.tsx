@@ -37,7 +37,7 @@ const App = () => {
 		}
 
 		const currentTrackIndex = queue.findIndex(
-			(item) => item._id == currentTrackInfo._id
+			(item) => item.id == currentTrackInfo.id
 		);
 		dispatch(setCurrentTrackPosition(currentTrackIndex));
 

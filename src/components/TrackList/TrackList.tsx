@@ -35,9 +35,9 @@ const TrackList = ({
 			{tracks &&
 				tracks.map((item: Track, index) => (
 					<li
-						key={item._id}
+						key={item.id}
 						className={`flex ${
-							item.title == currentTrackInfo.title &&
+							item.id == currentTrackInfo.id &&
 							'bg-gradient-to-r from-white/5 to-transparent rounded-xl'
 						}`}>
 						<ButtonBase
@@ -52,12 +52,11 @@ const TrackList = ({
 								} else {
 									dispatch(
 										setCurrentTrackInfo({
-											_id: item._id,
-											title: item.title,
-											album: albumName
-												? { ...item.album, name: albumName }
-												: item.album,
+											id: item.id,
 											audioUrl: item.audioUrl,
+											artist: item.artist,
+											title: item.title,
+											album: item.album,
 										})
 									);
 									dispatch(togglePlaying(true));
@@ -67,9 +66,9 @@ const TrackList = ({
 							<div className='w-full flex justify-between py-2 px-4'>
 								<div
 									className={`flex items-center transition-colors duration-200 ease-in-out font-medium ${
-										item.title == currentTrackInfo.title && 'text-accent'
+										item.id == currentTrackInfo.id && 'text-accent'
 									}`}>
-									{item.title == currentTrackInfo.title && isPlaying ? (
+									{item.id == currentTrackInfo.id && isPlaying ? (
 										<WaveAnimation />
 									) : (
 										<span className='w-4 text-center mr-2'>{index + 1}</span>
@@ -85,7 +84,7 @@ const TrackList = ({
 									<div>
 										<span className='block text-sm'>{item.title}</span>
 										<span className='block text-sm text-inactive font-normal'>
-											{item.album.artist.name}
+											{item.artist?.name}
 										</span>
 									</div>
 								</div>
