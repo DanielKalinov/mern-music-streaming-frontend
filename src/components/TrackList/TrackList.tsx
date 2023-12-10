@@ -35,15 +35,15 @@ const TrackList = ({
 			{tracks &&
 				tracks.map((item: Track, index) => (
 					<li
-						key={item.id}
+						key={item._id}
 						className={`flex ${
-							item.id == currentTrackInfo.id &&
+							item._id == currentTrackInfo._id &&
 							'bg-gradient-to-r from-white/5 to-transparent rounded-xl'
 						}`}>
 						<ButtonBase
 							className='w-full text-left !rounded-xl'
 							onClick={() => {
-								if (item.audioUrl == currentTrackInfo.audioUrl) {
+								if (item._id == currentTrackInfo._id) {
 									if (isPlaying) {
 										dispatch(togglePlaying(false));
 									} else {
@@ -52,7 +52,7 @@ const TrackList = ({
 								} else {
 									dispatch(
 										setCurrentTrackInfo({
-											id: item.id,
+											_id: item._id,
 											audioUrl: item.audioUrl,
 											artist: item.artist,
 											title: item.title,
@@ -66,9 +66,9 @@ const TrackList = ({
 							<div className='w-full flex justify-between py-2 px-4'>
 								<div
 									className={`flex items-center transition-colors duration-200 ease-in-out font-medium ${
-										item.id == currentTrackInfo.id && 'text-accent'
+										item._id == currentTrackInfo._id && 'text-accent'
 									}`}>
-									{item.id == currentTrackInfo.id && isPlaying ? (
+									{item._id == currentTrackInfo._id && isPlaying ? (
 										<WaveAnimation />
 									) : (
 										<span className='w-4 text-center mr-2'>{index + 1}</span>

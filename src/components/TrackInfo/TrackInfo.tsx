@@ -131,7 +131,7 @@ const TrackInfo = (props: TrackInfoProps) => {
 									index === currentTrackPosition + 1 ||
 									index === currentTrackPosition - 1) && (
 									<div
-										key={item.id}
+										key={item._id}
 										className={`w-full absolute transition-all duration-200 ease-in-out ${carouselAnimation(
 											index
 										)}`}>

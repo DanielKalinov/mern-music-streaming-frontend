@@ -37,7 +37,7 @@ const App = () => {
 		}
 
 		const currentTrackIndex = queue.findIndex(
-			(item) => item.id == currentTrackInfo.id
+			(item) => item._id == currentTrackInfo._id
 		);
 		dispatch(setCurrentTrackPosition(currentTrackIndex));
 
@@ -80,8 +80,8 @@ const App = () => {
 		<div className='px-4 pb-40'>
 			<Routes>
 				<Route path='/' element={<Artists />} />
-				<Route path='/:id' element={<ArtistDetails />} />
-				<Route path='/:id/albums/:id' element={<AlbumDetails />} />
+				<Route path='/:_id' element={<ArtistDetails />} />
+				<Route path='/:_id/albums/:_id' element={<AlbumDetails />} />
 			</Routes>
 			<AudioControlsPanel setSeekCurrentTime={setSeekCurrentTime} />
 		</div>

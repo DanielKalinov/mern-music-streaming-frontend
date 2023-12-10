@@ -32,7 +32,7 @@ const AlbumDetails = () => {
 	const params = useParams();
 
 	useEffect(() => {
-		axios.get(`http://localhost:5000/albums/${params.id}`).then((res) => {
+		axios.get(`http://localhost:5000/albums/${params._id}`).then((res) => {
 			setAlbumDetails(res.data);
 		});
 	}, []);
@@ -41,7 +41,7 @@ const AlbumDetails = () => {
 		<PageTransition duration={0.2}>
 			<div>
 				<BackButton
-					url={`/${albumDetails.artist._id}`}
+					url={`/${albumDetails.artist?._id}`}
 					text={albumDetails.name}
 					targetRef={targetRef}
 					threshold={70}
@@ -72,7 +72,7 @@ const AlbumDetails = () => {
 								{albumDetails.name} • {albumDetails.year}
 							</span>
 							<span className='block text-lg text-inactive'>
-								{albumDetails.artist.name}
+								{albumDetails.artist?.name}
 							</span>
 						</div>
 					</div>
@@ -85,28 +85,40 @@ const AlbumDetails = () => {
 						className='rounded-full !border-2 !border-solid !transition-transform active:scale-90'
 						onClick={() => {
 							if (
-								!currentTrackInfo?.audioUrl ||
-								albumDetails?._id !== currentTrackInfo?.album?._id
+								!currentTrackInfo?.audioUrl &&
+								!albumDetails.tracks.find(
+									(item) => item._id == currentTrackInfo._id
+								)
 							) {
 								const firstTrack = albumDetails.tracks[0];
 
 								dispatch(togglePlaying(true));
 								dispatch(
 									setCurrentTrackInfo({
-										id: firstTrack.id,
+										_id: firstTrack._id,
+										audioUrl: firstTrack.audioUrl,
+										artist: firstTrack.artist,
 										title: firstTrack.title,
 										album: firstTrack.album,
-										audioUrl: firstTrack.audioUrl,
 									})
 								);
 								dispatch(setQueue(albumDetails.tracks));
-							} else if (currentTrackInfo.audioUrl && isPlaying) {
+							} else if (
+								currentTrackInfo.audioUrl &&
+								isPlaying &&
+								albumDetails.tracks.find(
+									(item) => item._id == currentTrackInfo._id
+								)
+							) {
 								dispatch(togglePlaying(false));
 							} else {
 								dispatch(togglePlaying(true));
 							}
 						}}>
-						{isPlaying && albumDetails?._id == currentTrackInfo?.album?._id ? (
+						{isPlaying &&
+						albumDetails.tracks.find(
+							(item) => item._id == currentTrackInfo._id
+						) ? (
 							<Pause fontSize='large' />
 						) : (
 							<PlayArrow fontSize='large' />

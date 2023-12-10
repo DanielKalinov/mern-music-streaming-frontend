@@ -19,7 +19,7 @@ const ArtistDetails = () => {
 	const params = useParams();
 
 	useEffect(() => {
-		axios.get(`http://localhost:5000/artist/${params.id}`).then((res) => {
+		axios.get(`http://localhost:5000/artist/${params._id}`).then((res) => {
 			setArtistDetails(res.data);
 		});
 	}, []);

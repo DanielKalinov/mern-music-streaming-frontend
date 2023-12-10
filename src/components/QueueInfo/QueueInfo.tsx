@@ -59,7 +59,7 @@ const QueueInfo = (props: QueueInfoProps) => {
 			// restore previous queue
 
 			const currentTrackIndex = prevQueue.findIndex(
-				(item) => item.id == currentTrackInfo.id
+				(item) => item._id == currentTrackInfo._id
 			);
 			const nextFromListPrev = prevQueue.slice(
 				currentTrackIndex + 1,
@@ -176,8 +176,8 @@ const QueueInfo = (props: QueueInfoProps) => {
 													{nextFromList.map((item, index) => (
 														<Draggable
 															isDragDisabled={nextFromList.length == 1}
-															key={item.id}
-															draggableId={item.id}
+															key={item._id}
+															draggableId={item._id}
 															index={index}>
 															{(provided, snapshot) => (
 																<li
