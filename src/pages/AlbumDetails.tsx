@@ -84,7 +84,10 @@ const AlbumDetails = () => {
 					<IconButton
 						className='rounded-full !border-2 !border-solid !transition-transform active:scale-90'
 						onClick={() => {
-							if (!currentTrackInfo.audioUrl) {
+							if (
+								!currentTrackInfo?.audioUrl ||
+								albumDetails?._id !== currentTrackInfo?.album?._id
+							) {
 								const firstTrack = albumDetails.tracks[0];
 
 								dispatch(togglePlaying(true));
@@ -103,7 +106,7 @@ const AlbumDetails = () => {
 								dispatch(togglePlaying(true));
 							}
 						}}>
-						{isPlaying ? (
+						{isPlaying && albumDetails?._id == currentTrackInfo?.album._id ? (
 							<Pause fontSize='large' />
 						) : (
 							<PlayArrow fontSize='large' />
