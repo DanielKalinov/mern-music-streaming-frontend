@@ -105,7 +105,7 @@ const AlbumDetails = () => {
 								dispatch(
 									setCurrentPlaylistInfo({
 										type: 'album',
-										name: currentTrackInfo.album?.name,
+										name: firstTrack.album?.name,
 									})
 								);
 							} else if (
