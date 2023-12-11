@@ -21,12 +21,10 @@ const TrackList = ({
 	showAlbumImage?: boolean;
 	albumName?: string;
 }) => {
-	const currentTrackInfo = useSelector(
-		(state: AudioPlayerState) => state.audioPlayer.currentTrackInfo
+	const audioPlayer = useSelector(
+		(state: AudioPlayerState) => state.audioPlayer
 	);
-	const isPlaying = useSelector(
-		(state: AudioPlayerState) => state.audioPlayer.isPlaying
-	);
+	const { currentTrackInfo, isPlaying } = audioPlayer;
 
 	const dispatch = useDispatch();
 

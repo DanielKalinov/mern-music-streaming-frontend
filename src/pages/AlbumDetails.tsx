@@ -17,13 +17,11 @@ import TrackList from '../components/TrackList';
 import Album from '../types/Album';
 
 const AlbumDetails = () => {
-	const isPlaying = useSelector(
-		(state: AudioPlayerState) => state.audioPlayer.isPlaying
-	);
 	const [albumDetails, setAlbumDetails] = useState<Album>();
-	const currentTrackInfo = useSelector(
-		(state: AudioPlayerState) => state.audioPlayer.currentTrackInfo
+	const audioPlayer = useSelector(
+		(state: AudioPlayerState) => state.audioPlayer
 	);
+	const { isPlaying, currentTrackInfo } = audioPlayer;
 
 	const targetRef = useRef<HTMLDivElement>(null);
 
