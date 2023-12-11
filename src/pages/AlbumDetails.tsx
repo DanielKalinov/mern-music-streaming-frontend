@@ -4,6 +4,7 @@ import {
 	setQueue,
 	setCurrentTrackInfo,
 	togglePlaying,
+	setPlaylistInfo,
 } from '../features/audioPlayerSlice';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
@@ -100,6 +101,12 @@ const AlbumDetails = () => {
 									})
 								);
 								dispatch(setQueue(albumDetails.tracks));
+								dispatch(
+									setPlaylistInfo({
+										type: 'album',
+										name: currentTrackInfo.album.name,
+									})
+								);
 							} else if (
 								isPlaying &&
 								albumDetails.tracks.find(
@@ -122,7 +129,7 @@ const AlbumDetails = () => {
 					</IconButton>
 				</div>
 
-				<TrackList tracks={albumDetails.tracks} />
+				<TrackList tracks={albumDetails.tracks} type='album' />
 			</div>
 		</PageTransition>
 	) : null;

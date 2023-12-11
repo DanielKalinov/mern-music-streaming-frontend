@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import AudioPlayerState from '../../types/AudioPlayerState';
 import {
 	setCurrentTrackInfo,
+	setPlaylistInfo,
 	setQueue,
 	togglePlaying,
 } from '../../features/audioPlayerSlice';
@@ -15,11 +16,12 @@ import Track from '../../types/Track';
 const TrackList = ({
 	tracks,
 	showAlbumImage,
-	albumName,
+	type,
 }: {
 	tracks: Track[];
 	showAlbumImage?: boolean;
 	albumName?: string;
+	type?: 'album' | 'artist';
 }) => {
 	const audioPlayer = useSelector(
 		(state: AudioPlayerState) => state.audioPlayer
@@ -59,6 +61,17 @@ const TrackList = ({
 									);
 									dispatch(togglePlaying(true));
 									dispatch(setQueue(tracks));
+									dispatch(
+										setPlaylistInfo({
+											type,
+											name:
+												type == 'album'
+													? item.album.name
+													: type == 'artist'
+													? item.artist.name
+													: '',
+										})
+									);
 								}
 							}}>
 							<div className='w-full flex justify-between py-2 px-4'>

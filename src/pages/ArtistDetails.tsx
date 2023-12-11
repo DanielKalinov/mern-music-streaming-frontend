@@ -63,7 +63,7 @@ const ArtistDetails = () => {
 						<TrackList
 							tracks={artistDetails?.tracks ?? []}
 							showAlbumImage
-							albumName={artistDetails?.name ?? ''}
+							type='artist'
 						/>
 					</div>
 					<div className='mt-8'>

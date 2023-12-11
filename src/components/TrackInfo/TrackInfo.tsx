@@ -42,6 +42,7 @@ const TrackInfo = (props: TrackInfoProps) => {
 		isPlaying,
 		currentTrackInfo,
 		currentTrackPosition,
+		playlistInfo,
 		queue,
 		duration,
 		repeatCurrentTrack,
@@ -106,10 +107,10 @@ const TrackInfo = (props: TrackInfoProps) => {
 						<ExpandMoreRounded fontSize='large' />
 					</IconButton>
 					<div className='text-center text-xs'>
-						<span className='block tracking-widest'>PLAYING FROM ALBUM</span>
-						<span className='block font-bold'>
-							{currentTrackInfo.album?.name}
+						<span className='block tracking-widest'>
+							PLAYING FROM {playlistInfo.type?.toUpperCase()}
 						</span>
+						<span className='block font-bold'>{playlistInfo.name}</span>
 					</div>
 					<IconButton edge='end' onClick={() => setShowQueueInfo(true)}>
 						<FormatListBulleted />

@@ -6,6 +6,7 @@ const initialState = {
 	audioProgressValue: 0,
 	currentTrackInfo: <Track>{},
 	currentTrackPosition: 0,
+	playlistInfo: { type: '', name: '' },
 	queue: <Track[]>[],
 	loading: false,
 	isSeeking: false,
@@ -29,6 +30,9 @@ export const audioPlayerSlice = createSlice({
 		},
 		setCurrentTrackPosition: (state, action) => {
 			state.currentTrackPosition = action.payload;
+		},
+		setPlaylistInfo: (state, action) => {
+			state.playlistInfo = action.payload;
 		},
 		setQueue: (state, action) => {
 			state.queue = action.payload;
@@ -69,6 +73,7 @@ export const {
 	setAudioProgressValue,
 	setCurrentTrackInfo,
 	setCurrentTrackPosition,
+	setPlaylistInfo,
 	setQueue,
 	setLoading,
 	setIsSeeking,
