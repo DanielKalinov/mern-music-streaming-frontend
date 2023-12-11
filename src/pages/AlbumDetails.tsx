@@ -70,8 +70,9 @@ const AlbumDetails = () => {
 							<span className='block font-bold text-2xl'>
 								{albumDetails.name} • {albumDetails.year}
 							</span>
-							<span className='block text-lg text-inactive'>
-								{albumDetails.artist?.name}
+							<span className='text-inactive'>
+								{albumDetails.artist?.name} • {albumDetails.tracks.length}{' '}
+								tracks, {albumDetails.duration}
 							</span>
 						</div>
 					</div>
