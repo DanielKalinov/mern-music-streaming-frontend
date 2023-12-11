@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import AudioPlayerState from '../../types/AudioPlayerState';
 import {
 	setCurrentTrackInfo,
-	setPlaylistInfo,
+	setCurrentPlaylistInfo,
 	setQueue,
 	togglePlaying,
 } from '../../features/audioPlayerSlice';
@@ -62,7 +62,7 @@ const TrackList = ({
 									dispatch(togglePlaying(true));
 									dispatch(setQueue(tracks));
 									dispatch(
-										setPlaylistInfo({
+										setCurrentPlaylistInfo({
 											type,
 											name:
 												type == 'album'

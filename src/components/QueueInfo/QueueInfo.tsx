@@ -35,6 +35,7 @@ const QueueInfo = (props: QueueInfoProps) => {
 		isPlaying,
 		currentTrackInfo,
 		currentTrackPosition,
+		currentPlaylistInfo,
 		shuffleList,
 	} = audioPlayer;
 
@@ -103,10 +104,10 @@ const QueueInfo = (props: QueueInfoProps) => {
 							</IconButton>
 							<div className='absolute left-1/2 -translate-x-1/2 text-center text-xs'>
 								<span className='block tracking-widest'>
-									PLAYING FROM ALBUM
+									PLAYING FROM {currentPlaylistInfo.type?.toUpperCase()}
 								</span>
 								<span className='block font-bold'>
-									{currentTrackInfo.album?.name}
+									{currentPlaylistInfo.name}
 								</span>
 							</div>
 						</div>

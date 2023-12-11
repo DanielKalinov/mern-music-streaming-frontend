@@ -4,7 +4,7 @@ import {
 	setQueue,
 	setCurrentTrackInfo,
 	togglePlaying,
-	setPlaylistInfo,
+	setCurrentPlaylistInfo,
 } from '../features/audioPlayerSlice';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
@@ -102,7 +102,7 @@ const AlbumDetails = () => {
 								);
 								dispatch(setQueue(albumDetails.tracks));
 								dispatch(
-									setPlaylistInfo({
+									setCurrentPlaylistInfo({
 										type: 'album',
 										name: currentTrackInfo.album.name,
 									})
