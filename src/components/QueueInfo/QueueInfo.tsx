@@ -147,7 +147,7 @@ const QueueInfo = (props: QueueInfoProps) => {
 						{nextFromList.length > 0 && (
 							<div>
 								<span className='block mb-2 font-bold'>
-									Next From: Album Name
+									Next From: {currentPlaylistInfo.name}
 								</span>
 								<DragDropContext
 									onDragEnd={(e) => {
