@@ -83,7 +83,7 @@ const ArtistDetails = () => {
 												{item.name}
 											</span>
 											<span className='block text-sm text-inactive'>
-												{item.year}
+												{item.year} • {item.tracks.length} tracks
 											</span>
 										</div>
 									</div>
