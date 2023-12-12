@@ -8,6 +8,7 @@ import BackButton from '../components/BackButton';
 import Image from '../components/Image';
 import TrackList from '../components/TrackList';
 import Artist from '../types/Artist';
+import PlaylistControls from '../components/PlaylistControls';
 
 const ArtistDetails = () => {
 	const [artistDetails, setArtistDetails] = useState<Artist>();
@@ -58,6 +59,7 @@ const ArtistDetails = () => {
 							{artistDetails?.name?.toUpperCase()}
 						</h1>
 					</div>
+					<PlaylistControls playlist={artistDetails?.tracks ?? []} />
 					<div className='mt-8'>
 						<h2 className='mb-4'>Top tracks</h2>
 						<TrackList

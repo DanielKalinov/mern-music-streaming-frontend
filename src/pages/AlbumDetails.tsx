@@ -1,32 +1,17 @@
 import React, { useEffect, useRef, useState } from 'react';
 import axios from 'axios';
-import {
-	setQueue,
-	setCurrentTrackInfo,
-	togglePlaying,
-	setCurrentPlaylistInfo,
-} from '../features/audioPlayerSlice';
-import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
-import { IconButton } from '@mui/material';
-import { FavoriteBorder, PlayArrow, Pause } from '@mui/icons-material';
-import AudioPlayerState from '../types/AudioPlayerState';
 import BackButton from '../components/BackButton';
 import PageTransition from '../components/PageTransition';
 import Image from '../components/Image';
 import TrackList from '../components/TrackList';
 import Album from '../types/Album';
+import PlaylistControls from '../components/PlaylistControls';
 
 const AlbumDetails = () => {
 	const [albumDetails, setAlbumDetails] = useState<Album>();
-	const audioPlayer = useSelector(
-		(state: AudioPlayerState) => state.audioPlayer
-	);
-	const { isPlaying, currentTrackInfo } = audioPlayer;
 
 	const targetRef = useRef<HTMLDivElement>(null);
-
-	const dispatch = useDispatch();
 
 	const params = useParams();
 
@@ -77,58 +62,8 @@ const AlbumDetails = () => {
 						</div>
 					</div>
 				</div>
-				<div className='flex justify-between mb-2'>
-					<IconButton edge='start'>
-						<FavoriteBorder fontSize='large' />
-					</IconButton>
-					<IconButton
-						className='rounded-full !border-2 !border-solid !transition-transform active:scale-90'
-						onClick={() => {
-							if (
-								!albumDetails.tracks.find(
-									(item) => item._id == currentTrackInfo._id
-								)
-							) {
-								const firstTrack = albumDetails.tracks[0];
 
-								dispatch(togglePlaying(true));
-								dispatch(
-									setCurrentTrackInfo({
-										_id: firstTrack._id,
-										audioUrl: firstTrack.audioUrl,
-										artist: firstTrack.artist,
-										title: firstTrack.title,
-										album: firstTrack.album,
-									})
-								);
-								dispatch(setQueue(albumDetails.tracks));
-								dispatch(
-									setCurrentPlaylistInfo({
-										type: 'album',
-										name: firstTrack.album?.name,
-									})
-								);
-							} else if (
-								isPlaying &&
-								albumDetails.tracks.find(
-									(item) => item._id == currentTrackInfo._id
-								)
-							) {
-								dispatch(togglePlaying(false));
-							} else {
-								dispatch(togglePlaying(true));
-							}
-						}}>
-						{isPlaying &&
-						albumDetails.tracks.find(
-							(item) => item._id == currentTrackInfo._id
-						) ? (
-							<Pause fontSize='large' />
-						) : (
-							<PlayArrow fontSize='large' />
-						)}
-					</IconButton>
-				</div>
+				<PlaylistControls playlist={albumDetails.tracks} />
 
 				<TrackList tracks={albumDetails.tracks} type='album' />
 			</div>
