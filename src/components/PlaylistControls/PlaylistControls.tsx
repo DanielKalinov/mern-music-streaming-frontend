@@ -27,7 +27,7 @@ const PlaylistControls = ({ playlist }: { playlist: Track[] }) => {
 	return (
 		<div className='flex w-full justify-end mb-2'>
 			<IconButton
-				className='rounded-full !bg-accent !text-primary !transition-transform active:scale-90'
+				className='rounded-full !bg-accent shadow-btn !text-primary !transition-transform active:scale-90'
 				onClick={() => {
 					if (!isInPlaylist) {
 						const firstTrack = playlist[0];

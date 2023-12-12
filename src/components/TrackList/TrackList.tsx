@@ -89,7 +89,7 @@ const TrackList = ({
 											src={item.album.albumImageUrl}
 											width={50}
 											height={50}
-											classes='h-11 shadow-md rounded-md mr-2'
+											classes='h-11 shadow-img rounded-md mr-2'
 										/>
 									)}
 									<div>

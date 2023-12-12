@@ -51,7 +51,7 @@ const ArtistDetails = () => {
 							src={artistDetails?.artistImageUrl ?? ''}
 							width={100}
 							height={100}
-							classes='object-cover h-[100px] w-[100px] rounded-full z-10 sm:h-[150px] sm:w-[150px] md:h-[200px] md:w-[200px]'
+							classes='object-cover h-[100px] w-[100px] rounded-full z-10 shadow-img sm:h-[150px] sm:w-[150px] md:h-[200px] md:w-[200px]'
 						/>
 						<h1
 							ref={targetRef}
@@ -81,7 +81,7 @@ const ArtistDetails = () => {
 												src={item.albumImageUrl}
 												width={100}
 												height={100}
-												classes='shrink-0 h-[70px] w-[70px] shadow-md rounded-lg'
+												classes='shrink-0 h-[70px] w-[70px] rounded-lg'
 											/>
 											<div className='ml-3 overflow-hidden'>
 												<span className='truncate block text-sm font-semibold'>
@@ -104,7 +104,7 @@ const ArtistDetails = () => {
 											src={item.albumImageUrl}
 											width={300}
 											height={300}
-											classes='shadow-md rounded-lg'
+											classes='shadow-lg rounded-lg'
 										/>
 										<div className='pt-2'>
 											<span className='block mb-1 text-sm font-semibold'>
@@ -132,7 +132,7 @@ const ArtistDetails = () => {
 								src={artistDetails?.artistBioImageUrl ?? ''}
 								width={640}
 								height={480}
-								classes='w-full rounded-lg shadow-xl'
+								classes='w-full rounded-lg shadow-img'
 							/>
 							<div className='absolute bottom-0 left-0 w-full flex items-center justify-between p-4 bg-gradient-to-b from-transparent to-black rounded-b-lg'>
 								<p className='text-sm line-clamp-2'>{artistDetails?.bio}</p>
@@ -159,7 +159,7 @@ const ArtistDetails = () => {
 								src={artistDetails?.artistBioImageUrl ?? ''}
 								width={640}
 								height={480}
-								classes='m-auto'
+								classes='m-auto shadow-img'
 							/>
 
 							<div className='absolute h-full top-2 right-2'>
