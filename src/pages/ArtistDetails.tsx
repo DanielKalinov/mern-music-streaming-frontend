@@ -68,7 +68,33 @@ const ArtistDetails = () => {
 					</div>
 					<div className='mt-8'>
 						<h2 className='mb-4'>Discography</h2>
-						<div className='grid grid-cols-2 gap-4 xs:grid-cols-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6'>
+						<div className='md:hidden'>
+							<ul className='grid grid-cols-1 gap-4 xs:grid-cols-2 sm:hidden'>
+								{artistDetails?.albums?.map((item) => (
+									<li key={item._id}>
+										<Link
+											to={`/albums/${item._id}`}
+											className='flex items-center'>
+											<Image
+												src={item.albumImageUrl}
+												width={100}
+												height={100}
+												classes='shrink-0 h-[70px] w-[70px] shadow-md rounded-lg'
+											/>
+											<div className='pl-3 overflow-hidden'>
+												<span className='truncate block text-sm font-semibold'>
+													{item.name}
+												</span>
+												<span className='block text-sm text-inactive'>
+													{item.year} • {item.tracks.length} tracks
+												</span>
+											</div>
+										</Link>
+									</li>
+								))}
+							</ul>
+						</div>
+						<div className='hidden grid-cols-2 gap-4 sm:grid sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6'>
 							{artistDetails?.albums?.map((item) => (
 								<Link key={item._id} to={`/albums/${item._id}`}>
 									<div className='aspect-square p-2 card hover:bg-secondary'>
