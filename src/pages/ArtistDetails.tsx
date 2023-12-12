@@ -69,7 +69,7 @@ const ArtistDetails = () => {
 					<div className='mt-8'>
 						<h2 className='mb-4'>Discography</h2>
 						<div className='md:hidden'>
-							<ul className='grid grid-cols-1 gap-4 xs:grid-cols-2 sm:hidden'>
+							<ul className='grid grid-cols-1 gap-3 xs:grid-cols-2 sm:hidden'>
 								{artistDetails?.albums?.map((item) => (
 									<li key={item._id}>
 										<Link
