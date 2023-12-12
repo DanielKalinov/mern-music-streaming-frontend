@@ -51,15 +51,15 @@ const ArtistDetails = () => {
 							src={artistDetails?.artistImageUrl ?? ''}
 							width={100}
 							height={100}
-							classes='object-cover h-[100px] w-[100px] rounded-full z-10 shadow-img sm:h-[150px] sm:w-[150px] md:h-[200px] md:w-[200px]'
+							classes='hidden object-cover h-[100px] w-[100px] shrink-0 rounded-full z-10 shadow-img sm:block sm:h-[150px] sm:w-[150px] md:h-[200px] md:w-[200px]'
 						/>
 						<h1
 							ref={targetRef}
-							className='ml-4 text-3xl font-bold text-transparent bg-clip-text bg-accent sm:text-4xl md:text-5xl lg:text-6xl'>
+							className='w-full text-3xl font-bold sm:ml-4 sm:text-4xl md:text-5xl lg:text-6xl'>
 							{artistDetails?.name?.toUpperCase()}
 						</h1>
+						<PlaylistControls playlist={artistDetails?.tracks ?? []} />
 					</div>
-					<PlaylistControls playlist={artistDetails?.tracks ?? []} />
 					<div className='mt-8'>
 						<h2 className='mb-4'>Top tracks</h2>
 						<TrackList
