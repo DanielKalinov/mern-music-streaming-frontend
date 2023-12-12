@@ -81,7 +81,7 @@ const ArtistDetails = () => {
 												height={100}
 												classes='shrink-0 h-[70px] w-[70px] shadow-md rounded-lg'
 											/>
-											<div className='pl-3 overflow-hidden'>
+											<div className='ml-3 overflow-hidden'>
 												<span className='truncate block text-sm font-semibold'>
 													{item.name}
 												</span>
