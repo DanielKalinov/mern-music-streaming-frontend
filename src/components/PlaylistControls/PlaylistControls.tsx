@@ -6,7 +6,7 @@ import {
 	setCurrentPlaylistInfo,
 } from '../../features/audioPlayerSlice';
 import { IconButton } from '@mui/material';
-import { FavoriteBorder, PlayArrow, Pause } from '@mui/icons-material';
+import { PlayArrow, Pause } from '@mui/icons-material';
 import { useSelector } from 'react-redux';
 import { useDispatch } from 'react-redux';
 import AudioPlayerState from '../../types/AudioPlayerState';
@@ -25,10 +25,7 @@ const PlaylistControls = ({ playlist }: { playlist: Track[] }) => {
 	);
 
 	return (
-		<div className='flex justify-between mb-2'>
-			<IconButton edge='start'>
-				<FavoriteBorder fontSize='large' />
-			</IconButton>
+		<div className='flex w-full justify-end mb-2'>
 			<IconButton
 				className='rounded-full !border-2 !border-solid !transition-transform active:scale-90'
 				onClick={() => {
