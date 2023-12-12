@@ -12,6 +12,7 @@ import AlbumDetails from './pages/AlbumDetails';
 import AudioPlayerState from './types/AudioPlayerState';
 import Artists from './pages/Artists';
 import ArtistDetails from './pages/ArtistDetails';
+import ScrollToTop from './components/ScrollToTop';
 
 const App = () => {
 	const audio = useRef(new Audio());
@@ -78,11 +79,13 @@ const App = () => {
 
 	return (
 		<div className='px-4 pb-40'>
-			<Routes>
-				<Route path='/' element={<Artists />} />
-				<Route path='artist/:id' element={<ArtistDetails />} />
-				<Route path='albums/:id' element={<AlbumDetails />} />
-			</Routes>
+			<ScrollToTop>
+				<Routes>
+					<Route path='/' element={<Artists />} />
+					<Route path='artist/:id' element={<ArtistDetails />} />
+					<Route path='albums/:id' element={<AlbumDetails />} />
+				</Routes>
+			</ScrollToTop>
 
 			<AudioControlsPanel setSeekCurrentTime={setSeekCurrentTime} />
 		</div>
