@@ -97,7 +97,7 @@ const TrackInfo = (props: TrackInfoProps) => {
 					backgroundPosition: 'center',
 				}}
 			/>
-			<div className='relative flex flex-col h-full w-full px-8 bg-black/70 backdrop-blur-3xl [&>*]:mb-auto'>
+			<div className='relative flex flex-col h-full w-full px-8 bg-black/60 backdrop-blur-[128px] [&>*]:mb-auto'>
 				<div className='flex justify-between items-center -mx-4'>
 					<IconButton
 						edge='start'
