@@ -31,7 +31,7 @@ const AlbumDetails = () => {
 	const params = useParams();
 
 	useEffect(() => {
-		axios.get(`http://localhost:5000/albums/${params._id}`).then((res) => {
+		axios.get(`http://localhost:5000/albums/${params.id}`).then((res) => {
 			setAlbumDetails(res.data);
 		});
 	}, []);
@@ -40,7 +40,7 @@ const AlbumDetails = () => {
 		<PageTransition duration={0.2}>
 			<div>
 				<BackButton
-					url={`/${albumDetails.artist?._id}`}
+					url={`/artist/${albumDetails.artist?._id}`}
 					text={albumDetails.name}
 					targetRef={targetRef}
 					threshold={70}

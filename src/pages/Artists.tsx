@@ -21,7 +21,7 @@ const Artists = () => {
 				<div className='grid grid-cols-2 gap-4 xs:grid-cols-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6 xl:grid-cols-7 2xl:grid-cols-8'>
 					{artists.map(
 						(item: { _id: string; name: string; artistImageUrl: string }) => (
-							<Link key={item._id} to={`/${item._id}`}>
+							<Link key={item._id} to={`/artist/${item._id}`}>
 								<div className='px-2 pt-2 card hover:bg-secondary'>
 									<div className='aspect-square'>
 										<Image

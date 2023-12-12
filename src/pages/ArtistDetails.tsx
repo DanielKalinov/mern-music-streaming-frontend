@@ -19,7 +19,7 @@ const ArtistDetails = () => {
 	const params = useParams();
 
 	useEffect(() => {
-		axios.get(`http://localhost:5000/artist/${params._id}`).then((res) => {
+		axios.get(`http://localhost:5000/artist/${params.id}`).then((res) => {
 			setArtistDetails(res.data);
 		});
 	}, []);
@@ -70,7 +70,7 @@ const ArtistDetails = () => {
 						<h2 className='mb-4'>Discography</h2>
 						<div className='grid grid-cols-2 gap-4 xs:grid-cols-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6'>
 							{artistDetails?.albums?.map((item) => (
-								<Link key={item._id} to={`/${params.id}/albums/${item._id}`}>
+								<Link key={item._id} to={`/albums/${item._id}`}>
 									<div className='aspect-square p-2 card hover:bg-secondary'>
 										<Image
 											src={item.albumImageUrl}

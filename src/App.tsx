@@ -80,9 +80,10 @@ const App = () => {
 		<div className='px-4 pb-40'>
 			<Routes>
 				<Route path='/' element={<Artists />} />
-				<Route path='/:_id' element={<ArtistDetails />} />
-				<Route path='/:_id/albums/:_id' element={<AlbumDetails />} />
+				<Route path='artist/:id' element={<ArtistDetails />} />
+				<Route path='albums/:id' element={<AlbumDetails />} />
 			</Routes>
+
 			<AudioControlsPanel setSeekCurrentTime={setSeekCurrentTime} />
 		</div>
 	);
