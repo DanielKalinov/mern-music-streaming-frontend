@@ -55,7 +55,7 @@ const ArtistDetails = () => {
 						/>
 						<h1
 							ref={targetRef}
-							className='ml-4 text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-accent to-lime-500 sm:text-4xl md:text-5xl lg:text-6xl'>
+							className='ml-4 text-3xl font-bold text-transparent bg-clip-text bg-accent sm:text-4xl md:text-5xl lg:text-6xl'>
 							{artistDetails?.name?.toUpperCase()}
 						</h1>
 					</div>

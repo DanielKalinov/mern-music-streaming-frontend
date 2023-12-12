@@ -22,6 +22,7 @@ import {
 	Pause,
 } from '@mui/icons-material';
 import Image from '../Image';
+import accentColor from '../../utils/accentColor';
 
 const TrackInfo = (props: TrackInfoProps) => {
 	const {
@@ -192,7 +193,7 @@ const TrackInfo = (props: TrackInfoProps) => {
 										},
 									},
 									'& .MuiSlider-track': {
-										backgroundColor: '#fde047',
+										backgroundColor: accentColor,
 										height: '4px',
 									},
 									'& .MuiSlider-rail': {
