@@ -78,7 +78,7 @@ const App = () => {
 	};
 
 	return (
-		<div className='px-4 pb-40'>
+		<div className='px-4 pb-28'>
 			<ScrollToTop>
 				<Routes>
 					<Route path='/' element={<Artists />} />
