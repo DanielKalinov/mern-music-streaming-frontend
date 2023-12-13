@@ -23,31 +23,30 @@ const AlbumDetails = () => {
 
 	return albumDetails ? (
 		<PageTransition duration={0.2}>
-			<div>
+			<div className='max-w-xl m-auto'>
 				<BackButton
 					url={`/artist/${albumDetails.artist?._id}`}
 					text={albumDetails.name}
 					targetRef={targetRef}
 					threshold={70}
 				/>
-				<div className='mt-12'>
+				<div className='mt-12 sm:flex sm:gap-4'>
 					<div className='absolute top-0 left-0 w-full z-0'>
 						<Image
 							src={albumDetails.albumImageUrl}
 							height='100%'
 							width='100%'
+							classes='max-h-[400px]'
 						/>
-						<div className='absolute top-0 left-0 h-full w-full bg-black/30 backdrop-blur-3xl' />
+						<div className='absolute top-0 left-0 h-full w-full bg-black/30 backdrop-blur-[128px]' />
 						<div className='absolute top-0 left-0 h-full w-full bg-gradient-to-b from-transparent to-background-dark' />
 					</div>
-					<div className='relative p-8 z-10'>
-						<Image
-							src={albumDetails.albumImageUrl}
-							width={300}
-							height={300}
-							classes='shadow-lg rounded-lg'
-						/>
-					</div>
+					<Image
+						src={albumDetails.albumImageUrl}
+						width={350}
+						height={350}
+						classes='m-auto max-w-[350px] max-h-[350px] mb-8 shadow-lg rounded-lg sm:basis-1/2'
+					/>
 					<div
 						ref={targetRef}
 						className='relative flex items-center justify-between mb-2 z-10 transition-opacity duration-200'>
