@@ -30,7 +30,7 @@ const AlbumDetails = () => {
 					targetRef={targetRef}
 					threshold={70}
 				/>
-				<div className='mt-12 sm:flex sm:gap-4'>
+				<div className='mt-12 sm:flex sm:items-center sm:gap-4'>
 					<div className='absolute top-0 left-0 w-full z-0'>
 						<Image
 							src={albumDetails.albumImageUrl}
@@ -49,7 +49,7 @@ const AlbumDetails = () => {
 					/>
 					<div
 						ref={targetRef}
-						className='relative flex items-center justify-between mb-2 z-10 transition-opacity duration-200'>
+						className='relative flex items-center justify-between mb-2 z-10 transition-opacity duration-200 h-fit'>
 						<div>
 							<span className='block mb-1 font-bold text-2xl lg:text-4xl'>
 								{albumDetails.name}
