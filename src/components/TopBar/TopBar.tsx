@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { IconButton } from '@mui/material';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 
-const BackButton = ({
+const TopBar = ({
 	url,
 	text,
 	targetRef,
@@ -40,11 +40,10 @@ const BackButton = ({
 
 	return (
 		<div
-			id='container'
-			className={`fixed top-0 left-0 flex items-center w-full p-2 z-20 transition-colors duration-200 ${
+			className={`fixed top-0 left-0 flex items-center w-full p-2 bg-gradient-to-b z-20 transition-colors duration-200 ${
 				containerVisible
-					? 'bg-primary/100 shadow-md'
-					: 'bg-primary/0 shadow-none'
+					? 'from-secondary to-primary shadow-md'
+					: 'bg-transparent shadow-none'
 			}`}>
 			<Link to={url}>
 				<IconButton
@@ -55,13 +54,13 @@ const BackButton = ({
 				</IconButton>
 			</Link>
 			<span
-				className={`transition-opacity duration-200 ${
+				className={`absolute top-1/2 -translate-y-1/2 left-1/2 -translate-x-1/2 font-semibold tracking-widest transition-opacity duration-200 ${
 					containerVisible ? 'opacity-1' : 'opacity-0'
 				}`}>
-				{text}
+				{text.toUpperCase()}
 			</span>
 		</div>
 	);
 };
 
-export default BackButton;
+export default TopBar;

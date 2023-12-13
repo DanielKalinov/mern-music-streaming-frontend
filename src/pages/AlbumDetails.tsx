@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import axios from 'axios';
 import { useParams } from 'react-router-dom';
-import BackButton from '../components/BackButton';
+import TopBar from '../components/TopBar';
 import PageTransition from '../components/PageTransition';
 import Image from '../components/Image';
 import TrackList from '../components/TrackList';
@@ -25,7 +25,7 @@ const AlbumDetails = () => {
 	return albumDetails ? (
 		<PageTransition duration={0.2}>
 			<div className='max-w-2xl m-auto sm:mt-20'>
-				<BackButton
+				<TopBar
 					url={`/artist/${albumDetails.artist[0]._id}`}
 					text={albumDetails.name}
 					targetRef={targetRef}

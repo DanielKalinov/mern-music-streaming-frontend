@@ -4,7 +4,7 @@ import { Link, useParams } from 'react-router-dom';
 import { IconButton } from '@mui/material';
 import { ChevronRight, Close } from '@mui/icons-material';
 import PageTransition from '../components/PageTransition';
-import BackButton from '../components/BackButton';
+import TopBar from '../components/TopBar';
 import Image from '../components/Image';
 import TrackList from '../components/TrackList';
 import Artist from '../types/Artist';
@@ -28,7 +28,7 @@ const ArtistDetails = () => {
 	return (
 		<PageTransition duration={0.2}>
 			<div>
-				<BackButton
+				<TopBar
 					url='/'
 					text={artistDetails?.name ?? ''}
 					targetRef={targetRef}
