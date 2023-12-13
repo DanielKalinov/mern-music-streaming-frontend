@@ -98,22 +98,23 @@ const ArtistDetails = () => {
 						</div>
 						<div className='hidden grid-cols-2 gap-4 sm:grid sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6'>
 							{artistDetails?.albums?.map((item) => (
-								<Link key={item._id} to={`/albums/${item._id}`}>
-									<div className='aspect-square p-2 card hover:bg-secondary'>
-										<Image
-											src={item.albumImageUrl}
-											width={300}
-											height={300}
-											classes='shadow-lg rounded-lg'
-										/>
-										<div className='pt-2'>
-											<span className='block mb-1 text-sm font-semibold'>
-												{item.name}
-											</span>
-											<span className='block text-sm text-inactive'>
-												{item.year} • {item.tracks.length} tracks
-											</span>
-										</div>
+								<Link
+									key={item._id}
+									to={`/albums/${item._id}`}
+									className='p-3 card hover:bg-secondary'>
+									<Image
+										src={item.albumImageUrl}
+										width={300}
+										height={300}
+										classes='shadow-lg rounded-lg'
+									/>
+									<div className='mt-3'>
+										<span className='block mb-1 text-sm font-semibold'>
+											{item.name}
+										</span>
+										<span className='block text-sm text-inactive'>
+											{item.year} • {item.tracks.length} tracks
+										</span>
 									</div>
 								</Link>
 							))}

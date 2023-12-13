@@ -22,16 +22,14 @@ const Artists = () => {
 					{artists.map(
 						(item: { _id: string; name: string; artistImageUrl: string }) => (
 							<Link key={item._id} to={`/artist/${item._id}`}>
-								<div className='px-2 pt-2 card hover:bg-secondary'>
-									<div className='aspect-square'>
-										<Image
-											src={item.artistImageUrl}
-											height={300}
-											width={300}
-											classes='h-full rounded-lg shadow-md'
-										/>
-									</div>
-									<span className='block py-2 text-center text-sm font-semibold'>
+								<div className='p-3 card hover:bg-secondary'>
+									<Image
+										src={item.artistImageUrl}
+										height={300}
+										width={300}
+										classes='aspect-square h-full rounded-lg shadow-md'
+									/>
+									<span className='mt-3 block text-center text-sm font-semibold'>
 										{item.name}
 									</span>
 								</div>
