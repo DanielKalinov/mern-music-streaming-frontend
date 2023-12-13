@@ -1,3 +1,4 @@
+//@ts-nocheck
 import React, { useEffect, useRef } from 'react';
 import AudioControlsPanel from './components/AudioControlsPanel';
 import { useSelector, useDispatch } from 'react-redux';

@@ -157,7 +157,7 @@ const TrackInfo = (props: TrackInfoProps) => {
 									{currentTrackInfo.title}
 								</span>
 								<span className='block text-inactive'>
-									{currentTrackInfo.artist?.name}
+									{currentTrackInfo.artist?.[0]?.name}
 								</span>
 							</div>
 							<IconButton edge='end'>

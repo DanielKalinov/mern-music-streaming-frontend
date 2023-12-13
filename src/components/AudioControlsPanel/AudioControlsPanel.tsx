@@ -83,7 +83,7 @@ const AudioControlsPanel = ({
 									{currentTrackInfo.title}
 								</span>
 								<span className='block text-sm text-inactive'>
-									{currentTrackInfo.artist?.name}
+									{currentTrackInfo.artist?.[0]?.name}
 								</span>
 							</div>
 						</div>

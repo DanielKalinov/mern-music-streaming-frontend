@@ -6,5 +6,5 @@ export default interface Track {
 	title: string;
 	album: Album;
 	audioUrl: string;
-	artist: Artist;
+	artist: Artist[];
 }

@@ -25,7 +25,7 @@ const AlbumDetails = () => {
 		<PageTransition duration={0.2}>
 			<div className='max-w-2xl m-auto sm:mt-20'>
 				<BackButton
-					url={`/artist/${albumDetails.artist?._id}`}
+					url={`/artist/${albumDetails.artist[0]?._id}`}
 					text={albumDetails.name}
 					targetRef={targetRef}
 					threshold={70}
@@ -55,7 +55,7 @@ const AlbumDetails = () => {
 								{albumDetails.name}
 							</span>
 							<span className='text-inactive'>
-								{albumDetails.artist?.name} • {albumDetails.year} •{' '}
+								{albumDetails.artist[0]?.name} • {albumDetails.year} •{' '}
 								{albumDetails.tracks.length} tracks, {albumDetails.duration}
 							</span>
 						</div>

@@ -3,7 +3,7 @@ import Track from './Track';
 
 export default interface Album {
 	_id: string;
-	artist: Artist;
+	artist: Artist[];
 	name: string;
 	duration: string;
 	year: string;
