@@ -31,7 +31,7 @@ const AlbumDetails = () => {
 					targetRef={targetRef}
 					threshold={70}
 				/>
-				<div className='mt-12 sm:flex sm:items-center sm:gap-4'>
+				<div className='mt-20 sm:flex sm:items-center sm:gap-4'>
 					<div className='absolute top-0 left-0 w-full z-0'>
 						<Image
 							src={albumDetails.albumImageUrl}
