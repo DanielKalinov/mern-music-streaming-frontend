@@ -42,7 +42,7 @@ const ArtistDetails = () => {
 							height={480}
 							classes='grayscale w-full sm:h-96 sm:grayscale-0'
 						/>
-						<div className='absolute top-0 left-0 h-full w-full bg-gradient-to-b from-accent/20 to-background-dark sm:backdrop-blur-3xl sm:from-transparent sm:to-background-dark' />
+						<div className='absolute top-0 left-0 h-full w-full bg-gradient-to-b from-accent/30 to-background-dark sm:backdrop-blur-3xl sm:from-transparent sm:to-background-dark' />
 					</div>
 				</div>
 				<div className='pageContainer'>
