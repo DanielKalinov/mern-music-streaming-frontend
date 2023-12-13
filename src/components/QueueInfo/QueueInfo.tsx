@@ -20,6 +20,7 @@ import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
 import Track from '../../types/Track';
 import WaveAnimation from '../WaveAnimation';
 import Image from '../Image';
+import artistNames from '../../utils/artistName';
 
 const QueueInfo = (props: QueueInfoProps) => {
 	const { showQueueInfo, setShowQueueInfo } = props;
@@ -137,7 +138,7 @@ const QueueInfo = (props: QueueInfoProps) => {
 											{currentTrackInfo.title}
 										</span>
 										<span className='block text-sm text-inactive'>
-											{currentTrackInfo.artist?.[0].name}
+											{artistNames(currentTrackInfo.artist)}
 										</span>
 									</div>
 									{isPlaying && <WaveAnimation />}

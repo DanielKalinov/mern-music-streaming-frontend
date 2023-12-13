@@ -7,6 +7,7 @@ import Image from '../components/Image';
 import TrackList from '../components/TrackList';
 import Album from '../types/Album';
 import PlaylistControls from '../components/PlaylistControls';
+import artistNames from '../utils/artistName';
 
 const AlbumDetails = () => {
 	const [albumDetails, setAlbumDetails] = useState<Album>();
@@ -55,7 +56,7 @@ const AlbumDetails = () => {
 								{albumDetails.name}
 							</span>
 							<span className='text-inactive'>
-								{albumDetails.artist[0].name} • {albumDetails.year} •{' '}
+								{artistNames(albumDetails.artist)} • {albumDetails.year} •{' '}
 								{albumDetails.tracks.length} tracks, {albumDetails.duration}
 							</span>
 						</div>

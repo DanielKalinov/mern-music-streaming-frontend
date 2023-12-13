@@ -23,6 +23,7 @@ import {
 } from '@mui/icons-material';
 import Image from '../Image';
 import accentColor from '../../utils/accentColor';
+import artistNames from '../../utils/artistName';
 
 const TrackInfo = (props: TrackInfoProps) => {
 	const {
@@ -157,7 +158,7 @@ const TrackInfo = (props: TrackInfoProps) => {
 									{currentTrackInfo.title}
 								</span>
 								<span className='block text-inactive'>
-									{currentTrackInfo.artist?.[0].name}
+									{artistNames(currentTrackInfo.artist)}
 								</span>
 							</div>
 							<IconButton edge='end'>

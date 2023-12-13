@@ -12,6 +12,7 @@ import WaveAnimation from '../WaveAnimation';
 import MoreVertRoundedIcon from '@mui/icons-material/MoreVertRounded';
 import Image from '../Image';
 import Track from '../../types/Track';
+import artistNames from '../../utils/artistName';
 
 const TrackList = ({
 	tracks,
@@ -95,7 +96,7 @@ const TrackList = ({
 									<div>
 										<span className='block text-sm'>{item.title}</span>
 										<span className='block text-sm text-inactive font-normal'>
-											{item.artist[0].name}
+											{artistNames(item.artist)}
 										</span>
 									</div>
 								</div>

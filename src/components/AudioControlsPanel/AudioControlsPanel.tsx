@@ -7,6 +7,7 @@ import AudioPlayerState from '../../types/AudioPlayerState';
 import IconButton from '@mui/material/IconButton';
 import { PlayArrow, Pause, SkipNext, SkipPrevious } from '@mui/icons-material';
 import Image from '../Image';
+import artistNames from '../../utils/artistName';
 
 const AudioControlsPanel = ({
 	setSeekCurrentTime,
@@ -83,7 +84,7 @@ const AudioControlsPanel = ({
 									{currentTrackInfo.title}
 								</span>
 								<span className='block text-sm text-inactive'>
-									{currentTrackInfo.artist?.[0].name}
+									{artistNames(currentTrackInfo.artist)}
 								</span>
 							</div>
 						</div>
