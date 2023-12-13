@@ -68,7 +68,7 @@ const TrackList = ({
 												type == 'album'
 													? item.album.name
 													: type == 'artist'
-													? item.artist[0]?.name
+													? item.artist[0].name
 													: '',
 										})
 									);
@@ -95,7 +95,7 @@ const TrackList = ({
 									<div>
 										<span className='block text-sm'>{item.title}</span>
 										<span className='block text-sm text-inactive font-normal'>
-											{item.artist[0]?.name}
+											{item.artist[0].name}
 										</span>
 									</div>
 								</div>
