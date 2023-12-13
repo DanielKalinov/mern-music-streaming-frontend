@@ -44,9 +44,9 @@ const AlbumDetails = () => {
 					</div>
 					<Image
 						src={albumDetails.albumImageUrl}
-						width={350}
-						height={350}
-						classes='m-auto max-w-[350px] max-h-[350px] mb-8 shadow-lg rounded-lg sm:basis-1/2 sm:m-0'
+						width={300}
+						height={300}
+						classes='m-auto max-w-[300px] max-h-[300px] mb-8 shadow-lg rounded-lg sm:basis-1/2 sm:m-0'
 					/>
 					<div
 						ref={targetRef}
