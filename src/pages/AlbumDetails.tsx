@@ -55,8 +55,8 @@ const AlbumDetails = () => {
 								{albumDetails.name}
 							</span>
 							<span className='text-inactive'>
-								{albumDetails.artist?.name} • {albumDetails.tracks.length}{' '}
-								tracks, {albumDetails.duration}
+								{albumDetails.artist?.name} • {albumDetails.year} •{' '}
+								{albumDetails.tracks.length} tracks, {albumDetails.duration}
 							</span>
 						</div>
 					</div>
