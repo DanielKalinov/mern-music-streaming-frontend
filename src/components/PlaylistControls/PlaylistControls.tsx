@@ -25,7 +25,7 @@ const PlaylistControls = ({ playlist }: { playlist: Track[] }) => {
 	);
 
 	return (
-		<div className='flex w-full justify-end mb-2'>
+		<div className='flex w-full justify-end'>
 			<IconButton
 				className='rounded-full !bg-accent shadow-btn !text-primary !transition-transform active:scale-90'
 				onClick={() => {
