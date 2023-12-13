@@ -56,7 +56,7 @@ const AudioControlsPanel = ({
 						? 'translate-y-0'
 						: 'translate-y-full'
 				} fixed bottom-0 left-0 px-2 pb-2 w-full transition-all duration-300 ease-in-out z-20`}>
-				<div className='flex flex-col max-w-lg m-auto items-center card overflow-hidden'>
+				<div className='flex flex-col max-w-lg m-auto items-center card !shadow-audio-panel overflow-hidden'>
 					<div
 						className='relative flex items-center justify-between w-full'
 						onClick={() => setShowTrackInfo(true)}>
