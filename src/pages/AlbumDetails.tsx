@@ -23,7 +23,7 @@ const AlbumDetails = () => {
 
 	return albumDetails ? (
 		<PageTransition duration={0.2}>
-			<div className='max-w-xl m-auto'>
+			<div className='max-w-2xl m-auto sm:mt-20'>
 				<BackButton
 					url={`/artist/${albumDetails.artist?._id}`}
 					text={albumDetails.name}
@@ -45,14 +45,14 @@ const AlbumDetails = () => {
 						src={albumDetails.albumImageUrl}
 						width={350}
 						height={350}
-						classes='m-auto max-w-[350px] max-h-[350px] mb-8 shadow-lg rounded-lg sm:basis-1/2'
+						classes='m-auto max-w-[350px] max-h-[350px] mb-8 shadow-lg rounded-lg sm:basis-1/2 sm:m-0'
 					/>
 					<div
 						ref={targetRef}
 						className='relative flex items-center justify-between mb-2 z-10 transition-opacity duration-200'>
 						<div>
-							<span className='block mb-1 font-bold text-2xl'>
-								{albumDetails.name} • {albumDetails.year}
+							<span className='block mb-1 font-bold text-2xl lg:text-4xl'>
+								{albumDetails.name}
 							</span>
 							<span className='text-inactive'>
 								{albumDetails.artist?.name} • {albumDetails.tracks.length}{' '}
