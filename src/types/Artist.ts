@@ -8,5 +8,5 @@ export default interface Artist {
 	artistBioImageUrl: string;
 	bio: string;
 	albums: Album[];
-	tracks: Track[];
+	tracks: { _id: string; track: Track }[];
 }

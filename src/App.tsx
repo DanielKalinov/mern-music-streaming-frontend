@@ -22,8 +22,14 @@ const App = () => {
 	const audioPlayer = useSelector(
 		(state: AudioPlayerState) => state.audioPlayer
 	);
-	const { isPlaying, currentTrackInfo, queue, isSeeking, repeatCurrentTrack } =
-		audioPlayer;
+	const {
+		isPlaying,
+		currentTrackInfo,
+		queue,
+		isSeeking,
+		repeatCurrentTrack,
+		currentTrackPosition,
+	} = audioPlayer;
 
 	const dispatch = useDispatch();
 
@@ -41,6 +47,7 @@ const App = () => {
 		const currentTrackIndex = queue.findIndex(
 			(item) => item._id == currentTrackInfo._id
 		);
+
 		dispatch(setCurrentTrackPosition(currentTrackIndex));
 
 		// get audio duration on loaded data

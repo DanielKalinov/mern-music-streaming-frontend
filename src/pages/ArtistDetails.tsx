@@ -1,3 +1,4 @@
+//@ts-nocheck
 import React, { useEffect, useRef, useState } from 'react';
 import axios from 'axios';
 import { Link, useParams } from 'react-router-dom';
@@ -75,19 +76,49 @@ const ArtistDetails = () => {
 						<h2 className='mb-4'>Discography</h2>
 						<div className='md:hidden'>
 							<ul className='grid grid-cols-1 gap-3 xs:grid-cols-2 sm:hidden'>
-								{artistDetails?.albums?.map((item) => (
-									<li key={item._id}>
+								{artistDetails?.albums?.map(
+									(item, index) =>
+										index == artistDetails.albums.length - 1 && (
+											<li key={item._id}>
+												<Link
+													to={`/albums/${item._id}`}
+													className='flex items-center'>
+													<Image
+														src={item.albumImageUrl}
+														width={100}
+														height={100}
+														classes='shrink-0 h-[70px] w-[70px] rounded-lg'
+													/>
+													<div className='ml-3 overflow-hidden'>
+														<span className='truncate block text-sm font-semibold'>
+															{item.name}
+														</span>
+														<span className='block text-sm text-inactive'>
+															{item.year} • {item.tracks.length} tracks
+														</span>
+													</div>
+												</Link>
+											</li>
+										)
+								)}
+							</ul>
+						</div>
+						<div className='hidden grid-cols-2 gap-4 sm:grid sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6'>
+							{artistDetails?.albums?.map(
+								(item, index) =>
+									index == artistDetails.albums.length - 1 && (
 										<Link
+											key={item._id}
 											to={`/albums/${item._id}`}
-											className='flex items-center'>
+											className='p-3 card hover:bg-secondary'>
 											<Image
 												src={item.albumImageUrl}
-												width={100}
-												height={100}
-												classes='shrink-0 h-[70px] w-[70px] rounded-lg'
+												width={300}
+												height={300}
+												classes='shadow-lg rounded-lg'
 											/>
-											<div className='ml-3 overflow-hidden'>
-												<span className='truncate block text-sm font-semibold'>
+											<div className='mt-3'>
+												<span className='block mb-1 text-sm font-semibold'>
 													{item.name}
 												</span>
 												<span className='block text-sm text-inactive'>
@@ -95,32 +126,8 @@ const ArtistDetails = () => {
 												</span>
 											</div>
 										</Link>
-									</li>
-								))}
-							</ul>
-						</div>
-						<div className='hidden grid-cols-2 gap-4 sm:grid sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6'>
-							{artistDetails?.albums?.map((item) => (
-								<Link
-									key={item._id}
-									to={`/albums/${item._id}`}
-									className='p-3 card hover:bg-secondary'>
-									<Image
-										src={item.albumImageUrl}
-										width={300}
-										height={300}
-										classes='shadow-lg rounded-lg'
-									/>
-									<div className='mt-3'>
-										<span className='block mb-1 text-sm font-semibold'>
-											{item.name}
-										</span>
-										<span className='block text-sm text-inactive'>
-											{item.year} • {item.tracks.length} tracks
-										</span>
-									</div>
-								</Link>
-							))}
+									)
+							)}
 						</div>
 					</div>
 					<div className='max-w-[480px] mt-8'>

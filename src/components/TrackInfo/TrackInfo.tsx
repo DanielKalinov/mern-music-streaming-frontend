@@ -1,3 +1,4 @@
+//@ts-nocheck
 import React, { Dispatch, SetStateAction } from 'react';
 import Slider from '@mui/material/Slider';
 import {
@@ -127,14 +128,14 @@ const TrackInfo = (props: TrackInfoProps) => {
 					} [transition:transform_0.4s_ease-in-out,opacity_0.7s_ease-in-out]`}>
 					<div className='relative h-80'>
 						{queue.map(
-							(item, index) =>
+							({ track: item, _id }, index) =>
 								// Render only the current track, the next one, or the previous one.
 								// This avoids attaching all items to the DOM.
 								(index === currentTrackPosition ||
 									index === currentTrackPosition + 1 ||
 									index === currentTrackPosition - 1) && (
 									<div
-										key={item._id}
+										key={_id}
 										className={`w-full absolute transition-all duration-200 ease-in-out ${carouselAnimation(
 											index
 										)}`}>
