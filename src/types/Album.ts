@@ -8,5 +8,5 @@ export default interface Album {
 	duration: string;
 	year: string;
 	albumImageUrl: string;
-	tracks: { _id: string; track: Track }[];
+	tracks: Track[];
 }

@@ -1,4 +1,3 @@
-//@ts-nocheck
 import React from 'react';
 import {
 	setQueue,
@@ -27,7 +26,9 @@ const PlaylistControls = ({
 
 	const dispatch = useDispatch();
 
-	const isInPlaylist = playlist.find(({ _id }) => _id == currentTrackInfo._id);
+	const isInPlaylist = playlist.find(
+		(item) => item._id == currentTrackInfo._id
+	);
 
 	return (
 		<div className='flex w-full justify-end'>
@@ -35,13 +36,13 @@ const PlaylistControls = ({
 				className='rounded-full !bg-accent shadow-btn !text-primary !transition-transform active:scale-90'
 				onClick={() => {
 					if (!isInPlaylist) {
-						const { track: firstTrack, _id } = playlist[0];
-						const { audioUrl, artist, title, album } = firstTrack;
+						const firstTrack = playlist[0];
+						const { _id, audioUrl, artist, title, album } = firstTrack;
 
 						dispatch(togglePlaying(true));
 						dispatch(
 							setCurrentTrackInfo({
-								_id,
+								_id: _id,
 								audioUrl: audioUrl,
 								artist: artist,
 								title: title,

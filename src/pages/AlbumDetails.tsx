@@ -1,4 +1,3 @@
-//@ts-nocheck
 import React, { useEffect, useRef, useState } from 'react';
 import axios from 'axios';
 import { useParams } from 'react-router-dom';
@@ -9,6 +8,7 @@ import TrackList from '../components/TrackList';
 import Album from '../types/Album';
 import PlaylistControls from '../components/PlaylistControls';
 import artistNames from '../utils/artistName';
+import Track from '../types/Track';
 
 const AlbumDetails = () => {
 	const [albumDetails, setAlbumDetails] = useState<Album>();
@@ -19,7 +19,15 @@ const AlbumDetails = () => {
 
 	useEffect(() => {
 		axios.get(`http://localhost:5000/albums/${params.id}`).then((res) => {
-			setAlbumDetails(res.data);
+			setAlbumDetails({
+				...res.data,
+				tracks: res.data.tracks.map(
+					({ track, _id }: { track: Track; _id: string }) => ({
+						...track,
+						_id,
+					})
+				),
+			});
 		});
 	}, []);
 

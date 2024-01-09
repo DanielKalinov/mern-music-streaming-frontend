@@ -1,4 +1,3 @@
-//@ts-nocheck
 import React, { useEffect, useState, useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { skipTrack, togglePlaying } from '../../features/audioPlayerSlice';
@@ -66,7 +65,7 @@ const AudioControlsPanel = ({
 							<div className='p-2'>
 								<div className='w-[40px] h-[40px] relative'>
 									{queue.map(
-										({ track: item }, index) =>
+										(item, index) =>
 											currentTrackPosition === index && (
 												<Image
 													key={index}

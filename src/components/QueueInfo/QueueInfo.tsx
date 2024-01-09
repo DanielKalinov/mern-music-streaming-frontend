@@ -1,4 +1,3 @@
-//@ts-nocheck
 import React, { useEffect, useState } from 'react';
 import {
 	togglePlaying,
@@ -62,7 +61,7 @@ const QueueInfo = (props: QueueInfoProps) => {
 			// restore previous queue
 
 			const currentTrackIndex = prevQueue.findIndex(
-				({ _id }) => _id == currentTrackInfo._id
+				(item) => item._id == currentTrackInfo._id
 			);
 			const nextFromListPrev = prevQueue.slice(
 				currentTrackIndex + 1,
@@ -119,7 +118,7 @@ const QueueInfo = (props: QueueInfoProps) => {
 								<div className='mr-2'>
 									<div className='w-[40px] h-[40px] relative'>
 										{queue.map(
-											({ track: item }, index) =>
+											(item, index) =>
 												currentTrackPosition === index && (
 													<Image
 														key={index}
@@ -176,11 +175,11 @@ const QueueInfo = (props: QueueInfoProps) => {
 										{(provided) => (
 											<ul {...provided.droppableProps} ref={provided.innerRef}>
 												<>
-													{nextFromList.map(({ track: item, _id }, index) => (
+													{nextFromList.map((item, index) => (
 														<Draggable
 															isDragDisabled={nextFromList.length == 1}
-															key={_id}
-															draggableId={_id}
+															key={item._id}
+															draggableId={item._id}
 															index={index}>
 															{(provided, snapshot) => (
 																<li

@@ -1,4 +1,3 @@
-//@ts-nocheck
 import React, { useEffect, useRef } from 'react';
 import AudioControlsPanel from './components/AudioControlsPanel';
 import { useSelector, useDispatch } from 'react-redux';
@@ -22,14 +21,8 @@ const App = () => {
 	const audioPlayer = useSelector(
 		(state: AudioPlayerState) => state.audioPlayer
 	);
-	const {
-		isPlaying,
-		currentTrackInfo,
-		queue,
-		isSeeking,
-		repeatCurrentTrack,
-		currentTrackPosition,
-	} = audioPlayer;
+	const { isPlaying, currentTrackInfo, queue, isSeeking, repeatCurrentTrack } =
+		audioPlayer;
 
 	const dispatch = useDispatch();
 
