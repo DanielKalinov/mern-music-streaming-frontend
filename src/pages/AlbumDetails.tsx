@@ -63,7 +63,7 @@ const AlbumDetails = () => {
 					</div>
 				</div>
 
-				<PlaylistControls playlist={albumDetails.tracks} />
+				<PlaylistControls playlist={albumDetails.tracks} type='album' />
 
 				<TrackList tracks={albumDetails.tracks} type='album' />
 			</div>

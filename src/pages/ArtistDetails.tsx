@@ -58,7 +58,10 @@ const ArtistDetails = () => {
 							className='w-full text-3xl font-bold sm:ml-4 sm:text-4xl md:text-5xl lg:text-6xl'>
 							{artistDetails?.name?.toUpperCase()}
 						</h1>
-						<PlaylistControls playlist={artistDetails?.tracks ?? []} />
+						<PlaylistControls
+							playlist={artistDetails?.tracks ?? []}
+							type='artist'
+						/>
 					</div>
 					<div className='mt-8'>
 						<h2 className='mb-4'>Top tracks</h2>

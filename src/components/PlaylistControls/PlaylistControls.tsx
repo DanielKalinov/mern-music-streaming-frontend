@@ -12,7 +12,13 @@ import { useDispatch } from 'react-redux';
 import AudioPlayerState from '../../types/AudioPlayerState';
 import Track from '../../types/Track';
 
-const PlaylistControls = ({ playlist }: { playlist: Track[] }) => {
+const PlaylistControls = ({
+	playlist,
+	type,
+}: {
+	playlist: Track[];
+	type: string;
+}) => {
 	const audioPlayer = useSelector(
 		(state: AudioPlayerState) => state.audioPlayer
 	);
@@ -31,22 +37,28 @@ const PlaylistControls = ({ playlist }: { playlist: Track[] }) => {
 				onClick={() => {
 					if (!isInPlaylist) {
 						const firstTrack = playlist[0];
+						const { _id, audioUrl, artist, title, album } = firstTrack;
 
 						dispatch(togglePlaying(true));
 						dispatch(
 							setCurrentTrackInfo({
-								_id: firstTrack._id,
-								audioUrl: firstTrack.audioUrl,
-								artist: firstTrack.artist,
-								title: firstTrack.title,
-								album: firstTrack.album,
+								_id: _id,
+								audioUrl: audioUrl,
+								artist: artist,
+								title: title,
+								album: album,
 							})
 						);
 						dispatch(setQueue(playlist));
 						dispatch(
 							setCurrentPlaylistInfo({
-								type: 'album',
-								name: firstTrack.album?.name,
+								type,
+								name:
+									type == 'album'
+										? album.name
+										: type == 'artist'
+										? artist[0].name
+										: '',
 							})
 						);
 					} else if (isPlaying && isInPlaylist) {
