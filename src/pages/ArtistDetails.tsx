@@ -10,12 +10,16 @@ import TrackList from '../components/TrackList';
 import Artist from '../types/Artist';
 import PlaylistControls from '../components/PlaylistControls';
 import Track from '../types/Track';
+import { useSelector } from 'react-redux';
+import AudioPlayerState from '../types/AudioPlayerState';
 
 const ArtistDetails = () => {
 	const [artistDetails, setArtistDetails] = useState<Artist>();
-	const targetRef = useRef(null);
 	const [showBioWindow, setShowBioWindow] = useState(false);
+	const { audioPlayer } = useSelector((state: AudioPlayerState) => state);
+	const { currentPlaylistInfo } = audioPlayer;
 
+	const targetRef = useRef(null);
 	const bioWindowRef = useRef<HTMLDivElement>(null);
 
 	const params = useParams();
@@ -96,7 +100,11 @@ const ArtistDetails = () => {
 												classes='shrink-0 h-[70px] w-[70px] rounded-lg'
 											/>
 											<div className='ml-3 overflow-hidden'>
-												<span className='truncate block text-sm font-semibold'>
+												<span
+													className={`truncate block text-sm font-semibold ${
+														currentPlaylistInfo.name == item.name &&
+														'text-accent'
+													}`}>
 													{item.name}
 												</span>
 												<span className='block text-sm text-inactive'>
@@ -121,7 +129,10 @@ const ArtistDetails = () => {
 										classes='shadow-lg rounded-lg'
 									/>
 									<div className='mt-3'>
-										<span className='block mb-1 text-sm font-semibold'>
+										<span
+											className={`block mb-1 text-sm font-semibold ${
+												currentPlaylistInfo.name == item.name && 'text-accent'
+											}`}>
 											{item.name}
 										</span>
 										<span className='block text-sm text-inactive'>
