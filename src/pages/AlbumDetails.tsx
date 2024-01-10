@@ -38,7 +38,7 @@ const AlbumDetails = () => {
 					url={`/artist/${albumDetails.artist[0]._id}`}
 					text={albumDetails.name}
 					targetRef={targetRef}
-					threshold={70}
+					threshold={20}
 				/>
 				<div className='mt-20 sm:flex sm:items-center sm:gap-4'>
 					<div className='absolute top-0 left-0 w-full z-0'>
