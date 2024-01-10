@@ -194,7 +194,7 @@ const QueueInfo = (props: QueueInfoProps) => {
 																			{item.title}
 																		</span>
 																		<span className='block text-sm text-inactive'>
-																			{item.artist?.[0].name}
+																			{artistNames(currentTrackInfo.artist)}
 																		</span>
 																	</div>
 																	{nextFromList.length > 1 && (
