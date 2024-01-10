@@ -84,31 +84,28 @@ const ArtistDetails = () => {
 						<h2 className='mb-4'>Discography</h2>
 						<div className='md:hidden'>
 							<ul className='grid grid-cols-1 gap-3 xs:grid-cols-2 sm:hidden'>
-								{artistDetails?.albums?.map(
-									(item, index) =>
-										index == artistDetails.albums.length - 1 && (
-											<li key={item._id}>
-												<Link
-													to={`/albums/${item._id}`}
-													className='flex items-center'>
-													<Image
-														src={item.albumImageUrl}
-														width={100}
-														height={100}
-														classes='shrink-0 h-[70px] w-[70px] rounded-lg'
-													/>
-													<div className='ml-3 overflow-hidden'>
-														<span className='truncate block text-sm font-semibold'>
-															{item.name}
-														</span>
-														<span className='block text-sm text-inactive'>
-															{item.year} • {item.tracks.length} tracks
-														</span>
-													</div>
-												</Link>
-											</li>
-										)
-								)}
+								{artistDetails?.albums?.map((item, index) => (
+									<li key={item._id}>
+										<Link
+											to={`/albums/${item._id}`}
+											className='flex items-center'>
+											<Image
+												src={item.albumImageUrl}
+												width={100}
+												height={100}
+												classes='shrink-0 h-[70px] w-[70px] rounded-lg'
+											/>
+											<div className='ml-3 overflow-hidden'>
+												<span className='truncate block text-sm font-semibold'>
+													{item.name}
+												</span>
+												<span className='block text-sm text-inactive'>
+													{item.year} • {item.tracks.length} tracks
+												</span>
+											</div>
+										</Link>
+									</li>
+								))}
 							</ul>
 						</div>
 						<div className='hidden grid-cols-2 gap-4 sm:grid sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6'>
