@@ -59,20 +59,22 @@ const AlbumDetails = () => {
 					/>
 					<div
 						ref={targetRef}
-						className='relative flex items-center justify-between mb-2 z-10 transition-opacity duration-200 h-fit'>
-						<div>
+						className='relative flex items-center justify-between mb-8 z-10 transition-opacity duration-200 h-fit'>
+						<div className='w-full'>
 							<span className='block mb-1 font-bold text-2xl lg:text-4xl'>
 								{albumDetails.name}
 							</span>
 							<span className='text-inactive'>
-								{artistNames(albumDetails.artist)} • {albumDetails.year} •{' '}
-								{albumDetails.tracks.length} tracks, {albumDetails.duration}
+								{artistNames(albumDetails.artist)}
+							</span>
+							<span className='block text-inactive'>
+								{albumDetails.year} • {albumDetails.tracks.length} tracks,{' '}
+								{albumDetails.duration}
 							</span>
 						</div>
+						<PlaylistControls playlist={albumDetails.tracks} type='album' />
 					</div>
 				</div>
-
-				<PlaylistControls playlist={albumDetails.tracks} type='album' />
 
 				<TrackList tracks={albumDetails.tracks} type='album' />
 			</div>
