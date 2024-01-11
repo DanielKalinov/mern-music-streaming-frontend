@@ -29,7 +29,7 @@ const Artists = () => {
 										width={300}
 										classes='aspect-square h-full rounded-lg shadow-md'
 									/>
-									<span className='mt-3 block text-center text-sm font-semibold'>
+									<span className='mt-3 block text-center text-sm font-semibold truncate'>
 										{item.name}
 									</span>
 								</div>
