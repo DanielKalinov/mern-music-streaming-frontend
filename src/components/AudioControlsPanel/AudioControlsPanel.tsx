@@ -194,7 +194,7 @@ const AudioControlsPanel = ({
 					</IconButton>
 				</div>
 				<div className='absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 flex flex-col justify-between w-1/2 h-full py-4'>
-					<div className='flex justify-center'>
+					<div className='flex justify-center space-x-4'>
 						<IconButton onClick={() => dispatch(setShuffleList())}>
 							<Shuffle className={`${shuffleList ? 'text-accent' : ''}`} />
 						</IconButton>
