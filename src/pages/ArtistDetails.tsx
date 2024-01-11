@@ -51,8 +51,6 @@ const ArtistDetails = () => {
 					<div className='relative'>
 						<Image
 							src={artistDetails?.artistImageUrl ?? ''}
-							width={640}
-							height={256}
 							classes='grayscale w-full h-64 sm:grayscale-0'
 						/>
 						<div className='absolute top-0 left-0 h-full w-full bg-gradient-to-b from-accent/30 to-background-dark sm:backdrop-blur-3xl sm:from-transparent sm:to-background-dark' />
@@ -184,8 +182,6 @@ const ArtistDetails = () => {
 							onClick={(e) => e.stopPropagation()}>
 							<Image
 								src={artistDetails?.artistBioImageUrl ?? ''}
-								width={600}
-								height={360}
 								classes='m-auto shadow-img h-[240px] xs:h-[360px]'
 							/>
 

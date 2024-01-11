@@ -7,8 +7,8 @@ const Image = ({
 	classes,
 }: {
 	src: string;
-	width: number | string;
-	height: number | string;
+	width?: number;
+	height?: number;
 	classes?: string;
 }) => {
 	const [loaded, setLoaded] = useState(false);
@@ -26,17 +26,19 @@ const Image = ({
 					onLoad={() => setLoaded(true)}
 				/>
 
-				<div
-					className={`absolute top-0 left-0 h-full w-full bg-white/10 pb-[calc(${
-						width > height
-							? `${height}/${width}*100%`
-							: `${width}/${height}*100%`
-					} ${
-						!loaded && 'animate-pulse'
-					} rounded-lg transition-opacity duration-300 ease-in-out ${
-						loaded ? 'opacity-0' : 'opacity-1'
-					}`}
-				/>
+				{width && height && (
+					<div
+						className={`absolute top-0 left-0 h-full w-full bg-white/10 pb-[calc(${
+							width > height
+								? `${height}/${width}*100%`
+								: `${width}/${height}*100%`
+						} ${
+							!loaded && 'animate-pulse'
+						} rounded-lg transition-opacity duration-300 ease-in-out ${
+							loaded ? 'opacity-0' : 'opacity-1'
+						}`}
+					/>
+				)}
 			</div>
 		</>
 	);
