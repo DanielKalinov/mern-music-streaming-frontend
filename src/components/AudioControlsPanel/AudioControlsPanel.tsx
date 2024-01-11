@@ -67,6 +67,7 @@ const AudioControlsPanel = ({
 
 	return (
 		<>
+			{/* Small screens start */}
 			<div
 				className={`${
 					Object.keys(currentTrackInfo).length > 0
@@ -154,6 +155,9 @@ const AudioControlsPanel = ({
 					</div>
 				</div>
 			</div>
+			{/* Small screens end */}
+
+			{/* Large screens start */}
 			<div
 				className={`${
 					Object.keys(currentTrackInfo).length > 0
@@ -234,6 +238,7 @@ const AudioControlsPanel = ({
 					/>
 				</div>
 			</div>
+			{/* Large screens end*/}
 
 			<TrackInfo
 				showTrackInfo={showTrackInfo}
