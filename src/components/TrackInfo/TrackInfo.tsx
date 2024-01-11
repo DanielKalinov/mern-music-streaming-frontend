@@ -1,8 +1,6 @@
 import React, { Dispatch, SetStateAction } from 'react';
-import Slider from '@mui/material/Slider';
 import {
 	togglePlaying,
-	setIsSeeking,
 	setRepeatCurrentTrack,
 	skipTrack,
 	setShuffleList,
@@ -22,8 +20,8 @@ import {
 	Pause,
 } from '@mui/icons-material';
 import Image from '../Image';
-import accentColor from '../../utils/accentColor';
 import artistNames from '../../utils/artistName';
+import AudioSlider from '../AudioSlider/AudioSlider';
 
 const TrackInfo = (props: TrackInfoProps) => {
 	const {
@@ -46,26 +44,9 @@ const TrackInfo = (props: TrackInfoProps) => {
 		currentTrackPosition,
 		currentPlaylistInfo,
 		queue,
-		duration,
 		repeatCurrentTrack,
 		shuffleList,
 	} = audioPlayer;
-
-	const format = (val: number) => {
-		const valString = val + '';
-		if (valString.length < 2) {
-			return '0' + valString;
-		} else {
-			return valString;
-		}
-	};
-
-	const formattedTime = (val: any) => {
-		const seconds = format(Math.trunc(val % 60));
-		const minutes = Math.trunc((val / 60) as any);
-
-		return `${minutes}:${seconds}`;
-	};
 
 	const carouselAnimation = (index: number) => {
 		// This function adds a carousel effect on track change.
@@ -165,50 +146,11 @@ const TrackInfo = (props: TrackInfoProps) => {
 								<FavoriteBorder />
 							</IconButton>
 						</div>
-						<div
-							className='flex w-full my-1'
-							onMouseDown={() => dispatch(setIsSeeking(true))}
-							onPointerDown={() => dispatch(setIsSeeking(true))}>
-							<Slider
-								value={rangeInputValue}
-								size='small'
-								aria-label='Small'
-								max={duration}
-								onChange={(_, value) => {
-									setRangeInputValue(value as number);
-								}}
-								onChangeCommitted={(_, value) => {
-									dispatch(setIsSeeking(false));
-									dispatch(togglePlaying(true));
-									setSeekCurrentTime(value as number);
-								}}
-								sx={{
-									'& .MuiSlider-thumb': {
-										backgroundColor: '#ffffff',
-										height: 11,
-										width: 11,
-										'&.Mui-active': {
-											boxShadow: '0 0 0 7px rgba(255, 255, 255, 16%)',
-											height: 14,
-											width: 14,
-										},
-									},
-									'& .MuiSlider-track': {
-										backgroundColor: accentColor,
-										height: '4px',
-									},
-									'& .MuiSlider-rail': {
-										height: '4px',
-									},
-								}}
-							/>
-						</div>
-						<div className='flex justify-between'>
-							<span className='text-xs -mt-3'>
-								{formattedTime(rangeInputValue)}
-							</span>
-							<span className='text-xs -mt-3'>{formattedTime(duration)}</span>
-						</div>
+						<AudioSlider
+							rangeInputValue={rangeInputValue}
+							setRangeInputValue={setRangeInputValue}
+							setSeekCurrentTime={setSeekCurrentTime}
+						/>
 					</div>
 					<div className='flex justify-evenly'>
 						<IconButton onClick={() => dispatch(setShuffleList())}>

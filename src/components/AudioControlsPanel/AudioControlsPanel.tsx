@@ -1,13 +1,27 @@
 import React, { useEffect, useState, useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { skipTrack, togglePlaying } from '../../features/audioPlayerSlice';
+import {
+	setRepeatCurrentTrack,
+	setShuffleList,
+	skipTrack,
+	togglePlaying,
+} from '../../features/audioPlayerSlice';
 import TrackInfo from '../TrackInfo/TrackInfo';
 import QueueInfo from '../QueueInfo/QueueInfo';
 import AudioPlayerState from '../../types/AudioPlayerState';
 import IconButton from '@mui/material/IconButton';
-import { PlayArrow, Pause, SkipNext, SkipPrevious } from '@mui/icons-material';
+import {
+	PlayArrow,
+	Pause,
+	SkipNext,
+	SkipPrevious,
+	FormatListBulleted,
+	Repeat,
+	Shuffle,
+} from '@mui/icons-material';
 import Image from '../Image';
 import artistNames from '../../utils/artistName';
+import AudioSlider from '../AudioSlider';
 
 const AudioControlsPanel = ({
 	setSeekCurrentTime,
@@ -27,6 +41,8 @@ const AudioControlsPanel = ({
 		queue,
 		currentTrackInfo,
 		currentTrackPosition,
+		shuffleList,
+		repeatCurrentTrack,
 	} = audioPlayer;
 
 	const dispatch = useDispatch();
@@ -56,7 +72,7 @@ const AudioControlsPanel = ({
 					Object.keys(currentTrackInfo).length > 0
 						? 'translate-y-0'
 						: 'translate-y-full'
-				} fixed bottom-0 left-0 px-2 pb-2 w-full transition-all duration-300 ease-in-out z-20`}>
+				} fixed bottom-0 left-0 px-2 pb-2 w-full transition-all duration-100 ease-in-out z-20 lg:hidden`}>
 				<div className='flex flex-col max-w-lg m-auto items-center card !shadow-audio-panel overflow-hidden'>
 					<div
 						className='relative flex items-center justify-between w-full'
@@ -136,6 +152,86 @@ const AudioControlsPanel = ({
 							/>
 						</div>
 					</div>
+				</div>
+			</div>
+			<div
+				className={`${
+					Object.keys(currentTrackInfo).length > 0
+						? 'translate-y-0'
+						: 'translate-y-full'
+				} hidden fixed bottom-0 left-0 w-full p-4 bg-primary/80 backdrop-blur-3xl shadow-audio-panel transition-all duration-100 ease-in-out lg:flex`}>
+				<div className='relative flex justify-between items-center w-full'>
+					<div className='flex items-center'>
+						<div className='w-[60px] h-[60px] relative'>
+							{queue.map(
+								(item, index) =>
+									currentTrackPosition === index && (
+										<Image
+											key={index}
+											src={item.album?.albumImageUrl}
+											height={40}
+											width={40}
+											classes='rounded-md shadow-md'
+										/>
+									)
+							)}
+						</div>
+						<div className='ml-4'>
+							<span className='block text-sm font-bold'>
+								{currentTrackInfo.title}
+							</span>
+							<span className='block text-sm text-inactive'>
+								{artistNames(currentTrackInfo.artist)}
+							</span>
+						</div>
+					</div>
+					<IconButton onClick={() => setShowQueueInfo(true)}>
+						<FormatListBulleted />
+					</IconButton>
+				</div>
+				<div className='absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 flex flex-col justify-between w-1/2 h-full py-4'>
+					<div className='flex justify-center'>
+						<IconButton onClick={() => dispatch(setShuffleList())}>
+							<Shuffle className={`${shuffleList ? 'text-accent' : ''}`} />
+						</IconButton>
+						<IconButton
+							disabled={currentTrackPosition == 0}
+							onClick={() => {
+								dispatch(skipTrack('prev'));
+							}}>
+							<SkipPrevious />
+						</IconButton>
+						<IconButton
+							className='!bg-white/10 rounded-full !transition-transform active:scale-90'
+							onClick={(e) => {
+								e.stopPropagation();
+
+								if (isPlaying) {
+									dispatch(togglePlaying(false));
+								} else {
+									dispatch(togglePlaying(true));
+								}
+							}}>
+							{isPlaying ? <Pause /> : <PlayArrow />}
+						</IconButton>
+						<IconButton
+							disabled={currentTrackPosition + 1 == queue.length}
+							onClick={() => {
+								dispatch(skipTrack('next'));
+							}}>
+							<SkipNext />
+						</IconButton>
+						<IconButton onClick={() => dispatch(setRepeatCurrentTrack())}>
+							<Repeat
+								className={`${repeatCurrentTrack ? 'text-accent' : ''}`}
+							/>
+						</IconButton>
+					</div>
+					<AudioSlider
+						rangeInputValue={rangeInputValue}
+						setRangeInputValue={setRangeInputValue}
+						setSeekCurrentTime={setSeekCurrentTime}
+					/>
 				</div>
 			</div>
 
