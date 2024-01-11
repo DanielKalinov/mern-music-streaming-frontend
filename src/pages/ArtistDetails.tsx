@@ -52,7 +52,7 @@ const ArtistDetails = () => {
 						<Image
 							src={artistDetails?.artistImageUrl ?? ''}
 							width={640}
-							height={480}
+							height={256}
 							classes='grayscale w-full h-64 sm:grayscale-0'
 						/>
 						<div className='absolute top-0 left-0 h-full w-full bg-gradient-to-b from-accent/30 to-background-dark sm:backdrop-blur-3xl sm:from-transparent sm:to-background-dark' />
