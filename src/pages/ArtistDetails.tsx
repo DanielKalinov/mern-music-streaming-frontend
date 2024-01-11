@@ -184,9 +184,9 @@ const ArtistDetails = () => {
 							onClick={(e) => e.stopPropagation()}>
 							<Image
 								src={artistDetails?.artistBioImageUrl ?? ''}
-								width={640}
-								height={480}
-								classes='m-auto shadow-img'
+								width={600}
+								height={360}
+								classes='m-auto shadow-img h-[240px] xs:h-[360px]'
 							/>
 
 							<div className='absolute h-full top-2 right-2'>
