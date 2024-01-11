@@ -157,9 +157,9 @@ const ArtistDetails = () => {
 							}}>
 							<Image
 								src={artistDetails?.artistBioImageUrl ?? ''}
-								width={640}
-								height={480}
-								classes='w-full rounded-lg shadow-img'
+								width={480}
+								height={360}
+								classes='w-full rounded-lg shadow-img h-[360px]'
 							/>
 							<div className='absolute bottom-0 left-0 w-full flex items-center justify-between p-4 bg-gradient-to-b from-transparent to-black rounded-b-lg'>
 								<p className='text-sm line-clamp-2'>{artistDetails?.bio}</p>
