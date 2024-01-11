@@ -167,7 +167,7 @@ const ArtistDetails = () => {
 					</div>
 
 					<div
-						className={`fixed top-0 left-0 w-full h-full z-20 transition-all duration-200 xs:bg-black/60 xs:backdrop-blur-2xl xs:px-8 xs:py-16 ${
+						className={`fixed top-0 left-0 w-full h-full z-30 transition-all duration-200 xs:bg-black/60 xs:backdrop-blur-2xl xs:px-8 xs:py-16 ${
 							showBioWindow ? 'opacity-1 visible' : 'opacity-0 invisible'
 						}`}
 						onClick={() => {
@@ -193,7 +193,7 @@ const ArtistDetails = () => {
 										position: 'sticky',
 										top: 8,
 										right: 0,
-										backgroundColor: 'rgba(0, 0, 0, 0.5)',
+										backgroundColor: 'rgba(0, 0, 0, 0.7)',
 									}}
 									onClick={() => {
 										setShowBioWindow(false);
@@ -202,7 +202,7 @@ const ArtistDetails = () => {
 									<Close />
 								</IconButton>
 							</div>
-							<div className='px-4 pt-4 pb-40'>
+							<div className='p-4 pb-8'>
 								<h1 className='mb-4'>{artistDetails?.name}</h1>
 								<p
 									className='text-sm text-inactive '
