@@ -4,9 +4,13 @@ import { Link } from 'react-router-dom';
 import PageTransition from '../components/PageTransition';
 import Image from '../components/Image';
 import Artist from '../types/Artist';
+import { useSelector } from 'react-redux';
+import AudioPlayerState from '../types/AudioPlayerState';
 
 const Artists = () => {
 	const [artists, setArtists] = useState<Artist[]>([]);
+	const { audioPlayer } = useSelector((state: AudioPlayerState) => state);
+	const { currentPlaylistInfo } = audioPlayer;
 
 	useEffect(() => {
 		axios.get('http://localhost:5000/artists').then((res) => {
@@ -29,7 +33,10 @@ const Artists = () => {
 										width={300}
 										classes='aspect-square h-full rounded-lg shadow-md'
 									/>
-									<span className='mt-3 block text-center text-sm font-semibold truncate'>
+									<span
+										className={`mt-3 block text-center text-sm font-semibold truncate ${
+											currentPlaylistInfo.name == item.name && 'text-accent'
+										}`}>
 										{item.name}
 									</span>
 								</div>
