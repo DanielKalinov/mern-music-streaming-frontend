@@ -81,7 +81,7 @@ const ArtistDetails = () => {
 						<TrackList
 							tracks={artistDetails?.tracks ?? []}
 							showAlbumImage
-							playlistInfo={{ type: 'album', name: artistDetails?.name ?? '' }}
+							playlistInfo={{ type: 'artist', name: artistDetails?.name ?? '' }}
 						/>
 					</div>
 					<div className='mt-8'>
