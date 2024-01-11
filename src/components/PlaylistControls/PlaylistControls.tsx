@@ -14,10 +14,13 @@ import Track from '../../types/Track';
 
 const PlaylistControls = ({
 	playlist,
-	type,
+	playlistInfo,
 }: {
 	playlist: Track[];
-	type: string;
+	playlistInfo: {
+		type: 'album' | 'artist';
+		name: string;
+	};
 }) => {
 	const audioPlayer = useSelector(
 		(state: AudioPlayerState) => state.audioPlayer
@@ -51,13 +54,8 @@ const PlaylistControls = ({
 					dispatch(setQueue(playlist));
 					dispatch(
 						setCurrentPlaylistInfo({
-							type,
-							name:
-								type == 'album'
-									? album.name
-									: type == 'artist'
-									? artist[0].name
-									: '',
+							type: playlistInfo.type,
+							name: playlistInfo.name,
 						})
 					);
 				} else if (isPlaying && isInPlaylist) {

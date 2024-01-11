@@ -73,7 +73,7 @@ const ArtistDetails = () => {
 						</h1>
 						<PlaylistControls
 							playlist={artistDetails?.tracks ?? []}
-							type='artist'
+							playlistInfo={{ type: 'artist', name: artistDetails?.name ?? '' }}
 						/>
 					</div>
 					<div className='mt-8'>
@@ -81,7 +81,7 @@ const ArtistDetails = () => {
 						<TrackList
 							tracks={artistDetails?.tracks ?? []}
 							showAlbumImage
-							type='artist'
+							playlistInfo={{ type: 'album', name: artistDetails?.name ?? '' }}
 						/>
 					</div>
 					<div className='mt-8'>

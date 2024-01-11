@@ -72,11 +72,17 @@ const AlbumDetails = () => {
 								{albumDetails.duration}
 							</span>
 						</div>
-						<PlaylistControls playlist={albumDetails.tracks} type='album' />
+						<PlaylistControls
+							playlist={albumDetails.tracks}
+							playlistInfo={{ type: 'album', name: albumDetails.name }}
+						/>
 					</div>
 				</div>
 
-				<TrackList tracks={albumDetails.tracks} type='album' />
+				<TrackList
+					tracks={albumDetails.tracks}
+					playlistInfo={{ type: 'album', name: albumDetails.name }}
+				/>
 			</div>
 		</PageTransition>
 	) : null;

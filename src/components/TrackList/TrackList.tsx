@@ -17,12 +17,14 @@ import artistNames from '../../utils/artistName';
 const TrackList = ({
 	tracks,
 	showAlbumImage,
-	type,
+	playlistInfo,
 }: {
 	tracks: Track[];
 	showAlbumImage?: boolean;
-	albumName?: string;
-	type?: 'album' | 'artist';
+	playlistInfo: {
+		type: 'album' | 'artist';
+		name: string;
+	};
 }) => {
 	const audioPlayer = useSelector(
 		(state: AudioPlayerState) => state.audioPlayer
@@ -64,13 +66,8 @@ const TrackList = ({
 									dispatch(setQueue(tracks));
 									dispatch(
 										setCurrentPlaylistInfo({
-											type,
-											name:
-												type == 'album'
-													? item.album.name
-													: type == 'artist'
-													? item.artist[0].name
-													: '',
+											type: playlistInfo.type,
+											name: playlistInfo.name,
 										})
 									);
 								}
