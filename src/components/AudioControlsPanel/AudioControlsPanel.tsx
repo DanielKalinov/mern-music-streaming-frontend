@@ -235,6 +235,7 @@ const AudioControlsPanel = ({
 						rangeInputValue={rangeInputValue}
 						setRangeInputValue={setRangeInputValue}
 						setSeekCurrentTime={setSeekCurrentTime}
+						horizontalLayout
 					/>
 				</div>
 			</div>

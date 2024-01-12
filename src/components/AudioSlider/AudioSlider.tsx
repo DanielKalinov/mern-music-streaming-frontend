@@ -6,7 +6,12 @@ import { setIsSeeking, togglePlaying } from '../../features/audioPlayerSlice';
 import accentColor from '../../utils/accentColor';
 
 const AudioSlider = (props: AudioSliderProps) => {
-	const { rangeInputValue, setRangeInputValue, setSeekCurrentTime } = props;
+	const {
+		rangeInputValue,
+		setRangeInputValue,
+		setSeekCurrentTime,
+		horizontalLayout,
+	} = props;
 
 	const audioPlayer = useSelector(
 		(state: AudioPlayerState) => state.audioPlayer
@@ -15,28 +20,39 @@ const AudioSlider = (props: AudioSliderProps) => {
 
 	const dispatch = useDispatch();
 
-	// const format = (val: number) => {
-	// 	const valString = val + '';
-	// 	if (valString.length < 2) {
-	// 		return '0' + valString;
-	// 	} else {
-	// 		return valString;
-	// 	}
-	// };
+	const format = (val: number) => {
+		const valString = val + '';
+		if (valString.length < 2) {
+			return '0' + valString;
+		} else {
+			return valString;
+		}
+	};
 
-	// const formattedTime = (val: any) => {
-	// 	const seconds = format(Math.trunc(val % 60));
-	// 	const minutes = Math.trunc((val / 60) as any);
+	const formattedTime = (val: any) => {
+		const seconds = format(Math.trunc(val % 60));
+		const minutes = Math.trunc((val / 60) as any);
 
-	// 	return `${minutes}:${seconds}`;
-	// };
+		return `${minutes}:${seconds}`;
+	};
 
 	return (
 		<div className='flex flex-col'>
 			<div
-				className='flex w-full'
+				className={`${horizontalLayout && 'items-center'} relative flex w-full`}
 				onMouseDown={() => dispatch(setIsSeeking(true))}
 				onPointerDown={() => dispatch(setIsSeeking(true))}>
+				{horizontalLayout && (
+					<>
+						<span className='absolute -left-9 text-xs'>
+							{formattedTime(rangeInputValue)}
+						</span>
+						<span className='absolute -right-9 text-xs'>
+							{formattedTime(duration)}
+						</span>
+					</>
+				)}
+
 				<Slider
 					value={rangeInputValue}
 					size='small'
@@ -74,10 +90,12 @@ const AudioSlider = (props: AudioSliderProps) => {
 					}}
 				/>
 			</div>
-			{/* <div className='flex justify-between'>
-				<span className='text-xs -mt-3'>{formattedTime(rangeInputValue)}</span>
-				<span className='text-xs -mt-3'>{formattedTime(duration)}</span>
-			</div> */}
+			{!horizontalLayout && (
+				<div className='flex justify-between mt-1'>
+					<span className='text-xs'>{formattedTime(rangeInputValue)}</span>
+					<span className='text-xs'>{formattedTime(duration)}</span>
+				</div>
+			)}
 		</div>
 	);
 };
@@ -86,6 +104,7 @@ interface AudioSliderProps {
 	rangeInputValue: number;
 	setRangeInputValue: Dispatch<SetStateAction<number>>;
 	setSeekCurrentTime: (value: number) => void;
+	horizontalLayout?: boolean;
 }
 
 export default AudioSlider;

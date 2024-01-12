@@ -70,7 +70,7 @@ const TrackInfo = (props: TrackInfoProps) => {
 		<div
 			className={`${
 				showTrackInfo ? 'translate-y-0 opacity-1' : 'translate-y-full opacity-0'
-			} z-30 fixed top-0 left-0 h-full w-full [transition:transform_0.3s_ease-in-out,opacity_0.2s_ease-in-out]`}>
+			} z-30 fixed top-0 left-0 h-full w-full [transition:transform_0.3s_ease-in-out,opacity_0.2s_ease-in-out] lg:hidden`}>
 			<div
 				className='absolute top-0 h-full w-full transition-all duration-500 ease-in-out'
 				style={{
