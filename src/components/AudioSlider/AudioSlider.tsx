@@ -37,17 +37,17 @@ const AudioSlider = (props: AudioSliderProps) => {
 	};
 
 	return (
-		<div className='flex flex-col'>
+		<div className='flex flex-col max-w-xl w-full'>
 			<div
-				className={`${horizontalLayout && 'items-center'} relative flex w-full`}
+				className={`${horizontalLayout && 'items-center'} relative flex`}
 				onMouseDown={() => dispatch(setIsSeeking(true))}
 				onPointerDown={() => dispatch(setIsSeeking(true))}>
 				{horizontalLayout && (
 					<>
-						<span className='absolute -left-9 text-xs'>
+						<span className='absolute -left-8 text-xs'>
 							{formattedTime(rangeInputValue)}
 						</span>
-						<span className='absolute -right-9 text-xs'>
+						<span className='absolute -right-8 text-xs'>
 							{formattedTime(duration)}
 						</span>
 					</>
