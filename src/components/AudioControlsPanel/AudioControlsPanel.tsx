@@ -164,9 +164,9 @@ const AudioControlsPanel = ({
 						? 'translate-y-0'
 						: 'translate-y-full'
 				} hidden fixed bottom-0 left-0 w-full p-4 bg-primary/80 backdrop-blur-3xl shadow-audio-panel transition-all duration-100 ease-in-out lg:flex`}>
-				<div className='relative flex justify-between items-center w-full'>
-					<div className='flex items-center'>
-						<div className='w-[60px] h-[60px] relative'>
+				<div className='flex w-full'>
+					<div className='min-w-0 basis-1/4 flex items-center'>
+						<div className='max-w-[60px] min-w-[60px] max-h-[60px] min-h-[60px] relative'>
 							{queue.map(
 								(item, index) =>
 									currentTrackPosition === index && (
@@ -180,63 +180,65 @@ const AudioControlsPanel = ({
 									)
 							)}
 						</div>
-						<div className='ml-4'>
-							<span className='block text-sm font-bold'>
-								{currentTrackInfo.title}
+						<div className='overflow-hidden whitespace-nowrap ml-4'>
+							<span className='whitespace-nowrap block text-sm font-bold'>
+								{currentTrackInfo.title}Lorem Ipsum Dolor Sit
 							</span>
 							<span className='block text-sm text-inactive'>
 								{artistNames(currentTrackInfo.artist)}
 							</span>
 						</div>
 					</div>
-					<IconButton onClick={() => setShowQueueInfo(true)}>
-						<FormatListBulleted />
-					</IconButton>
-				</div>
-				<div className='absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 flex flex-col items-center justify-between w-1/2 h-full py-4'>
-					<div className='flex justify-center space-x-4'>
-						<IconButton onClick={() => dispatch(setShuffleList())}>
-							<Shuffle className={`${shuffleList ? 'text-accent' : ''}`} />
-						</IconButton>
-						<IconButton
-							disabled={currentTrackPosition == 0}
-							onClick={() => {
-								dispatch(skipTrack('prev'));
-							}}>
-							<SkipPrevious />
-						</IconButton>
-						<IconButton
-							className='!bg-white/10 rounded-full !transition-transform active:scale-90'
-							onClick={(e) => {
-								e.stopPropagation();
+					<div className='basis-1/2 flex flex-col items-center justify-between h-full'>
+						<div className='flex justify-center space-x-4'>
+							<IconButton onClick={() => dispatch(setShuffleList())}>
+								<Shuffle className={`${shuffleList ? 'text-accent' : ''}`} />
+							</IconButton>
+							<IconButton
+								disabled={currentTrackPosition == 0}
+								onClick={() => {
+									dispatch(skipTrack('prev'));
+								}}>
+								<SkipPrevious />
+							</IconButton>
+							<IconButton
+								className='!bg-white/10 rounded-full !transition-transform active:scale-90'
+								onClick={(e) => {
+									e.stopPropagation();
 
-								if (isPlaying) {
-									dispatch(togglePlaying(false));
-								} else {
-									dispatch(togglePlaying(true));
-								}
-							}}>
-							{isPlaying ? <Pause /> : <PlayArrow />}
-						</IconButton>
-						<IconButton
-							disabled={currentTrackPosition + 1 == queue.length}
-							onClick={() => {
-								dispatch(skipTrack('next'));
-							}}>
-							<SkipNext />
-						</IconButton>
-						<IconButton onClick={() => dispatch(setRepeatCurrentTrack())}>
-							<Repeat
-								className={`${repeatCurrentTrack ? 'text-accent' : ''}`}
-							/>
+									if (isPlaying) {
+										dispatch(togglePlaying(false));
+									} else {
+										dispatch(togglePlaying(true));
+									}
+								}}>
+								{isPlaying ? <Pause /> : <PlayArrow />}
+							</IconButton>
+							<IconButton
+								disabled={currentTrackPosition + 1 == queue.length}
+								onClick={() => {
+									dispatch(skipTrack('next'));
+								}}>
+								<SkipNext />
+							</IconButton>
+							<IconButton onClick={() => dispatch(setRepeatCurrentTrack())}>
+								<Repeat
+									className={`${repeatCurrentTrack ? 'text-accent' : ''}`}
+								/>
+							</IconButton>
+						</div>
+						<AudioSlider
+							rangeInputValue={rangeInputValue}
+							setRangeInputValue={setRangeInputValue}
+							setSeekCurrentTime={setSeekCurrentTime}
+							horizontalLayout
+						/>
+					</div>
+					<div className='basis-1/4 flex !justify-end'>
+						<IconButton onClick={() => setShowQueueInfo(true)}>
+							<FormatListBulleted />
 						</IconButton>
 					</div>
-					<AudioSlider
-						rangeInputValue={rangeInputValue}
-						setRangeInputValue={setRangeInputValue}
-						setSeekCurrentTime={setSeekCurrentTime}
-						horizontalLayout
-					/>
 				</div>
 			</div>
 			{/* Large screens end*/}

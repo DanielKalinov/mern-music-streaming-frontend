@@ -42,7 +42,7 @@ const AudioSlider = (props: AudioSliderProps) => {
 				className={`${horizontalLayout && 'items-center'} relative flex`}
 				onMouseDown={() => dispatch(setIsSeeking(true))}
 				onPointerDown={() => dispatch(setIsSeeking(true))}>
-				{horizontalLayout && (
+				{/* {horizontalLayout && (
 					<>
 						<span className='absolute -left-8 text-xs'>
 							{formattedTime(rangeInputValue)}
@@ -51,7 +51,7 @@ const AudioSlider = (props: AudioSliderProps) => {
 							{formattedTime(duration)}
 						</span>
 					</>
-				)}
+				)} */}
 
 				<Slider
 					value={rangeInputValue}
