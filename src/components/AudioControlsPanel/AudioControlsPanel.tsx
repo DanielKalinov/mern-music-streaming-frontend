@@ -48,6 +48,7 @@ const AudioControlsPanel = ({
 	const dispatch = useDispatch();
 
 	const staticProgressBarRef = useRef<HTMLDivElement>(null);
+	const spanRef = useRef<HTMLDivElement>(null);
 
 	useEffect(() => {
 		setRangeInputValue(audioProgressValue);
@@ -64,6 +65,35 @@ const AudioControlsPanel = ({
 			? (document.body.style.overflow = 'hidden')
 			: (document.body.style.overflow = 'auto');
 	}, [showTrackInfo]);
+
+	useEffect(() => {
+		if (Object.keys(currentTrackInfo).length > 0 && spanRef.current) {
+			spanRef.current.style.right = '0px';
+			spanRef.current.style.transition = 'none';
+
+			spanRef.current.scrollWidth !== spanRef.current.clientWidth &&
+				textSlideAnim();
+		}
+	}, [currentTrackInfo]);
+
+	function textSlideAnim() {
+		let direction = 'left';
+
+		changeTextPosition();
+
+		spanRef.current!.ontransitionend = () => {
+			direction = direction === 'left' ? 'right' : 'left';
+			changeTextPosition();
+		};
+
+		function changeTextPosition() {
+			spanRef.current!.style.transition = 'all 5s linear';
+			spanRef.current!.style.right =
+				direction === 'left'
+					? spanRef.current!.scrollWidth - spanRef.current!.clientWidth + 'px'
+					: '0px';
+		}
+	}
 
 	return (
 		<>
@@ -181,8 +211,10 @@ const AudioControlsPanel = ({
 							)}
 						</div>
 						<div className='overflow-hidden whitespace-nowrap ml-4'>
-							<span className='whitespace-nowrap block text-sm font-bold'>
-								{currentTrackInfo.title}Lorem Ipsum Dolor Sit
+							<span
+								ref={spanRef}
+								className='relative right-0 whitespace-nowrap block text-sm font-bold !delay-[2s]'>
+								{currentTrackInfo.title}
 							</span>
 							<span className='block text-sm text-inactive'>
 								{artistNames(currentTrackInfo.artist)}
