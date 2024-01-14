@@ -42,12 +42,7 @@ const AlbumDetails = () => {
 				/>
 				<div className='mt-20 sm:flex sm:items-center sm:gap-4'>
 					<div className='absolute top-0 left-0 w-full z-0'>
-						<Image
-							src={albumDetails.albumImageUrl}
-							height='100%'
-							width='100%'
-							classes='max-h-[400px]'
-						/>
+						<Image src={albumDetails.albumImageUrl} classes='max-h-[400px]' />
 						<div className='absolute top-0 left-0 h-full w-full bg-black/30 backdrop-blur-[128px]' />
 						<div className='absolute top-0 left-0 h-full w-full bg-gradient-to-b from-transparent to-background-dark' />
 					</div>
