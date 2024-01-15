@@ -265,8 +265,8 @@ const AudioControlsPanel = ({
 							setSeekCurrentTime={setSeekCurrentTime}
 						/>
 					</div>
-					<div className='basis-1/4 flex !justify-end'>
-						<IconButton onClick={() => setShowQueueInfo(true)}>
+					<div className='basis-1/4 flex items-center !justify-end'>
+						<IconButton onClick={() => setShowQueueInfo(!showQueueInfo)}>
 							<FormatListBulleted />
 						</IconButton>
 					</div>
