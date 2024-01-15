@@ -6,12 +6,7 @@ import { setIsSeeking, togglePlaying } from '../../features/audioPlayerSlice';
 import accentColor from '../../utils/accentColor';
 
 const AudioSlider = (props: AudioSliderProps) => {
-	const {
-		rangeInputValue,
-		setRangeInputValue,
-		setSeekCurrentTime,
-		horizontalLayout,
-	} = props;
+	const { rangeInputValue, setRangeInputValue, setSeekCurrentTime } = props;
 
 	const audioPlayer = useSelector(
 		(state: AudioPlayerState) => state.audioPlayer
@@ -39,20 +34,12 @@ const AudioSlider = (props: AudioSliderProps) => {
 	return (
 		<div className='flex flex-col max-w-xl w-full'>
 			<div
-				className={`${horizontalLayout && 'items-center'} relative flex`}
+				className={`relative flex items-center`}
 				onMouseDown={() => dispatch(setIsSeeking(true))}
 				onPointerDown={() => dispatch(setIsSeeking(true))}>
-				{/* {horizontalLayout && (
-					<>
-						<span className='absolute -left-8 text-xs'>
-							{formattedTime(rangeInputValue)}
-						</span>
-						<span className='absolute -right-8 text-xs'>
-							{formattedTime(duration)}
-						</span>
-					</>
-				)} */}
-
+				<span className='hidden w-12 text-center text-xs lg:inline'>
+					{formattedTime(rangeInputValue)}
+				</span>
 				<Slider
 					value={rangeInputValue}
 					size='small'
@@ -89,13 +76,14 @@ const AudioSlider = (props: AudioSliderProps) => {
 						},
 					}}
 				/>
+				<span className='hidden w-12 text-center text-xs lg:inline'>
+					{formattedTime(duration)}
+				</span>
 			</div>
-			{!horizontalLayout && (
-				<div className='flex justify-between mt-1'>
-					<span className='text-xs'>{formattedTime(rangeInputValue)}</span>
-					<span className='text-xs'>{formattedTime(duration)}</span>
-				</div>
-			)}
+			<div className='flex justify-between mt-1 lg:hidden'>
+				<span className='text-xs'>{formattedTime(rangeInputValue)}</span>
+				<span className='text-xs'>{formattedTime(duration)}</span>
+			</div>
 		</div>
 	);
 };
