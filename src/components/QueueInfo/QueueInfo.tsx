@@ -80,6 +80,12 @@ const QueueInfo = (props: QueueInfoProps) => {
 		}
 	}, [shuffleList]);
 
+	useEffect(() => {
+		showQueueInfo
+			? (document.body.style.overflow = 'hidden')
+			: (document.body.style.overflow = 'auto');
+	}, [showQueueInfo]);
+
 	return (
 		<>
 			<div
