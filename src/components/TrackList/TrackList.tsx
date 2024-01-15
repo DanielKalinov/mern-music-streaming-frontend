@@ -34,7 +34,7 @@ const TrackList = ({
 	const dispatch = useDispatch();
 
 	return (
-		<ul>
+		<ul className='relative'>
 			{tracks &&
 				tracks.map((item: Track, index) => (
 					<li

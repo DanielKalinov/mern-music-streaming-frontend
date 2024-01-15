@@ -33,15 +33,15 @@ const AlbumDetails = () => {
 
 	return albumDetails ? (
 		<PageTransition duration={0.2}>
-			<div className='max-w-2xl m-auto sm:mt-20'>
+			<div className='max-w-2xl m-auto'>
 				<TopBar
 					url={`/artist/${albumDetails.artist[0]._id}`}
 					text={albumDetails.name}
 					targetRef={targetRef}
 					threshold={20}
 				/>
-				<div className='mt-20 sm:flex sm:items-center sm:gap-4'>
-					<div className='absolute top-0 left-0 w-full z-0'>
+				<div className='mt-20 mb-8 sm:flex sm:items-center sm:gap-4'>
+					<div className='absolute top-0 left-0 w-full'>
 						<Image src={albumDetails.albumImageUrl} classes='max-h-[400px]' />
 						<div className='absolute top-0 left-0 h-full w-full bg-black/30 backdrop-blur-[128px]' />
 						<div className='absolute top-0 left-0 h-full w-full bg-gradient-to-b from-transparent to-background-dark' />
@@ -54,7 +54,7 @@ const AlbumDetails = () => {
 					/>
 					<div
 						ref={targetRef}
-						className='relative flex items-center justify-between mb-8 z-10 transition-opacity duration-200 h-fit'>
+						className='relative flex items-center justify-between mb-8 transition-opacity duration-200 h-fit'>
 						<div className='w-full'>
 							<span className='block mb-1 font-bold text-2xl lg:text-4xl'>
 								{albumDetails.name}
