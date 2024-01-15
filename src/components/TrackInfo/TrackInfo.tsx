@@ -80,7 +80,7 @@ const TrackInfo = (props: TrackInfoProps) => {
 					backgroundPosition: 'center',
 				}}
 			/>
-			<div className='relative flex flex-col h-full w-full px-8 bg-black/60 backdrop-blur-[128px] [&>*]:mb-auto'>
+			<div className='relative flex flex-col h-full w-full px-8 bg-black/60 backdrop-blur-[128px]'>
 				<div className='flex justify-between items-center -mx-4'>
 					<IconButton
 						edge='start'
@@ -105,35 +105,33 @@ const TrackInfo = (props: TrackInfoProps) => {
 						showTrackInfo
 							? 'translate-y-0 opacity-1'
 							: 'translate-y-full opacity-0'
-					} [transition:transform_0.4s_ease-in-out,opacity_0.7s_ease-in-out]`}>
-					<div className='relative h-80'>
-						{queue.map(
-							(item, index) =>
-								// Render only the current track, the next one, or the previous one.
-								// This avoids attaching all items to the DOM.
-								(index === currentTrackPosition ||
-									index === currentTrackPosition + 1 ||
-									index === currentTrackPosition - 1) && (
-									<div
-										key={item._id}
-										className={`w-full absolute transition-all duration-200 ease-in-out ${carouselAnimation(
-											index
-										)}`}>
-										<Image
-											src={item.album?.albumImageUrl}
-											width={300}
-											height={300}
-											classes='shadow-lg rounded-lg'
-										/>
-									</div>
-								)
-						)}
-					</div>
+					} relative flex flex-col items-center justify-center h-full [transition:transform_0.4s_ease-in-out,opacity_0.7s_ease-in-out]`}>
+					{queue.map(
+						(item, index) =>
+							// Render only the current track, the next one, or the previous one.
+							// This avoids attaching all items to the DOM.
+							(index === currentTrackPosition ||
+								index === currentTrackPosition + 1 ||
+								index === currentTrackPosition - 1) && (
+								<div
+									key={item._id}
+									className={`absolute transition-all duration-150 ease-in-out ${carouselAnimation(
+										index
+									)}`}>
+									<Image
+										src={item.album?.albumImageUrl}
+										width={448}
+										height={448}
+										classes='shadow-lg rounded-lg max-w-md'
+									/>
+								</div>
+							)
+					)}
 				</div>
 
-				<div>
+				<div className='max-w-md w-full mx-auto mb-16'>
 					<div className='flex flex-col'>
-						<div className='flex justify-between items-center my-4'>
+						<div className='flex justify-between items-center mb-4'>
 							<div>
 								<span className='block font-bold text-xl'>
 									{currentTrackInfo.title}
