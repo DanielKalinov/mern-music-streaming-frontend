@@ -8,6 +8,7 @@ module.exports = {
 		extend: {
 			colors: {
 				'background-dark': colors.slate[900],
+				'background-darker': colors.slate[950],
 				primary: colors.slate[800],
 				secondary: colors.slate[700],
 				accent: accentColor,
