@@ -120,8 +120,6 @@ const TrackInfo = (props: TrackInfoProps) => {
 									)}`}>
 									<Image
 										src={item.album?.albumImageUrl}
-										width={448}
-										height={448}
 										classes='shadow-lg rounded-lg max-w-md'
 									/>
 								</div>

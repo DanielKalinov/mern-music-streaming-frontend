@@ -4,11 +4,13 @@ const Image = ({
 	src,
 	width,
 	height,
+	noPlaceholder,
 	classes,
 }: {
 	src: string;
 	width?: number;
 	height?: number;
+	noPlaceholder?: boolean;
 	classes?: string;
 }) => {
 	const [loaded, setLoaded] = useState(false);
@@ -20,19 +22,15 @@ const Image = ({
 					className={`${
 						loaded ? ' opacity-1' : ' opacity-0'
 					} w-full h-full object-cover transition-opacity duration-300 ease-in-out`}
-					width={width}
-					height={height}
+					width={width ?? undefined}
+					height={height ?? undefined}
 					src={src}
 					onLoad={() => setLoaded(true)}
 				/>
 
-				{width && height && (
+				{!noPlaceholder && (
 					<div
-						className={`absolute top-0 left-0 h-full w-full bg-white/10 pb-[calc(${
-							width > height
-								? `${height}/${width}*100%`
-								: `${width}/${height}*100%`
-						} ${
+						className={`absolute top-0 left-0 h-full w-full bg-white/10 ${
 							!loaded && 'animate-pulse'
 						} rounded-lg transition-opacity duration-300 ease-in-out ${
 							loaded ? 'opacity-0' : 'opacity-1'
