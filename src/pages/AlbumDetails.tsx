@@ -54,7 +54,7 @@ const AlbumDetails = () => {
 					/>
 					<div
 						ref={targetRef}
-						className='relative flex items-center justify-between mb-8 transition-opacity duration-200 h-fit'>
+						className='relative flex items-center justify-between w-full basis-1/2 mb-8 transition-opacity duration-200 h-fit'>
 						<div className='w-full'>
 							<span className='block mb-1 font-bold text-2xl lg:text-4xl'>
 								{albumDetails.name}
