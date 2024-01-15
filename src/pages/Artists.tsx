@@ -29,9 +29,8 @@ const Artists = () => {
 								<div className='p-3 card hover:bg-secondary'>
 									<Image
 										src={item.artistImageUrl}
-										height={300}
-										width={300}
-										classes='aspect-square h-full rounded-lg shadow-md'
+										fullSize={true}
+										classes='aspect-square rounded-lg shadow-md'
 									/>
 									<span
 										className={`mt-3 block text-center text-sm font-semibold truncate ${

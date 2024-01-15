@@ -52,6 +52,7 @@ const ArtistDetails = () => {
 						<Image
 							src={artistDetails?.artistImageUrl ?? ''}
 							noPlaceholder
+							fullSize={true}
 							classes='grayscale w-full h-64 sm:grayscale-0'
 						/>
 						<div className='absolute top-0 left-0 h-full w-full bg-gradient-to-b from-accent/30 to-background-dark sm:backdrop-blur-3xl sm:from-transparent sm:to-background-dark' />
@@ -61,9 +62,9 @@ const ArtistDetails = () => {
 					<div className='flex items-center'>
 						<Image
 							src={artistDetails?.artistImageUrl ?? ''}
-							width={100}
-							height={100}
-							classes='hidden object-cover h-[100px] w-[100px] shrink-0 rounded-full z-10 shadow-img sm:block sm:h-[150px] sm:w-[150px] md:h-[200px] md:w-[200px]'
+							width={200}
+							height={200}
+							classes='hidden aspect-square rounded-full z-10 shadow-img sm:flex'
 						/>
 						<h1
 							ref={targetRef}
@@ -97,9 +98,9 @@ const ArtistDetails = () => {
 												className='flex items-center'>
 												<Image
 													src={item.albumImageUrl}
-													width={100}
-													height={100}
-													classes='shrink-0 h-[70px] w-[70px] rounded-lg'
+													width={70}
+													height={70}
+													classes='shrink-0 rounded-lg'
 												/>
 												<div className='ml-3 overflow-hidden'>
 													<span
@@ -126,9 +127,7 @@ const ArtistDetails = () => {
 									className='p-3 card hover:bg-secondary'>
 									<Image
 										src={item.albumImageUrl}
-										width={300}
-										height={300}
-										classes='shadow-lg rounded-lg'
+										classes='aspect-square shadow-lg rounded-lg'
 									/>
 									<div className='mt-3'>
 										<span
@@ -158,6 +157,7 @@ const ArtistDetails = () => {
 								src={artistDetails?.artistBioImageUrl ?? ''}
 								width={480}
 								height={360}
+								fullSize={true}
 								classes='w-full rounded-lg shadow-img h-[360px]'
 							/>
 							<div className='absolute bottom-0 left-0 w-full flex items-center justify-between p-4 bg-gradient-to-b from-transparent to-black rounded-b-lg'>
@@ -183,6 +183,7 @@ const ArtistDetails = () => {
 							onClick={(e) => e.stopPropagation()}>
 							<Image
 								src={artistDetails?.artistBioImageUrl ?? ''}
+								fullSize
 								classes='m-auto shadow-img h-[240px] xs:h-[360px]'
 							/>
 

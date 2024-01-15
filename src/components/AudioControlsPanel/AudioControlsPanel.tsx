@@ -110,7 +110,7 @@ const AudioControlsPanel = ({
 						onClick={() => setShowTrackInfo(true)}>
 						<div className='flex items-center'>
 							<div className='p-2'>
-								<div className='w-[40px] h-[40px] relative'>
+								<div className='min-w-[40px] min-h-[40px] relative'>
 									{queue.map(
 										(item, index) =>
 											currentTrackPosition === index && (
@@ -203,8 +203,8 @@ const AudioControlsPanel = ({
 										<Image
 											key={index}
 											src={item.album?.albumImageUrl}
-											height={40}
-											width={40}
+											height={60}
+											width={60}
 											classes='rounded-md shadow-md'
 										/>
 									)

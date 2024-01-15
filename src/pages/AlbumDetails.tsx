@@ -45,6 +45,7 @@ const AlbumDetails = () => {
 						<Image
 							src={albumDetails.albumImageUrl}
 							noPlaceholder
+							fullSize={true}
 							classes='max-h-[400px]'
 						/>
 						<div className='absolute top-0 left-0 h-full w-full bg-black/30 backdrop-blur-[128px]' />
@@ -52,7 +53,9 @@ const AlbumDetails = () => {
 					</div>
 					<Image
 						src={albumDetails.albumImageUrl}
-						classes='m-auto w-[300px] h-[300px] max-w-[300px] max-h-[300px] mb-8 shadow-lg rounded-lg sm:basis-1/2 sm:m-0'
+						height={300}
+						width={300}
+						classes='m-auto w-fit mb-8 shadow-lg rounded-lg sm:m-0'
 					/>
 					<div
 						ref={targetRef}

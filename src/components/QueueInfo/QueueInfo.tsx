@@ -116,7 +116,7 @@ const QueueInfo = (props: QueueInfoProps) => {
 							<span className='block mb-2 font-bold '>Now Playing</span>
 							<div className='flex items-center'>
 								<div className='mr-2'>
-									<div className='w-[40px] h-[40px] relative'>
+									<div className='min-w-[40px] min-h-[40px] relative'>
 										{queue.map(
 											(item, index) =>
 												currentTrackPosition === index && (
