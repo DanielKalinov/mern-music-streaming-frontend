@@ -133,7 +133,7 @@ const TrackInfo = (props: TrackInfoProps) => {
 
 				<div>
 					<div className='flex flex-col'>
-						<div className='flex justify-between items-center mt-4'>
+						<div className='flex justify-between items-center my-4'>
 							<div>
 								<span className='block font-bold text-xl'>
 									{currentTrackInfo.title}
