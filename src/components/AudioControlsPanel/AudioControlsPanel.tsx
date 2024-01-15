@@ -271,6 +271,10 @@ const AudioControlsPanel = ({
 						</IconButton>
 					</div>
 				</div>
+				<QueueInfo
+					showQueueInfo={showQueueInfo}
+					setShowQueueInfo={setShowQueueInfo}
+				/>
 			</div>
 			{/* Large screens end*/}
 
