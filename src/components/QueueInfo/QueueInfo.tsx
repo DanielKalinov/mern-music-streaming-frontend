@@ -86,14 +86,18 @@ const QueueInfo = (props: QueueInfoProps) => {
 			<div
 				className={`${
 					showQueueInfo ? 'opacity-100 visible' : 'opacity-0 invisible'
-				} absolute top-0 left-0 w-full h-full bg-black/70 backdrop-blur-xl transition-opacity duration-700 ease-in-out z-30 lg:hidden`}
+				} fixed top-0 left-0 w-full h-full bg-black/70 backdrop-blur-xl transition-opacity duration-700 ease-in-out z-30 lg:hidden`}
+				onClick={(e) => {
+					setShowQueueInfo(false);
+					e.stopPropagation();
+				}}
 			/>
 			<div
 				className={`${
 					showQueueInfo
 						? 'opacity-100 translate-y-0'
 						: 'opacity-0 translate-y-full'
-				} fixed top-0 left-0 p-4 h-full w-full z-40 [transition:transform_300ms_ease-in-out,opacity_200ms_ease-in-out] lg:hidden`}>
+				} fixed top-0 left-1/2 -translate-x-1/2 p-4 h-full max-w-lg w-full z-40 [transition:transform_300ms_ease-in-out,opacity_200ms_ease-in-out] lg:hidden`}>
 				<div className={`h-full w-full px-4 bg-primary rounded-2xl`}>
 					<div className='h-full flex flex-col'>
 						<div className='flex justify-between items-center'>
