@@ -70,7 +70,7 @@ a {
 
 ::-webkit-scrollbar {
 	width: 8px;
-	@apply bg-background-dark;
+	@apply bg-background-darker;
 }
 
 ::-webkit-scrollbar-thumb {
