@@ -133,7 +133,7 @@ const ArtistDetails = () => {
 									))}
 							</ul>
 						</div>
-						<div className='hidden grid-cols-2 gap-4 sm:grid sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6'>
+						<div className='hidden grid-cols-2 gap-4 sm:grid sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6 xl:grid-cols-7 2xl:grid-cols-8'>
 							{artistDetails?.albums?.map((item) => (
 								<Link
 									key={item._id}
