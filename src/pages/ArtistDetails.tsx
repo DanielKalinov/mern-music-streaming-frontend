@@ -177,39 +177,43 @@ const ArtistDetails = () => {
 						}}>
 						<div
 							ref={bioWindowRef}
-							className={`relative w-full h-full m-auto bg-background-dark overflow-y-scroll transition-transform duration-200 xs:rounded-lg sm:w-[600px] ${
+							className={`relative w-full h-full m-auto bg-background-dark overflow-hidden transition-transform duration-200 xs:rounded-lg sm:w-[600px] ${
 								showBioWindow ? 'scale-100' : 'scale-90'
 							}`}
 							onClick={(e) => e.stopPropagation()}>
-							<Image
-								src={artistDetails?.artistBioImageUrl ?? ''}
-								fullSize
-								classes='m-auto shadow-img h-[240px] xs:h-[360px]'
-							/>
-
-							<div className='absolute h-full top-2 right-2'>
-								<IconButton
-									size='medium'
-									disableRipple
-									sx={{
-										position: 'sticky',
-										top: 8,
-										right: 0,
-										backgroundColor: 'rgba(0, 0, 0, 0.7)',
-									}}
-									onClick={() => {
-										setShowBioWindow(false);
-										document.body.style.overflow = 'auto';
-									}}>
-									<Close />
-								</IconButton>
-							</div>
-							<div className='p-4 pb-8'>
-								<h1 className='mb-4'>{artistDetails?.name}</h1>
-								<p
-									className='text-sm text-inactive '
-									dangerouslySetInnerHTML={{ __html: artistDetails?.bio ?? '' }}
+							<div className='overflow-y-auto max-h-full'>
+								<Image
+									src={artistDetails?.artistBioImageUrl ?? ''}
+									fullSize
+									classes='m-auto shadow-img h-[240px] xs:h-[360px]'
 								/>
+
+								<div className='absolute h-full top-2 right-2'>
+									<IconButton
+										size='medium'
+										disableRipple
+										sx={{
+											position: 'sticky',
+											top: 8,
+											right: 0,
+											backgroundColor: 'rgba(0, 0, 0, 0.7)',
+										}}
+										onClick={() => {
+											setShowBioWindow(false);
+											document.body.style.overflow = 'auto';
+										}}>
+										<Close />
+									</IconButton>
+								</div>
+								<div className='p-4 pb-8'>
+									<h1 className='mb-4'>{artistDetails?.name}</h1>
+									<p
+										className='text-sm text-inactive '
+										dangerouslySetInnerHTML={{
+											__html: artistDetails?.bio ?? '',
+										}}
+									/>
+								</div>
 							</div>
 						</div>
 					</div>
