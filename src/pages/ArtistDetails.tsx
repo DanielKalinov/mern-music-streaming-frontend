@@ -1,8 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
 import axios from 'axios';
 import { Link, useParams } from 'react-router-dom';
-import { IconButton } from '@mui/material';
-import { ChevronRight, Close } from '@mui/icons-material';
 import PageTransition from '../components/PageTransition';
 import TopBar from '../components/TopBar';
 import Image from '../components/Image';
@@ -12,15 +10,15 @@ import PlaylistControls from '../components/PlaylistControls';
 import Track from '../types/Track';
 import { useSelector } from 'react-redux';
 import AudioPlayerState from '../types/AudioPlayerState';
+import BioSection from '../components/BioSection';
 
 const ArtistDetails = () => {
 	const [artistDetails, setArtistDetails] = useState<Artist>();
-	const [showBioWindow, setShowBioWindow] = useState(false);
+
 	const { audioPlayer } = useSelector((state: AudioPlayerState) => state);
 	const { currentPlaylistInfo } = audioPlayer;
 
 	const targetRef = useRef(null);
-	const bioWindowRef = useRef<HTMLDivElement>(null);
 
 	const params = useParams();
 
@@ -77,12 +75,28 @@ const ArtistDetails = () => {
 						/>
 					</div>
 					<div className='mt-8'>
-						<h2 className='mb-4'>Top tracks</h2>
-						<TrackList
-							tracks={artistDetails?.tracks ?? []}
-							showAlbumImage
-							playlistInfo={{ type: 'artist', name: artistDetails?.name ?? '' }}
-						/>
+						<div className='flex justify-between'>
+							<div className='w-full md:basis-1/2'>
+								<h2 className='mb-4'>Top tracks</h2>
+								<TrackList
+									tracks={artistDetails?.tracks ?? []}
+									showAlbumImage
+									playlistInfo={{
+										type: 'artist',
+										name: artistDetails?.name ?? '',
+									}}
+								/>
+							</div>
+							<div className='hidden basis-1/2 ml-4 md:block'>
+								<BioSection
+									artistDetails={{
+										name: artistDetails?.name ?? '',
+										bio: artistDetails?.bio ?? '',
+										artistBioImageUrl: artistDetails?.artistBioImageUrl ?? '',
+									}}
+								/>
+							</div>
+						</div>
 					</div>
 					<div className='mt-8'>
 						<h2 className='mb-4'>Discography</h2>
@@ -144,78 +158,14 @@ const ArtistDetails = () => {
 							))}
 						</div>
 					</div>
-					<div className='max-w-[480px] mt-8'>
-						<h2 className='mb-4'>Bio</h2>
-						<div
-							className='relative cursor-pointer'
-							onClick={() => {
-								bioWindowRef.current?.scrollTo(0, 0);
-								setShowBioWindow(true);
-								document.body.style.overflow = 'hidden';
-							}}>
-							<Image
-								src={artistDetails?.artistBioImageUrl ?? ''}
-								width={480}
-								height={360}
-								fullSize={true}
-								classes='w-full rounded-lg shadow-img h-[360px]'
-							/>
-							<div className='absolute bottom-0 left-0 w-full flex items-center justify-between p-4 bg-gradient-to-b from-transparent to-black rounded-b-lg'>
-								<p className='text-sm line-clamp-2'>{artistDetails?.bio}</p>
-								<ChevronRight fontSize='large' />
-							</div>
-						</div>
-					</div>
-
-					<div
-						className={`fixed top-0 left-0 w-full h-full z-30 transition-all duration-200 xs:bg-black/60 xs:backdrop-blur-2xl xs:px-8 xs:py-16 ${
-							showBioWindow ? 'opacity-1 visible' : 'opacity-0 invisible'
-						}`}
-						onClick={() => {
-							setShowBioWindow(false);
-							document.body.style.overflow = 'auto';
-						}}>
-						<div
-							ref={bioWindowRef}
-							className={`relative w-full h-full m-auto bg-background-dark overflow-hidden transition-transform duration-200 xs:rounded-lg sm:w-[600px] ${
-								showBioWindow ? 'scale-100' : 'scale-90'
-							}`}
-							onClick={(e) => e.stopPropagation()}>
-							<div className='overflow-y-auto max-h-full'>
-								<Image
-									src={artistDetails?.artistBioImageUrl ?? ''}
-									fullSize
-									classes='m-auto shadow-img h-[240px] xs:h-[360px]'
-								/>
-
-								<div className='absolute h-full top-2 right-2'>
-									<IconButton
-										size='medium'
-										disableRipple
-										sx={{
-											position: 'sticky',
-											top: 8,
-											right: 0,
-											backgroundColor: 'rgba(0, 0, 0, 0.7)',
-										}}
-										onClick={() => {
-											setShowBioWindow(false);
-											document.body.style.overflow = 'auto';
-										}}>
-										<Close />
-									</IconButton>
-								</div>
-								<div className='p-4 pb-8'>
-									<h1 className='mb-4'>{artistDetails?.name}</h1>
-									<p
-										className='text-sm text-inactive '
-										dangerouslySetInnerHTML={{
-											__html: artistDetails?.bio ?? '',
-										}}
-									/>
-								</div>
-							</div>
-						</div>
+					<div className='mt-8 md:hidden'>
+						<BioSection
+							artistDetails={{
+								name: artistDetails?.name ?? '',
+								bio: artistDetails?.bio ?? '',
+								artistBioImageUrl: artistDetails?.artistBioImageUrl ?? '',
+							}}
+						/>
 					</div>
 				</div>
 			</div>
