@@ -271,10 +271,12 @@ const AudioControlsPanel = ({
 						</IconButton>
 					</div>
 				</div>
-				<QueueInfo
-					showQueueInfo={showQueueInfo}
-					setShowQueueInfo={setShowQueueInfo}
-				/>
+				<div className='lg:block'>
+					<QueueInfo
+						showQueueInfo={showQueueInfo}
+						setShowQueueInfo={setShowQueueInfo}
+					/>
+				</div>
 			</div>
 			{/* Large screens end*/}
 
@@ -287,10 +289,12 @@ const AudioControlsPanel = ({
 				setShowQueueInfo={setShowQueueInfo}
 			/>
 
-			<QueueInfo
-				showQueueInfo={showQueueInfo}
-				setShowQueueInfo={setShowQueueInfo}
-			/>
+			<div className='lg:hidden'>
+				<QueueInfo
+					showQueueInfo={showQueueInfo}
+					setShowQueueInfo={setShowQueueInfo}
+				/>
+			</div>
 		</>
 	);
 };

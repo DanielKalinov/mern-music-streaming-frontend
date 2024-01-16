@@ -71,7 +71,7 @@ a {
 @media screen and (min-width: 1024px) {
 	::-webkit-scrollbar {
 		width: 8px;
-		@apply bg-background-dark;
+		@apply bg-background-darker;
 	}
 
 	::-webkit-scrollbar-thumb {
