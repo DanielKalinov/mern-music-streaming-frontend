@@ -30,7 +30,7 @@ const Artists = () => {
 									<Image
 										src={item.artistImageUrl}
 										fullSize={true}
-										classes='aspect-square rounded-lg shadow-md'
+										classes='aspect-square rounded-lg shadow-img'
 									/>
 									<span
 										className={`mt-3 block text-center text-sm font-semibold truncate ${

@@ -106,7 +106,7 @@ const ArtistDetails = () => {
 								.map((item) => (
 									<li
 										key={item._id}
-										className='relative bg-primary rounded-lg overflow-hidden'>
+										className='relative bg-primary rounded-lg shadow-card overflow-hidden'>
 										<div className='absolute top-0 left-0 h-full w-full backdrop-blur-0'>
 											<div className='absolute top-0 left-0 h-full w-full bg-gradient-to-r from-primary/70 to-primary backdrop-blur-3xl backdrop-saturate-200 z-0' />
 											<div
