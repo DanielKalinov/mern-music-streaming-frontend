@@ -150,74 +150,86 @@ const QueueInfo = (props: QueueInfoProps) => {
 								</div>
 							</div>
 						</div>
-						<span className='block mb-2 font-bold px-4'>
-							Next From: {currentPlaylistInfo.name}
-						</span>
 						{nextFromList.length > 0 && (
-							<div className='overflow-y-auto mb-4'>
-								<DragDropContext
-									onDragEnd={(e) => {
-										if (!e.destination) return;
+							<>
+								<span className='block mb-2 font-bold px-4'>
+									Next From: {currentPlaylistInfo.name}
+								</span>
+								{nextFromList.length > 0 && (
+									<div className='overflow-y-auto mb-4'>
+										<DragDropContext
+											onDragEnd={(e) => {
+												if (!e.destination) return;
 
-										// reorder items in nextFromList variable
-										const [reorderedItem] = nextFromList.splice(
-											e.source.index,
-											1
-										);
-										nextFromList.splice(e.destination.index, 0, reorderedItem);
+												// reorder items in nextFromList variable
+												const [reorderedItem] = nextFromList.splice(
+													e.source.index,
+													1
+												);
+												nextFromList.splice(
+													e.destination.index,
+													0,
+													reorderedItem
+												);
 
-										// insert reordered items in state
-										const newQueue = [...queue];
-										newQueue.splice(
-											currentTrackPosition + 1,
-											nextFromList.length,
-											...nextFromList
-										);
+												// insert reordered items in state
+												const newQueue = [...queue];
+												newQueue.splice(
+													currentTrackPosition + 1,
+													nextFromList.length,
+													...nextFromList
+												);
 
-										dispatch(setQueue(newQueue));
-									}}>
-									<Droppable droppableId='queue'>
-										{(provided) => (
-											<ul {...provided.droppableProps} ref={provided.innerRef}>
-												<>
-													{nextFromList.map((item, index) => (
-														<Draggable
-															isDragDisabled={nextFromList.length == 1}
-															key={item._id}
-															draggableId={item._id}
-															index={index}>
-															{(provided, snapshot) => (
-																<li
-																	ref={provided.innerRef}
-																	{...provided.draggableProps}
-																	{...provided.dragHandleProps}
-																	className={`!left-auto !top-auto flex justify-between px-4 py-2 transition-colors duration-300 select-none ${
-																		snapshot.isDragging ? 'bg-secondary' : ''
-																	}`}>
-																	<div>
-																		<span className='block text-sm'>
-																			{item.title}
-																		</span>
-																		<span className='block text-sm text-inactive'>
-																			{artistNames(currentTrackInfo.artist)}
-																		</span>
-																	</div>
-																	{nextFromList.length > 1 && (
-																		<IconButton edge='end'>
-																			<DragHandle />
-																		</IconButton>
+												dispatch(setQueue(newQueue));
+											}}>
+											<Droppable droppableId='queue'>
+												{(provided) => (
+													<ul
+														{...provided.droppableProps}
+														ref={provided.innerRef}>
+														<>
+															{nextFromList.map((item, index) => (
+																<Draggable
+																	isDragDisabled={nextFromList.length == 1}
+																	key={item._id}
+																	draggableId={item._id}
+																	index={index}>
+																	{(provided, snapshot) => (
+																		<li
+																			ref={provided.innerRef}
+																			{...provided.draggableProps}
+																			{...provided.dragHandleProps}
+																			className={`!left-auto !top-auto flex justify-between px-4 py-2 transition-colors duration-300 select-none ${
+																				snapshot.isDragging
+																					? 'bg-secondary'
+																					: ''
+																			}`}>
+																			<div>
+																				<span className='block text-sm'>
+																					{item.title}
+																				</span>
+																				<span className='block text-sm text-inactive'>
+																					{artistNames(currentTrackInfo.artist)}
+																				</span>
+																			</div>
+																			{nextFromList.length > 1 && (
+																				<IconButton edge='end'>
+																					<DragHandle />
+																				</IconButton>
+																			)}
+																		</li>
 																	)}
-																</li>
-															)}
-														</Draggable>
-													))}
-													{provided.placeholder}
-												</>
-											</ul>
-										)}
-									</Droppable>
-								</DragDropContext>
-							</div>
+																</Draggable>
+															))}
+															{provided.placeholder}
+														</>
+													</ul>
+												)}
+											</Droppable>
+										</DragDropContext>
+									</div>
+								)}
+							</>
 						)}
 						<div className='mt-auto w-full lg:hidden'>
 							<div className='flex justify-evenly my-4'>
