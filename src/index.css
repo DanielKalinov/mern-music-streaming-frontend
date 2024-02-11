@@ -43,7 +43,7 @@ a {
 }
 
 .card {
-	@apply bg-primary shadow-card rounded-lg transition-all duration-200 ease-in-out;
+	@apply bg-primary shadow-card rounded-lg transition-all duration-150 ease-in-out;
 }
 
 .border-style {

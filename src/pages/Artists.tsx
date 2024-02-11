@@ -22,7 +22,7 @@ const Artists = () => {
 		<PageTransition duration={1}>
 			<div className='pageContainer'>
 				<h1 className='w-full text-center mt-4 mb-8'>Pick an artist</h1>
-				<div className='grid grid-cols-2 gap-4 xs:grid-cols-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6 xl:grid-cols-7 2xl:grid-cols-8'>
+				<div className='grid grid-cols-2 gap-4 xs:grid-cols-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6'>
 					{artists.map(
 						(item: { _id: string; name: string; artistImageUrl: string }) => (
 							<Link key={item._id} to={`/artist/${item._id}`}>
