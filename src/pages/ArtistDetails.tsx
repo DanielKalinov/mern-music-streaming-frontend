@@ -120,7 +120,7 @@ const ArtistDetails = () => {
 										</div>
 										<Link
 											to={`/albums/${item._id}`}
-											className='relative flex items-center p-2 z-10'>
+											className='relative flex items-center p-2'>
 											<Image
 												src={item.albumImageUrl}
 												classes='shrink-0 h-[70px] w-[70px] rounded-tl-lg rounded-lg shadow-img lg:h-[100px] lg:w-[100px]'
