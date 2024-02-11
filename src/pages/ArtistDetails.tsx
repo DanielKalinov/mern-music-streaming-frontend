@@ -107,9 +107,9 @@ const ArtistDetails = () => {
 								.map((item) => (
 									<li
 										key={item._id}
-										className='relative p-2 bg-primary rounded-lg overflow-hidden'>
+										className='relative bg-primary rounded-lg overflow-hidden'>
 										<div className='absolute top-0 left-0 h-full w-full backdrop-blur-0'>
-											<div className='absolute top-0 left-0 h-full w-full bg-gradient-to-r from-primary/70 to-primary backdrop-blur-3xl backdrop-saturate-200' />
+											<div className='absolute top-0 left-0 h-full w-full bg-gradient-to-r from-primary/70 to-primary backdrop-blur-3xl backdrop-saturate-200 z-0' />
 											<div
 												className='h-full w-full'
 												style={{
@@ -120,12 +120,12 @@ const ArtistDetails = () => {
 										</div>
 										<Link
 											to={`/albums/${item._id}`}
-											className='flex items-center'>
+											className='relative flex items-center p-2 z-10'>
 											<Image
 												src={item.albumImageUrl}
 												classes='shrink-0 h-[70px] w-[70px] rounded-tl-lg rounded-lg shadow-img lg:h-[100px] lg:w-[100px]'
 											/>
-											<div className='ml-4 overflow-hidden z-10'>
+											<div className='ml-4 overflow-hidden'>
 												<span
 													className={`truncate block text-sm font-semibold ${
 														currentPlaylistInfo.name == item.name &&
