@@ -40,7 +40,6 @@ const ArtistDetails = () => {
 		<PageTransition duration={0.2}>
 			<div>
 				<NavigationBar
-					url='/'
 					text={artistDetails?.name ?? ''}
 					targetRef={targetRef}
 					threshold={50}

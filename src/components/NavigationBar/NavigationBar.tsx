@@ -1,21 +1,21 @@
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
 import { IconButton } from '@mui/material';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
+import { useNavigate } from 'react-router-dom';
 
 const NavigationBar = ({
-	url,
 	text,
 	targetRef,
 	threshold,
 }: {
-	url: string;
 	text: string;
 	targetRef?: React.RefObject<HTMLDivElement>;
 	threshold: number;
 	background?: boolean;
 }) => {
 	const [containerVisible, setContainerVisible] = useState(false);
+
+	const navigate = useNavigate();
 
 	useEffect(() => {
 		const handleScroll = () => {
@@ -45,15 +45,14 @@ const NavigationBar = ({
 					? 'from-secondary to-primary shadow-md'
 					: 'bg-transparent shadow-none'
 			}`}>
-			<Link to={url}>
-				<IconButton
-					disableRipple
-					sx={{
-						backgroundColor: `rgba(0, 0, 0, ${containerVisible ? 0 : 0.6})`,
-					}}>
-					<ArrowBackIcon />
-				</IconButton>
-			</Link>
+			<IconButton
+				disableRipple
+				sx={{
+					backgroundColor: `rgba(0, 0, 0, ${containerVisible ? 0 : 0.6})`,
+				}}
+				onClick={() => navigate(-1)}>
+				<ArrowBackIcon />
+			</IconButton>
 			<span
 				className={`absolute top-1/2 -translate-y-1/2 left-1/2 -translate-x-1/2 font-semibold truncate max-w-full tracking-widest transition-opacity duration-200 ${
 					containerVisible ? 'opacity-1' : 'opacity-0'

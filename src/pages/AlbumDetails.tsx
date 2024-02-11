@@ -35,7 +35,6 @@ const AlbumDetails = () => {
 		<PageTransition duration={0.2}>
 			<div className='max-w-2xl m-auto'>
 				<NavigationBar
-					url={`/artist/${albumDetails.artist[0]._id}`}
 					text={albumDetails.name}
 					targetRef={targetRef}
 					threshold={20}
