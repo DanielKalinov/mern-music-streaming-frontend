@@ -102,6 +102,7 @@ const QueueInfo = (props: QueueInfoProps) => {
 						<div className='flex justify-between items-center px-4'>
 							<IconButton
 								edge='start'
+								disableRipple
 								onClick={() => {
 									setShowQueueInfo(false);
 								}}>
