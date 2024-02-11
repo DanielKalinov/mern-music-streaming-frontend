@@ -100,63 +100,47 @@ const ArtistDetails = () => {
 					</div>
 					<div className='mt-8'>
 						<h2 className='mb-4'>Discography</h2>
-						<div className='md:hidden'>
-							<ul className='grid grid-cols-1 gap-3 xs:grid-cols-2 sm:hidden'>
-								{artistDetails?.albums
-									?.slice()
-									.sort((a, b) => (a.year > b.year ? -1 : 1))
-									.map((item) => (
-										<li key={item._id}>
-											<Link
-												to={`/albums/${item._id}`}
-												className='flex items-center'>
-												<Image
-													src={item.albumImageUrl}
-													width={70}
-													height={70}
-													classes='shrink-0 rounded-lg'
-												/>
-												<div className='ml-3 overflow-hidden'>
-													<span
-														className={`truncate block text-sm font-semibold ${
-															currentPlaylistInfo.name == item.name &&
-															'text-accent'
-														}`}>
-														{item.name}
-													</span>
-													<span className='block text-sm text-inactive'>
-														{item.year} • {item.tracks.length} tracks
-													</span>
-												</div>
-											</Link>
-										</li>
-									))}
-							</ul>
-						</div>
-						<div className='hidden grid-cols-2 gap-4 sm:grid sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6 xl:grid-cols-7 2xl:grid-cols-8'>
-							{artistDetails?.albums?.map((item) => (
-								<Link
-									key={item._id}
-									to={`/albums/${item._id}`}
-									className='p-3 card hover:bg-secondary'>
-									<Image
-										src={item.albumImageUrl}
-										classes='aspect-square shadow-lg rounded-lg'
-									/>
-									<div className='mt-3'>
-										<span
-											className={`block mb-1 text-sm font-semibold ${
-												currentPlaylistInfo.name == item.name && 'text-accent'
-											}`}>
-											{item.name}
-										</span>
-										<span className='block text-sm text-inactive'>
-											{item.year} • {item.tracks.length} tracks
-										</span>
-									</div>
-								</Link>
-							))}
-						</div>
+						<ul className='grid grid-cols-1 gap-3 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4'>
+							{artistDetails?.albums
+								?.slice()
+								.sort((a, b) => (a.year > b.year ? -1 : 1))
+								.map((item) => (
+									<li
+										key={item._id}
+										className='relative p-2 bg-primary rounded-lg overflow-hidden'>
+										<div className='absolute top-0 left-0 h-full w-full backdrop-blur-0'>
+											<div className='absolute top-0 left-0 h-full w-full bg-gradient-to-r from-background-dark/60 to-primary backdrop-blur-3xl backdrop-saturate-200' />
+											<div
+												className='h-full w-full'
+												style={{
+													backgroundImage: `url('${item.albumImageUrl}')`,
+													backgroundPosition: 'center',
+												}}
+											/>
+										</div>
+										<Link
+											to={`/albums/${item._id}`}
+											className='flex items-center'>
+											<Image
+												src={item.albumImageUrl}
+												classes='shrink-0 h-[70px] w-[70px] rounded-tl-lg rounded-lg lg:h-[100px] lg:w-[100px]'
+											/>
+											<div className='ml-4 overflow-hidden z-10'>
+												<span
+													className={`truncate block text-sm font-semibold ${
+														currentPlaylistInfo.name == item.name &&
+														'text-accent'
+													}`}>
+													{item.name}
+												</span>
+												<span className='block text-sm text-inactive'>
+													{item.year} • {item.tracks.length} tracks
+												</span>
+											</div>
+										</Link>
+									</li>
+								))}
+						</ul>
 					</div>
 					<div className='mt-8 md:hidden'>
 						<BioSection
