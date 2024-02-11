@@ -106,7 +106,7 @@ const ArtistDetails = () => {
 								.map((item) => (
 									<li
 										key={item._id}
-										className='relative bg-primary rounded-lg shadow-card overflow-hidden'>
+										className='relative rounded-lg shadow-card overflow-hidden'>
 										<div className='absolute top-0 left-0 h-full w-full backdrop-blur-0'>
 											<div className='absolute top-0 left-0 h-full w-full bg-gradient-to-r from-primary/70 to-primary backdrop-blur-3xl backdrop-saturate-200 z-0' />
 											<div
@@ -119,7 +119,7 @@ const ArtistDetails = () => {
 										</div>
 										<Link
 											to={`/albums/${item._id}`}
-											className='relative flex items-center p-2'>
+											className='relative flex items-center p-2 transition-colors duration-150 hover:bg-secondary'>
 											<Image
 												src={item.albumImageUrl}
 												classes='shrink-0 h-[70px] w-[70px] rounded-tl-lg rounded-lg shadow-img lg:h-[100px] lg:w-[100px]'
