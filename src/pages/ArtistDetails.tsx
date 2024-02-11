@@ -2,7 +2,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import axios from 'axios';
 import { Link, useParams } from 'react-router-dom';
 import PageTransition from '../components/PageTransition';
-import TopBar from '../components/TopBar';
+import NavigationBar from '../components/NavigationBar';
 import Image from '../components/Image';
 import TrackList from '../components/TrackList';
 import Artist from '../types/Artist';
@@ -39,7 +39,7 @@ const ArtistDetails = () => {
 	return (
 		<PageTransition duration={0.2}>
 			<div>
-				<TopBar
+				<NavigationBar
 					url='/'
 					text={artistDetails?.name ?? ''}
 					targetRef={targetRef}

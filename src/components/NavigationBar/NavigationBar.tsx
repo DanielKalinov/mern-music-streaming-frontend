@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { IconButton } from '@mui/material';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 
-const TopBar = ({
+const NavigationBar = ({
 	url,
 	text,
 	targetRef,
@@ -47,8 +47,9 @@ const TopBar = ({
 			}`}>
 			<Link to={url}>
 				<IconButton
+					disableRipple
 					sx={{
-						backgroundColor: `rgba(0, 0, 0, ${containerVisible ? 0 : 0.5})`,
+						backgroundColor: `rgba(0, 0, 0, ${containerVisible ? 0 : 0.6})`,
 					}}>
 					<ArrowBackIcon />
 				</IconButton>
@@ -63,4 +64,4 @@ const TopBar = ({
 	);
 };
 
-export default TopBar;
+export default NavigationBar;
