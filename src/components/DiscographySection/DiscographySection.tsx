@@ -22,7 +22,7 @@ const DiscographySection = ({
 						<li
 							key={_id}
 							className='relative rounded-lg shadow-card overflow-hidden group'>
-							<div className='absolute top-0 left-0 h-full w-full backdrop-blur-0'>
+							<div className='absolute top-0 left-0 h-full w-full'>
 								<div className='absolute top-0 left-0 h-full w-full bg-gradient-to-r from-primary/70 to-primary backdrop-blur-3xl backdrop-saturate-200 z-0' />
 								<div
 									className='h-full w-full'
