@@ -17,9 +17,11 @@ const AlbumDetails = () => {
 	const params = useParams();
 
 	useEffect(() => {
-		axios.get(`http://localhost:5000/albums/${params.id}`).then((res) => {
-			setAlbumDetails(res.data);
-		});
+		axios
+			.get<Album>(`http://localhost:5000/albums/${params.id}`)
+			.then((res) => {
+				setAlbumDetails(res.data);
+			});
 	}, []);
 
 	return albumDetails ? (

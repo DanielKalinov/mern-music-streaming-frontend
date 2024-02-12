@@ -22,9 +22,11 @@ const ArtistDetails = () => {
 	const params = useParams();
 
 	useEffect(() => {
-		axios.get(`http://localhost:5000/artist/${params.id}`).then((res) => {
-			setArtistDetails(res.data);
-		});
+		axios
+			.get<Artist>(`http://localhost:5000/artist/${params.id}`)
+			.then((res) => {
+				setArtistDetails(res.data);
+			});
 	}, []);
 
 	return (

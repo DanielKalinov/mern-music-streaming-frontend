@@ -13,7 +13,7 @@ const Artists = () => {
 	const { currentPlaylistInfo } = audioPlayer;
 
 	useEffect(() => {
-		axios.get('http://localhost:5000/artists').then((res) => {
+		axios.get<Artist[]>('http://localhost:5000/artists').then((res) => {
 			setArtists(res.data);
 		});
 	}, []);
