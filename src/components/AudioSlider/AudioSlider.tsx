@@ -32,7 +32,7 @@ const AudioSlider = (props: AudioSliderProps) => {
 	};
 
 	return (
-		<div className='flex flex-col max-w-xl w-full'>
+		<div className='flex flex-col max-w-2xl w-full'>
 			<div
 				className={`relative flex items-center`}
 				onMouseDown={() => dispatch(setIsSeeking(true))}
