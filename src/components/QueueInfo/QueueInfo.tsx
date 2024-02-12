@@ -143,8 +143,10 @@ const QueueInfo = (props: QueueInfoProps) => {
 
 								<div className='flex justify-between w-full'>
 									<div>
-										<span className='block text-sm text-accent'>{title}</span>
-										<span className='block text-sm text-inactive'>
+										<span className='block text-sm text-accent lg:text-base'>
+											{title}
+										</span>
+										<span className='block text-sm text-inactive lg:text-base'>
 											{artistNames(artist)}
 										</span>
 									</div>
@@ -207,10 +209,10 @@ const QueueInfo = (props: QueueInfoProps) => {
 																					: ''
 																			}`}>
 																			<div>
-																				<span className='block text-sm'>
+																				<span className='block text-sm lg:text-base'>
 																					{item.track?.title}
 																				</span>
-																				<span className='block text-sm text-inactive'>
+																				<span className='block text-sm text-inactive lg:text-base'>
 																					{artistNames(artist)}
 																				</span>
 																			</div>
