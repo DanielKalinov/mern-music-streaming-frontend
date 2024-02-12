@@ -14,7 +14,7 @@ const DiscographySection = ({
 	return (
 		<div className='mt-8'>
 			<h2 className='mb-4'>Discography</h2>
-			<ul className='grid grid-cols-1 gap-3 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4'>
+			<ul className='grid grid-cols-1 gap-3 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4'>
 				{artistDetails?.albums
 					?.slice()
 					.sort((a, b) => (a.year > b.year ? -1 : 1))
