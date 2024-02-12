@@ -15,12 +15,14 @@ import Track from '../../types/Track';
 const PlaylistControls = ({
 	playlist,
 	playlistInfo,
+	small,
 }: {
 	playlist: Track[];
 	playlistInfo: {
 		type: 'album' | 'artist';
 		name: string;
 	};
+	small?: boolean;
 }) => {
 	const audioPlayer = useSelector(
 		(state: AudioPlayerState) => state.audioPlayer
@@ -30,6 +32,8 @@ const PlaylistControls = ({
 	const dispatch = useDispatch();
 
 	const isInPlaylist = playlist.find(({ _id }) => _id == currentTrackInfo._id);
+
+	const fontSize = small ? 'medium' : 'large';
 
 	return (
 		<IconButton
@@ -53,9 +57,9 @@ const PlaylistControls = ({
 				}
 			}}>
 			{isPlaying && isInPlaylist ? (
-				<Pause fontSize='large' />
+				<Pause fontSize={fontSize} />
 			) : (
-				<PlayArrow fontSize='large' />
+				<PlayArrow fontSize={fontSize} />
 			)}
 		</IconButton>
 	);

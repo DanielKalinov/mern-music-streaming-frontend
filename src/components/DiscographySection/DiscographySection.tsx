@@ -52,10 +52,11 @@ const DiscographySection = ({
 								</div>
 							</Link>
 							<div
-								className={`opacity-0 translate-y-2 absolute bottom-2 left-2 duration-300 group-hover:opacity-100 group-hover:translate-y-0`}>
+								className={`opacity-0 translate-y-2 absolute bottom-4 left-4 duration-300 group-hover:opacity-100 group-hover:translate-y-0`}>
 								<PlaylistControls
 									playlist={tracks}
 									playlistInfo={{ type: 'album', name }}
+									small
 								/>
 							</div>
 						</li>
