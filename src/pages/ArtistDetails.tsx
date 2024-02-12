@@ -9,7 +9,7 @@ import Artist from '../types/Artist';
 import PlaylistControls from '../components/PlaylistControls';
 import { useSelector } from 'react-redux';
 import AudioPlayerState from '../types/AudioPlayerState';
-import BioSection from '../components/BioSection';
+import AboutSection from '../components/AboutSection';
 import DiscographySection from '../components/DiscographySection';
 
 const ArtistDetails = () => {
@@ -81,11 +81,12 @@ const ArtistDetails = () => {
 								/>
 							</div>
 							<div className='hidden basis-1/2 ml-4 md:block'>
-								<BioSection
+								<AboutSection
 									artistDetails={{
 										name: artistDetails?.name ?? '',
-										bio: artistDetails?.bio ?? '',
-										artistBioImageUrl: artistDetails?.artistBioImageUrl ?? '',
+										about: artistDetails?.about ?? '',
+										artistAboutImageUrl:
+											artistDetails?.artistAboutImageUrl ?? '',
 									}}
 								/>
 							</div>
@@ -96,11 +97,11 @@ const ArtistDetails = () => {
 						currentPlaylistInfo={currentPlaylistInfo}
 					/>
 					<div className='mt-8 md:hidden'>
-						<BioSection
+						<AboutSection
 							artistDetails={{
 								name: artistDetails?.name ?? '',
-								bio: artistDetails?.bio ?? '',
-								artistBioImageUrl: artistDetails?.artistBioImageUrl ?? '',
+								about: artistDetails?.about ?? '',
+								artistAboutImageUrl: artistDetails?.artistAboutImageUrl ?? '',
 							}}
 						/>
 					</div>

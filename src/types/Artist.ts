@@ -5,8 +5,8 @@ export default interface Artist {
 	_id: string;
 	name: string;
 	artistImageUrl: string;
-	artistBioImageUrl: string;
-	bio: string;
+	artistAboutImageUrl: string;
+	about: string;
 	albums: Album[];
 	tracks: Track[];
 }

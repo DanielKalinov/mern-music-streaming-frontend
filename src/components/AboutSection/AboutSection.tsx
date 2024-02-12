@@ -3,60 +3,60 @@ import Image from '../Image';
 import { IconButton } from '@mui/material';
 import { ChevronRight, Close } from '@mui/icons-material';
 
-const BioSection = ({
-	artistDetails: { name, bio, artistBioImageUrl },
+const AboutSection = ({
+	artistDetails: { name, about, artistAboutImageUrl },
 }: {
 	artistDetails: {
 		name: string;
-		bio: string;
-		artistBioImageUrl: string;
+		about: string;
+		artistAboutImageUrl: string;
 	};
 }) => {
-	const [showBioWindow, setShowBioWindow] = useState(false);
+	const [showAboutWindow, setShowAboutWindow] = useState(false);
 
-	const bioWindowRef = useRef<HTMLDivElement>(null);
+	const AboutWindowRef = useRef<HTMLDivElement>(null);
 
 	return (
 		<>
 			<div>
-				<h2 className='mb-4'>Bio</h2>
+				<h2 className='mb-4'>About</h2>
 				<div
 					className='relative cursor-pointer'
 					onClick={() => {
-						bioWindowRef.current?.scrollTo(0, 0);
-						setShowBioWindow(true);
+						AboutWindowRef.current?.scrollTo(0, 0);
+						setShowAboutWindow(true);
 						document.body.style.overflow = 'hidden';
 					}}>
 					<Image
-						src={artistBioImageUrl ?? ''}
+						src={artistAboutImageUrl ?? ''}
 						width={480}
 						height={360}
 						fullSize={true}
 						classes='w-full rounded-lg shadow-img h-[360px]'
 					/>
 					<div className='absolute bottom-0 left-0 w-full flex items-center justify-between p-4 bg-gradient-to-b from-transparent to-black rounded-b-lg'>
-						<p className='text-sm line-clamp-2'>{bio}</p>
+						<p className='text-sm line-clamp-2'>{about}</p>
 						<ChevronRight fontSize='large' />
 					</div>
 				</div>
 			</div>
 			<div
 				className={`fixed top-0 left-0 w-full h-full z-30 transition-all duration-200 xs:bg-black/60 xs:backdrop-blur-2xl xs:px-8 xs:py-16 ${
-					showBioWindow ? 'opacity-1 visible' : 'opacity-0 invisible'
+					showAboutWindow ? 'opacity-1 visible' : 'opacity-0 invisible'
 				}`}
 				onClick={() => {
-					setShowBioWindow(false);
+					setShowAboutWindow(false);
 					document.body.style.overflow = 'auto';
 				}}>
 				<div
-					ref={bioWindowRef}
+					ref={AboutWindowRef}
 					className={`relative w-full h-full m-auto bg-background-dark overflow-hidden transition-transform duration-200 xs:rounded-lg sm:w-[600px] ${
-						showBioWindow ? 'scale-100' : 'scale-90'
+						showAboutWindow ? 'scale-100' : 'scale-90'
 					}`}
 					onClick={(e) => e.stopPropagation()}>
 					<div className='overflow-y-auto max-h-full'>
 						<Image
-							src={artistBioImageUrl ?? ''}
+							src={artistAboutImageUrl ?? ''}
 							fullSize
 							classes='m-auto shadow-img h-[240px] xs:h-[360px]'
 						/>
@@ -72,7 +72,7 @@ const BioSection = ({
 									backgroundColor: 'rgba(0, 0, 0, 0.7)',
 								}}
 								onClick={() => {
-									setShowBioWindow(false);
+									setShowAboutWindow(false);
 									document.body.style.overflow = 'auto';
 								}}>
 								<Close />
@@ -83,7 +83,7 @@ const BioSection = ({
 							<p
 								className='text-sm text-inactive '
 								dangerouslySetInnerHTML={{
-									__html: bio ?? '',
+									__html: about ?? '',
 								}}
 							/>
 						</div>
@@ -94,4 +94,4 @@ const BioSection = ({
 	);
 };
 
-export default BioSection;
+export default AboutSection;
