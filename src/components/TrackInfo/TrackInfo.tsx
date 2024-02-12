@@ -48,6 +48,11 @@ const TrackInfo = (props: TrackInfoProps) => {
 		shuffleList,
 	} = audioPlayer;
 
+	const { track } = currentTrackInfo;
+	const title = track?.title;
+	const artist = track?.artist;
+	const albumImageUrl = track?.album?.albumImageUrl;
+
 	const carouselAnimation = (index: number) => {
 		// This function adds a carousel effect on track change.
 
@@ -74,7 +79,7 @@ const TrackInfo = (props: TrackInfoProps) => {
 			<div
 				className='absolute top-0 h-full w-full transition-all duration-500 ease-in-out'
 				style={{
-					backgroundImage: `url(${currentTrackInfo.track?.album?.albumImageUrl})`,
+					backgroundImage: `url(${albumImageUrl})`,
 					backgroundRepeat: 'no-repeat',
 					backgroundSize: 'cover',
 					backgroundPosition: 'center',
@@ -131,11 +136,9 @@ const TrackInfo = (props: TrackInfoProps) => {
 					<div className='flex flex-col'>
 						<div className='flex justify-between items-center mb-4'>
 							<div>
-								<span className='block font-bold text-xl'>
-									{currentTrackInfo.track?.title}
-								</span>
+								<span className='block font-bold text-xl'>{title}</span>
 								<span className='block text-inactive'>
-									{artistNames(currentTrackInfo.track?.artist)}
+									{artistNames(artist)}
 								</span>
 							</div>
 							<IconButton edge='end'>

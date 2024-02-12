@@ -29,9 +29,7 @@ const PlaylistControls = ({
 
 	const dispatch = useDispatch();
 
-	const isInPlaylist = playlist.find(
-		(item) => item._id == currentTrackInfo._id
-	);
+	const isInPlaylist = playlist.find(({ _id }) => _id == currentTrackInfo._id);
 
 	return (
 		<IconButton

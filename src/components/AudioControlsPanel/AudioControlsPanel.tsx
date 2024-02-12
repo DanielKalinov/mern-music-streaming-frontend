@@ -45,6 +45,10 @@ const AudioControlsPanel = ({
 		repeatCurrentTrack,
 	} = audioPlayer;
 
+	const { track } = currentTrackInfo;
+	const title = track?.title;
+	const artist = track?.artist;
+
 	const dispatch = useDispatch();
 
 	const staticProgressBarRef = useRef<HTMLDivElement>(null);
@@ -127,11 +131,9 @@ const AudioControlsPanel = ({
 							</div>
 
 							<div>
-								<span className='block text-sm font-bold'>
-									{currentTrackInfo.track?.title}
-								</span>
+								<span className='block text-sm font-bold'>{title}</span>
 								<span className='block text-sm text-inactive'>
-									{artistNames(currentTrackInfo.track?.artist)}
+									{artistNames(artist)}
 								</span>
 							</div>
 						</div>
@@ -214,10 +216,10 @@ const AudioControlsPanel = ({
 							<span
 								ref={spanRef}
 								className='relative right-0 whitespace-nowrap block text-sm font-bold !delay-[2s]'>
-								{currentTrackInfo.track?.title}
+								{title}
 							</span>
 							<span className='block text-sm text-inactive'>
-								{artistNames(currentTrackInfo.track?.artist)}
+								{artistNames(artist)}
 							</span>
 						</div>
 					</div>

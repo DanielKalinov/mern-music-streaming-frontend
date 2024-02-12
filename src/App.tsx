@@ -23,13 +23,15 @@ const App = () => {
 	);
 	const { isPlaying, currentTrackInfo, queue, isSeeking, repeatCurrentTrack } =
 		audioPlayer;
+	const { track } = currentTrackInfo;
+	const audioUrl = track?.audioUrl;
 
 	const dispatch = useDispatch();
 
 	// set new src and play
 	useEffect(() => {
-		if (currentTrackInfo.track?.audioUrl) {
-			audio.current.src = currentTrackInfo.track?.audioUrl;
+		if (audioUrl) {
+			audio.current.src = audioUrl;
 
 			// play audio once it has loaded
 			audio.current.onloadeddata = () => {

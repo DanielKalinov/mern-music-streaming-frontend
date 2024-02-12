@@ -40,6 +40,10 @@ const QueueInfo = (props: QueueInfoProps) => {
 		shuffleList,
 	} = audioPlayer;
 
+	const { track } = currentTrackInfo;
+	const title = track?.title;
+	const artist = track?.artist;
+
 	const nextFromList = queue.slice(currentTrackPosition + 1, queue.length);
 
 	useEffect(() => {
@@ -61,7 +65,7 @@ const QueueInfo = (props: QueueInfoProps) => {
 			// restore previous queue
 
 			const currentTrackIndex = prevQueue.findIndex(
-				(item) => item._id == currentTrackInfo._id
+				({ _id }) => _id == currentTrackInfo._id
 			);
 			const nextFromListPrev = prevQueue.slice(
 				currentTrackIndex + 1,
@@ -139,11 +143,9 @@ const QueueInfo = (props: QueueInfoProps) => {
 
 								<div className='flex justify-between w-full'>
 									<div>
-										<span className='block text-sm text-accent'>
-											{currentTrackInfo.track?.title}
-										</span>
+										<span className='block text-sm text-accent'>{title}</span>
 										<span className='block text-sm text-inactive'>
-											{artistNames(currentTrackInfo.track?.artist)}
+											{artistNames(artist)}
 										</span>
 									</div>
 									{isPlaying && <WaveAnimation />}
@@ -209,9 +211,7 @@ const QueueInfo = (props: QueueInfoProps) => {
 																					{item.track?.title}
 																				</span>
 																				<span className='block text-sm text-inactive'>
-																					{artistNames(
-																						currentTrackInfo.track?.artist
-																					)}
+																					{artistNames(artist)}
 																				</span>
 																			</div>
 																			{nextFromList.length > 1 && (
