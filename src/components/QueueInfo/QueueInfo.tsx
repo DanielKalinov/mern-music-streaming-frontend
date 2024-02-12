@@ -216,10 +216,13 @@ const QueueInfo = (props: QueueInfoProps) => {
 																					{artistNames(artist)}
 																				</span>
 																			</div>
+
 																			{nextFromList.length > 1 && (
-																				<IconButton edge='end'>
-																					<DragHandle />
-																				</IconButton>
+																				<div>
+																					<IconButton>
+																						<DragHandle />
+																					</IconButton>
+																				</div>
 																			)}
 																		</li>
 																	)}
