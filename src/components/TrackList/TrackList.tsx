@@ -89,8 +89,10 @@ const TrackList = ({
 											/>
 										)}
 										<div>
-											<span className='block text-sm'>{title}</span>
-											<span className='block text-sm text-inactive font-normal'>
+											<span className='block text-sm lg:text-base'>
+												{title}
+											</span>
+											<span className='block text-sm lg:text-base text-inactive font-normal'>
 												{artistNames(artist)}
 											</span>
 										</div>

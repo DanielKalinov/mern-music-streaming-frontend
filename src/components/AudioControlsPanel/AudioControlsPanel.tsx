@@ -215,12 +215,10 @@ const AudioControlsPanel = ({
 						<div className='overflow-hidden whitespace-nowrap ml-4'>
 							<span
 								ref={spanRef}
-								className='relative right-0 whitespace-nowrap block text-sm font-bold !delay-[2s]'>
+								className='relative right-0 whitespace-nowrap block font-bold !delay-[2s]'>
 								{title}
 							</span>
-							<span className='block text-sm text-inactive'>
-								{artistNames(artist)}
-							</span>
+							<span className='block text-inactive'>{artistNames(artist)}</span>
 						</div>
 					</div>
 					<div className='basis-1/2 flex flex-col items-center justify-between h-full'>

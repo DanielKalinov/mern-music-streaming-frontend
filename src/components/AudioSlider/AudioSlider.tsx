@@ -37,7 +37,7 @@ const AudioSlider = (props: AudioSliderProps) => {
 				className={`relative flex items-center`}
 				onMouseDown={() => dispatch(setIsSeeking(true))}
 				onPointerDown={() => dispatch(setIsSeeking(true))}>
-				<span className='hidden w-12 text-center text-xs lg:inline'>
+				<span className='hidden w-12 text-center text-xs lg:inline lg:text-sm'>
 					{formattedTime(rangeInputValue)}
 				</span>
 				<Slider
@@ -76,7 +76,7 @@ const AudioSlider = (props: AudioSliderProps) => {
 						},
 					}}
 				/>
-				<span className='hidden w-12 text-center text-xs lg:inline'>
+				<span className='hidden w-12 text-center text-xs lg:inline lg:text-sm'>
 					{formattedTime(duration)}
 				</span>
 			</div>

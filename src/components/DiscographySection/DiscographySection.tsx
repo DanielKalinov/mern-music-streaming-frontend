@@ -41,12 +41,12 @@ const DiscographySection = ({
 								/>
 								<div className='ml-4 overflow-hidden'>
 									<span
-										className={`truncate block text-sm font-semibold ${
+										className={`truncate block text-sm font-semibold lg:text-base ${
 											currentPlaylistInfo.name == name && 'text-accent'
 										}`}>
 										{name}
 									</span>
-									<span className='block text-sm text-inactive'>
+									<span className='block text-sm text-inactive lg:text-base'>
 										{year} • {tracks.length} tracks
 									</span>
 								</div>
