@@ -116,7 +116,7 @@ const AudioControlsPanel = ({
 											currentTrackPosition === index && (
 												<Image
 													key={index}
-													src={item.album?.albumImageUrl}
+													src={item.track?.album?.albumImageUrl}
 													height={40}
 													width={40}
 													classes='rounded-md shadow-md'
@@ -128,10 +128,10 @@ const AudioControlsPanel = ({
 
 							<div>
 								<span className='block text-sm font-bold'>
-									{currentTrackInfo.title}
+									{currentTrackInfo.track?.title}
 								</span>
 								<span className='block text-sm text-inactive'>
-									{artistNames(currentTrackInfo.artist)}
+									{artistNames(currentTrackInfo.track?.artist)}
 								</span>
 							</div>
 						</div>
@@ -193,7 +193,7 @@ const AudioControlsPanel = ({
 					Object.keys(currentTrackInfo).length > 0
 						? 'translate-y-0'
 						: 'translate-y-full'
-				} hidden fixed bottom-0 left-0 w-full p-4 bg-primary/80 backdrop-blur-3xl shadow-audio-panel transition-all duration-100 ease-in-out lg:flex`}>
+				} hidden fixed bottom-0 left-0 w-full p-4 bg-primary/80 backdrop-blur-3xl transition-all duration-100 ease-in-out lg:flex`}>
 				<div className='flex w-full'>
 					<div className='min-w-0 basis-1/4 flex items-center'>
 						<div className='max-w-[60px] min-w-[60px] max-h-[60px] min-h-[60px] relative'>
@@ -202,7 +202,7 @@ const AudioControlsPanel = ({
 									currentTrackPosition === index && (
 										<Image
 											key={index}
-											src={item.album?.albumImageUrl}
+											src={item.track?.album?.albumImageUrl}
 											height={60}
 											width={60}
 											classes='rounded-md shadow-img'
@@ -214,10 +214,10 @@ const AudioControlsPanel = ({
 							<span
 								ref={spanRef}
 								className='relative right-0 whitespace-nowrap block text-sm font-bold !delay-[2s]'>
-								{currentTrackInfo.title}
+								{currentTrackInfo.track?.title}
 							</span>
 							<span className='block text-sm text-inactive'>
-								{artistNames(currentTrackInfo.artist)}
+								{artistNames(currentTrackInfo.track?.artist)}
 							</span>
 						</div>
 					</div>

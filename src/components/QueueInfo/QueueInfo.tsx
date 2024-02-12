@@ -127,7 +127,7 @@ const QueueInfo = (props: QueueInfoProps) => {
 												currentTrackPosition === index && (
 													<Image
 														key={index}
-														src={item.album?.albumImageUrl}
+														src={item.track?.album?.albumImageUrl}
 														width={40}
 														height={40}
 														classes='rounded-md shadow-md'
@@ -140,10 +140,10 @@ const QueueInfo = (props: QueueInfoProps) => {
 								<div className='flex justify-between w-full'>
 									<div>
 										<span className='block text-sm text-accent'>
-											{currentTrackInfo.title}
+											{currentTrackInfo.track?.title}
 										</span>
 										<span className='block text-sm text-inactive'>
-											{artistNames(currentTrackInfo.artist)}
+											{artistNames(currentTrackInfo.track?.artist)}
 										</span>
 									</div>
 									{isPlaying && <WaveAnimation />}
@@ -206,10 +206,12 @@ const QueueInfo = (props: QueueInfoProps) => {
 																			}`}>
 																			<div>
 																				<span className='block text-sm'>
-																					{item.title}
+																					{item.track?.title}
 																				</span>
 																				<span className='block text-sm text-inactive'>
-																					{artistNames(currentTrackInfo.artist)}
+																					{artistNames(
+																						currentTrackInfo.track?.artist
+																					)}
 																				</span>
 																			</div>
 																			{nextFromList.length > 1 && (

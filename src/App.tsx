@@ -28,8 +28,8 @@ const App = () => {
 
 	// set new src and play
 	useEffect(() => {
-		if (currentTrackInfo.audioUrl) {
-			audio.current.src = currentTrackInfo.audioUrl;
+		if (currentTrackInfo.track?.audioUrl) {
+			audio.current.src = currentTrackInfo.track?.audioUrl;
 
 			// play audio once it has loaded
 			audio.current.onloadeddata = () => {

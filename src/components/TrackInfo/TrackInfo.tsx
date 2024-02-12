@@ -74,7 +74,7 @@ const TrackInfo = (props: TrackInfoProps) => {
 			<div
 				className='absolute top-0 h-full w-full transition-all duration-500 ease-in-out'
 				style={{
-					backgroundImage: `url(${currentTrackInfo.album?.albumImageUrl})`,
+					backgroundImage: `url(${currentTrackInfo.track?.album?.albumImageUrl})`,
 					backgroundRepeat: 'no-repeat',
 					backgroundSize: 'cover',
 					backgroundPosition: 'center',
@@ -119,7 +119,7 @@ const TrackInfo = (props: TrackInfoProps) => {
 										index
 									)}`}>
 									<Image
-										src={item.album?.albumImageUrl}
+										src={item.track?.album?.albumImageUrl}
 										classes='shadow-lg rounded-lg max-w-md'
 									/>
 								</div>
@@ -132,10 +132,10 @@ const TrackInfo = (props: TrackInfoProps) => {
 						<div className='flex justify-between items-center mb-4'>
 							<div>
 								<span className='block font-bold text-xl'>
-									{currentTrackInfo.title}
+									{currentTrackInfo.track?.title}
 								</span>
 								<span className='block text-inactive'>
-									{artistNames(currentTrackInfo.artist)}
+									{artistNames(currentTrackInfo.track?.artist)}
 								</span>
 							</div>
 							<IconButton edge='end'>

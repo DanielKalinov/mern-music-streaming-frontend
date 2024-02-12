@@ -53,15 +53,7 @@ const TrackList = ({
 										dispatch(togglePlaying(true));
 									}
 								} else {
-									dispatch(
-										setCurrentTrackInfo({
-											_id: item._id,
-											audioUrl: item.audioUrl,
-											artist: item.artist,
-											title: item.title,
-											album: item.album,
-										})
-									);
+									dispatch(setCurrentTrackInfo(item));
 									dispatch(togglePlaying(true));
 									dispatch(setQueue(tracks));
 									dispatch(
@@ -84,16 +76,16 @@ const TrackList = ({
 									)}
 									{showAlbumImage && (
 										<Image
-											src={item.album.albumImageUrl}
+											src={item.track?.album.albumImageUrl}
 											width={50}
 											height={50}
 											classes='shadow-img rounded-md mr-2'
 										/>
 									)}
 									<div>
-										<span className='block text-sm'>{item.title}</span>
+										<span className='block text-sm'>{item.track?.title}</span>
 										<span className='block text-sm text-inactive font-normal'>
-											{artistNames(item.artist)}
+											{artistNames(item.track?.artist)}
 										</span>
 									</div>
 								</div>

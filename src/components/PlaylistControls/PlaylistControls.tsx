@@ -37,20 +37,10 @@ const PlaylistControls = ({
 		<IconButton
 			className='rounded-full !bg-accent shadow-btn !text-primary !transition-transform active:scale-90'
 			onClick={() => {
+				// Set the first track of the playlist.
 				if (!isInPlaylist) {
-					const firstTrack = playlist[0];
-					const { _id, audioUrl, artist, title, album } = firstTrack;
-
 					dispatch(togglePlaying(true));
-					dispatch(
-						setCurrentTrackInfo({
-							_id: _id,
-							audioUrl: audioUrl,
-							artist: artist,
-							title: title,
-							album: album,
-						})
-					);
+					dispatch(setCurrentTrackInfo(playlist[0]));
 					dispatch(setQueue(playlist));
 					dispatch(
 						setCurrentPlaylistInfo({

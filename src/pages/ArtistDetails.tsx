@@ -7,7 +7,6 @@ import Image from '../components/Image';
 import TrackList from '../components/TrackList';
 import Artist from '../types/Artist';
 import PlaylistControls from '../components/PlaylistControls';
-import Track from '../types/Track';
 import { useSelector } from 'react-redux';
 import AudioPlayerState from '../types/AudioPlayerState';
 import BioSection from '../components/BioSection';
@@ -24,17 +23,7 @@ const ArtistDetails = () => {
 
 	useEffect(() => {
 		axios.get(`http://localhost:5000/artist/${params.id}`).then((res) => {
-			setArtistDetails({
-				...res.data,
-				tracks: res.data.tracks.map(
-					({ track, _id }: { track: Track; _id: string }) => ({
-						...track,
-						_id,
-					})
-				),
-			});
-
-			console.log(res.data.albums);
+			setArtistDetails(res.data);
 		});
 	}, []);
 
@@ -141,14 +130,7 @@ const ArtistDetails = () => {
 										<div
 											className={`opacity-0 translate-y-2 absolute bottom-2 left-2 duration-300 group-hover:opacity-100 group-hover:translate-y-0`}>
 											<PlaylistControls
-												playlist={tracks.map(
-													// --TODO: Fix TS error!--
-													// @ts-ignore
-													({ track, _id }: { track: Track; _id: string }) => ({
-														...track,
-														_id,
-													})
-												)}
+												playlist={tracks}
 												playlistInfo={{ type: 'album', name }}
 											/>
 										</div>
