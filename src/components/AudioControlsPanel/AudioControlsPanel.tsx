@@ -195,7 +195,7 @@ const AudioControlsPanel = ({
 					Object.keys(currentTrackInfo).length > 0
 						? 'translate-y-0'
 						: 'translate-y-full'
-				} hidden fixed bottom-0 left-0 w-full p-4 bg-primary/80 backdrop-blur-3xl transition-all duration-100 ease-in-out lg:flex`}>
+				} hidden fixed bottom-0 left-0 w-full p-4 bg-primary/80 backdrop-blur-3xl transition-all duration-100 ease-in-out z-40 lg:flex`}>
 				<div className='flex w-full'>
 					<div className='min-w-0 basis-1/4 flex items-center'>
 						<div className='max-w-[60px] min-w-[60px] max-h-[60px] min-h-[60px] relative'>
