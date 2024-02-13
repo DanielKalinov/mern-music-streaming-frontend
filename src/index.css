@@ -22,15 +22,11 @@ a {
 	}
 
 	h1 {
-		@apply text-2xl font-semibold w-fit;
+		@apply text-3xl font-semibold w-fit;
 	}
 
 	h2 {
-		@apply text-xl font-semibold w-fit;
-	}
-
-	h3 {
-		@apply text-lg font-semibold w-fit;
+		@apply text-2xl font-semibold w-fit;
 	}
 }
 
