@@ -46,10 +46,11 @@ const NavigationBar = ({
 					: 'bg-transparent shadow-none'
 			}`}>
 			<IconButton
-				disableRipple
+				className={`${!containerVisible && 'backdrop-blur-lg'}`}
 				sx={{
 					backgroundColor: `rgba(0, 0, 0, ${containerVisible ? 0 : 0.6})`,
 				}}
+				disableRipple
 				onClick={() => navigate(-1)}>
 				<ArrowBackIcon />
 			</IconButton>
