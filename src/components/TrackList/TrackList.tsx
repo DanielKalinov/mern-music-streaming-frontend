@@ -85,7 +85,7 @@ const TrackList = ({
 												src={albumImageUrl}
 												width={50}
 												height={50}
-												classes='shadow-img rounded-md mr-2'
+												classes='shadow-card rounded-md mr-2'
 											/>
 										)}
 										<div>

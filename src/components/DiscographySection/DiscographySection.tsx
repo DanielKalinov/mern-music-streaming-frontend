@@ -35,7 +35,7 @@ const DiscographySection = ({
 								className='relative flex items-center p-2 transition-colors duration-150 group group-hover:bg-secondary z-20'>
 								<Image
 									src={albumImageUrl}
-									classes='shrink-0 h-[70px] w-[70px] rounded-md shadow-img lg:h-[100px] lg:w-[100px]'
+									classes='shrink-0 h-[70px] w-[70px] rounded-md shadow-card lg:h-[100px] lg:w-[100px]'
 								/>
 								<div className='ml-4 overflow-hidden'>
 									<span

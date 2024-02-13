@@ -32,7 +32,7 @@ const AboutSection = ({
 						width={480}
 						height={360}
 						fullSize={true}
-						classes='w-full rounded-lg shadow-img h-[360px]'
+						classes='w-full rounded-lg shadow-card h-[360px]'
 					/>
 					<div className='absolute bottom-0 left-0 w-full flex items-center justify-between p-4 bg-gradient-to-b from-transparent to-black rounded-b-lg'>
 						<p className='text-sm line-clamp-2'>{about}</p>
@@ -58,7 +58,7 @@ const AboutSection = ({
 						<Image
 							src={artistAboutImageUrl ?? ''}
 							fullSize
-							classes='m-auto shadow-img h-[240px] xs:h-[360px]'
+							classes='m-auto shadow-card h-[240px] xs:h-[360px]'
 						/>
 
 						<div className='absolute h-full top-2 right-2'>

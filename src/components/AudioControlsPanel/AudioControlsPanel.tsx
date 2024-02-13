@@ -207,7 +207,7 @@ const AudioControlsPanel = ({
 											src={item.track?.album?.albumImageUrl}
 											height={60}
 											width={60}
-											classes='rounded-md shadow-img'
+											classes='rounded-md shadow-card'
 										/>
 									)
 							)}

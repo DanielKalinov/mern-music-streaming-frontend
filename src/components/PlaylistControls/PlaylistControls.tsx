@@ -38,7 +38,7 @@ const PlaylistControls = ({
 
 	return (
 		<IconButton
-			className='rounded-full bg-gradient-to-b !from-accent !to-rose-600 shadow-btn !text-primary !transition-transform active:scale-90'
+			className='rounded-full bg-gradient-to-b !from-accent !to-rose-600 !text-primary !transition-transform active:scale-90'
 			style={{ boxShadow: `0 10px 40px ${accentColor}50` }}
 			onClick={() => {
 				// Set the first track of the playlist.

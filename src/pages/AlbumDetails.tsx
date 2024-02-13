@@ -47,7 +47,7 @@ const AlbumDetails = () => {
 						src={albumDetails.albumImageUrl}
 						height={300}
 						width={300}
-						classes='m-auto w-fit mb-8 shadow-img rounded-lg sm:m-0'
+						classes='m-auto w-fit mb-8 shadow-card rounded-lg sm:m-0'
 					/>
 					<div
 						ref={targetRef}

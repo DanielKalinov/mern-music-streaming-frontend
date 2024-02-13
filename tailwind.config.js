@@ -19,9 +19,7 @@ module.exports = {
 				xs: '425px',
 			},
 			boxShadow: {
-				card: '0 10px 20px rgba(0, 0, 0, 0.2)',
-				btn: '0 12px 24px rgba(0, 0, 0, 0.5)',
-				img: '0 12px 24px rgba(0, 0, 0, 0.4)',
+				card: '0 5px 15px rgba(0, 0, 0, 0.3)',
 			},
 		},
 	},

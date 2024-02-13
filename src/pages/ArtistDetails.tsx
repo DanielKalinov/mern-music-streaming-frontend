@@ -55,7 +55,7 @@ const ArtistDetails = () => {
 							src={artistDetails?.artistImageUrl ?? ''}
 							width={200}
 							height={200}
-							classes='hidden aspect-square rounded-full z-10 shadow-img sm:flex'
+							classes='hidden aspect-square rounded-full z-10 shadow-card sm:flex'
 						/>
 						<h1
 							ref={targetRef}
