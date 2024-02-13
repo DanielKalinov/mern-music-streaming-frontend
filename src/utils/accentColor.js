@@ -1,3 +1,3 @@
 import colors from 'tailwindcss/colors';
 
-export default colors.rose[200];
+export default colors.rose[400];

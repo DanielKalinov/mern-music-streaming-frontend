@@ -11,6 +11,7 @@ import { useSelector } from 'react-redux';
 import { useDispatch } from 'react-redux';
 import AudioPlayerState from '../../types/AudioPlayerState';
 import Track from '../../types/Track';
+import accentColor from '../../utils/accentColor';
 
 const PlaylistControls = ({
 	playlist,
@@ -37,7 +38,8 @@ const PlaylistControls = ({
 
 	return (
 		<IconButton
-			className='rounded-full !bg-accent shadow-btn !text-primary !transition-transform active:scale-90'
+			className='rounded-full bg-gradient-to-b !from-accent !to-rose-600 shadow-btn !text-primary !transition-transform active:scale-90'
+			style={{ boxShadow: `0 10px 40px ${accentColor}50` }}
 			onClick={() => {
 				// Set the first track of the playlist.
 				if (!isInPlaylist) {
@@ -57,9 +59,9 @@ const PlaylistControls = ({
 				}
 			}}>
 			{isPlaying && isInPlaylist ? (
-				<Pause fontSize={fontSize} />
+				<Pause className='text-slate-200' fontSize={fontSize} />
 			) : (
-				<PlayArrow fontSize={fontSize} />
+				<PlayArrow className='text-slate-200' fontSize={fontSize} />
 			)}
 		</IconButton>
 	);

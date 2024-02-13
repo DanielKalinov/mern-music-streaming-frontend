@@ -39,7 +39,7 @@ a {
 }
 
 .card {
-	@apply bg-primary shadow-card rounded-lg transition-all duration-150 ease-in-out;
+	@apply bg-gradient-to-b from-secondary to-primary border border-solid border-secondary rounded-lg shadow-card transition-all duration-150 ease-in-out;
 }
 
 .border-style {

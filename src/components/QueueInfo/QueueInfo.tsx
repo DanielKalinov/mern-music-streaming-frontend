@@ -100,8 +100,8 @@ const QueueInfo = (props: QueueInfoProps) => {
 					showQueueInfo
 						? 'opacity-100 translate-y-0 visible'
 						: 'opacity-0 translate-y-full invisible'
-				} fixed top-0 left-1/2 -translate-x-1/2 p-4 h-full max-w-lg w-full z-40 [transition:all_200ms_ease-in-out,opacity_100ms_ease-in-out] lg:top-auto lg:bottom-[calc(100px+1rem)] lg:left-auto lg:right-4 lg:translate-x-0 lg:h-[600px] lg:max-w-md lg:p-0`}>
-				<div className={`h-full w-full bg-primary rounded-lg shadow-card`}>
+				} fixed top-0 left-1/2 -translate-x-1/2 p-4 h-full max-w-lg w-full z-40 [transition:all_200ms_ease-in-out,opacity_100ms_ease-in-out] lg:top-auto lg:bottom-[calc(134px+1rem)] lg:left-auto lg:right-4 lg:translate-x-0 lg:h-[600px] lg:max-w-md lg:p-0`}>
+				<div className={`h-full w-full card`}>
 					<div className='h-full flex flex-col'>
 						<div className='flex justify-between items-center px-4'>
 							<IconButton
