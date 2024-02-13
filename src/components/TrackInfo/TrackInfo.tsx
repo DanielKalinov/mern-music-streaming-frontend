@@ -75,18 +75,21 @@ const TrackInfo = (props: TrackInfoProps) => {
 		<div
 			className={`${
 				showTrackInfo ? 'translate-y-0 opacity-1' : 'translate-y-full opacity-0'
-			} z-30 fixed top-0 left-0 h-full w-full [transition:transform_0.3s_ease-in-out,opacity_0.2s_ease-in-out] lg:hidden`}>
-			<div
-				className='absolute top-0 h-full w-full transition-all duration-500 ease-in-out'
-				style={{
-					backgroundImage: `url(${albumImageUrl})`,
-					backgroundRepeat: 'no-repeat',
-					backgroundSize: 'cover',
-					backgroundPosition: 'center',
-				}}
-			/>
-			<div className='relative flex flex-col h-full w-full px-8 bg-black/60 backdrop-blur-[128px]'>
-				<div className='flex justify-between items-center -mx-4'>
+			} fixed top-0 left-0 h-full w-full [transition:transform_0.3s_ease-in-out,opacity_0.2s_ease-in-out] z-30 lg:hidden`}>
+			<div className='relative flex flex-col h-full w-full px-8'>
+				<div className='absolute top-0 left-0 h-full w-full z-0'>
+					<div className='absolute top-0 left-0 h-full w-full bg-gradient-to-b from-black/60 to-background-dark backdrop-blur-3xl z-10' />
+					<div
+						className='absolute top-0 h-full w-full transition-all duration-500 ease-in-out z-0'
+						style={{
+							backgroundImage: `url(${albumImageUrl})`,
+							backgroundRepeat: 'no-repeat',
+							backgroundSize: 'cover',
+							backgroundPosition: 'center',
+						}}
+					/>
+				</div>
+				<div className='flex justify-between items-center -mx-4 z-10'>
 					<IconButton
 						edge='start'
 						onClick={() => {
@@ -104,7 +107,6 @@ const TrackInfo = (props: TrackInfoProps) => {
 						<FormatListBulleted />
 					</IconButton>
 				</div>
-
 				<div
 					className={`${
 						showTrackInfo
@@ -131,8 +133,7 @@ const TrackInfo = (props: TrackInfoProps) => {
 							)
 					)}
 				</div>
-
-				<div className='max-w-md w-full mx-auto mb-16'>
+				<div className='max-w-md w-full mx-auto mb-16 z-20'>
 					<div className='flex flex-col'>
 						<div className='flex justify-between items-center mb-4'>
 							<div>

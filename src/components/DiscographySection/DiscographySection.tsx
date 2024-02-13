@@ -24,7 +24,7 @@ const DiscographySection = ({
 							className='relative rounded-lg shadow-card overflow-hidden group'>
 							<div className='absolute top-0 left-0 h-full w-full bg-gradient-to-r from-transparent to-primary backdrop-blur-3xl rounded-lg border border-solid border-secondary z-10' />
 							<div
-								className='absolute top-0 left-0 h-full w-full brightness-50 z-0 saturate-200'
+								className='absolute top-0 left-0 h-full w-full brightness-50 z-0 saturate-150'
 								style={{
 									backgroundImage: `url(${albumImageUrl})`,
 									backgroundPosition: 'center',
