@@ -22,22 +22,20 @@ const DiscographySection = ({
 						<li
 							key={_id}
 							className='relative rounded-lg shadow-card overflow-hidden group'>
-							<div className='absolute top-0 left-0 h-full w-full'>
-								<div className='absolute top-0 left-0 h-full w-full bg-gradient-to-r from-primary/70 to-primary backdrop-blur-3xl backdrop-saturate-200 z-0' />
-								<div
-									className='h-full w-full'
-									style={{
-										backgroundImage: `url('${albumImageUrl}')`,
-										backgroundPosition: 'center',
-									}}
-								/>
-							</div>
+							<div className='absolute top-0 left-0 h-full w-full bg-gradient-to-r from-transparent to-primary backdrop-blur-3xl rounded-lg border border-solid border-secondary z-10' />
+							<div
+								className='absolute top-0 left-0 h-full w-full brightness-50 z-0 saturate-200'
+								style={{
+									backgroundImage: `url(${albumImageUrl})`,
+									backgroundPosition: 'center',
+								}}
+							/>
 							<Link
 								to={`/albums/${_id}`}
-								className='relative flex items-center p-2 transition-colors duration-150 group group-hover:bg-secondary'>
+								className='relative flex items-center p-2 transition-colors duration-150 group group-hover:bg-secondary z-20'>
 								<Image
 									src={albumImageUrl}
-									classes='shrink-0 h-[70px] w-[70px] rounded-tl-lg rounded-lg shadow-img lg:h-[100px] lg:w-[100px]'
+									classes='shrink-0 h-[70px] w-[70px] rounded-md shadow-img lg:h-[100px] lg:w-[100px]'
 								/>
 								<div className='ml-4 overflow-hidden'>
 									<span
@@ -52,7 +50,7 @@ const DiscographySection = ({
 								</div>
 							</Link>
 							<div
-								className={`opacity-0 translate-y-2 absolute bottom-4 left-4 duration-300 group-hover:opacity-100 group-hover:translate-y-0`}>
+								className={`opacity-0 translate-y-2 absolute bottom-4 left-4 duration-300 group-hover:opacity-100 group-hover:translate-y-0 z-30`}>
 								<PlaylistControls
 									playlist={tracks}
 									playlistInfo={{ type: 'album', name }}
