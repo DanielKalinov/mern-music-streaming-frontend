@@ -40,7 +40,7 @@ const NavigationBar = ({
 
 	return (
 		<div
-			className={`fixed top-0 left-0 flex items-center w-full p-2 bg-gradient-to-b z-20 transition-colors duration-200 ${
+			className={`fixed top-0 left-0 flex items-center w-full p-2 bg-gradient-to-b z-30 transition-colors duration-200 ${
 				containerVisible
 					? 'from-secondary to-primary shadow-md'
 					: 'bg-transparent shadow-none'
