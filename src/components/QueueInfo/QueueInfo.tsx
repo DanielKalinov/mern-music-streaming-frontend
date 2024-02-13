@@ -100,7 +100,7 @@ const QueueInfo = (props: QueueInfoProps) => {
 					showQueueInfo
 						? 'opacity-100 translate-y-0 visible'
 						: 'opacity-0 translate-y-full invisible'
-				} fixed top-0 left-1/2 -translate-x-1/2 p-4 h-full max-w-lg w-full z-40 [transition:all_200ms_ease-in-out,opacity_100ms_ease-in-out] lg:top-auto lg:bottom-[calc(92px+1rem)] lg:left-auto lg:right-4 lg:translate-x-0 lg:h-[600px] lg:max-w-md lg:p-0`}>
+				} fixed top-0 left-1/2 -translate-x-1/2 p-4 h-full max-w-lg w-full z-40 [transition:all_200ms_ease-in-out,opacity_100ms_ease-in-out] lg:top-auto lg:bottom-[calc(100px+1rem)] lg:left-auto lg:right-4 lg:translate-x-0 lg:h-[600px] lg:max-w-md lg:p-0`}>
 				<div className={`h-full w-full bg-primary rounded-lg shadow-card`}>
 					<div className='h-full flex flex-col'>
 						<div className='flex justify-between items-center px-4'>
@@ -112,7 +112,7 @@ const QueueInfo = (props: QueueInfoProps) => {
 								}}>
 								<ExpandMoreRounded fontSize='large' />
 							</IconButton>
-							<div className='absolute left-1/2 -translate-x-1/2 text-center text-xs'>
+							<div className='absolute left-1/2 -translate-x-1/2 text-center text-xs lg:text-sm'>
 								<span className='block tracking-widest'>
 									PLAYING FROM {currentPlaylistInfo.type?.toUpperCase()}
 								</span>
@@ -122,7 +122,9 @@ const QueueInfo = (props: QueueInfoProps) => {
 							</div>
 						</div>
 						<div className='my-6 px-4'>
-							<span className='block mb-2 font-bold '>Now Playing</span>
+							<span className='block mb-2 font-bold lg:text-lg'>
+								Now Playing
+							</span>
 							<div className='flex items-center'>
 								<div className='mr-2'>
 									<div className='min-w-[40px] min-h-[40px] relative'>
@@ -156,7 +158,7 @@ const QueueInfo = (props: QueueInfoProps) => {
 						</div>
 						{nextFromList.length > 0 && (
 							<>
-								<span className='block mb-2 font-bold px-4'>
+								<span className='block mb-2 font-bold px-4 lg:text-lg'>
 									Next From: {currentPlaylistInfo.name}
 								</span>
 								{nextFromList.length > 0 && (
