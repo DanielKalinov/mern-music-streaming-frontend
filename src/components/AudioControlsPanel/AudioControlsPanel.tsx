@@ -221,7 +221,7 @@ const AudioControlsPanel = ({
 							<span className='block text-inactive'>{artistNames(artist)}</span>
 						</div>
 					</div>
-					<div className='basis-1/2 flex flex-col items-center justify-between h-full'>
+					<div className='basis-1/2 flex flex-col items-center justify-between h-full mb-2'>
 						<div className='flex justify-center space-x-4'>
 							<IconButton onClick={() => dispatch(setShuffleList())}>
 								<Shuffle className={`${shuffleList ? 'text-accent' : ''}`} />
