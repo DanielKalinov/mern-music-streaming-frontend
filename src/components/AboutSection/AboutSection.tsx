@@ -41,7 +41,7 @@ const AboutSection = ({
 				</div>
 			</div>
 			<div
-				className={`fixed top-0 left-0 w-full h-full z-30 transition-all duration-200 xs:bg-black/60 xs:backdrop-blur-2xl xs:px-8 xs:py-16 ${
+				className={`fixed top-0 left-0 w-full h-full z-50 transition-all duration-200 xs:bg-black/60 xs:backdrop-blur-2xl xs:px-8 xs:py-16 ${
 					showAboutWindow ? 'opacity-1 visible' : 'opacity-0 invisible'
 				}`}
 				onClick={() => {
