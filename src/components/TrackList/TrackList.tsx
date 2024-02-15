@@ -45,9 +45,8 @@ const TrackList = ({
 					return (
 						<li
 							key={item._id}
-							className={`flex ${
-								item._id == currentTrackInfo._id &&
-								'bg-gradient-to-r from-white/5 to-transparent rounded-xl'
+							className={`flex rounded-xl bg-gradient-to-r to-transparent disablemobilehover:hover:from-white/5 ${
+								item._id == currentTrackInfo._id && '!from-white/10'
 							}`}>
 							<ButtonBase
 								className='w-full text-left !rounded-xl'
