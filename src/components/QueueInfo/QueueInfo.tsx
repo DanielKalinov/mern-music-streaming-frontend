@@ -190,10 +190,10 @@ const QueueInfo = (props: QueueInfoProps) => {
 											}}>
 											<Droppable droppableId='queue'>
 												{(provided) => (
-													<ul
-														{...provided.droppableProps}
-														ref={provided.innerRef}>
-														<>
+													<>
+														<ul
+															{...provided.droppableProps}
+															ref={provided.innerRef}>
 															{nextFromList.map((item, index) => (
 																<Draggable
 																	isDragDisabled={nextFromList.length == 1}
@@ -230,9 +230,9 @@ const QueueInfo = (props: QueueInfoProps) => {
 																	)}
 																</Draggable>
 															))}
-															{provided.placeholder}
-														</>
-													</ul>
+														</ul>
+														{provided.placeholder}
+													</>
 												)}
 											</Droppable>
 										</DragDropContext>
