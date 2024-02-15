@@ -50,7 +50,11 @@ const DiscographySection = ({
 								</div>
 							</Link>
 							<div
-								className={`opacity-0 translate-y-2 absolute bottom-4 left-4 duration-300 group-hover:opacity-100 group-hover:translate-y-0 z-30`}>
+								className={`absolute bottom-4 left-4 duration-300 ${
+									currentPlaylistInfo.name == name
+										? 'visible opacity-100 translate-y-0'
+										: 'invisible opacity-0 translate-y-2'
+								} group-hover:visible group-hover:opacity-100 group-hover:translate-y-0 z-30`}>
 								<PlaylistControls
 									playlist={tracks}
 									playlistInfo={{ type: 'album', name }}
