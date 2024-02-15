@@ -17,6 +17,7 @@ module.exports = {
 			},
 			screens: {
 				xs: '425px',
+				disablemobilehover: { raw: '(hover: hover)' },
 			},
 			boxShadow: {
 				card: '0 5px 15px rgba(0, 0, 0, 0.3)',
