@@ -10,17 +10,16 @@ import AudioPlayerState from '../../types/AudioPlayerState';
 import { IconButton } from '@mui/material';
 import {
 	ExpandMoreRounded,
-	DragHandle,
 	PlayArrow,
 	Pause,
 	SkipNext,
 	SkipPrevious,
 } from '@mui/icons-material';
-import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
 import Track from '../../types/Track';
 import WaveAnimation from '../WaveAnimation';
 import Image from '../Image';
 import artistNames from '../../utils/artistName';
+import DraggableList from '../DraggableList';
 
 const QueueInfo = (props: QueueInfoProps) => {
 	const { showQueueInfo, setShowQueueInfo } = props;
@@ -31,6 +30,7 @@ const QueueInfo = (props: QueueInfoProps) => {
 		(state: AudioPlayerState) => state.audioPlayer
 	);
 	const [prevQueue, setPrevQueue] = useState<Track[]>([]);
+
 	const {
 		queue,
 		isPlaying,
@@ -44,7 +44,7 @@ const QueueInfo = (props: QueueInfoProps) => {
 	const title = track?.title;
 	const artist = track?.artist;
 
-	const nextFromList = queue.slice(currentTrackPosition + 1, queue.length);
+	// const nextFromList = queue.slice(currentTrackPosition + 1, queue.length);
 
 	useEffect(() => {
 		if (shuffleList) {
@@ -156,86 +156,17 @@ const QueueInfo = (props: QueueInfoProps) => {
 								</div>
 							</div>
 						</div>
-						{nextFromList.length > 0 && (
+						{queue.length > 0 && (
 							<>
 								<span className='block mb-2 font-bold px-4 lg:text-lg'>
 									Next From: {currentPlaylistInfo.name}
 								</span>
-								{nextFromList.length > 0 && (
+								{queue.length > 0 && (
 									<div className='overflow-y-auto mb-4'>
-										<DragDropContext
-											onDragEnd={(e) => {
-												if (!e.destination) return;
-
-												// reorder items in nextFromList variable
-												const [reorderedItem] = nextFromList.splice(
-													e.source.index,
-													1
-												);
-												nextFromList.splice(
-													e.destination.index,
-													0,
-													reorderedItem
-												);
-
-												// insert reordered items in state
-												const newQueue = [...queue];
-												newQueue.splice(
-													currentTrackPosition + 1,
-													nextFromList.length,
-													...nextFromList
-												);
-
-												dispatch(setQueue(newQueue));
-											}}>
-											<Droppable droppableId='queue'>
-												{(provided) => (
-													<>
-														<ul
-															{...provided.droppableProps}
-															ref={provided.innerRef}>
-															{nextFromList.map((item, index) => (
-																<Draggable
-																	isDragDisabled={nextFromList.length == 1}
-																	key={item._id}
-																	draggableId={item._id}
-																	index={index}>
-																	{(provided, snapshot) => (
-																		<li
-																			ref={provided.innerRef}
-																			{...provided.draggableProps}
-																			{...provided.dragHandleProps}
-																			className={`!left-auto !top-auto flex justify-between px-4 py-2 transition-colors duration-300 select-none ${
-																				snapshot.isDragging
-																					? 'bg-secondary'
-																					: ''
-																			}`}>
-																			<div>
-																				<span className='block text-sm lg:text-base'>
-																					{item.track?.title}
-																				</span>
-																				<span className='block text-sm text-inactive lg:text-base'>
-																					{artistNames(artist)}
-																				</span>
-																			</div>
-
-																			{nextFromList.length > 1 && (
-																				<div>
-																					<IconButton>
-																						<DragHandle />
-																					</IconButton>
-																				</div>
-																			)}
-																		</li>
-																	)}
-																</Draggable>
-															))}
-														</ul>
-														{provided.placeholder}
-													</>
-												)}
-											</Droppable>
-										</DragDropContext>
+										<DraggableList
+											queue={queue}
+											currentTrackPosition={currentTrackPosition}
+										/>
 									</div>
 								)}
 							</>
