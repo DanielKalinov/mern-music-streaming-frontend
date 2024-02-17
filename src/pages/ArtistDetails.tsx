@@ -62,15 +62,22 @@ const ArtistDetails = () => {
 							className='w-full text-3xl font-bold sm:ml-4 sm:text-4xl md:text-5xl lg:text-6xl'>
 							{artistDetails?.name?.toUpperCase()}
 						</h1>
-						<PlaylistControls
-							playlist={artistDetails?.tracks ?? []}
-							playlistInfo={{ type: 'artist', name: artistDetails?.name ?? '' }}
-						/>
 					</div>
 					<div className='mt-8'>
 						<div className='flex justify-between'>
 							<div className='w-full md:basis-1/2'>
-								<h2 className='mb-4'>Top tracks</h2>
+								<div className='relative mb-4'>
+									<h2>Top tracks</h2>
+									<div className='absolute top-1/2 -translate-y-1/2 right-0'>
+										<PlaylistControls
+											playlist={artistDetails?.tracks ?? []}
+											playlistInfo={{
+												type: 'artist',
+												name: artistDetails?.name ?? '',
+											}}
+										/>
+									</div>
+								</div>
 								<TrackList
 									tracks={artistDetails?.tracks ?? []}
 									showAlbumImage
