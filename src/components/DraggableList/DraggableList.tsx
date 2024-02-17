@@ -7,7 +7,10 @@ import {
 	useSensors,
 	DragEndEvent,
 } from '@dnd-kit/core';
-import { restrictToVerticalAxis } from '@dnd-kit/modifiers';
+import {
+	restrictToParentElement,
+	restrictToVerticalAxis,
+} from '@dnd-kit/modifiers';
 import {
 	arrayMove,
 	SortableContext,
@@ -51,7 +54,7 @@ const DraggableList = ({
 			sensors={sensors}
 			collisionDetection={closestCenter}
 			onDragEnd={handleDragEnd}
-			modifiers={[restrictToVerticalAxis]}>
+			modifiers={[restrictToVerticalAxis, restrictToParentElement]}>
 			<SortableContext
 				items={nextFromList.map(({ _id }) => _id)}
 				strategy={verticalListSortingStrategy}>
