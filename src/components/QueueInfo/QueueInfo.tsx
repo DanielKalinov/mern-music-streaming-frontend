@@ -44,8 +44,6 @@ const QueueInfo = (props: QueueInfoProps) => {
 	const title = track?.title;
 	const artist = track?.artist;
 
-	// const nextFromList = queue.slice(currentTrackPosition + 1, queue.length);
-
 	useEffect(() => {
 		if (shuffleList) {
 			// shuffle the queue
@@ -164,8 +162,11 @@ const QueueInfo = (props: QueueInfoProps) => {
 								{queue.length > 0 && (
 									<div className='overflow-y-auto mb-4'>
 										<DraggableList
+											nextFromList={queue.slice(
+												currentTrackPosition + 1,
+												queue.length
+											)}
 											queue={queue}
-											currentTrackPosition={currentTrackPosition}
 										/>
 									</div>
 								)}

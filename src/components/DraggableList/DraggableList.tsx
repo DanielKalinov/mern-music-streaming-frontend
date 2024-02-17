@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import {
 	DndContext,
 	PointerSensor,
@@ -21,39 +21,25 @@ import { DragHandle } from '@mui/icons-material';
 import artistNames from '../../utils/artistName';
 
 const DraggableList = ({
+	nextFromList,
 	queue,
-	currentTrackPosition,
 }: {
+	nextFromList: Track[];
 	queue: Track[];
-	currentTrackPosition: number;
 }) => {
-	const [list, setList] = useState<Track[]>([]);
 	const sensors = useSensors(useSensor(PointerSensor));
 
 	const dispatch = useDispatch();
 
-	useEffect(() => {
-		const nextFromList = queue.slice(currentTrackPosition + 1, queue.length);
-		setList(nextFromList);
-	}, [currentTrackPosition]);
-
-	useEffect(() => {
-		if (list.length) {
-			const newQueue = [...queue];
-			newQueue.splice(currentTrackPosition + 1, list.length, ...list);
-
-			dispatch(setQueue(newQueue));
-		}
-	}, [list]);
-
 	const handleDragEnd = (event: any) => {
 		const { active, over } = event;
+
 		if (active.id !== over.id) {
-			setList((items) => {
-				const oldIndex = items.findIndex((item) => item._id === active.id);
-				const newIndex = items.findIndex((item) => item._id === over.id);
-				return arrayMove(items, oldIndex, newIndex);
-			});
+			const oldIndex = nextFromList.findIndex((item) => item._id === active.id);
+			const newIndex = nextFromList.findIndex((item) => item._id === over.id);
+			const updatedQueue = arrayMove(nextFromList, oldIndex, newIndex);
+
+			dispatch(setQueue([queue[0], ...updatedQueue]));
 		}
 	};
 
@@ -64,9 +50,9 @@ const DraggableList = ({
 			onDragEnd={handleDragEnd}
 			modifiers={[restrictToVerticalAxis]}>
 			<SortableContext
-				items={list.map(({ _id }) => _id)}
+				items={nextFromList.map(({ _id }) => _id)}
 				strategy={verticalListSortingStrategy}>
-				{list.map(({ _id, track }) => (
+				{nextFromList.map(({ _id, track }) => (
 					<SortableItem key={_id} id={_id}>
 						<div className='flex items-center justify-between py-2 px-4 '>
 							<div>
