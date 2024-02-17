@@ -5,6 +5,7 @@ import {
 	closestCenter,
 	useSensor,
 	useSensors,
+	DragEndEvent,
 } from '@dnd-kit/core';
 import { restrictToVerticalAxis } from '@dnd-kit/modifiers';
 import {
@@ -21,25 +22,27 @@ import { DragHandle } from '@mui/icons-material';
 import artistNames from '../../utils/artistName';
 
 const DraggableList = ({
-	nextFromList,
 	queue,
+	currentTrackPosition,
 }: {
-	nextFromList: Track[];
 	queue: Track[];
+	currentTrackPosition: number;
 }) => {
 	const sensors = useSensors(useSensor(PointerSensor));
 
 	const dispatch = useDispatch();
 
-	const handleDragEnd = (event: any) => {
+	const nextFromList = queue.slice(currentTrackPosition + 1, queue.length);
+
+	const handleDragEnd = (event: DragEndEvent) => {
 		const { active, over } = event;
 
-		if (active.id !== over.id) {
-			const oldIndex = nextFromList.findIndex((item) => item._id === active.id);
-			const newIndex = nextFromList.findIndex((item) => item._id === over.id);
-			const updatedQueue = arrayMove(nextFromList, oldIndex, newIndex);
+		if (active && over && active.id !== over.id) {
+			const oldIndex = queue.findIndex((item) => item._id === active.id);
+			const newIndex = queue.findIndex((item) => item._id === over.id);
+			const updatedQueue = arrayMove(queue, oldIndex, newIndex);
 
-			dispatch(setQueue([queue[0], ...updatedQueue]));
+			dispatch(setQueue(updatedQueue));
 		}
 	};
 

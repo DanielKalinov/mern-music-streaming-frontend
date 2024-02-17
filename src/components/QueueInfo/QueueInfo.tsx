@@ -162,11 +162,8 @@ const QueueInfo = (props: QueueInfoProps) => {
 								{queue.length > 0 && (
 									<div className='overflow-y-auto mb-4'>
 										<DraggableList
-											nextFromList={queue.slice(
-												currentTrackPosition + 1,
-												queue.length
-											)}
 											queue={queue}
+											currentTrackPosition={currentTrackPosition}
 										/>
 									</div>
 								)}
