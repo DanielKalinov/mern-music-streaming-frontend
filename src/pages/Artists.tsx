@@ -22,17 +22,19 @@ const Artists = () => {
 		<PageTransition duration={1}>
 			<div className='pageContainer'>
 				<h1 className='w-full text-center mt-4 mb-8'>Pick an artist</h1>
-				<div className='grid grid-cols-2 gap-4 xs:grid-cols-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6'>
+				<div className='grid grid-cols-3 gap-4 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6'>
 					{artists.map((item: Artist) => (
 						<Link key={item._id} to={`/artist/${item._id}`}>
-							<div className='p-3 card hover:bg-secondary'>
-								<Image
-									src={item.artistImageUrl}
-									fullSize={true}
-									classes='aspect-square rounded-lg shadow-card'
-								/>
+							<div className='rounded-lg transition-all duration-300 ease-in-out group hover:bg-primary hover:shadow-card hover:p-2'>
+								<div className='transition-all duration-300 ease-in-out group-hover:p-2'>
+									<Image
+										src={item.artistImageUrl}
+										fullSize={true}
+										classes='aspect-square rounded-full shadow-card'
+									/>
+								</div>
 								<span
-									className={`mt-3 block text-center text-sm font-semibold truncate ${
+									className={`mt-2 block text-center text-sm font-semibold truncate ${
 										currentPlaylistInfo.name == item.name && 'text-accent'
 									}`}>
 									{item.name}
