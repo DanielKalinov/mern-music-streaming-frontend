@@ -32,7 +32,7 @@ const AlbumDetails = () => {
 					targetRef={targetRef}
 					threshold={20}
 				/>
-				<div className='mt-20 mb-8 sm:flex sm:items-center sm:gap-4'>
+				<div className='mt-20 mb-8 sm:flex sm:items-center sm:gap-6'>
 					<div className='absolute top-0 left-0 w-full'>
 						<Image
 							src={albumDetails.albumImageUrl}
@@ -45,17 +45,15 @@ const AlbumDetails = () => {
 					</div>
 					<Image
 						src={albumDetails.albumImageUrl}
-						height={300}
-						width={300}
-						classes='m-auto w-fit mb-8 shadow-card rounded-lg sm:m-0'
+						height={250}
+						width={250}
+						classes='shrink-0 m-auto w-fit mb-6 shadow-card rounded-lg sm:m-0'
 					/>
 					<div
 						ref={targetRef}
-						className='relative flex items-center justify-between w-full basis-1/2 mb-8 transition-opacity duration-200 h-fit'>
-						<div className='w-full'>
-							<span className='block mb-1 font-bold text-2xl lg:text-4xl'>
-								{albumDetails.name}
-							</span>
+						className='relative flex items-center justify-between w-full mb-8 transition-opacity duration-200 h-fit sm:mb-0'>
+						<div>
+							<h2 className='mb-1'>{albumDetails.name}</h2>
 							<span className='text-inactive'>
 								{artistNames(albumDetails.artist)}
 							</span>

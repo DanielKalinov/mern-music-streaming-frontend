@@ -45,7 +45,7 @@ const TrackList = ({
 					return (
 						<li
 							key={item._id}
-							className={`flex rounded-xl bg-gradient-to-r to-transparent disablemobilehover:hover:from-white/5 ${
+							className={`flex items-center rounded-xl bg-gradient-to-r to-transparent disablemobilehover:hover:from-white/5 ${
 								item._id == currentTrackInfo._id && '!from-white/10'
 							}`}>
 							<ButtonBase
@@ -98,10 +98,11 @@ const TrackList = ({
 									</div>
 								</div>
 							</ButtonBase>
-
-							<IconButton>
-								<MoreVertRoundedIcon />
-							</IconButton>
+							<div>
+								<IconButton>
+									<MoreVertRoundedIcon />
+								</IconButton>
+							</div>
 						</li>
 					);
 				})}

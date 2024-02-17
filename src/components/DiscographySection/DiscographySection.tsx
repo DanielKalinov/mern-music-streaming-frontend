@@ -50,7 +50,7 @@ const DiscographySection = ({
 								</div>
 							</Link>
 							<div
-								className={`absolute bottom-4 left-4 duration-300 ${
+								className={`hidden absolute bottom-4 left-4 duration-300 lg:block ${
 									currentPlaylistInfo.name == name
 										? 'visible opacity-100 translate-y-0'
 										: 'invisible opacity-0 translate-y-2'
