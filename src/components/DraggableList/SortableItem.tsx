@@ -11,11 +11,12 @@ function SortableItem(props: { id: string; children: JSX.Element }) {
 	const style = {
 		transform: CSS.Transform.toString(transform),
 		transition,
+		zIndex: active?.id == props.id ? 2 : 1,
 	};
 
 	return (
 		<div
-			className={`transition-colors duration-150 ease-in-out ${
+			className={`relative transition-colors duration-150 ease-in-out ${
 				active?.id == props.id ? 'bg-secondary' : ''
 			}`}
 			ref={setNodeRef}
