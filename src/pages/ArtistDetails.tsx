@@ -64,8 +64,8 @@ const ArtistDetails = () => {
 						</h1>
 					</div>
 					<div className='mt-8'>
-						<div className='flex justify-between'>
-							<div className='w-full md:basis-1/2'>
+						<div className='flex gap-8 justify-between'>
+							<div className='w-full lg:w-full'>
 								<div className='relative mb-4'>
 									<h2>Top tracks</h2>
 									<div className='absolute top-1/2 -translate-y-1/2 right-0'>
@@ -87,7 +87,7 @@ const ArtistDetails = () => {
 									}}
 								/>
 							</div>
-							<div className='hidden basis-1/2 ml-4 md:block'>
+							<div className='hidden w-full lg:block'>
 								<AboutSection
 									artistDetails={{
 										name: artistDetails?.name ?? '',
@@ -103,7 +103,7 @@ const ArtistDetails = () => {
 						artistDetails={artistDetails ?? null}
 						currentPlaylistInfo={currentPlaylistInfo}
 					/>
-					<div className='mt-8 md:hidden'>
+					<div className='mt-8 lg:hidden'>
 						<AboutSection
 							artistDetails={{
 								name: artistDetails?.name ?? '',
