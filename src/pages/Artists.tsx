@@ -44,7 +44,7 @@ const Artists = () => {
 								</div>
 							</Link>
 							<div
-								className={`absolute bottom-16 right-8 transition-all duration-300 disablemobilehover:group-hover:visible disablemobilehover:group-hover:opacity-100 ${
+								className={`hidden absolute bottom-16 right-8 transition-all duration-300 disablemobilehover:group-hover:visible disablemobilehover:group-hover:opacity-100 lg:block ${
 									currentPlaylistInfo.name == name
 										? 'visible opacity-100 translate-y-0'
 										: 'invisible opacity-0 translate-y-2'
