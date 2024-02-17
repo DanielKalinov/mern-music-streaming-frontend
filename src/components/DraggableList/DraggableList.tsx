@@ -56,6 +56,7 @@ const DraggableList = ({
 			onDragEnd={handleDragEnd}
 			modifiers={[restrictToVerticalAxis, restrictToParentElement]}>
 			<SortableContext
+				disabled={!queue[currentTrackPosition + 2]}
 				items={nextFromList.map(({ _id }) => _id)}
 				strategy={verticalListSortingStrategy}>
 				{nextFromList.map(({ _id, track }) => (
@@ -69,11 +70,11 @@ const DraggableList = ({
 									{artistNames(track?.artist)}
 								</span>
 							</div>
-							<div>
-								<IconButton>
+							{queue[currentTrackPosition + 2] && (
+								<IconButton disableRipple edge='end'>
 									<DragHandle />
 								</IconButton>
-							</div>
+							)}
 						</div>
 					</SortableItem>
 				))}

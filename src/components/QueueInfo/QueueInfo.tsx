@@ -154,7 +154,7 @@ const QueueInfo = (props: QueueInfoProps) => {
 								</div>
 							</div>
 						</div>
-						{queue.length > 0 && (
+						{queue.length > 0 && queue[currentTrackPosition + 1] && (
 							<>
 								<span className='block mb-2 font-bold px-4 lg:text-lg'>
 									Next From: {currentPlaylistInfo.name}
