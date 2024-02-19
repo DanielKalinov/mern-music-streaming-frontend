@@ -38,7 +38,7 @@ const ArtistDetails = () => {
 					targetRef={targetRef}
 					threshold={50}
 				/>
-				<div className='-mx-4'>
+				<div className='-mx-4 sm:hidden'>
 					<div className='relative'>
 						<Image
 							src={artistDetails?.artistImageUrl ?? ''}
@@ -46,20 +46,30 @@ const ArtistDetails = () => {
 							fullSize={true}
 							classes='grayscale w-full h-64 sm:grayscale-0'
 						/>
-						<div className='absolute top-0 left-0 h-full w-full bg-gradient-to-b from-accent/30 to-background-dark sm:backdrop-blur-3xl sm:from-transparent sm:to-background-dark' />
+						<div className='absolute top-0 left-0 h-full w-full bg-gradient-to-b from-accent/30 to-background-dark' />
 					</div>
 				</div>
 				<div className='pageContainer'>
-					<div className='flex items-center'>
+					<div className='relative flex items-center sm:mt-24 sm:rounded-lg sm:overflow-hidden sm:p-4'>
+						<div className='absolute top-0 left-0 h-full w-full sm:bg-gradient-to-r sm:from-transparent sm:to-primary sm:backdrop-blur-3xl sm:rounded-lg sm:border sm:border-solid sm:border-secondary z-10' />
+						<div
+							className='hidden absolute top-0 left-0 h-full w-full brightness-50 saturate-150 sm:block'
+							style={{
+								backgroundImage: `url(${artistDetails?.artistImageUrl ?? ''})`,
+								backgroundRepeat: 'no-repeat',
+								backgroundSize: 'cover',
+								backgroundPosition: 'center',
+							}}
+						/>
 						<Image
 							src={artistDetails?.artistImageUrl ?? ''}
 							width={200}
 							height={200}
-							classes='hidden aspect-square rounded-full z-10 shadow-card sm:flex'
+							classes='hidden aspect-square rounded-full z-20 shadow-card sm:flex'
 						/>
 						<h1
 							ref={targetRef}
-							className='w-full text-3xl font-bold sm:ml-4 sm:text-4xl md:text-5xl lg:text-6xl'>
+							className='w-full text-3xl font-bold z-30 sm:ml-4 sm:text-4xl md:text-5xl lg:text-6xl'>
 							{artistDetails?.name?.toUpperCase()}
 						</h1>
 					</div>
