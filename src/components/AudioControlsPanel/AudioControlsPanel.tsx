@@ -115,18 +115,12 @@ const AudioControlsPanel = ({
 						<div className='flex items-center'>
 							<div className='p-2'>
 								<div className='min-w-[40px] min-h-[40px] relative'>
-									{queue.map(
-										(item, index) =>
-											currentTrackPosition === index && (
-												<Image
-													key={index}
-													src={item.track?.album?.albumImageUrl}
-													height={40}
-													width={40}
-													classes='rounded-md shadow-md'
-												/>
-											)
-									)}
+									<Image
+										src={currentTrackInfo.track?.album?.albumImageUrl}
+										height={40}
+										width={40}
+										classes='rounded-md shadow-md'
+									/>
 								</div>
 							</div>
 
@@ -199,18 +193,12 @@ const AudioControlsPanel = ({
 				<div className='flex w-full p-4 card'>
 					<div className='min-w-0 basis-1/4 flex items-center'>
 						<div className='max-w-[60px] min-w-[60px] max-h-[60px] min-h-[60px] relative'>
-							{queue.map(
-								(item, index) =>
-									currentTrackPosition === index && (
-										<Image
-											key={index}
-											src={item.track?.album?.albumImageUrl}
-											height={60}
-											width={60}
-											classes='rounded-md shadow-card'
-										/>
-									)
-							)}
+							<Image
+								src={currentTrackInfo.track?.album?.albumImageUrl}
+								height={60}
+								width={60}
+								classes='rounded-md shadow-card'
+							/>
 						</div>
 						<div className='overflow-hidden whitespace-nowrap ml-4'>
 							<span
