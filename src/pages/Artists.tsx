@@ -23,9 +23,9 @@ const Artists = () => {
 		<PageTransition duration={1}>
 			<div className='pageContainer'>
 				<h1 className='w-full text-center mt-4 mb-8'>Pick an artist</h1>
-				<div className='grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6'>
+				<ul className='grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6'>
 					{artists.map(({ _id, name, artistImageUrl, tracks }: Artist) => (
-						<div key={_id} className='relative group'>
+						<li key={_id} className='relative group'>
 							<Link to={`/artist/${_id}`}>
 								<div className='p-4 rounded-lg transition-all duration-300 ease-in-out group disablemobilehover:group-hover:bg-primary disablemobilehover:group-hover:shadow-card'>
 									<div className='transition-all duration-300 ease-in-out disablemobilehover:group-hover:p-2'>
@@ -46,17 +46,17 @@ const Artists = () => {
 							<div
 								className={`hidden absolute bottom-16 right-8 transition-all duration-300 disablemobilehover:group-hover:visible disablemobilehover:group-hover:opacity-100 lg:block ${
 									currentPlaylistInfo.name == name
-										? 'visible opacity-100 translate-y-0'
-										: 'invisible opacity-0 translate-y-2'
+										? 'visible opacity-100'
+										: 'invisible opacity-0'
 								}`}>
 								<PlaylistControls
 									playlist={tracks}
 									playlistInfo={{ type: 'artist', name: name }}
 								/>
 							</div>
-						</div>
+						</li>
 					))}
-				</div>
+				</ul>
 			</div>
 		</PageTransition>
 	);

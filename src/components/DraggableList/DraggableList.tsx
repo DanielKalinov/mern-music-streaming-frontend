@@ -50,36 +50,38 @@ const DraggableList = ({
 	};
 
 	return (
-		<DndContext
-			sensors={sensors}
-			collisionDetection={closestCenter}
-			onDragEnd={handleDragEnd}
-			modifiers={[restrictToVerticalAxis, restrictToParentElement]}>
-			<SortableContext
-				disabled={!queue[currentTrackPosition + 2]}
-				items={nextFromList.map(({ _id }) => _id)}
-				strategy={verticalListSortingStrategy}>
-				{nextFromList.map(({ _id, track }) => (
-					<SortableItem key={_id} id={_id}>
-						<div className='flex items-center justify-between py-2 px-4 '>
-							<div>
-								<span className='block text-sm lg:text-base'>
-									{track?.title}
-								</span>
-								<span className='block text-sm text-inactive lg:text-base'>
-									{artistNames(track?.artist)}
-								</span>
+		<ul className='overflow-y-auto mb-4'>
+			<DndContext
+				sensors={sensors}
+				collisionDetection={closestCenter}
+				onDragEnd={handleDragEnd}
+				modifiers={[restrictToVerticalAxis, restrictToParentElement]}>
+				<SortableContext
+					disabled={!queue[currentTrackPosition + 2]}
+					items={nextFromList.map(({ _id }) => _id)}
+					strategy={verticalListSortingStrategy}>
+					{nextFromList.map(({ _id, track }) => (
+						<SortableItem key={_id} id={_id}>
+							<div className='flex items-center justify-between py-2 px-4 '>
+								<div>
+									<span className='block text-sm lg:text-base'>
+										{track?.title}
+									</span>
+									<span className='block text-sm text-inactive lg:text-base'>
+										{artistNames(track?.artist)}
+									</span>
+								</div>
+								{queue[currentTrackPosition + 2] && (
+									<IconButton disableRipple edge='end'>
+										<DragHandle />
+									</IconButton>
+								)}
 							</div>
-							{queue[currentTrackPosition + 2] && (
-								<IconButton disableRipple edge='end'>
-									<DragHandle />
-								</IconButton>
-							)}
-						</div>
-					</SortableItem>
-				))}
-			</SortableContext>
-		</DndContext>
+						</SortableItem>
+					))}
+				</SortableContext>
+			</DndContext>
+		</ul>
 	);
 };
 

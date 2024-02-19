@@ -15,7 +15,7 @@ function SortableItem(props: { id: string; children: JSX.Element }) {
 	};
 
 	return (
-		<div
+		<li
 			className={`relative transition-colors duration-150 ease-in-out ${
 				active?.id == props.id ? 'bg-secondary' : ''
 			}`}
@@ -24,7 +24,7 @@ function SortableItem(props: { id: string; children: JSX.Element }) {
 			{...attributes}
 			{...listeners}>
 			{props.children}
-		</div>
+		</li>
 	);
 }
 

@@ -160,12 +160,10 @@ const QueueInfo = (props: QueueInfoProps) => {
 									Next From: {currentPlaylistInfo.name}
 								</span>
 								{queue.length > 0 && (
-									<div className='overflow-y-auto mb-4'>
-										<DraggableList
-											queue={queue}
-											currentTrackPosition={currentTrackPosition}
-										/>
-									</div>
+									<DraggableList
+										queue={queue}
+										currentTrackPosition={currentTrackPosition}
+									/>
 								)}
 							</>
 						)}
