@@ -34,7 +34,7 @@ const TrackList = ({
 	const dispatch = useDispatch();
 
 	return (
-		<ul className='relative'>
+		<ul className='relative space-y-2'>
 			{tracks &&
 				tracks.map((item: Track, index) => {
 					const { track } = item;
