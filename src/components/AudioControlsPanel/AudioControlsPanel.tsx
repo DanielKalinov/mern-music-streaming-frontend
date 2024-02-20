@@ -101,98 +101,15 @@ const AudioControlsPanel = ({
 
 	return (
 		<>
-			{/* Small screens start */}
 			<div
 				className={`${
 					Object.keys(currentTrackInfo).length > 0
 						? 'translate-y-0'
 						: 'translate-y-full'
-				} fixed bottom-0 left-0 px-2 pb-2 w-full transition-all duration-100 ease-in-out z-20 lg:hidden`}>
-				<div className='flex flex-col max-w-lg m-auto items-center card !shadow-audio-panel overflow-hidden'>
-					<div
-						className='relative flex items-center justify-between w-full'
-						onClick={() => setShowTrackInfo(true)}>
-						<div className='flex items-center'>
-							<div className='p-2'>
-								<div className='min-w-[40px] min-h-[40px] relative'>
-									<Image
-										src={currentTrackInfo.track?.album?.albumImageUrl}
-										height={40}
-										width={40}
-										classes='rounded-md shadow-md'
-									/>
-								</div>
-							</div>
-
-							<div>
-								<span className='block text-sm font-bold'>{title}</span>
-								<span className='block text-sm text-inactive'>
-									{artistNames(artist)}
-								</span>
-							</div>
-						</div>
-						<div className='flex mr-2'>
-							<IconButton
-								disabled={currentTrackPosition == 0}
-								onClick={(e) => {
-									e.stopPropagation();
-
-									dispatch(skipTrack('prev'));
-								}}
-								className='disabled:opacity-30'>
-								<SkipPrevious className='font-color' />
-							</IconButton>
-							<IconButton
-								onClick={(e) => {
-									e.stopPropagation();
-
-									if (isPlaying) {
-										dispatch(togglePlaying(false));
-									} else {
-										dispatch(togglePlaying(true));
-									}
-								}}
-								className='disabled:opacity-30'>
-								{isPlaying ? (
-									<Pause className='font-color' />
-								) : (
-									<PlayArrow className='font-color' />
-								)}
-							</IconButton>
-							<IconButton
-								disabled={currentTrackPosition + 1 == queue.length}
-								onClick={(e) => {
-									e.stopPropagation();
-
-									dispatch(skipTrack('next'));
-								}}
-								className='disabled:opacity-30'>
-								<SkipNext className='font-color' />
-							</IconButton>
-						</div>
-					</div>
-					<div className='px-2 !w-full !h-full'>
-						<div className='h-0.5 w-full bg-secondary'>
-							<div
-								ref={staticProgressBarRef}
-								className='h-0.5 w-0 bg-accent transition-all duration-300 ease-in-out'
-							/>
-						</div>
-					</div>
-				</div>
-			</div>
-			{/* Small screens end */}
-
-			{/* Large screens start */}
-			<div
-				className={`${
-					Object.keys(currentTrackInfo).length > 0
-						? 'translate-y-0'
-						: 'translate-y-full'
-				} hidden fixed bottom-0 left-0 w-full p-4 transition-all duration-100 ease-in-out z-40 lg:flex`}>
-				<div className='flex w-full p-4 card'>
-					<div className='min-w-0 basis-1/4 flex items-center'>
-						<div className='max-w-[60px] min-w-[60px] max-h-[60px] min-h-[60px] relative'>
+				} flex fixed bottom-0 left-0 w-full p-2 transition-all duration-100 ease-in-out z-40 lg:p-4`}>
+				<div className='flex justify-between max-w-lg w-full p-2 m-auto card lg:max-w-none lg:p-4 lg:justify-normal'>
+					<div className='flex items-center min-w-0 lg:basis-1/4'>
+						<div className='min-w-[40px] min-h-[40px] max-w-[40px] max-h-[40px] lg:max-w-[60px] lg:min-w-[60px] lg:max-h-[60px] lg:min-h-[60px] relative'>
 							<Image
 								src={currentTrackInfo.track?.album?.albumImageUrl}
 								height={60}
@@ -200,7 +117,7 @@ const AudioControlsPanel = ({
 								classes='rounded-md shadow-card'
 							/>
 						</div>
-						<div className='overflow-hidden whitespace-nowrap ml-4'>
+						<div className='text-sm ml-2 overflow-hidden whitespace-nowrap lg:ml-4 lg:text-base'>
 							<span
 								ref={spanRef}
 								className='relative right-0 whitespace-nowrap block font-bold !delay-[2s]'>
@@ -209,9 +126,11 @@ const AudioControlsPanel = ({
 							<span className='block text-inactive'>{artistNames(artist)}</span>
 						</div>
 					</div>
-					<div className='basis-1/2 flex flex-col items-center justify-between h-full mb-2'>
+					<div className='flex flex-col items-center justify-between h-full lg:mb-2 lg:basis-1/2 '>
 						<div className='flex justify-center space-x-4'>
-							<IconButton onClick={() => dispatch(setShuffleList())}>
+							<IconButton
+								className='!hidden lg:!flex'
+								onClick={() => dispatch(setShuffleList())}>
 								<Shuffle className={`${shuffleList ? 'text-accent' : ''}`} />
 							</IconButton>
 							<IconButton
@@ -222,7 +141,7 @@ const AudioControlsPanel = ({
 								<SkipPrevious />
 							</IconButton>
 							<IconButton
-								className='!bg-white/10 rounded-full !transition-transform active:scale-90'
+								className='rounded-full !transition-transform lg:active:scale-90 lg:!bg-white/10'
 								onClick={(e) => {
 									e.stopPropagation();
 
@@ -241,19 +160,23 @@ const AudioControlsPanel = ({
 								}}>
 								<SkipNext />
 							</IconButton>
-							<IconButton onClick={() => dispatch(setRepeatCurrentTrack())}>
+							<IconButton
+								className='!hidden lg:!flex'
+								onClick={() => dispatch(setRepeatCurrentTrack())}>
 								<Repeat
 									className={`${repeatCurrentTrack ? 'text-accent' : ''}`}
 								/>
 							</IconButton>
 						</div>
-						<AudioSlider
-							rangeInputValue={rangeInputValue}
-							setRangeInputValue={setRangeInputValue}
-							setSeekCurrentTime={setSeekCurrentTime}
-						/>
+						<div className='hidden w-full justify-center lg:flex'>
+							<AudioSlider
+								rangeInputValue={rangeInputValue}
+								setRangeInputValue={setRangeInputValue}
+								setSeekCurrentTime={setSeekCurrentTime}
+							/>
+						</div>
 					</div>
-					<div className='basis-1/4 flex items-center !justify-end'>
+					<div className='hidden basis-1/4 items-center !justify-end lg:flex'>
 						<IconButton onClick={() => setShowQueueInfo(!showQueueInfo)}>
 							<FormatListBulleted />
 						</IconButton>
@@ -266,7 +189,6 @@ const AudioControlsPanel = ({
 					/>
 				</div>
 			</div>
-			{/* Large screens end*/}
 
 			<TrackInfo
 				showTrackInfo={showTrackInfo}
