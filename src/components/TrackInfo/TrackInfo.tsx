@@ -75,7 +75,7 @@ const TrackInfo = (props: TrackInfoProps) => {
 		<div
 			className={`${
 				showTrackInfo ? 'translate-y-0 opacity-1' : 'translate-y-full opacity-0'
-			} fixed top-0 left-0 h-full w-full [transition:transform_0.3s_ease-in-out,opacity_0.2s_ease-in-out] z-30 lg:hidden`}>
+			} fixed top-0 left-0 h-full w-full [transition:transform_0.3s_ease-in-out,opacity_0.2s_ease-in-out] z-40 lg:hidden`}>
 			<div className='relative flex flex-col h-full w-full px-8'>
 				<div className='absolute top-0 left-0 h-full w-full z-0'>
 					<div className='absolute top-0 left-0 h-full w-full bg-gradient-to-b from-black/60 to-background-dark backdrop-blur-3xl z-10' />

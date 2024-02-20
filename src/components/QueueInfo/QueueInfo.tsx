@@ -87,7 +87,7 @@ const QueueInfo = (props: QueueInfoProps) => {
 			<div
 				className={`${
 					showQueueInfo ? 'opacity-100 visible' : 'opacity-0 invisible'
-				} fixed top-0 left-0 w-full h-full bg-black/70 backdrop-blur-xl transition-opacity duration-700 ease-in-out z-30 lg:hidden`}
+				} fixed top-0 left-0 w-full h-full bg-black/70 backdrop-blur-xl transition-opacity duration-200 ease-in-out z-40 lg:hidden`}
 				onClick={(e) => {
 					setShowQueueInfo(false);
 					e.stopPropagation();
