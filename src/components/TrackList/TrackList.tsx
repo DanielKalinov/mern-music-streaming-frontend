@@ -77,7 +77,7 @@ const TrackList = ({
 										{item._id == currentTrackInfo._id && isPlaying ? (
 											<WaveAnimation />
 										) : (
-											<span className='w-4 text-center mr-2'>{index + 1}</span>
+											<span className='w-4 text-center mr-4'>{index + 1}</span>
 										)}
 										{showAlbumImage && (
 											<Image
