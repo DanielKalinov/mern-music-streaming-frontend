@@ -43,6 +43,7 @@ const QueueInfo = (props: QueueInfoProps) => {
 	const { track } = currentTrackInfo;
 	const title = track?.title;
 	const artist = track?.artist;
+	const albumImageUrl = track?.album?.albumImageUrl;
 
 	useEffect(() => {
 		if (shuffleList) {
@@ -126,18 +127,12 @@ const QueueInfo = (props: QueueInfoProps) => {
 							<div className='flex items-center'>
 								<div className='mr-2'>
 									<div className='min-w-[40px] min-h-[40px] relative'>
-										{queue.map(
-											(item, index) =>
-												currentTrackPosition === index && (
-													<Image
-														key={index}
-														src={item.track?.album?.albumImageUrl}
-														width={40}
-														height={40}
-														classes='rounded-md shadow-md'
-													/>
-												)
-										)}
+										<Image
+											src={albumImageUrl}
+											width={40}
+											height={40}
+											classes='rounded-md shadow-md'
+										/>
 									</div>
 								</div>
 
