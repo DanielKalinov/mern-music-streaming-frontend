@@ -21,7 +21,7 @@ const AboutSection = ({
 			<div>
 				<h2 className='mb-4'>About</h2>
 				<div
-					className='relative cursor-pointer'
+					className='relative cursor-pointer border border-solid border-secondary rounded-lg'
 					onClick={() => {
 						AboutWindowRef.current?.scrollTo(0, 0);
 						setShowAboutWindow(true);
@@ -34,7 +34,8 @@ const AboutSection = ({
 						fullSize={true}
 						classes='w-full rounded-lg shadow-card h-[360px]'
 					/>
-					<div className='absolute bottom-0 left-0 w-full flex items-center justify-between p-4 bg-gradient-to-b from-transparent to-black rounded-b-lg'>
+					<div className='absolute top-0 left-0 w-full h-full bg-gradient-to-b from-transparent to-black rounded-lg' />
+					<div className='absolute bottom-0 left-0 w-full flex items-center justify-between p-4'>
 						<p className='text-sm line-clamp-2'>{about}</p>
 						<ChevronRight fontSize='large' />
 					</div>
