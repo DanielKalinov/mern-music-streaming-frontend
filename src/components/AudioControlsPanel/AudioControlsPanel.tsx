@@ -128,8 +128,8 @@ const AudioControlsPanel = ({
 							<span className='block text-inactive'>{artistNames(artist)}</span>
 						</div>
 					</div>
-					<div className='flex flex-col items-center justify-between h-full lg:mb-2 lg:basis-1/2 '>
-						<div className='flex justify-center space-x-4'>
+					<div className='flex flex-col items-center justify-between h-full lg:basis-1/2 '>
+						<div className='flex justify-center space-x-4 lg:mb-2'>
 							<IconButton
 								className='!hidden lg:!flex'
 								onClick={() => dispatch(setShuffleList())}>
