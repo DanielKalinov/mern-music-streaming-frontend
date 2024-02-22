@@ -129,7 +129,7 @@ const AudioControlsPanel = ({
 						</div>
 					</div>
 					<div className='flex flex-col items-center justify-between h-full lg:basis-1/2 '>
-						<div className='flex justify-center space-x-4 lg:mb-2'>
+						<div className='flex justify-center ml-4 gap-x-2 lg:ml-0 lg:mb-2 lg:gap-x-4'>
 							<IconButton
 								className='!hidden lg:!flex'
 								onClick={() => dispatch(setShuffleList())}>
@@ -137,7 +137,9 @@ const AudioControlsPanel = ({
 							</IconButton>
 							<IconButton
 								disabled={currentTrackPosition == 0}
-								onClick={() => {
+								onClick={(e) => {
+									e.stopPropagation();
+
 									dispatch(skipTrack('prev'));
 								}}>
 								<SkipPrevious />
@@ -157,7 +159,9 @@ const AudioControlsPanel = ({
 							</IconButton>
 							<IconButton
 								disabled={currentTrackPosition + 1 == queue.length}
-								onClick={() => {
+								onClick={(e) => {
+									e.stopPropagation();
+
 									dispatch(skipTrack('next'));
 								}}>
 								<SkipNext />
