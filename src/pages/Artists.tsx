@@ -37,7 +37,7 @@ const Artists = () => {
 									</div>
 									<span
 										className={`mt-4 block text-center text-sm font-semibold truncate sm:text-base md:text-lg ${
-											currentPlaylistInfo.name == name && 'text-accent'
+											currentPlaylistInfo.name == name ? 'text-accent' : ''
 										}`}>
 										{name}
 									</span>

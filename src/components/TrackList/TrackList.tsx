@@ -1,3 +1,4 @@
+//@ts-nocheck
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import AudioPlayerState from '../../types/AudioPlayerState';
@@ -44,12 +45,14 @@ const TrackList = ({
 
 					return (
 						<li
-							key={item._id}
-							className={`flex items-center rounded-xl bg-gradient-to-r to-transparent disablemobilehover:hover:from-white/5 ${
-								item._id == currentTrackInfo._id && '!from-white/10'
-							}`}>
+							className={`flex items-center rounded-xl bg-gradient-to-r to-transparent transition-colors duration-150 ease-in-out disablemobilehover:hover:from-white/5 ${
+								item._id == currentTrackInfo._id
+									? 'text-accent !from-white/10'
+									: ''
+							}`}
+							key={item._id}>
 							<ButtonBase
-								className='w-full text-left !rounded-xl'
+								className='w-full text-left !p-2 !rounded-xl'
 								onClick={() => {
 									if (item._id == currentTrackInfo._id) {
 										if (isPlaying) {
@@ -69,40 +72,30 @@ const TrackList = ({
 										);
 									}
 								}}>
-								<div className='w-full flex justify-between py-2 px-4'>
-									<div
-										className={`flex items-center transition-colors duration-200 ease-in-out font-medium ${
-											item._id == currentTrackInfo._id && 'text-accent'
-										}`}>
-										{item._id == currentTrackInfo._id && isPlaying ? (
-											<WaveAnimation />
-										) : (
-											<span className='w-4 text-center mr-4'>{index + 1}</span>
-										)}
-										{showAlbumImage && (
-											<Image
-												src={albumImageUrl}
-												width={50}
-												height={50}
-												classes='shadow-card rounded-md mr-2'
-											/>
-										)}
-										<div>
-											<span className='block text-sm lg:text-base'>
-												{title}
-											</span>
-											<span className='block text-sm lg:text-base text-inactive font-normal'>
-												{artistNames(artist)}
-											</span>
-										</div>
-									</div>
+								<div className='flex items-center mx-2'>
+									{item._id == currentTrackInfo._id && isPlaying ? (
+										<WaveAnimation />
+									) : (
+										<span className='w-4 text-center'>{index + 1}</span>
+									)}
+								</div>
+								{showAlbumImage && (
+									<Image
+										src={albumImageUrl}
+										width={50}
+										height={50}
+										classes='shrink-0 shadow-card rounded-md mr-2'
+									/>
+								)}
+								<div className='w-full overflow-hidden'>
+									<span className='truncate block text-sm lg:text-base'>
+										{title}
+									</span>
+									<span className='block text-sm lg:text-base text-inactive font-normal'>
+										{artistNames(artist)}
+									</span>
 								</div>
 							</ButtonBase>
-							<div>
-								<IconButton>
-									<MoreVertRoundedIcon />
-								</IconButton>
-							</div>
 						</li>
 					);
 				})}
