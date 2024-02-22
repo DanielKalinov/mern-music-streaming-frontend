@@ -119,7 +119,7 @@ const AudioControlsPanel = ({
 								classes='rounded-md shadow-card'
 							/>
 						</div>
-						<div className='text-sm ml-2 overflow-hidden whitespace-nowrap lg:ml-4 lg:text-base'>
+						<div className='text-sm ml-2 overflow-hidden whitespace-nowrap lg:text-base text-overflow-fadeout'>
 							<span
 								ref={spanRef}
 								className='relative right-0 whitespace-nowrap block font-bold !delay-[2s]'>
