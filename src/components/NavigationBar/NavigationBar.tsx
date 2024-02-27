@@ -56,7 +56,7 @@ const NavigationBar = ({
 			</IconButton>
 			<span
 				className={`absolute top-1/2 -translate-y-1/2 left-1/2 -translate-x-1/2 font-semibold truncate max-w-full tracking-widest transition-opacity duration-200 ${
-					containerVisible ? 'opacity-1' : 'opacity-0'
+					containerVisible ? 'visible opacity-1' : 'invisible opacity-0'
 				}`}>
 				{text.toUpperCase()}
 			</span>
