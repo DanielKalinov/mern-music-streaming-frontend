@@ -111,11 +111,11 @@ const AudioControlsPanel = ({
 					className='flex items-center justify-between max-w-lg w-full p-2 m-auto card lg:max-w-none lg:p-4 lg:justify-normal'
 					onClick={() => window.innerWidth < 1024 && setShowTrackInfo(true)}>
 					<div className='flex items-center min-w-0 lg:basis-1/4'>
-						<div className='shrink-0 w-[50px] lg:w-[60px] relative'>
+						<div className='shrink-0 w-[50px] h-[50px] lg:w-[70px] lg:h-[70px] relative'>
 							<Image
 								src={currentTrackInfo.track?.album?.albumImageUrl}
-								height={60}
-								width={60}
+								height={70}
+								width={70}
 								classes='rounded-md shadow-card'
 							/>
 						</div>
