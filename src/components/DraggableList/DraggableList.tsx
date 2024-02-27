@@ -63,8 +63,8 @@ const DraggableList = ({
 					{nextFromList.map(({ _id, track }) => (
 						<SortableItem key={_id} id={_id}>
 							<div className='flex items-center justify-between py-2 px-4 '>
-								<div>
-									<span className='block text-sm lg:text-base'>
+								<div className='overflow-hidden'>
+									<span className='block text-sm truncate lg:text-base'>
 										{track?.title}
 									</span>
 									<span className='block text-sm text-inactive lg:text-base'>

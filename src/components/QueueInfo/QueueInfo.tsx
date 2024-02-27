@@ -124,29 +124,28 @@ const QueueInfo = (props: QueueInfoProps) => {
 							<span className='block mb-2 font-bold lg:text-lg'>
 								Now Playing
 							</span>
-							<div className='flex items-center'>
-								<div className='mr-2'>
-									<div className='min-w-[40px] min-h-[40px] relative'>
-										<Image
-											src={albumImageUrl}
-											width={40}
-											height={40}
-											classes='rounded-md shadow-md'
-										/>
-									</div>
+							<div className='flex items-center w-full'>
+								<div className='min-w-[40px] min-h-[40px] relative mr-2'>
+									<Image
+										src={albumImageUrl}
+										width={40}
+										height={40}
+										classes='rounded-md shadow-md'
+									/>
 								</div>
-
-								<div className='flex justify-between w-full'>
-									<div>
-										<span className='block text-sm text-accent lg:text-base'>
-											{title}
-										</span>
-										<span className='block text-sm text-inactive lg:text-base'>
-											{artistNames(artist)}
-										</span>
-									</div>
-									{isPlaying && <WaveAnimation />}
+								<div className='overflow-hidden mr-4'>
+									<span className='block text-sm text-accent max-w-full truncate lg:text-base'>
+										{title}
+									</span>
+									<span className='block text-sm text-inactive lg:text-base'>
+										{artistNames(artist)}
+									</span>
 								</div>
+								{isPlaying && (
+									<div className='ml-auto'>
+										<WaveAnimation />
+									</div>
+								)}
 							</div>
 						</div>
 						{queue.length > 0 && queue[currentTrackPosition + 1] && (

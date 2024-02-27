@@ -1,4 +1,3 @@
-//@ts-nocheck
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import AudioPlayerState from '../../types/AudioPlayerState';
@@ -8,9 +7,8 @@ import {
 	setQueue,
 	togglePlaying,
 } from '../../features/audioPlayerSlice';
-import { IconButton, ButtonBase } from '@mui/material';
+import { ButtonBase } from '@mui/material';
 import WaveAnimation from '../WaveAnimation';
-import MoreVertRoundedIcon from '@mui/icons-material/MoreVertRounded';
 import Image from '../Image';
 import Track from '../../types/Track';
 import artistNames from '../../utils/artistName';
