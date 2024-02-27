@@ -115,7 +115,7 @@ const QueueInfo = (props: QueueInfoProps) => {
 								<span className='block tracking-widest'>
 									PLAYING FROM {currentPlaylistInfo.type?.toUpperCase()}
 								</span>
-								<span className='block font-bold'>
+								<span className='whitespace-nowrap block font-bold'>
 									{currentPlaylistInfo.name}
 								</span>
 							</div>
