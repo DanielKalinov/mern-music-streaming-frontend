@@ -43,7 +43,7 @@ const TrackList = ({
 
 					return (
 						<li
-							className={`flex items-center rounded-xl bg-gradient-to-r to-transparent transition-colors duration-150 ease-in-out disablemobilehover:hover:from-white/5 ${
+							className={`flex items-center rounded-xl bg-gradient-to-r to-transparent transition-colors ease-in-out disablemobilehover:hover:from-white/5 ${
 								item._id == currentTrackInfo._id
 									? 'text-accent !from-white/10'
 									: ''
