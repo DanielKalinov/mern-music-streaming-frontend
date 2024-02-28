@@ -55,9 +55,9 @@ const AudioControlsPanel = ({
 	const spanRef = useRef<HTMLDivElement>(null);
 
 	useEffect(() => {
-		if (window.innerWidth < 1024) {
-			setRangeInputValue(audioProgressValue);
+		setRangeInputValue(audioProgressValue);
 
+		if (window.innerWidth < 1024) {
 			const percent = (audioProgressValue / duration) * 100;
 
 			if (staticProgressBarRef.current) {
