@@ -94,6 +94,7 @@ const TrackInfo = (props: TrackInfoProps) => {
 						edge='start'
 						onClick={() => {
 							setShowTrackInfo(false);
+							document.body.style.overflow = 'auto';
 						}}>
 						<ExpandMoreRounded fontSize='large' />
 					</IconButton>

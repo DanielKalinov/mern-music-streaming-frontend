@@ -65,12 +65,6 @@ const AudioControlsPanel = ({
 	}, [audioProgressValue]);
 
 	useEffect(() => {
-		showTrackInfo
-			? (document.body.style.overflow = 'hidden')
-			: (document.body.style.overflow = 'auto');
-	}, [showTrackInfo]);
-
-	useEffect(() => {
 		if (Object.keys(currentTrackInfo).length > 0 && spanRef.current) {
 			spanRef.current.style.right = '0px';
 			spanRef.current.style.transition = 'none';
@@ -110,7 +104,12 @@ const AudioControlsPanel = ({
 				<div className='flex items-center justify-between max-w-lg w-full m-auto card lg:max-w-none lg:p-4 lg:justify-normal'>
 					<div
 						className='flex items-center min-w-0 w-full p-2 lg:basis-1/4 lg:p-0'
-						onClick={() => window.innerWidth < 1024 && setShowTrackInfo(true)}>
+						onClick={() => {
+							if (window.innerWidth < 1024) {
+								setShowTrackInfo(true);
+								document.body.style.overflow = 'hidden';
+							}
+						}}>
 						<div className='shrink-0 w-[50px] h-[50px] lg:w-[70px] lg:h-[70px] relative'>
 							<Image
 								src={currentTrackInfo.track?.album?.albumImageUrl}
