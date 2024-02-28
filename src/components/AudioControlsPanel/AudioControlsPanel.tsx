@@ -101,7 +101,15 @@ const AudioControlsPanel = ({
 						? 'translate-y-0'
 						: 'translate-y-full'
 				} flex fixed bottom-0 left-0 w-full p-2 transition-all duration-100 ease-in-out z-40`}>
-				<div className='flex items-center justify-between max-w-lg w-full m-auto card lg:max-w-none lg:p-4 lg:justify-normal'>
+				<div className='relative flex items-center justify-between max-w-lg w-full m-auto card lg:max-w-none lg:p-4 lg:justify-normal'>
+					<div className='absolute bottom-0 left-0 w-full px-2'>
+						<div className='relative h-0.5 w-full bg-white/30 rounded-full'>
+							<div
+								ref={staticProgressBarRef}
+								className='absolute top-0 left-0 h-0.5 w-0 bg-accent rounded-full transition-all'
+							/>
+						</div>
+					</div>
 					<div
 						className='flex items-center min-w-0 w-full p-2 lg:basis-1/4 lg:p-0'
 						onClick={() => {
