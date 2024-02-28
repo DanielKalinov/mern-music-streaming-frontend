@@ -107,10 +107,10 @@ const AudioControlsPanel = ({
 						? 'translate-y-0'
 						: 'translate-y-full'
 				} flex fixed bottom-0 left-0 w-full p-2 transition-all duration-100 ease-in-out z-40`}>
-				<div
-					className='flex items-center justify-between max-w-lg w-full p-2 m-auto card lg:max-w-none lg:p-4 lg:justify-normal'
-					onClick={() => window.innerWidth < 1024 && setShowTrackInfo(true)}>
-					<div className='flex items-center min-w-0 lg:basis-1/4'>
+				<div className='flex items-center justify-between max-w-lg w-full m-auto card lg:max-w-none lg:p-4 lg:justify-normal'>
+					<div
+						className='flex items-center min-w-0 w-full p-2 lg:basis-1/4 lg:p-0'
+						onClick={() => window.innerWidth < 1024 && setShowTrackInfo(true)}>
 						<div className='shrink-0 w-[50px] h-[50px] lg:w-[70px] lg:h-[70px] relative'>
 							<Image
 								src={currentTrackInfo.track?.album?.albumImageUrl}
