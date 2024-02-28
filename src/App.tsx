@@ -58,11 +58,7 @@ const App = () => {
 
 	// toggle playing
 	useEffect(() => {
-		if (isPlaying) {
-			audio.current.play();
-		} else {
-			audio.current.pause();
-		}
+		isPlaying ? audio.current.play() : audio.current.pause();
 	}, [isPlaying]);
 
 	// save audio progress value on update
