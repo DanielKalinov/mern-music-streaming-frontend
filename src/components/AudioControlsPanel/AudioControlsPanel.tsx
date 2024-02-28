@@ -55,12 +55,14 @@ const AudioControlsPanel = ({
 	const spanRef = useRef<HTMLDivElement>(null);
 
 	useEffect(() => {
-		setRangeInputValue(audioProgressValue);
+		if (window.innerWidth < 1024) {
+			setRangeInputValue(audioProgressValue);
 
-		const percent = (audioProgressValue / duration) * 100;
+			const percent = (audioProgressValue / duration) * 100;
 
-		if (staticProgressBarRef.current) {
-			staticProgressBarRef.current.style.width = `${percent}%`;
+			if (staticProgressBarRef.current) {
+				staticProgressBarRef.current.style.width = `${percent}%`;
+			}
 		}
 	}, [audioProgressValue]);
 
@@ -102,7 +104,7 @@ const AudioControlsPanel = ({
 						: 'translate-y-full'
 				} flex fixed bottom-0 left-0 w-full p-2 transition-all duration-100 ease-in-out z-40`}>
 				<div className='relative flex items-center justify-between max-w-lg w-full m-auto card lg:max-w-none lg:p-4 lg:justify-normal'>
-					<div className='absolute bottom-0 left-0 w-full px-2'>
+					<div className='absolute bottom-0 left-0 w-full px-2 lg:hidden'>
 						<div className='relative h-0.5 w-full bg-white/30 rounded-full'>
 							<div
 								ref={staticProgressBarRef}
