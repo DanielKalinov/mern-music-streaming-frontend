@@ -22,6 +22,7 @@ import {
 import Image from '../Image';
 import artistNames from '../../utils/artistName';
 import AudioSlider from '../AudioSlider';
+import TextSlideAnim from '../TextSlideAnim';
 
 const AudioControlsPanel = ({
 	setSeekCurrentTime,
@@ -52,7 +53,6 @@ const AudioControlsPanel = ({
 	const dispatch = useDispatch();
 
 	const staticProgressBarRef = useRef<HTMLDivElement>(null);
-	const spanRef = useRef<HTMLDivElement>(null);
 
 	useEffect(() => {
 		setRangeInputValue(audioProgressValue);
@@ -65,35 +65,6 @@ const AudioControlsPanel = ({
 			}
 		}
 	}, [audioProgressValue]);
-
-	useEffect(() => {
-		if (Object.keys(currentTrackInfo).length > 0 && spanRef.current) {
-			spanRef.current.style.right = '0px';
-			spanRef.current.style.transition = 'none';
-
-			spanRef.current.scrollWidth !== spanRef.current.clientWidth &&
-				textSlideAnim();
-		}
-	}, [currentTrackInfo]);
-
-	function textSlideAnim() {
-		let direction = 'left';
-
-		changeTextPosition();
-
-		spanRef.current!.ontransitionend = () => {
-			direction = direction === 'left' ? 'right' : 'left';
-			changeTextPosition();
-		};
-
-		function changeTextPosition() {
-			spanRef.current!.style.transition = 'all 5s linear';
-			spanRef.current!.style.right =
-				direction === 'left'
-					? spanRef.current!.scrollWidth - spanRef.current!.clientWidth + 'px'
-					: '0px';
-		}
-	}
 
 	return (
 		<>
@@ -129,12 +100,10 @@ const AudioControlsPanel = ({
 							/>
 						</div>
 						<div className='text-sm ml-2 overflow-hidden whitespace-nowrap text-overflow-fadeout lg:text-base'>
-							<span
-								ref={spanRef}
-								className='relative right-0 whitespace-nowrap block font-bold !delay-[2s]'>
-								{title}
-							</span>
-							<span className='block text-inactive'>{artistNames(artist)}</span>
+							<TextSlideAnim className='font-bold'>{title}</TextSlideAnim>
+							<TextSlideAnim className='text-inactive'>
+								{artistNames(artist)}
+							</TextSlideAnim>
 						</div>
 					</div>
 					<div className='flex flex-col items-center justify-between h-full lg:basis-1/2 '>
