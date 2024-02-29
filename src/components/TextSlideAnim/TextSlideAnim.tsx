@@ -37,7 +37,14 @@ const TextSlideAnim = ({
 		};
 
 		function changeTextPosition() {
-			spanRef.current!.style.transition = 'all 5s linear';
+			const minDuration = 1000; // 1 second
+			const maxDuration = 10000; // 10 seconds
+			let duration = (spanRef.current!.textContent!.length / 0.5) * 100;
+
+			// Clamp the duration between the minimum and maximum
+			duration = Math.max(minDuration, Math.min(maxDuration, duration));
+
+			spanRef.current!.style.transition = `all ${duration}ms linear`;
 			spanRef.current!.style.right =
 				direction === 'left'
 					? spanRef.current!.scrollWidth - spanRef.current!.clientWidth + 'px'
