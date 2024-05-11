@@ -12,6 +12,7 @@ import {
 import AlbumDetails from './pages/AlbumDetails';
 import ArtistDetails from './pages/ArtistDetails';
 import Home from './pages/Home';
+import PlaylistDetails from './pages/PlaylistDetails';
 import AudioPlayerState from './types/AudioPlayerState';
 
 const App = () => {
@@ -83,6 +84,7 @@ const App = () => {
           <Route path='/' element={<Home />} />
           <Route path='artist/:id' element={<ArtistDetails />} />
           <Route path='albums/:id' element={<AlbumDetails />} />
+          <Route path='playlists/:id' element={<PlaylistDetails />} />
         </Routes>
       </ScrollToTop>
 

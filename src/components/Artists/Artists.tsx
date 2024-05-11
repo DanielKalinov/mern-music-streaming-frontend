@@ -20,7 +20,7 @@ const Artists = () => {
 
   return (
     <>
-      <h1 className='w-full text-center mt-4 mb-8'>Pick an artist</h1>
+      <h1 className='w-full my-8'>Artists</h1>
       <ul className='grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6'>
         {artists.map(({ _id, name, artistImageUrl, tracks }: Artist) => (
           <li key={_id} className='relative group'>
@@ -29,7 +29,7 @@ const Artists = () => {
                 <div className='transition-all duration-300 ease-in-out disablemobilehover:group-hover:p-2'>
                   <Image
                     src={artistImageUrl}
-                    fullSize={true}
+                    fullWidth={true}
                     classes='aspect-square rounded-full shadow-card'
                   />
                 </div>

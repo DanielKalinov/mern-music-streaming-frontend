@@ -4,14 +4,14 @@ const Image = ({
   src,
   width,
   height,
-  fullSize,
+  fullWidth,
   noPlaceholder,
   classes,
 }: {
   src: string;
   width?: number;
   height?: number;
-  fullSize?: boolean;
+  fullWidth?: boolean;
   noPlaceholder?: boolean;
   classes?: string;
 }) => {
@@ -22,8 +22,8 @@ const Image = ({
       <div className={`relative overflow-hidden ${classes}`}>
         <img
           className={`${loaded ? 'opacity-1' : 'opacity-0'} ${
-            fullSize ? 'w-full h-full' : ''
-          } object-cover transition-opacity duration-300 ease-in-out`}
+            fullWidth ? 'w-full' : ''
+          } h-full object-cover transition-opacity duration-300 ease-in-out`}
           width={width ?? undefined}
           height={height ?? undefined}
           src={src}

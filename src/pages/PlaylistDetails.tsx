@@ -6,11 +6,10 @@ import NavigationBar from '../components/NavigationBar';
 import PageTransition from '../components/PageTransition';
 import PlaylistControls from '../components/PlaylistControls';
 import TrackList from '../components/TrackList';
-import Album from '../types/Album';
-import artistNames from '../utils/artistName';
+import { Playlist } from '../types/Playlist';
 
-const AlbumDetails = () => {
-  const [albumDetails, setAlbumDetails] = useState<Album>();
+const PlaylistDetails = () => {
+  const [playlistDetails, setPlaylistDetails] = useState<Playlist>();
 
   const targetRef = useRef<HTMLDivElement>(null);
 
@@ -18,16 +17,16 @@ const AlbumDetails = () => {
 
   useEffect(() => {
     axios
-      .get<Album>(`http://localhost:5000/albums/${params.id}`)
+      .get<Playlist>(`http://localhost:5000/playlists/${params.id}`)
       .then((res) => {
-        setAlbumDetails(res.data);
+        setPlaylistDetails(res.data);
       });
   }, [params]);
 
-  return albumDetails ? (
+  return playlistDetails ? (
     <PageTransition duration={0.2}>
       <NavigationBar
-        text={albumDetails.name}
+        text={playlistDetails.name}
         targetRef={targetRef}
         threshold={20}
       />
@@ -37,13 +36,13 @@ const AlbumDetails = () => {
           <div
             className='absolute top-0 left-0 h-full w-full'
             style={{
-              backgroundImage: `url(${albumDetails.albumImageUrl})`,
+              backgroundImage: `url(${playlistDetails.imageUrl})`,
               backgroundSize: 'cover',
             }}
           />
           <div className='relative max-w-2xl m-auto px-4 z-20 sm:flex sm:items-center sm:gap-6'>
             <Image
-              src={albumDetails.albumImageUrl}
+              src={playlistDetails.imageUrl}
               height={250}
               width={250}
               classes='shrink-0 m-auto w-fit mb-6 shadow-card rounded-lg aspect-square sm:m-0'
@@ -53,18 +52,14 @@ const AlbumDetails = () => {
               className='relative flex items-center justify-between w-full transition-opacity duration-200'
             >
               <div>
-                <h2 className='mb-1'>{albumDetails.name}</h2>
-                <span className='text-inactive'>
-                  {artistNames(albumDetails.artist)}
-                </span>
+                <h2 className='mb-1'>{playlistDetails.name}</h2>
                 <span className='block text-inactive'>
-                  {albumDetails.year} • {albumDetails.tracks.length} tracks,{' '}
-                  {albumDetails.duration}
+                  {playlistDetails.tracks.length} tracks
                 </span>
               </div>
               <PlaylistControls
-                playlist={albumDetails.tracks}
-                playlistInfo={{ type: 'album', name: albumDetails.name }}
+                playlist={playlistDetails.tracks}
+                playlistInfo={{ type: 'playlist', name: playlistDetails.name }}
               />
             </div>
           </div>
@@ -72,12 +67,12 @@ const AlbumDetails = () => {
       </div>
       <div className='max-w-2xl m-auto'>
         <TrackList
-          tracks={albumDetails.tracks}
-          playlistInfo={{ type: 'album', name: albumDetails.name }}
+          tracks={playlistDetails.tracks}
+          playlistInfo={{ type: 'playlist', name: playlistDetails.name }}
         />
       </div>
     </PageTransition>
   ) : null;
 };
 
-export default AlbumDetails;
+export default PlaylistDetails;
