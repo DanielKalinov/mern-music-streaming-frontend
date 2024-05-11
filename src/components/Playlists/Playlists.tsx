@@ -22,14 +22,10 @@ const Playlists = () => {
           .map(({ _id, imageUrl, name }) => (
             <li
               key={_id}
-              className='relative rounded-lg overflow-hidden border-solid border-secondary'
+              className='relative rounded-lg overflow-hidden border border-solid border-secondary shadow-card'
             >
               <Link to={`/playlists/${_id}`}>
-                <Image
-                  src={imageUrl}
-                  fullWidth
-                  classes='aspect-square shadow-card'
-                />
+                <Image src={imageUrl} fullWidth classes='aspect-square' />
                 <span className='absolute left-0 bottom-0 w-full p-4 bg-gradient-to-b from-transparent to-black text-2xl font-semibold md:p-6'>
                   {name}
                 </span>
