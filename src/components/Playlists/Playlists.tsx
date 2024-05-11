@@ -16,17 +16,26 @@ const Playlists = () => {
   return (
     <>
       <h1 className='w-full my-8'>Playlists</h1>
-      <ul className='grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6'>
-        {playlists.map(({ _id, imageUrl, name }) => (
-          <li key={_id} className='relative rounded-lg overflow-hidden'>
-            <Link to={`/playlists/${_id}`}>
-              <Image src={imageUrl} classes='aspect-square shadow-card' />
-              <span className='absolute left-0 bottom-0 w-full p-4 bg-gradient-to-b from-transparent to-black text-2xl font-semibold'>
-                {name}
-              </span>
-            </Link>
-          </li>
-        ))}
+      <ul className='grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8'>
+        {playlists
+          .sort((a, b) => a.name.localeCompare(b.name))
+          .map(({ _id, imageUrl, name }) => (
+            <li
+              key={_id}
+              className='relative rounded-lg overflow-hidden border-solid border-secondary'
+            >
+              <Link to={`/playlists/${_id}`}>
+                <Image
+                  src={imageUrl}
+                  fullWidth
+                  classes='aspect-square shadow-card'
+                />
+                <span className='absolute left-0 bottom-0 w-full p-4 bg-gradient-to-b from-transparent to-black text-2xl font-semibold md:p-6'>
+                  {name}
+                </span>
+              </Link>
+            </li>
+          ))}
       </ul>
     </>
   );
