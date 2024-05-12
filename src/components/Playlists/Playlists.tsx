@@ -26,14 +26,14 @@ const Playlists = () => {
             <li
               key={_id}
               onClick={() => navigate(`/playlists/${_id}`)}
-              className='h-[150px] relative rounded-lg overflow-hidden border border-solid border-secondary shadow-card group cursor-pointer lg:h-[200px]'
+              className='h-[125px] relative rounded-lg overflow-hidden border border-solid border-secondary shadow-card group cursor-pointer sm:h-[150px] lg:h-[200px]'
             >
               <Image
                 src={imageUrl}
                 fullWidth
-                classes='absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 aspect-square transition-transform duration-300 disablemobilehover:group-hover:scale-110'
+                classes='absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 h-full transition-transform duration-300 disablemobilehover:group-hover:scale-110'
               />
-              <span className='absolute left-0 bottom-0 w-full p-4 bg-gradient-to-b from-transparent to-black text-xl font-semibold'>
+              <span className='absolute left-0 bottom-0 w-full p-3 bg-gradient-to-b from-transparent to-black text-xl font-semibold'>
                 {name}
               </span>
             </li>
