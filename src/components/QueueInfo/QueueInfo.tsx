@@ -6,16 +6,10 @@ import {
   SkipPrevious,
 } from '@mui/icons-material';
 import { IconButton } from '@mui/material';
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import {
-  setCurrentTrackPosition,
-  setQueue,
-  skipTrack,
-  togglePlaying,
-} from '../../features/audioPlayerSlice';
+import { skipTrack, togglePlaying } from '../../features/audioPlayerSlice';
 import AudioPlayerState from '../../types/AudioPlayerState';
-import Track from '../../types/Track';
 import artistNames from '../../utils/artistName';
 import DraggableList from '../DraggableList';
 import Image from '../Image';
@@ -29,7 +23,6 @@ const QueueInfo = (props: QueueInfoProps) => {
   const audioPlayer = useSelector(
     (state: AudioPlayerState) => state.audioPlayer
   );
-  const [prevQueue, setPrevQueue] = useState<Track[]>([]);
 
   const {
     queue,
@@ -37,51 +30,12 @@ const QueueInfo = (props: QueueInfoProps) => {
     currentTrackInfo,
     currentTrackPosition,
     currentPlaylistInfo,
-    shuffleList,
   } = audioPlayer;
 
   const { track } = currentTrackInfo;
   const title = track?.title;
   const artist = track?.artist;
   const albumImageUrl = track?.album?.albumImageUrl;
-
-  useEffect(() => {
-    if (shuffleList) {
-      // shuffle the queue
-
-      setPrevQueue(queue);
-
-      const newQueue = [...queue];
-
-      const currentItem = newQueue.splice(currentTrackPosition, 1);
-
-      newQueue.sort(() => 0.5 - Math.random());
-
-      dispatch(setCurrentTrackPosition(0));
-
-      dispatch(setQueue([currentItem[0], ...newQueue]));
-    } else {
-      // restore previous queue
-
-      const currentTrackIndex = prevQueue.findIndex(
-        ({ _id }) => _id == currentTrackInfo._id
-      );
-      const nextFromListPrev = prevQueue.slice(
-        currentTrackIndex + 1,
-        prevQueue.length
-      );
-      dispatch(setCurrentTrackPosition(currentTrackIndex));
-
-      const newQueue = [...prevQueue];
-      newQueue.splice(
-        currentTrackIndex + 1,
-        nextFromListPrev.length,
-        ...nextFromListPrev
-      );
-
-      dispatch(setQueue(newQueue));
-    }
-  }, [shuffleList]);
 
   return (
     <>

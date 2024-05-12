@@ -33,6 +33,7 @@ export const audioPlayerSlice = createSlice({
     },
     setCurrentPlaylistInfo: (state, action) => {
       state.currentPlaylistInfo = action.payload;
+      state.shuffleList = false;
     },
     setQueue: (state, action) => {
       state.queue = action.payload;
