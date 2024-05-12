@@ -16,7 +16,7 @@ const Playlists = () => {
   return (
     <>
       <h1 className='w-full my-8'>Playlists</h1>
-      <ul className='grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8'>
+      <ul className='grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-8'>
         {playlists
           .slice()
           .sort((a, b) => a.name.localeCompare(b.name))
@@ -31,7 +31,7 @@ const Playlists = () => {
                   fullWidth
                   classes='aspect-square transition-transform duration-300 disablemobilehover:group-hover:scale-110'
                 />
-                <span className='absolute left-0 bottom-0 w-full p-4 bg-gradient-to-b from-transparent to-black text-2xl font-semibold md:p-6'>
+                <span className='absolute left-0 bottom-0 w-full p-4 bg-gradient-to-b from-transparent to-black text-xl font-semibold xl:p-6 xl:text-2xl'>
                   {name}
                 </span>
               </Link>
