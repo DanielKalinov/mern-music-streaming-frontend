@@ -10,18 +10,15 @@ import {
   SkipPrevious,
 } from '@mui/icons-material';
 import IconButton from '@mui/material/IconButton';
-import React, { Dispatch, SetStateAction, useState } from 'react';
+import React, { Dispatch, SetStateAction } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import {
-  setCurrentTrackPosition,
-  setQueue,
   setRepeatCurrentTrack,
-  setShuffleList,
+  shuffleList,
   skipTrack,
   togglePlaying,
 } from '../../features/audioPlayerSlice';
 import AudioPlayerState from '../../types/AudioPlayerState';
-import Track from '../../types/Track';
 import artistNames from '../../utils/artistName';
 import AudioSlider from '../AudioSlider/AudioSlider';
 import Image from '../Image';
@@ -38,8 +35,6 @@ const TrackInfo = (props: TrackInfoProps) => {
 
   const dispatch = useDispatch();
 
-  const [prevQueue, setPrevQueue] = useState<Track[]>([]);
-
   const audioPlayer = useSelector(
     (state: AudioPlayerState) => state.audioPlayer
   );
@@ -50,7 +45,7 @@ const TrackInfo = (props: TrackInfoProps) => {
     currentPlaylistInfo,
     queue,
     repeatCurrentTrack,
-    shuffleList,
+    isShuffled,
   } = audioPlayer;
 
   const { track } = currentTrackInfo;
@@ -163,46 +158,8 @@ const TrackInfo = (props: TrackInfoProps) => {
             />
           </div>
           <div className='flex justify-evenly'>
-            <IconButton
-              onClick={() => {
-                if (!shuffleList) {
-                  // shuffle the queue
-
-                  setPrevQueue(queue);
-
-                  const newQueue = [...queue];
-                  const currentItem = newQueue.splice(currentTrackPosition, 1);
-                  newQueue.sort(() => 0.5 - Math.random());
-
-                  dispatch(setCurrentTrackPosition(0));
-
-                  dispatch(setQueue([currentItem[0], ...newQueue]));
-                } else {
-                  // restore previous queue
-
-                  const currentTrackIndex = prevQueue.findIndex(
-                    ({ _id }) => _id == currentTrackInfo._id
-                  );
-                  const nextFromListPrev = prevQueue.slice(
-                    currentTrackIndex + 1,
-                    prevQueue.length
-                  );
-                  dispatch(setCurrentTrackPosition(currentTrackIndex));
-
-                  const newQueue = [...prevQueue];
-                  newQueue.splice(
-                    currentTrackIndex + 1,
-                    nextFromListPrev.length,
-                    ...nextFromListPrev
-                  );
-
-                  dispatch(setQueue(newQueue));
-                }
-
-                dispatch(setShuffleList());
-              }}
-            >
-              <Shuffle className={`${shuffleList ? 'text-accent' : ''}`} />
+            <IconButton onClick={() => dispatch(shuffleList())}>
+              <Shuffle className={`${isShuffled ? 'text-accent' : ''}`} />
             </IconButton>
             <IconButton
               disabled={currentTrackPosition == 0}

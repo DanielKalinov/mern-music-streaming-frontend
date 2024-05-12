@@ -8,11 +8,12 @@ const initialState = {
   currentTrackPosition: 0,
   currentPlaylistInfo: { type: '', name: '' },
   queue: <Track[]>[],
+  prevQueue: <Track[]>[],
   loading: false,
   isSeeking: false,
   duration: 0,
   repeatCurrentTrack: false,
-  shuffleList: false,
+  isShuffled: false,
 };
 
 export const audioPlayerSlice = createSlice({
@@ -33,7 +34,7 @@ export const audioPlayerSlice = createSlice({
     },
     setCurrentPlaylistInfo: (state, action) => {
       state.currentPlaylistInfo = action.payload;
-      state.shuffleList = false;
+      state.isShuffled = false;
     },
     setQueue: (state, action) => {
       state.queue = action.payload;
@@ -63,8 +64,41 @@ export const audioPlayerSlice = createSlice({
         state.isPlaying = false;
       }
     },
-    setShuffleList: (state) => {
-      state.shuffleList = !state.shuffleList;
+    shuffleList: (state) => {
+      if (!state.isShuffled) {
+        // shuffle the queue
+
+        state.prevQueue = state.queue;
+
+        const newQueue = [...state.queue];
+        const currentItem = newQueue.splice(state.currentTrackPosition, 1);
+        newQueue.sort(() => 0.5 - Math.random());
+
+        state.currentTrackPosition = 0;
+        state.queue = [currentItem[0], ...newQueue];
+      } else {
+        // restore previous queue
+
+        const currentTrackIndex = state.prevQueue.findIndex(
+          ({ _id }) => _id == state.currentTrackInfo._id
+        );
+        const nextFromListPrev = state.prevQueue.slice(
+          currentTrackIndex + 1,
+          state.prevQueue.length
+        );
+        state.currentTrackPosition = currentTrackIndex;
+
+        const newQueue = [...state.prevQueue];
+        newQueue.splice(
+          currentTrackIndex + 1,
+          nextFromListPrev.length,
+          ...nextFromListPrev
+        );
+
+        state.queue = newQueue;
+      }
+
+      state.isShuffled = !state.isShuffled;
     },
   },
 });
@@ -81,7 +115,7 @@ export const {
   setDuration,
   setRepeatCurrentTrack,
   skipTrack,
-  setShuffleList,
+  shuffleList,
 } = audioPlayerSlice.actions;
 
 export default audioPlayerSlice.reducer;
