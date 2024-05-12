@@ -18,6 +18,7 @@ const Playlists = () => {
       <h1 className='w-full my-8'>Playlists</h1>
       <ul className='grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8'>
         {playlists
+          .slice()
           .sort((a, b) => a.name.localeCompare(b.name))
           .map(({ _id, imageUrl, name }) => (
             <li
