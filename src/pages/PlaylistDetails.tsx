@@ -40,7 +40,7 @@ const PlaylistDetails = () => {
               backgroundSize: 'cover',
             }}
           />
-          <div className='relative max-w-2xl m-auto px-4 z-20 sm:flex sm:items-center sm:gap-6'>
+          <div className='relative max-w-2xl m-auto px-4 z-20 sm:flex sm:items-center sm:gap-6 sm:px-0'>
             <Image
               src={playlistDetails.imageUrl}
               height={250}
@@ -66,6 +66,7 @@ const PlaylistDetails = () => {
         </div>
       </div>
       <div className='max-w-2xl m-auto'>
+        <p className='text-inactive mb-4'>{playlistDetails.description}</p>
         <TrackList
           tracks={playlistDetails.tracks}
           playlistInfo={{ type: 'playlist', name: playlistDetails.name }}
