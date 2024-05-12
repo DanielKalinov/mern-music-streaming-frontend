@@ -162,7 +162,7 @@ const TrackInfo = (props: TrackInfoProps) => {
               <Shuffle className={`${isShuffled ? 'text-accent' : ''}`} />
             </IconButton>
             <IconButton
-              disabled={currentTrackPosition == 0}
+              disabled={currentTrackPosition === 0}
               onClick={() => {
                 dispatch(skipTrack('prev'));
               }}
@@ -190,7 +190,7 @@ const TrackInfo = (props: TrackInfoProps) => {
               )}
             </IconButton>
             <IconButton
-              disabled={currentTrackPosition + 1 == queue.length}
+              disabled={currentTrackPosition + 1 === queue.length}
               onClick={() => {
                 dispatch(skipTrack('next'));
               }}

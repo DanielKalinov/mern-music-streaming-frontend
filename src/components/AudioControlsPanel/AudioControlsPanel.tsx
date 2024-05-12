@@ -117,7 +117,7 @@ const AudioControlsPanel = ({
                 <Shuffle className={`${isShuffled ? 'text-accent' : ''}`} />
               </IconButton>
               <IconButton
-                disabled={currentTrackPosition == 0}
+                disabled={currentTrackPosition === 0}
                 onClick={(e) => {
                   e.stopPropagation();
 
@@ -141,7 +141,7 @@ const AudioControlsPanel = ({
                 {isPlaying ? <Pause /> : <PlayArrow />}
               </IconButton>
               <IconButton
-                disabled={currentTrackPosition + 1 == queue.length}
+                disabled={currentTrackPosition + 1 === queue.length}
                 onClick={(e) => {
                   e.stopPropagation();
 

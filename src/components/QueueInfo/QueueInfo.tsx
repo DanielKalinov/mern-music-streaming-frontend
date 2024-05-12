@@ -122,7 +122,7 @@ const QueueInfo = (props: QueueInfoProps) => {
             <div className='mt-auto w-full lg:hidden'>
               <div className='flex justify-evenly my-4'>
                 <IconButton
-                  disabled={currentTrackPosition == 0}
+                  disabled={currentTrackPosition === 0}
                   onClick={() => {
                     dispatch(skipTrack('prev'));
                   }}
@@ -150,7 +150,7 @@ const QueueInfo = (props: QueueInfoProps) => {
                   )}
                 </IconButton>
                 <IconButton
-                  disabled={currentTrackPosition + 1 == queue.length}
+                  disabled={currentTrackPosition + 1 === queue.length}
                   onClick={() => {
                     dispatch(skipTrack('next'));
                   }}

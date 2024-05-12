@@ -44,7 +44,7 @@ const TrackList = ({
           return (
             <li
               className={`flex items-center rounded-xl bg-gradient-to-r to-transparent transition-colors ease-in-out disablemobilehover:hover:from-white/5 ${
-                item._id == currentTrackInfo._id
+                item._id === currentTrackInfo._id
                   ? 'text-accent !from-white/10'
                   : ''
               }`}
@@ -53,7 +53,7 @@ const TrackList = ({
               <ButtonBase
                 className='w-full text-left !p-2 !rounded-xl'
                 onClick={() => {
-                  if (item._id == currentTrackInfo._id) {
+                  if (item._id === currentTrackInfo._id) {
                     if (isPlaying) {
                       dispatch(togglePlaying(false));
                     } else {
@@ -73,7 +73,7 @@ const TrackList = ({
                 }}
               >
                 <div className='flex items-center mx-4'>
-                  {item._id == currentTrackInfo._id && isPlaying ? (
+                  {item._id === currentTrackInfo._id && isPlaying ? (
                     <WaveAnimation />
                   ) : (
                     <span className='w-4 text-center'>{index + 1}</span>

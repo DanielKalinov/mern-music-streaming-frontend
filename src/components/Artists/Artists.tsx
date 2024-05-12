@@ -38,7 +38,7 @@ const Artists = () => {
                   </div>
                   <span
                     className={`mt-4 block text-center text-sm font-semibold truncate sm:text-base md:text-lg ${
-                      currentPlaylistInfo.name == name ? 'text-accent' : ''
+                      currentPlaylistInfo.name === name ? 'text-accent' : ''
                     }`}
                   >
                     {name}
@@ -47,7 +47,7 @@ const Artists = () => {
               </Link>
               <div
                 className={`hidden absolute bottom-16 right-8 transition-all duration-300 disablemobilehover:group-hover:visible disablemobilehover:group-hover:opacity-100 lg:block ${
-                  currentPlaylistInfo.name == name
+                  currentPlaylistInfo.name === name
                     ? 'visible opacity-100'
                     : 'invisible opacity-0'
                 }`}
