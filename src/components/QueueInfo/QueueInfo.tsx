@@ -152,9 +152,11 @@ const QueueInfo = (props: QueueInfoProps) => {
             </div>
             {queue.length > 0 && queue[currentTrackPosition + 1] && (
               <>
-                <span className='block mb-2 font-bold px-4 text-ellipsis truncate lg:text-lg'>
-                  Next From: {currentPlaylistInfo.name}
-                </span>
+                <div className='mb-2'>
+                  <span className='font-bold px-4 truncate lg:text-lg'>
+                    Next From: {currentPlaylistInfo.name}
+                  </span>
+                </div>
                 {queue.length > 0 && (
                   <DraggableList
                     queue={queue}
