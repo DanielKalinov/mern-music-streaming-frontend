@@ -72,7 +72,7 @@ const TrackList = ({
                   }
                 }}
               >
-                <div className='flex items-center mx-2'>
+                <div className='flex items-center mx-4'>
                   {item._id == currentTrackInfo._id && isPlaying ? (
                     <WaveAnimation />
                   ) : (
