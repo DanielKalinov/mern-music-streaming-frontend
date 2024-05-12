@@ -8,7 +8,7 @@ const initialState = {
   currentTrackPosition: 0,
   currentPlaylistInfo: { type: '', name: '' },
   queue: <Track[]>[],
-  prevQueue: <Track[]>[],
+  originalQueue: <Track[]>[],
   loading: false,
   isSeeking: false,
   duration: 0,
@@ -53,7 +53,7 @@ export const audioPlayerSlice = createSlice({
     },
     skipTrack: (state, action) => {
       const trackPosition =
-        state.currentTrackPosition + (action.payload == 'next' ? 1 : -1);
+        state.currentTrackPosition + (action.payload === 'next' ? 1 : -1);
 
       const track = state.queue[trackPosition];
 
@@ -68,7 +68,7 @@ export const audioPlayerSlice = createSlice({
       if (!state.isShuffled) {
         // shuffle the queue
 
-        state.prevQueue = state.queue;
+        state.originalQueue = state.queue;
 
         const newQueue = [...state.queue];
         const currentItem = newQueue.splice(state.currentTrackPosition, 1);
@@ -79,20 +79,20 @@ export const audioPlayerSlice = createSlice({
       } else {
         // restore previous queue
 
-        const currentTrackIndex = state.prevQueue.findIndex(
-          ({ _id }) => _id == state.currentTrackInfo._id
+        const currentTrackIndex = state.originalQueue.findIndex(
+          ({ _id }) => _id === state.currentTrackInfo._id
         );
-        const nextFromListPrev = state.prevQueue.slice(
+        const nextFromOriginalQueue = state.originalQueue.slice(
           currentTrackIndex + 1,
-          state.prevQueue.length
+          state.originalQueue.length
         );
         state.currentTrackPosition = currentTrackIndex;
 
-        const newQueue = [...state.prevQueue];
+        const newQueue = [...state.originalQueue];
         newQueue.splice(
           currentTrackIndex + 1,
-          nextFromListPrev.length,
-          ...nextFromListPrev
+          nextFromOriginalQueue.length,
+          ...nextFromOriginalQueue
         );
 
         state.queue = newQueue;
